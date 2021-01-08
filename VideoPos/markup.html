@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VideoPositioning - markup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.js"></script>
+  <script src="https://mcorp.no/lib/mediasync.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v2.js"></script>
+
+  <script src="app.js"></script>
+
+
+  <style>
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+    }
+    .videocontainer {
+      position: fixed;
+      margin: 0px;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border: green 2px solid;
+    }
+
+    .videocontainer video {
+      position: absolute;
+    }
+
+    .rightalign {
+      text-align: right;
+    }
+
+    .subtitle {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      z-index: 20;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      font-size: 1.7em;
+    }
+
+    .subtitle.rightalign {
+      right: 10px;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 50px;
+      left 10px;
+      padding: 2%;
+      width: 96%;
+      background: green;
+      font-size: 1.5em;
+      z-index: 10;
+    }
+
+    .overlay .name {
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    .overlay .title {
+      font-weight: italic;
+      font-size: 1em;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 5px;
+      z-index: 100;
+    }
+
+    .markingbox {
+      position: absolute;
+      border: green 2px solid;
+      width: 50px;
+      height: 50px;
+      z-index: 90;
+    }
+
+  </style>
+
+
+</head>
+<body>
+
+<div class="videocontainer">
+
+<div class="subtitle hidden"></div>
+<div class="overlay hidden">
+  <div class="name">
+  </div>
+  <div class="title">
+  </div>
+</div>
+<div class="markingbox hidden"></div>
+
+<div class="controls">
+  <button id="start">To start</button>
+  <button id="back15">Back15</button>
+  <button id="pause">Pause</button>
+  <button id="play">Play</button>
+  <button id="forward30">Forward</button>
+  <button id="download">Download</button>
+</div>
+</div>
+
+<script>
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  function downloadObjectAsJson(exportObj, exportName){
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, undefined, 2));
+      var downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute("href",     dataStr);
+      downloadAnchorNode.setAttribute("download", (exportName || "features") + ".json");
+      document.body.appendChild(downloadAnchorNode); // required for firefox
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
+    }
+
+  let vid = {src: getParameterByName("url")};
+  app.load_video(vid, ".videocontainer");
+
+  let video = document.querySelector("video");
+
+  video.addEventListener("click", evt => {
+    let d = Math.ceil(document.querySelector(".markingbox").clientHeight / 2.0) || 20;
+    let size = [evt.srcElement.clientWidth, evt.srcElement.clientHeight];
+    let pos = [
+      parseInt(100 * (evt.clientX - d) / (size[0] * 1.0)), 
+      parseInt(100 * (evt.clientY - d) / (size[1] * 1.0))
+    ];
+    let data = {"start": app.to.pos, "end": app.to.pos + 1, "pos": pos};
+    app.sequencer.getActiveCues().forEach(cue => {
+      cue.interval.high = app.to.pos;
+      cue.data.end = app.to.pos;
+      app.sequencer.addCue(cue.key, cue.interval, cue.data);
+    });
+    console.log(data);
+    let id = "c" + app.to.pos.toFixed(0);
+    app.sequencer.addCue(String(id), new TIMINGSRC.Interval(app.to.pos, app.to.pos + 1000000, ), data);
+  });
+
+  let btns = {
+    "start": function() { app.to.update({position: 0})},
+    "back15": function() { app.to.update({position: app.to.pos - 15})},
+    "pause": function() { app.to.update({velocity: 0})},
+    "play": function() { app.to.update({velocity: 1})},
+    "forward30": function() { app.to.update({position: app.to.pos + 30})},
+    "download": function() { downloadObjectAsJson(app.getCues());}
+  }
+
+  for (let btn in btns) {
+    document.querySelector("#" + btn).addEventListener("click", btns[btn]);
+  }
+
+
+  // Extend app with markup stuff
+  app.sequencer.on("change", evt => {
+    console.log("CHANGE", evt.data.pos);
+    let box = document.querySelector(".markingbox");
+
+    let draw = function(pos) {
+      box.style.left = pos[0] + "%";
+      box.style.top = pos[1] + "%";
+      box.classList.remove("hidden");
+    }
+    draw(evt.data.pos);
+  });
+
+  app.sequencer.on("change", evt => {
+    //box.style.classList.add("hidden");
+  });
+
+  app.getCues = function() {
+    let cues = [];
+    app.sequencer.getCues().forEach(cue => cues.push(cue.data));
+    return cues;
+  }
+
+
+
+</script>
+</body>
+</html>

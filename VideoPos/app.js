@@ -1,47 +1,76 @@
 
 var app = MCorp.app("4704154345375000225");
+app.options = {"markingbox": true, "pip": false, "pos": true, "pippos": true};
 app.to = new TIMINGSRC.TimingObject();
 app.sequencer = new TIMINGSRC.Sequencer(app.to);
+app.subsequencer = new TIMINGSRC.Sequencer(app.to);
 
 app.ready.then(function() {
   app.to.timingsrc = app.motions.private;
   app.resize();
 });
 
+app.subsequencer.on("change", evt => {
+  if (evt.data) {
+    let subs = document.querySelector(".subtitle");
+    subs.innerHTML = evt.data;
+    subs.classList.remove("hidden");
+  }
+})
+
+app.subsequencer.on("remove", evt => {
+    document.querySelector(".subtitle").classList.add("hidden");
+});
 
 app.load_video = function(info, videotarget) {
-    let video = document.createElement("video");
-    video.src = info.src;
-    video.addEventListener("loadedmetadata", function() {
-      app.resize();
-      app.resize(document.querySelector(videotarget));            
-    });
-    video.classList.add("auto-resize");
-    video.pos = [50, 50];
-    video.sync = MCorp.mediaSync(video, app.to, {skew: info.offset || 0});
-    document.querySelector(videotarget).appendChild(video);
+  app.videotarget = document.querySelector(videotarget);
+  app.videotarget.pos = app.videotarget.pos || [50,50];
+  let video = document.createElement("video");
+  video.src = info.src;
+  video.addEventListener("loadedmetadata", function() {
+    app.resize();
+    app.resize(document.querySelector(videotarget));            
+  });
+  video.classList.add("auto-resize");
+  video.classList.add("maincontent");
+  video.pos = [50, 50];
+  video.sync = MCorp.mediaSync(video, app.to, {skew: info.offset || 0});
+  document.querySelector(videotarget).appendChild(video);
 };
 
-app.load = function(url, videotarget) {
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      console.log("Got data", data);
+app.load = function(url, videotarget, options) {
+  app.videotarget = document.querySelector(videotarget);
+  options = options || {};
+  return new Promise(function(resolve, reject) {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        app.manifest = data;
 
-      app.load_video(data.video, videotarget);
+        app.load_video(data.video, videotarget);
 
-      // We load this into a sequencer lickety split
-      let i = 0;
-      data.cues.forEach(item => {
-        item.target = videotarget;
-        app.sequencer.addCue("itm" + i, new TIMINGSRC.Interval(item.start, item.stop || item.start), item);
-        i++;
+        if (data.subtitles)
+          data.subtitles.forEach(subtitle => {
+            app.load_subs(app.subsequencer, subtitle.src);
+          });
+
+        // We load this into a sequencer lickety split
+        let i = 0;
+        data.cues.forEach(item => {
+          if (!options.dataonly)
+            item.target = videotarget;
+          if(!item.end) { console.log("MISSING ITEM STOP");}
+          let id = "c" + item.start.toFixed(1).replace(".","-");
+          app.sequencer.addCue(id, new TIMINGSRC.Interval(item.start, item.end || item.start), item);
+          i++;
+        });
+        resolve(data);
       });
     });
 };
 
 let moveid = 1; // We need to handle multiple moves before they stop
-let move = function(element, targets, time) {
+let move = function(element, targets, time, scene_change) {
   if (time == 0) {
     for (let target in targets) {
       element.style[target] = targets[target];
@@ -51,14 +80,12 @@ let move = function(element, targets, time) {
   moveid++;
   // targets should be a property map, e.g. {height: "80px", width: "50%"}
   time = time || 1000;
-  console.log("MOVE", element, targets, time);
   let state = {};
 
   for (let target in targets) {
     state[target] = {};
     let val = target[target];
     let info = /(-?\d+)(.*)/.exec(targets[target]);
-    console.log("Checking", target, element.style[target]);
     let curinfo = /(-?\d+)(.*)/.exec(element.style[target]);
     if (!curinfo) curinfo = [0, 0, "px"];
     state[target].what = info[2];
@@ -66,7 +93,13 @@ let move = function(element, targets, time) {
     state[target].tval = parseInt(info[1]);
     state[target].val = parseInt(curinfo[1]);
     state[target].diff = state[target].tval - state[target].sval;
-    console.log("TARGET", target, state[target]);
+    // If too long, just jump
+    /*
+    if (scene_change) {
+      element.style[target] = state[target].tval + state[target].what;
+      state[target].skip = true;
+    }
+    */
   };
   let endtime = performance.now() + time; // app.to.pos + (time / 1000.);
 
@@ -82,11 +115,9 @@ let move = function(element, targets, time) {
       if (now >= endtime) {
         for (let target in targets) {
           element.style[target] = state[target].tval + state[target].what;
-          console.log("END", target, element.style[target])
         }
         return; // we're done
       }
-
       let cur_pos = 1 - (endtime - now) / time;
       for (let target in targets) {
         if (element.style[target] == state[target].tval + state[target].what)
@@ -95,8 +126,7 @@ let move = function(element, targets, time) {
         // what's the target value supposed to be
 
         let v = state[target].sval + (state[target].diff * cur_pos);
-        element.style[target] = v + state[target].what;
-        console.log("SET", target, v, element.style[target], state[target].tval + state[target].what);
+        element.style[target] = Math.floor(v) + state[target].what;
       }
 
       //movetimeout = setTimeout(update, 100);
@@ -108,7 +138,6 @@ let move = function(element, targets, time) {
 
 app.resize = function(what) {
 
-  console.log("RESIZE", what);
   if (!what) {
     let ar = document.querySelectorAll(".auto-resize");
     ar.forEach(a => app.resize(a.parentElement));
@@ -119,23 +148,29 @@ app.resize = function(what) {
   let width = what.clientWidth;
   let height = what.clientHeight;
 
+  let busy = {"tl": false, "bl": false, "tr": false, "br": false, "l": false, "r": false};
+
   items.forEach(item => {
 
     let w = item.clientWidth;
     let h = item.clientHeight;
 
     // First we ensure that the things inside cover the whole thing (but not more)
-    let ar = h / w;
-    let outer_ar = height / width;
-    if (ar < outer_ar) { // outer is wider
-      item.style.height = "100%";
-      item.style.width = "";
+    let ar = w / h;
+    let outer_ar = width / height;
+    if (outer_ar < 1) { // Portrait
+      item.classList.add("portait");
+      item.classList.remove("landscape");
     } else {
-      // outer is narrower
-      item.style.width = "100%";
-      item.style.height = "";
+      item.classList.add("landscape");
+      item.classList.remove("portrait");
     }
 
+    // If we're not doing positioning, just return
+    if (!app.options.pos) return;
+
+    item.pos = app.videotarget.pos;
+    item.animate = app.videotarget.animate;
     // Find the offsets
     let Tx = (item.pos[0] / 100.) * w;
     let Ty = (item.pos[1] / 100.) * h;
@@ -152,13 +187,73 @@ app.resize = function(what) {
     let offset_x = -Math.max(0, Math.min(overflow_x, Sx));
     let offset_y = -Math.max(0, Math.min(overflow_y, Sy));
     move(item, {
-      left: offset_x + "px",
-      top: offset_y + "px"
-    }, 0);
-    //item.style.left = offset_x + "px";
-    //item.style.top = offset_y + "px";
+      left: Math.floor(offset_x) + "px",
+      top: Math.floor(offset_y) + "px"
+    }, item.animate ? 250 : 0);
 
-    console.log("dbg:", Tx, Ty, Sx, Sy, overflow_x, overflow_y, offset_x, offset_y);
+    // Markingbox position too
+    if (app.options.markingbox) {
+      let mbox = document.querySelector(".markingbox");
+      if (mbox) {
+        // Center point of box relative to visible part
+        mbox.style.left = Math.floor(Tx + offset_x - (mbox.clientWidth/2.)) + "px";
+        mbox.style.top = Math.floor(Ty + offset_y - (mbox.clientHeight/2.)) + "px";
+      }
+    }
+
+
+
+    if (!app.options.pippos && !app.options.pipskew) return;
+
+    // Which quadrant of the screen is this in - flag it
+    let pos = app.videotarget.pos;
+    if (pos[0] < 40) {
+      if (pos[1] <= 60) busy["tl"] = true;
+      if (pos[1] >= 40) busy["bl"] = true;
+      busy["l"] = true;
+    } else {
+      if (pos[0] >= 50) {
+        if (pos[1] <= 60) busy["tr"] = true;
+        if (pos[1] >= 40) busy["br"] = true;
+        busy["r"] = true;
+      }
+    }
+    // Put the PIP at the correct place (if applicable);
+    if (app.options.pippos) {
+      let pip = document.querySelector(".pip");
+      // Split in left/right, not quadrants
+      let positions = ["r", "l"];
+      if (busy[app.lastpippos] != false) {
+        // Must move it
+        for (let i in positions) {
+          let pos = positions[i];
+          if (!busy[pos]) {
+            console.log("Moving PIP to", pos);
+            // Move here
+            if (pos == "r") {
+              pip.classList.remove("pipleft");
+            } else {
+              pip.classList.add("pipleft");
+            }
+            break;
+          }
+        }
+      }
+    } else if (app.options.pipskew) {
+      console.log("Using pip-skew", busy.r);
+      // If we're busy on the right, reduce the size of the video area to show everyting.
+      // If we're changing the size, we need to re-run the resize method
+      let new_state = busy.r ? "75%" : "100%";
+      if (app.videotarget.style.width != new_state) {
+        app.videotarget.style.width = new_state;        
+        setTimeout(function() {app.resize()}, 10);
+      }
+      if (!busy.r) {
+        console.log("Unsetting stuff");
+        document.querySelector(".maincontent").style.left = "";
+        document.querySelector(".maincontent").style.top = "";
+      }
+    }
   });
 
 }
@@ -188,3 +283,73 @@ app.set_overlay = function(data) {
     return target;
   }
 }
+
+app.toggle_fullscreen = function(target, cancel) {
+  if (cancel) {
+    if (document.fullscreenEnabled && document.cancelFullscreen) {
+      document.cancelFullscreen();
+    }
+    return;
+  }
+  target.requestFullScreen = target.requestFullScreen || target.mozRequestFullScreen  || target.webkitRequestFullScreen;
+  document.cancelFullscreen = document.cancelFullscreen || document.moCancelFullScreen || document.webkitCancelFullScreen;
+  target.requestFullScreen();
+  if (document.fullscreenEnabled || document.mozFullscreenEnabled || document.webkitIsFullScreen) {
+    console.log("Cancelling fullscreen");
+    document.cancelFullscreen();
+  } else {
+    target.requestFullScreen();
+    console.log("Requesting fullscreen");
+  }
+};
+
+// Load subtitles
+app.load_subs = function(sequencer, url, params) {
+
+  var toTs = function(str) {
+    var parts = str.split(":");
+    return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseFloat(parts[2])
+  };
+
+  return new Promise(function(resolve, reject) {
+    fetch(url)
+    .then(response => response.text())
+    .then(webvtt => {
+      var key;
+      var start;
+      var end;
+      var text = "";
+      var lines = webvtt.split("\n");
+      for (var i=0; i<lines.length; i++) {
+        var line = lines[i].trim();
+        var m = /(\d\d:\d\d:\d\d.\d+)\s?-->\s?(\d\d:\d\d:\d\d.\d+)/.exec(line);
+        if (m) {
+          start = toTs(m[1]);
+          end = toTs(m[2]);
+          continue;
+        }
+        if (line === "") {
+          // STORE IT
+          if (key) {
+            sequencer.addCue("sub" + key, new TIMINGSRC.Interval(start, end), text);
+            key = undefined;
+            text = "";
+          }
+          continue;
+        }
+
+        // Is this a key?
+        if (/^\d+/.exec(line)) {
+          key = line;
+          continue;
+        }
+
+        if (key) {
+          text += line + "\n";
+          continue;
+        }
+      }
+      resolve();
+    }).catch(err => reject(err));
+  });
+};

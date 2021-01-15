@@ -85,6 +85,16 @@
       width: 50px;
       height: 50px;
       z-index: 90;
+      transform: translate(-50%, -50%);
+    }
+
+    .phonebox {
+      position: absolute;
+      border: yellow 2px solid;
+      width: 200px;
+      height: 100%;
+      z-index: 90;
+      transform: translateX(-50%);
     }
 
   </style>
@@ -103,14 +113,21 @@
   </div>
 </div>
 <div class="markingbox hidden"></div>
+<div class="phonebox hidden"></div>
 
 <div class="controls">
+  <button id="delete">Delete</button>
   <button id="start">To start</button>
-  <button id="back15">Back15</button>
+  <button id="back5">Back5</button>
+  <button id="backf">BackFrame</button>
   <button id="pause">Pause</button>
   <button id="play">Play</button>
-  <button id="forward30">Forward</button>
+  <button id="forwardf">ForwardFrame</button>
   <button id="download">Download</button>
+  <button id="center">Center</button>
+  <button id="prev">Prev cue</button>
+  <button id="next">Next cue</button>
+  <button id="animate">Animate</button>
 </div>
 </div>
 
@@ -133,35 +150,120 @@
     }
 
   let vid = {src: getParameterByName("url")};
-  app.load_video(vid, ".videocontainer");
 
-  let video = document.querySelector("video");
+  let start = function() {
 
-  video.addEventListener("click", evt => {
-    let d = Math.ceil(document.querySelector(".markingbox").clientHeight / 2.0) || 20;
-    let size = [evt.srcElement.clientWidth, evt.srcElement.clientHeight];
-    let pos = [
-      parseInt(100 * (evt.clientX - d) / (size[0] * 1.0)), 
-      parseInt(100 * (evt.clientY - d) / (size[1] * 1.0))
-    ];
-    let data = {"start": app.to.pos, "end": app.to.pos + 1, "pos": pos};
-    app.sequencer.getActiveCues().forEach(cue => {
-      cue.interval.high = app.to.pos;
-      cue.data.end = app.to.pos;
-      app.sequencer.addCue(cue.key, cue.interval, cue.data);
-    });
-    console.log(data);
-    let id = "c" + app.to.pos.toFixed(0);
-    app.sequencer.addCue(String(id), new TIMINGSRC.Interval(app.to.pos, app.to.pos + 1000000, ), data);
-  });
+      let video = document.querySelector("video");
+        
+        app.add_point = function(pos, animate) {
+            let data = {"start": app.to.pos, "end": app.to.pos + 1, "pos": pos};
+            let cues = app.sequencer.getActiveCues().sort(byStartTime);
+            let endtime = 10000000;
+            // Update the currently active to stop at the correct time
+          console.log("Start for this point is", data.start);
+
+            cues.forEach(cue => {
+              endtime = cue.data.end;
+              data.end = cue.data.end;
+              console.log("End for this point is", endtime);
+              cue.interval.high = app.to.pos;
+              cue.data.end = app.to.pos;
+              app.sequencer.addCue(cue.key, cue.interval, cue.data);
+            });
+            // Go through all other cues and ensure that there are no overlaps
+            // with the current one - we don't want overlaps.
+            // Also check that there is continuity - don't want holes
+            cues = app.sequencer.getCues().sort(byStartTime);
+            for (let i=1; i<cues.length; i++) {
+                if (cues[i-1].interval.high != cues[i].interval.low) {
+                    // The last one overlaps, fix it
+                    let c = cues[i-1];
+                    c.interval.high = cues[i].interval.low;
+                    c.data.end = cues[i].interval.low;
+                    app.sequencer.addCue(c.key, c.interval, c.data);
+                }
+            }
+
+            if (animate) data.animate = true;
+            console.log(data);
+            let id = "c" + data.start.toFixed(1).replace(".","-");
+            app.sequencer.addCue(String(id), new TIMINGSRC.Interval(data.start, data.end), data);
+        }
+
+      video.addEventListener("click", evt => {
+        let d = Math.ceil(document.querySelector(".markingbox").clientHeight / 2.0) || 20;
+        let size = [evt.srcElement.clientWidth, evt.srcElement.clientHeight];
+        let pos = [
+          parseInt(100 * (evt.clientX - d) / (size[0] * 1.0)), 
+          parseInt(100 * (evt.clientY - d) / (size[1] * 1.0))
+        ];
+        app.add_point(pos);
+
+      });
+    };
+
+  if (vid.src.indexOf(".json") > -1) {
+      // This is a manifest, load it
+      app.load(vid.src, ".videocontainer", {dataonly:true}).then( manifest => {
+          vid = manifest.video; 
+          start() 
+      });
+  } else {
+      app.load_video(vid, ".videocontainer");
+      start();
+  }
+
+  let byStartTime = function(a, b) {
+      if (a.data) 
+          return a.data.start - b.data.start;
+    return a.start - b.start;
+  };
 
   let btns = {
+      "delete": function() { app.sequencer.getActiveCues().forEach( cue => app.sequencer.removeCue(cue.key));},
     "start": function() { app.to.update({position: 0})},
-    "back15": function() { app.to.update({position: app.to.pos - 15})},
+    "back5": function() { app.to.update({position: app.to.pos - 0.166})},
+    "backf": function() { app.to.update({position: app.to.pos - 0.033})},
     "pause": function() { app.to.update({velocity: 0})},
     "play": function() { app.to.update({velocity: 1})},
-    "forward30": function() { app.to.update({position: app.to.pos + 30})},
-    "download": function() { downloadObjectAsJson(app.getCues());}
+    "forwardf": function() { app.to.update({position: app.to.pos + 0.033})},
+    "download": function() { downloadObjectAsJson(app.getCues());},
+    "center": function() { 
+        let v = document.querySelector("video");
+        let point = [50 - (100 * (20. / v.clientWidth)), 50 - (100 * (20. / v.clientHeight))]
+        app.add_point(point);
+    },
+    "prev": function() {
+        let cues = app.sequencer.getCues();
+        cues.sort(byStartTime);
+        let last_cue;
+        for (let i=0; i<cues.length; i++) {
+            if (cues[i].data.start >= app.to.pos || i == cues.length - 1) {
+                // This is the one
+                app.to.update({position: last_cue.data.start});
+                return;
+            }
+
+            last_cue = cues[i];
+        }
+    },
+    "next": function() {
+        let cues = app.sequencer.getCues();
+        cues.sort(byStartTime);
+        for (let i=0; i<cues.length; i++) {
+            if (cues[i].data.start > app.to.pos) {
+                // This is the one
+                app.to.update({position: cues[i].data.start});
+                return;
+            }
+        }
+    },
+    "animate": function() {
+        app.sequencer.getActiveCues().forEach(cue => {
+            cue.data.animate = true;
+            app.sequencer.addCue(cue.key, cue.interval, cue.data);
+        })
+    }
   }
 
   for (let btn in btns) {
@@ -180,6 +282,14 @@
       box.classList.remove("hidden");
     }
     draw(evt.data.pos);
+
+
+    // We also draw the example phonebox. ratio of 16/9
+    let ratio = 9/16.;
+    let phonebox = document.querySelector(".phonebox");
+     phonebox.classList.remove("hidden");
+     phonebox.style.width = (ratio * phonebox.clientHeight).toFixed(0) + "px";
+     phonebox.style.left = Math.max(0, evt.data.pos[0]) + "%";
   });
 
   app.sequencer.on("change", evt => {
@@ -187,10 +297,36 @@
   });
 
   app.getCues = function() {
-    let cues = [];
-    app.sequencer.getCues().forEach(cue => cues.push(cue.data));
-    return cues;
+      let manifest = {cues: []}
+    let cues = app.sequencer.getCues().sort(byStartTime);
+    cues.forEach(cue => manifest.cues.push(cue.data));
+
+    manifest.video = vid;
+    return manifest
   }
+
+  document.querySelector("body").addEventListener("keydown", evt => {
+      let delta = 0.033;
+      if (evt.ctrlKey) delta = 0.166;
+      if (evt.shiftKey) delta = 1;
+
+    if (evt.keyCode == 32) {
+      evt.preventDefault();
+      if (app.to.vel == 0) {
+        app.to.update({velocity: 1});
+      } else {
+        app.to.update({velocity: 0, position: app.to.pos - 0.2});
+      }
+    } else if (evt.keyCode == 37) {
+      app.to.update({position: app.to.pos - delta});
+    } else if (evt.keyCode == 39) {
+      app.to.update({position: app.to.pos + delta});
+    }
+  });
+
+    window.addEventListener("resize", function() {
+      app.resize();
+    });
 
 
 

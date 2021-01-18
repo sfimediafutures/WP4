@@ -148,7 +148,7 @@ app.resize = function(what) {
   let width = what.clientWidth;
   let height = what.clientHeight;
 
-  let busy = {"tl": false, "bl": false, "tr": false, "br": false, "l": false, "r": false};
+  let busy = {tl: false, bl: false, tr: false, br: false, l: false, r: false};
 
   items.forEach(item => {
 
@@ -171,6 +171,29 @@ app.resize = function(what) {
 
     item.pos = app.videotarget.pos;
     item.animate = app.videotarget.animate;
+
+    // Which quadrant and halfs of the screen is this in - flag it
+    let pos = app.videotarget.pos;
+    if (pos[0] < 45) {
+      if (pos[1] <= 60) busy.tl = true;
+      if (pos[1] >= 40) busy.bl = true;
+      busy.l = true;
+    } else {
+      if (pos[0] >= 55) {
+        if (pos[1] <= 60) busy.tr = true;
+        if (pos[1] >= 40) busy.br = true;
+        busy.r = true;
+      }
+    }
+
+    if (app.options.pip && app.options.pipskew && busy.r) {
+      // We're skewing the video if interesting on the right
+      // 80% of the pip
+      console.log("Resizing", width, document.querySelector(".pip").clientWidth);
+      width = width - (document.querySelector(".pip").clientWidth * 0.7);
+      // width = width * 0.7;
+    }
+
     // Find the offsets
     let Tx = (item.pos[0] / 100.) * w;
     let Ty = (item.pos[1] / 100.) * h;
@@ -201,23 +224,8 @@ app.resize = function(what) {
       }
     }
 
+    if (!app.options.pippos) return;
 
-
-    if (!app.options.pippos && !app.options.pipskew) return;
-
-    // Which quadrant of the screen is this in - flag it
-    let pos = app.videotarget.pos;
-    if (pos[0] < 40) {
-      if (pos[1] <= 60) busy["tl"] = true;
-      if (pos[1] >= 40) busy["bl"] = true;
-      busy["l"] = true;
-    } else {
-      if (pos[0] >= 50) {
-        if (pos[1] <= 60) busy["tr"] = true;
-        if (pos[1] >= 40) busy["br"] = true;
-        busy["r"] = true;
-      }
-    }
     // Put the PIP at the correct place (if applicable);
     if (app.options.pippos) {
       let pip = document.querySelector(".pip");
@@ -238,20 +246,6 @@ app.resize = function(what) {
             break;
           }
         }
-      }
-    } else if (app.options.pipskew) {
-      console.log("Using pip-skew", busy.r);
-      // If we're busy on the right, reduce the size of the video area to show everyting.
-      // If we're changing the size, we need to re-run the resize method
-      let new_state = busy.r ? "75%" : "100%";
-      if (app.videotarget.style.width != new_state) {
-        app.videotarget.style.width = new_state;        
-        setTimeout(function() {app.resize()}, 10);
-      }
-      if (!busy.r) {
-        console.log("Unsetting stuff");
-        document.querySelector(".maincontent").style.left = "";
-        document.querySelector(".maincontent").style.top = "";
       }
     }
   });

@@ -151,8 +151,9 @@
       position: fixed;
       bottom: 0px;
       right: -40px;
-      height: 100%;
+      height: 80%;
       max-width: 50%;
+      object-fit: cover;
     }
     video.landscape {
       height: 100%;
@@ -252,7 +253,7 @@
   app.options.pip = false;
   app.options.pos = true;
   app.options.pippos = true;
-  app.options.pipskew = true;
+  app.options.pipskew = false;
 
   let btns = {
     "btntrack": function(evt) { 
@@ -279,9 +280,11 @@
       } else {
         if (pip) pip.classList.add("hidden");
       }
+      app.resize();
     },
     "btnpippos": function(evt) {
       app.options.pippos = !evt.srcElement.classList.contains("active");
+      app.options.pipskew = !app.options.pippos;
       if (app.options.pippos) {
         evt.srcElement.classList.add("active");
         document.querySelector(".pip").classList.remove("pipfixed");
@@ -290,10 +293,11 @@
         document.querySelector(".pip").classList.add("pipfixed");
         document.querySelector(".pip").classList.remove("pipleft");  // in case it's on the left
       }
+      app.resize();
     },
     "btnpos": function(evt) {
       app.options.pos = !evt.srcElement.classList.contains("active");
-      app.options.pipskew = app.options.pos;
+      //app.options.pipskew = app.options.pos;
       if (app.options.pos) {
         evt.srcElement.classList.add("active");
       } else {
@@ -302,6 +306,7 @@
         app.videotarget.style.width = "100%";
         app.resize();
       }
+      app.resize();
     },
     "btnstart": function() { app.to.update({position:0, velocity: 0})},
     "btnrev": function() { app.to.update({position: Math.max(0, app.to.pos - 15)})},

@@ -150,6 +150,24 @@ app.resize = function(what) {
 
   let busy = {tl: false, bl: false, tr: false, br: false, l: false, r: false};
 
+  // Resize pip if active
+  if (app.options.pip) {
+    let item = document.querySelector(".pip");
+    let w = item.clientWidth;
+    let h = item.clientHeight;
+
+    // First we ensure that the things inside cover the whole thing (but not more)
+    let ar = w / h;
+    let outer_ar = width / height;
+    if (outer_ar < 1) { // Portrait
+      item.classList.add("portrait");
+      item.classList.remove("landscape");
+    } else {
+      item.classList.add("landscape");
+      item.classList.remove("portrait");
+    }
+  }
+
   items.forEach(item => {
 
     let w = item.clientWidth;
@@ -158,12 +176,20 @@ app.resize = function(what) {
     // First we ensure that the things inside cover the whole thing (but not more)
     let ar = w / h;
     let outer_ar = width / height;
-    if (outer_ar < 1) { // Portrait
-      item.classList.add("portait");
+    let changed = false;
+    if (outer_ar < ar) {  // 1) { // Portrait
+      if (item.classList.contains("landscape")) changed = true;
+      item.classList.add("portrait");
       item.classList.remove("landscape");
     } else {
+      if (item.classList.contains("portrait")) changed = true;
       item.classList.add("landscape");
       item.classList.remove("portrait");
+    }
+
+    if (changed) {
+      setTimeout(function(){app.resize(what);}, 0);
+      return;
     }
 
     // If we're not doing positioning, just return
@@ -236,7 +262,6 @@ app.resize = function(what) {
         for (let i in positions) {
           let pos = positions[i];
           if (!busy[pos]) {
-            console.log("Moving PIP to", pos);
             // Move here
             if (pos == "r") {
               pip.classList.remove("pipleft");

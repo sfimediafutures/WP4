@@ -126,6 +126,7 @@ var rubberDuck = function(target, options) {
 
     let btns = {
         "btntrack": function(evt) {
+            evt.preventDefault();
             let isActive = !evt.srcElement.classList.contains("active");
             options.markingbox = isActive;
             console.log("Markings is now", isActive);
@@ -138,6 +139,7 @@ var rubberDuck = function(target, options) {
             }
         },
         "btnpip": function(evt) {
+            evt.preventDefault();
             API.options.pip = !evt.srcElement.classList.contains("active");
             let pip = API.targetElement.querySelector(".pip");
             if (API.options.pip) evt.srcElement.classList.add("active")
@@ -155,6 +157,7 @@ var rubberDuck = function(target, options) {
             API.resize();
         },
         "btnpippos": function(evt) {
+            evt.preventDefault();
             API.options.pippos = !evt.srcElement.classList.contains("active");
             API.options.pipskew = !API.options.pippos;
             if (API.options.pippos) {
@@ -168,6 +171,7 @@ var rubberDuck = function(target, options) {
             API.resize();
         },
         "btnpos": function(evt) {
+            evt.preventDefault();
             API.options.pos = !evt.srcElement.classList.contains("active");
             //API.options.pipskew = API.options.pos;
             if (API.options.pos) {
@@ -180,39 +184,52 @@ var rubberDuck = function(target, options) {
             }
             API.resize();
         },
-        "btnstart": function() {
+        "btnstart": function(evt) {
+            evt.preventDefault();
             API.to.update({
                 position: 0,
                 velocity: 0
             })
         },
-        "btnrev": function() {
+        "btnrev": function(evt) {
+            evt.preventDefault();
             API.to.update({
                 position: Math.max(0, API.to.pos - 15)
             })
         },
-        "btnplay": function() {
+        "btnplay": function(evt) {
+            evt.preventDefault();
             API.to.update({
                 velocity: 1
             })
         },
-        "btnpause": function() {
+        "btnpause": function(evt) {
+            evt.preventDefault();
             API.to.update({
                 velocity: 0
             })
         },
-        "btnff": function() {
+        "btnff": function(evt) {
+            evt.preventDefault();
             API.to.update({
                 position: API.to.pos + 10
             })
         },
 
-        "btnfs": function() {
+        "btnfs": function(evt) {
+            evt.preventDefault();
             API.toggle_fullscreen(API.targetElement);
         },
-        "btnsound": toggle_sound,
-        "btnsynstolk": toggle_synstolk,
+        "btnsound": function(evt) {
+            evt.preventDefault();
+            toggle_sound(evt);
+        },
+        "btnsynstolk": function(evt) {
+            evt.preventDefault();
+            toggle_synstolk(evt);
+        },
         "btn_nrktegnspraak": function(evt) {
+            evt.preventDefault();
             let on = !evt.srcElement.classList.contains("active");
             let pip = API.targetElement.querySelector(".pip");
             let vid = API.videoElement;
@@ -266,6 +283,7 @@ var rubberDuck = function(target, options) {
             }
         },
         "btn_nrktegnspraak_zoom": function(evt) {
+            evt.preventDefault();
             let on = !evt.srcElement.classList.contains("active");
             let pip = API.targetElement.querySelector(".pip");
             let vid = API.videoElement;

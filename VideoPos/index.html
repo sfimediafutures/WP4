@@ -278,13 +278,16 @@
 </head>
 <body>
 
-<div class="overlay">
-  <a href="#" id="playbtn">PLAY</a>
-</div>
 
 <div class="infobox hidden"></div>
 
 <div class="videocontainer">
+
+<div class="overlay">
+  <a href="#" id="playbtn">PLAY</a>
+</div>
+
+
 <img class="emotion"></img>
 <div class="markingbox hidden"></div>
 
@@ -364,8 +367,7 @@
   var app = rubberDuck(document.querySelector(".videocontainer"), options);
 
   document.querySelector("#playbtn").addEventListener("click", evt => {
-    document.querySelector("video").play();
-    document.querySelector(".overlay").style.display = "none";
+    app.play();
   });
 
 

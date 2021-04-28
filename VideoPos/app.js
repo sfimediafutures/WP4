@@ -25,6 +25,21 @@ var rubberDuck = function(target, options) {
     let __autopaused = false;
     let _is_speaking = false;
 
+    let get_hash = function(str) {
+
+        var hash = 0;
+        if (str.length == 0) {
+            return hash;
+        }
+        for (var i = 0; i < str.length; i++) {
+            var char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = (hash & hash) & 0xffffff; // Convert to 24bit integer
+        }
+        return hash;
+    }
+
+
     API.options = options;
     for (let d in default_options) {
         if (API.options[d] === undefined)
@@ -34,11 +49,37 @@ var rubberDuck = function(target, options) {
 
     if (options.mcorp_appid) {
         API.app = MCorp.app(options.mcorp_appid);
-        API.app.ready.then(function() {
-            console.log("Online sync ready");
-            API.to.timingsrc = API.app.motions.private;
-            API.resize();
-        });
+    }
+
+    API.play = function() {
+        if (API.videoElement)
+            API.videoElement.play();
+
+        if (API.targetElement.querySelector(".overlay")) {
+            API.targetElement.querySelector(".overlay").style.display = "none";
+        }
+
+        if (options.mcorp_appid) {
+            // API.app = MCorp.app(options.mcorp_appid);
+            API.app.ready.then(function() {
+
+                if (API.videoElement) {
+                    console.log("Video loaded, and mcorp app ready - check entry");
+                    let hash = get_hash(API.videoElement.src);
+                    console.log("HASH", hash, API.app.motions.entry.pos);
+                    if (API.app.motions.entry.pos != hash) {
+                        API.app.motions.entry.update(hash);
+                        API.app.motions.private.update(0,1);
+                    }
+                }
+
+                console.log("Online sync ready");
+                API.to.timingsrc = API.app.motions.private;
+                API.resize();
+            });
+        } else {
+            API.to.update({position: 0, velocity:1});
+        }
     }
 
     API.sequencer = new TIMINGSRC.Sequencer(API.to);

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MediaFutures WP4 Demoer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        font-family: sans-serif;
+    }
+
+    .demolist {
+        width: 100%;
+        background white;
+    }
+
+    .demo {
+        position: relative;
+        height: 250px;
+    }
+
+    .demo .poster {
+        padding: 5px;
+        max-height: 250px;
+        max-width: 300px;
+        clear: both;
+    }
+
+    .demo .details {
+        float: right;
+        min-width: 300px;
+        width: calc(100% - 320px);
+    }
+
+    .demo .title {
+        padding-top: 25px;
+        font-weight: bold;
+        font-size: 1.4em;
+    }
+
+    .demo .description {
+        max-width: 400px;
+    }
+
+    .demo .links {
+        padding-top: 15px;
+        margin-left: 25px;
+    }
+
+    .demo .linkgroup {
+        padding: 3px;
+    }
+
+    .demo .linkgroupname {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .demo a {
+        padding: 5px;
+        font-weight: italic;
+        font-size: 1.0em;
+    }
+
+    .header {
+        width: 100%;
+    }
+
+    .header .maintitle {
+        font-weight: bold;
+        font-size: 75px;
+        z-index: -1;
+        color: gray;
+    }
+    .header .info {
+        font-weight: 1.4em;
+        max-width: 450px;
+    }
+
+    .header .mflogo {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        height: 100px;
+    }
+
+    @media (max-width: 640px) {
+        .demo .details {
+            width: 100%;
+            min-width: 0px;
+        }
+    }
+
+
+</style>
+
+
+</head>
+<body>
+<div class="header">
+    <div class="maintitle">WP4 demos</div>
+    <div class="info">
+        On this page you will find some demonstrations. The links will open in a new tab (or hold "shift" while clicking to open in a new window on a PC).<br>
+        Demos tested on Chrome.
+
+    </div>
+    <img class="mflogo" src="MF_mainlogo.png"/>
+</div>
+
+<div class="demolist">
+</div>
+
+<template id="demotemplate">
+    <div class="demo">
+        <img class="poster" src="">
+        <div class="details">
+            <div class="title"></div>
+            <div class="description"></div>
+            <div class="links"></div>
+        </div>
+    </div>
+</template>
+
+<template id="linkgrouptemplate">
+    <div class="linkgroup">
+        <div class="linkgroupname"></div>
+        <div class="linkarea>"></div>
+    </div>
+</template>
+
+
+<script>
+
+    let demos = [
+        {
+            title: "Vikingane",
+            poster: "./res/Vikingane/poster.jpg",
+            description: "This demonstrates fancy subtitles using Vikingane Series 3, episode 1. All videos also do dynamic aspect ratio adjustments and has a toggle for Synstolk.",
+            links: [
+                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json&simplesubs=true", group: "MultiDevice"},
+                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json", group: "MultiDevice"},
+                {name: "Chat style", href: "VideoPos/chat_style.html?url=../res/Vikingane/vikingane_s03e01.json", group: "MultiDevice"},
+
+                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json&simplesubs=true&single=true", group: "SingleDevice"},
+                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json&single=true", group: "SingleDevice"},
+
+            ]
+        },
+        {
+            title: "Valkyrien",
+            poster: "./res/Valkyrien/poster.jpg",
+            description: "This demonstrates fancy subtitles using Valkyrien Series 1, episode 1. All videos also do dynamic aspect ratio adjustments and has a toggle for Synstolk.",
+            links: [
+                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json&simplesubs=true", group: "MultiDevice"},
+                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json", group: "MultiDevice"},
+                {name: "Chat style", href: "VideoPos/chat_style.html?url=../res/Valkyrien/Valkyrien_s01e01.json", group: "MultiDevice"},
+
+                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json&simplesubs=true&single=true", group: "SingleDevice"},
+                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json&single=true", group: "SingleDevice"}
+            ]
+        },
+        {
+            title: "Exit2",
+            poster: "./res/Exit2/poster.jpg",
+            description: "This demonstrates fancy subtitles using Exit Series 2, episode 1. All videos also do dynamic aspect ratio adjustments and has a toggle for Synstolk.",
+            links: [
+                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json&simplesubs=true", group: "MultiDevice"},
+                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json", group: "MultiDevice"},
+                {name: "Chat style", href: "VideoPos/chat_style.html?url=../res/Exit2/exit_s02e01.json", group: "MultiDevice"},
+
+                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json&simplesubs=true&single=true", group: "SingleDevice"},
+                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json&single=true", group: "SingleDevice"},
+
+            ]
+        },
+
+    ]
+
+    demos.forEach(demo => {
+        let template = document.querySelector("template#demotemplate").content.cloneNode(true);
+        let d = template.querySelector(".demo");
+        d.querySelector(".title").innerHTML = demo.title ;
+        d.querySelector(".description").innerHTML = demo.description || "";
+        d.querySelector(".poster").src = demo.poster || "generic_demo.jpg";
+
+        let linkarea = d.querySelector(".links");
+        demo.links.forEach(link => {
+            let a = document.createElement("a");
+            a.setAttribute("href", link.href);
+            a.setAttribute("target", "_blank");
+            a.innerHTML = link.name;
+            if (!link.group) link.group = "Links";
+            let target = linkarea.querySelector("#" + link.group);
+            if (!target) {
+                temp2 = document.querySelector("template#linkgrouptemplate").content.cloneNode(true);
+                target = temp2.querySelector("div");
+                target.setAttribute("id", link.group);
+                target.setAttribute("title", demo.title + ", " + link.name + ", " + link.group);
+                target.querySelector(".linkgroupname").innerHTML = link.group;
+                linkarea.appendChild(target);
+
+            }
+            console.log("Checking #" + link.group);
+            linkarea.querySelector("#" + link.group).appendChild(a);
+        });
+        document.querySelector(".demolist").appendChild(d);
+    });
+
+
+</script>
+</body>
+</html>

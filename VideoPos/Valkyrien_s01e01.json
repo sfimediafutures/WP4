@@ -1657,5 +1657,9 @@
   },
   "subtitles": [
     {"src": "../res/KMTE40000312AA.vtt", "lang": "no"}
-  ]
+  ],
+  "index": "../res/Valkyrien_s01e01_crop.idx",
+  "pip": {
+    "src": "../res/Valkyrien_s01e01_tegnspraak.webm"
+  }
 }

@@ -19,6 +19,10 @@
 
   <script>
 
+    window.addEventListener("resize", function() {
+      setTimeout(app.resize, 0);
+    });
+
   </script>
 
   <style>
@@ -41,6 +45,14 @@
       position: absolute;
     }
 
+    .videocontainer .presentation {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
     .rightalign {
       text-align: right;
     }
@@ -48,7 +60,7 @@
     .subtitle {
       display: flex;
       justify-content: space-between;
-      font-family: sans-serif;
+
       position: absolute;
       bottom: 15%;
       left: 15%;
@@ -56,13 +68,12 @@
       width: 70%;
       max-width: 800px;
       color: white;
-      z-index: 100000;
       font-size: 1.7em;
+      z-index: 100000;
     }
 
     .subtitle span {
-      background: rgba(0,0,0,0.5);
-      font-size: 1.2em;
+      background: rgba(0,0,0,0.5);      
     }
 
     .subtitle.rightalign {
@@ -232,10 +243,6 @@
         font-size: 1.5em;
       }
 
-      .subtitle span {
-        font-size: 1.1em;
-      }
-
     }
 
     @media (min-width: 1600px) {
@@ -245,10 +252,6 @@
 
       .infobox {
         font-size: 2.7em;
-      }
-
-      .subtitle span {
-        font-size: 1.9em;
       }
     }
 
@@ -305,9 +308,6 @@
 
   <div class="spacer"></div>
   <div class="button" id="btnsound" title="Toggle sound"><i class="material-icons">volume_up</i></div>
-  <div class="button" id="btnsynstolk" title="Toggle sound"><i class="material-icons">visibility</i></div>
-
-
   <div class="button" id="btnfs" title="Toggle fullscreen"><i class="material-icons">fullscreen</i></div>
   <div class="button pipctrl" id="btn_nrktegnspraak" title="NRK tegnspraak style"><i class="material-icons">accessibility</i></div>
   <div class="button pipctrl" id="btn_nrktegnspraak_zoom" title="Sign language zoom"><i class="material-icons">zoom_in</i></div>
@@ -323,13 +323,6 @@
 
 <script>
 
-  function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-          results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
-
   let options = {
       pip:  true,
       pippos: false,
@@ -339,18 +332,6 @@
       index: false,
       tts: true
   };
-
-  if (getParameterByName("simplesubs")) {
-    options.advancedsubs = false;
-    console.log("Using normal subtitles");
-  }
-
-  if (getParameterByName("single")) {
-    options.mcorp_appid = undefined;
-    console.log("Single device - no shared controls");
-  }
-
-  console.log("Options", options);
   var app = rubberDuck(document.querySelector(".videocontainer"), options);
 
   document.querySelector("#playbtn").addEventListener("click", evt => {
@@ -359,20 +340,56 @@
   });
 
 
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
 
-  let manifest = getParameterByName("url") || "Valkyrien_s01e01.json";
+  let manifest = getParameterByName("url") || "../res/svaltards/svaltards.json";
 
   app.load(manifest + "?ts=" + new Date().getTime() , ".videocontainer")
   .then(evt => {
     document.querySelector(".maincontent").muted = true;
-
   });
 
-  window.addEventListener("resize", function() {
-    setTimeout(app.resize, 0);
+  // Hook up to the sequencer to show the graphical items
+  app.sequencer.on("change", function(evt) {
+    let data = evt.new.data;
+
+    if (!data.content) return;
+
+    let p = document.querySelector(".videocontainer");
+    if (data.content.video) {
+      let v = document.createElement("video");
+      v.src = data.content.video; 
+      v.setAttribute("loop", true);
+      v.classList.add("presentation");
+      v.classList.add("auto-resize");
+      v.setAttribute("id", "pres_" + evt.key.replace(".", ""));
+      p.appendChild(v);
+      v.play();
+    } else if (data.content.img) {
+      let i = document.createElement("img");
+      i.src = data.content.img; 
+      i.classList.add("presentation");
+      i.classList.add("auto-resize");
+      i.setAttribute("id", "pres_" + evt.key.replace(".", ""));
+      p.appendChild(i);
+    }
   });
 
-
+  app.sequencer.on("remove", function(evt) {
+    console.log("REMOVING", evt);
+    let item = document.querySelector("#pres_" + evt.key.replace(".", ""));
+    if (item) {
+      console.log("Cleaning", item);
+      item.parentElement.removeChild(item);
+    } else {
+      console.log("Warning: should remove #pres_" + evt.key.replace(".", ""), "but it is not found")
+    }
+  });
 
 </script>
 </body>

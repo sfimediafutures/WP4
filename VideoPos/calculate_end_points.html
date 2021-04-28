@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RubberDuck - CALIBRATE SUBS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<div class="overlay">
+  <a href="#" id="playbtn">PLAY</a>
+
+  <audio src="/sfi/res/Valkyrien_s01e01_contentum.mp3" controls></audio>
+</div>
+
+<script>
+var tts_voices = [];
+
+
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function downloadObjectAsJson(exportObj, exportName){
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, undefined, 2));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", (exportName || "features") + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
+
+
+function speak(text) {
+  return new Promise(function(resolve, reject) {
+    try {
+      let utterance = new SpeechSynthesisUtterance(text);
+      if (tts_voices.length == 0) { reject("Can't play without voice"); return};
+
+      utterance.voice = tts_voices[0];
+      utterance.onend = function() {
+        console.log("Done");
+        resolve();
+      };
+      console.log("Speaking", text, "with voice", utterance.voice.voiceURI);
+      speechSynthesis.speak(utterance);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let manifest = getParameterByName("url") || "../res/svaltards/svaltards.json";
+let tts_ready = new Promise(function(resolve, reject) {
+
+  let load_voices = function() {
+    let v = speechSynthesis.getVoices();
+    let banker;
+    speechSynthesis.getVoices().forEach(voice => {
+      if (!banker && voice.lang.startsWith("en")) banker = voice;
+
+      if (voice.lang.startsWith("no") || voice.lang.startsWith("nb") ) {
+          if (tts_voices.indexOf(voice) == -1) {
+              tts_voices.push(voice);
+          }
+      };
+    });
+    if (tts_voices.length == 0 && banker)
+      tts_voices.push(banker);
+
+    console.log("Loaded", tts_voices.length, "voices");
+    if (tts_voices.length > 0) {
+        // API.speak("Ready", 0);
+        console.log("READY");
+        resolve(tts_voices);
+    }
+  }
+  speechSynthesis.onvoiceschanged = load_voices;
+  load_voices();
+});
+
+document.querySelector("#playbtn").addEventListener("click", function() {
+  fetch(manifest)
+    .then(response => response.json())
+    .then(data => {
+
+        if (!data.subtitles) return;
+
+          data.subtitles.forEach(subtitle => {
+            if (subtitle.src.indexOf(".json") > -1) {
+
+              fetch(subtitle.src)
+                .then(response => response.json())
+                .then(data => {
+
+                  let measure = function(idx) {
+                    if(idx >= data.length) {
+                      console.log("DONE - should download");
+                      downloadObjectAsJson(data, "updated.json");
+                      return;
+                    }
+                    let startts = performance.now();
+                    speak(data[idx].text, 0, true).then(e => {
+                      let delta = (performance.now() - startts) / 1000.;
+                      let oldend = data[idx].end;
+                      data[idx].end = data[idx].start + delta + 0.5;
+                      console.log("Updated end", oldend, "=>", data[idx].end, "start", data[idx].start, "took", delta, idx, "of", data.length);
+                      measure(++idx);
+                    });
+                  }
+                  measure(0);
+                });
+              };
+            });
+
+  })
+});
+</script>
+</body>
+</html>

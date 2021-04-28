@@ -6,10 +6,11 @@
 
   <script src="https://mcorp.no/lib/mcorp-2.0.js"></script>
   <script src="https://mcorp.no/lib/mediasync.js"></script>
-  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v2.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+
+  <script src="https://nlive.no/datacannon-v3.js"></script>
 
   <script src="app.js"></script>
-
 
   <style>
     body {
@@ -28,6 +29,8 @@
 
     .videocontainer video {
       position: absolute;
+      width: 100%;
+      max-height: 100%;
     }
 
     .rightalign {
@@ -75,7 +78,8 @@
 
     .controls {
       position: fixed;
-      bottom: 5px;
+      padding: 15px;
+      bottom: 0px;
       z-index: 100;
     }
 
@@ -89,6 +93,7 @@
     }
 
     .phonebox {
+        display: none;
       position: absolute;
       border: yellow 2px solid;
       width: 200px;
@@ -132,6 +137,8 @@
 </div>
 
 <script>
+
+
   function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -149,64 +156,142 @@
       downloadAnchorNode.remove();
     }
 
+  let options = {
+      pip:  false,
+      pippos: false,
+      pos: true,
+      pipskew: false,
+      mcorp_appid: "4704154345375000225",
+      index: true,
+      tts: false,
+      advancedsubs: false,
+      controls: false
+  };
+  var app = rubberDuck(document.querySelector(".videocontainer"), options);
+
+  //app.dcannon = new DataCannon("wss://nlive.no/dc", [app.sequencer]);
+
+  document.querySelector(".controls").addEventListener("click", function(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+  });
+
+
   let vid = {src: getParameterByName("url")};
 
   let start = function() {
 
+    app.manifest = app.manifest || {};
+
       let video = document.querySelector("video");
         
-        app.add_point = function(pos, animate) {
-            let data = {"start": app.to.pos, "end": app.to.pos + 1, "pos": pos};
-            let cues = app.sequencer.getActiveCues().sort(byStartTime);
-            let endtime = 10000000;
-            // Update the currently active to stop at the correct time
-          console.log("Start for this point is", data.start);
+        let do_add = function(key, interval, data) {
+          if (interval.low == interval.high) {
+            // We don't do points, this cue has been reduced to a point, so
+            // remove it
+            if (app.manifest.dc) {
+              app.dcannon.remove(app.manifest.dc, key);
+            } else {
+              app.sequencer.removeCue(key);
+            }
+            return;
+          }
 
+          if (app.manifest.dc) {
+            console.log("Posting", {
+                startts: interval.low, 
+                endts: interval.high,
+                name: key,
+                id: key,
+                value: data
+            });
+            app.dcannon.post(app.manifest.dc, {
+                startts: interval.low, 
+                endts: interval.high,
+                name: key,
+                id: key,
+                value: data
+            });
+          } else {
+            console.log("Adding directly to sequencer");
+              app.sequencer.addCue(key, interval, data);
+          }
+        };
+
+        app.add_point = function(pos, opts) {
+            opts = opts || {};
+            opts.ts = opts.ts || app.to.pos;
+            let data = {"start": opts.ts, "end": opts.ts + 100000, "pos": pos};
+            let endtime = 10000000;
+            let id = "c" + data.start.toFixed(1).replace(".","-");
+            console.log("Start for this point is", data.start, pos);
+
+            // Update the currently active to stop at the correct time
+            let cues = app.sequencer.cues({"order": byStartTime});
             cues.forEach(cue => {
+              // If this cue is THE ONE WE'RE UPDATING, don't do anything here
+              if (cue.id == id) return;
               endtime = cue.data.end;
               data.end = cue.data.end;
               console.log("End for this point is", endtime);
-              cue.interval.high = app.to.pos;
-              cue.data.end = app.to.pos;
-              app.sequencer.addCue(cue.key, cue.interval, cue.data);
+              cue.data.end = opts.ts;
+              do_add(cue.key, new TIMINGSRC.Interval(cue.data.start, opts.ts), cue.data);
             });
             // Go through all other cues and ensure that there are no overlaps
             // with the current one - we don't want overlaps.
             // Also check that there is continuity - don't want holes
-            cues = app.sequencer.getCues().sort(byStartTime);
+            cues = app.sequencer.dataset.cues({order:byStartTime});
+            console.log("CUES", cues);
             for (let i=1; i<cues.length; i++) {
+                console.log("CHECKING", cues[i-1].interval, cues[i].interval);
                 if (cues[i-1].interval.high != cues[i].interval.low) {
                     // The last one overlaps, fix it
                     let c = cues[i-1];
-                    c.interval.high = cues[i].interval.low;
+                    //c.interval.high = cues[i].interval.low;
                     c.data.end = cues[i].interval.low;
-                    app.sequencer.addCue(c.key, c.interval, c.data);
+                    do_add(c.key, c.interval, c.data);
+                    do_add(c.key, new TIMINGSRC.Interval(c.data.start, c.data.end), c.data);
                 }
             }
 
-            if (animate) data.animate = true;
-            console.log(data);
-            let id = "c" + data.start.toFixed(1).replace(".","-");
-            app.sequencer.addCue(String(id), new TIMINGSRC.Interval(data.start, data.end), data);
+            if (opts.animate) data.animate = true;
+            console.log("Adding:", data);
+            do_add(id, new TIMINGSRC.Interval(data.start, data.end), data);
         }
 
       video.addEventListener("click", evt => {
-        let d = Math.ceil(document.querySelector(".markingbox").clientHeight / 2.0) || 20;
+        //let d = Math.ceil(document.querySelector(".markingbox").clientHeight / 2.0) || 20;
+        let d = 0;
+        let opts = {ts: app.to.pos};
+        // Check out if we are close to an iframe?
+        let frame = app.idxsequencer.cues()[0].data;
+        if (frame) {
+            let diff = app.to.pos - frame.current;
+
+            if (diff < 1 && app.to.pos != 0) {
+                opts.ts = frame.current;
+            } else {
+                // Animate!
+                opts.animate = true;
+            }
+        }
+
         let size = [evt.srcElement.clientWidth, evt.srcElement.clientHeight];
         let pos = [
           parseInt(100 * (evt.clientX - d) / (size[0] * 1.0)), 
           parseInt(100 * (evt.clientY - d) / (size[1] * 1.0))
         ];
-        app.add_point(pos);
-
+        console.log("d", d, "size", size, "pos", pos, opts);
+        app.add_point(pos, opts);
       });
     };
 
   if (vid.src.indexOf(".json") > -1) {
       // This is a manifest, load it
+      console.log("Loading manifest");
       app.load(vid.src, ".videocontainer", {dataonly:true}).then( manifest => {
           vid = manifest.video; 
-          start() 
+          start();
       });
   } else {
       app.load_video(vid, ".videocontainer");
@@ -219,28 +304,42 @@
     return a.start - b.start;
   };
 
+  let fudge = 0.020;  // Re-align index
   let btns = {
-      "delete": function() { app.sequencer.getActiveCues().forEach( cue => app.sequencer.removeCue(cue.key));},
-    "start": function() { app.to.update({position: 0})},
+      "delete": function() { app.sequencer.cues().forEach( cue => {
+        if (app.dcannon) {
+            app.dcannon.remove(app.manifest.dc, cue.key);
+        } else {
+            app.sequencer.removeCue(cue.key);            
+        }
+    });},
+    "start": function() { app.to.update({position: 18.32})},
     "back5": function() { app.to.update({position: app.to.pos - 0.166})},
-    "backf": function() { app.to.update({position: app.to.pos - 0.033})},
+    "backf": function() { 
+        let iframe = app.idxsequencer.cues()[0].data;
+        let p = iframe.current;
+        if (Math.abs(app.to.pos - p) < 0.05)
+            p = iframe.prev;
+        app.to.update({position: p + fudge}); // Avoid "edge" of frame
+        //app.to.update({position: app.to.pos - 0.033})
+    },
     "pause": function() { app.to.update({velocity: 0})},
     "play": function() { app.to.update({velocity: 1})},
-    "forwardf": function() { app.to.update({position: app.to.pos + 0.033})},
-    "download": function() { downloadObjectAsJson(app.getCues());},
+    "forwardf": function() { app.to.update({position: app.idxsequencer.cues()[0].data.next + fudge}); }, //app.to.update({position: app.to.pos + 0.033})},
+    "download": function() { downloadObjectAsJson(app.cues());},
     "center": function() { 
         let v = document.querySelector("video");
-        let point = [50 - (100 * (20. / v.clientWidth)), 50 - (100 * (20. / v.clientHeight))]
+        let point = [50, 50];  // [50 - (100 * (20. / v.clientWidth)), 50 - (100 * (20. / v.clientHeight))]
         app.add_point(point);
     },
     "prev": function() {
-        let cues = app.sequencer.getCues();
-        cues.sort(byStartTime);
+        let cues = app.sequencer.dataset.cues({order: byStartTime});
+        //cues.sort(byStartTime);
         let last_cue;
         for (let i=0; i<cues.length; i++) {
             if (cues[i].data.start >= app.to.pos || i == cues.length - 1) {
                 // This is the one
-                app.to.update({position: last_cue.data.start});
+                app.to.update({position: last_cue.data.start + fudge}); // Avoid "edge" of frame
                 return;
             }
 
@@ -248,12 +347,14 @@
         }
     },
     "next": function() {
-        let cues = app.sequencer.getCues();
-        cues.sort(byStartTime);
+        let cues = app.sequencer.cues({order:byStartTime});
+        //cues.sort(byStartTime);
         for (let i=0; i<cues.length; i++) {
+            console.log(cues[i].data.start, app.to.pos);
             if (cues[i].data.start > app.to.pos) {
                 // This is the one
-                app.to.update({position: cues[i].data.start});
+                console.log("Got it");
+                app.to.update({position: cues[i].data.start + fudge});
                 return;
             }
         }
@@ -273,7 +374,7 @@
 
   // Extend app with markup stuff
   app.sequencer.on("change", evt => {
-    console.log("CHANGE", evt.data.pos);
+    console.log("CHANGE", evt.new.data.pos);
     let box = document.querySelector(".markingbox");
 
     let draw = function(pos) {
@@ -281,7 +382,7 @@
       box.style.top = pos[1] + "%";
       box.classList.remove("hidden");
     }
-    draw(evt.data.pos);
+    draw(evt.new.data.pos);
 
 
     // We also draw the example phonebox. ratio of 16/9
@@ -289,20 +390,16 @@
     let phonebox = document.querySelector(".phonebox");
      phonebox.classList.remove("hidden");
      phonebox.style.width = (ratio * phonebox.clientHeight).toFixed(0) + "px";
-     phonebox.style.left = Math.max(0, evt.data.pos[0]) + "%";
+     phonebox.style.left = Math.max(0, evt.new.data.pos[0]) + "%";
   });
 
-  app.sequencer.on("change", evt => {
-    //box.style.classList.add("hidden");
-  });
-
-  app.getCues = function() {
-      let manifest = {cues: []}
-    let cues = app.sequencer.getCues().sort(byStartTime);
-    cues.forEach(cue => manifest.cues.push(cue.data));
-
-    manifest.video = vid;
-    return manifest
+  app.cues = function() {
+    app.manifest = app.manifest || {};
+    app.manifest.cues = [];
+    let cues = app.sequencer.dataset.cues({order:byStartTime});
+    cues.forEach(cue => app.manifest.cues.push(cue.data));
+    if (!app.manifest.video) app.manifest.video = vid;
+    return app.manifest
   }
 
   document.querySelector("body").addEventListener("keydown", evt => {

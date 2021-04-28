@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat style subs</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/lib/mcorp-2.0.js"></script>
+    <script src="https://mcorp.no/lib/mediasync.js"></script>
+    <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+    <script src="https://nlive.no/datacannon-v3.js"></script>
+
+    <style>
+        .emotion_container {
+            display: flex;
+            flex-direction: column;
+            width: 0%;
+            height: 100%;
+            position: fixed;
+            right: 0px;
+            top: 0px;
+        }
+
+        .emotion_container img {
+            max-width: 100%;
+            max-height: 10%;
+            margin-left: auto;
+        }
+
+        .message_container {
+            width: 100%;
+        }
+        .message {
+            display: flex;
+            align-items: center;
+            background: lightgray;
+            max-width: 500px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            font-size: 1.3em;
+            //font-family: sans-serif;
+        }
+
+        .message .icon {
+            width: 60px;
+            height: 60px;
+            padding: 5px;
+        }
+
+        .message.right {
+            margin-left: auto;
+        }
+
+        .message .text {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .message .emotions {
+            margin-left: auto;
+            top: 5px;
+            right: 5px;
+            width: 50px;
+            height: 80%;
+            overflow: hidden;
+        }
+
+        .message .emotions img {
+            width: 25px;
+        }
+
+        .altwho {
+            display: none;
+            position: fixed;
+            background: white;
+            overflow: scroll;
+            max-height: 85%;
+        }
+
+        .altwho .icon {
+            width: 60px;
+            height: 60px;
+            padding: 5px;
+        }
+
+
+        .infomessage {
+            text-align: center;
+            font-weight: bold;
+            background: white;
+            width: 100%;
+            display: block;
+            margin: auto;
+            padding:10px;
+        }
+
+        .bunched {
+            padding-bottom: 0px;
+        }
+        .bunched .icon {
+            display: none;
+        }
+        .bunched .text {
+            margin-left: 70px;
+        }
+
+        #download  {
+            display: none;
+            position: fixed;
+            bottom: 5px;
+            right: 5px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <ul class="altwho"></ul>
+
+    <div class="message_container"></div>
+    <div class="emotion_container">
+
+    </div>
+  <button id="download">Download</button>
+
+
+    <template id="message">
+        <div class="message">
+            <img class="icon"></img>
+            <div class="text"></div>
+            <div class="emotions"></div>
+        </div>
+    </template>
+
+    <script>
+
+
+    document.querySelector("body").addEventListener("keydown", evt => {
+        console.log("Key pressed", evt);
+        if (evt.key == "Escape") {
+            document.querySelector(".altwho").style.display = "none";
+        }
+    });
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+  function downloadObjectAsJson(exportObj, exportName){
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, undefined, 2));
+      var downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute("href",     dataStr);
+      downloadAnchorNode.setAttribute("download", (exportName || "features") + ".json");
+      document.body.appendChild(downloadAnchorNode); // required for firefox
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
+    }
+
+
+    let target = document.querySelector(".message_container");
+    var app = MCorp.app("4704154345375000225");
+
+    app.toggle_emotion_bar = function(show) {
+        let emo = document.querySelector(".emotion_container");
+        let content = document.querySelector(".message_container");
+        if (emo.style.width == "0%" || show) {
+            content.style.width = "80%";
+            emo.style.width = "20%";
+        } else {
+            content.style.width = "100%";
+            emo.style.width = "0%";            
+        }
+    }
+
+    if (getParameterByName("emo")) {
+        console.log("Show emotion bar");
+        app.toggle_emotion_bar(true);
+    }
+
+    app._add_emotion = function(element, emotion) {
+        if (!emotion.url) return;
+        let i = document.createElement("img");
+        i.src = emotion.url;
+        element.querySelector(".emotions").appendChild(i);
+    }
+    
+    app._post_emotion = function(start, end, emotion, url) {
+
+        console.log("POST", app.manifest.dc, {
+            startts: start, 
+            endts: end,
+            name: emotion,
+            id: "e" + String(start).substr(-10),
+                value: {type: "emotion", source: "user", emotion: emotion, url: url}
+        });
+        app.dcannon.post(app.manifest.dc, {
+            startts: start, 
+            endts: end,
+            name: emotion,
+            id: "e" + String(start).substr(-10),
+                value: {type: "emotion", source: "user", emotion: emotion, url: url}
+        });
+    }
+
+
+    app.load_emotions = function() {
+        let emos = {
+            angry: "angry.png",
+            blush: "blush.png",
+            laugh: "laugh.png",
+            laugh_hard: "laugh_hard.png",
+            love: "love.png",
+            sad: "sad.png",
+            shit: "shit.png",
+            tease: "tease.png"
+        }
+        let container = document.querySelector(".emotion_container");
+        for (key in emos) {
+            let e = document.createElement("img");
+            e.setAttribute("draggable", "true");
+            e.src = "/sfi/res/emotions/" + emos[key];
+            container.append(e);
+            let emotion = key;
+            e.addEventListener("dragstart", function(evt) {
+                console.log("Setting text to", JSON.stringify({emotion:emotion, src: e.src}))
+                evt.dataTransfer.setData("text", JSON.stringify({emotion:emotion, src: e.src}));
+            });
+            e.addEventListener("click", function(e) {
+                console.log(emotion, "emo clicked");
+                app._post_emotion(app.to.pos - 0.3, app.to.pos + 1, emotion, e.src);
+            });
+        };
+    }
+
+    let add_message = function(data, body, canedit=false) {
+        canedit = getParameterByName("edit") || false;
+
+        console.log("ADD MESSAGE", data.data);
+        let message = data.data;
+        if (!message.text) return;
+
+        let old = document.querySelector("#" + data.key);
+        if (old) {
+            old.parentElement.removeChild(old);
+        }
+
+        let _insert_sort = function(body, msg) {
+            // Insertion sort
+            let before;
+            let children = [];
+            let last;
+            for (var i in body.children) {
+                if (body.children[i].nodeType == 1) { // get rid of the whitespace text nodes
+                    children.push(body.children[i]);
+                }
+            }
+            for (let idx=0; idx<children.length; idx++) {
+                if (children[idx].startts > msg.endts) {
+                    before = children[idx];
+                    break;
+                } else {
+                    last = children[idx];
+                }
+            }
+
+            if (last && last.style.background == msg.style.background) {
+                if (last.classList.contains("right"))
+                    msg.classList.add("right");
+
+                if (!canedit && msg.startts - last.endts < 1.0) {
+                    last.style.marginBottom = "0px";
+                    msg.classList.add("bunched");
+                }
+            }
+            else if (last && msg.startts - last.endts < 3)  {
+                // Close but not same person, split them
+                if (!last.classList.contains("right"))
+                    msg.classList.add("right");
+            }
+
+            if (before) {
+                body.insertBefore(msg, before)
+            } else {
+                body.appendChild(msg);
+            }
+        }
+
+        let _make_msg = function(who, text, data) {
+            if (!text) return;
+
+            // For advanced subs, we remove all newlines and end hyphens and let 
+            // the browser break the text
+            console.log("TEXT", text);
+            text = text.replace("-<br>", " ").replace("<br>", " ");
+            console.log(" TO ", text);
+
+            if (who == "scene" || who == "info" || app.cast[who] === undefined) {
+                let info = document.createElement("div");
+                info.classList.add("message");
+                info.classList.add("infomessage");
+                info.startts = message.start;
+                info.endts = message.end;
+                info.innerHTML = text;
+                info.setAttribute("id", data.key);
+                return info;
+            }
+
+            let template = document.querySelector("template#message").content.cloneNode(true);
+            let msg = template.querySelector("div");
+            msg.setAttribute("id", data.key);
+            if (app.cast[who] === undefined) who = "undefined";
+           // msg.style.marginLeft = app.indents[who] + "px";
+           if (app.cast[who] === undefined) {
+            who = "description";
+            console.log("*** ERROR *** Missing cast", who, text);
+           }
+           msg.style.background = app.cast[who].color || "lightgray";
+           if (app.cast[who].src) {
+               msg.querySelector(".icon").src = app.cast[who].src;
+                   msg.startts = message.start;
+                   msg.endts = message.end;
+                   msg.data = data;
+                   msg.addEventListener("dragover", e => e.preventDefault());
+                       msg.addEventListener("drop", e => {
+                        console.log(e);
+                        let info = JSON.parse(e.dataTransfer.getData("text"));
+                        console.log("GOT DATA", info);
+                        app._post_emotion(message.start, message.end, info.emotion, info.src);
+                    });
+                    msg.addEventListener("dblclick", e => {
+                        app.to.update({position: message.start});
+                    });
+            } else {
+                msg.querySelector(".icon").src = "undefined.png";
+            }
+            if (data.idx % 2 == 1) msg.classList.add("right");
+            msg.querySelector(".text").innerHTML = text || "";
+
+
+            if (canedit) {
+                // Could add a mark if we feel uncertain or have good alternatives
+                msg.querySelector("img").addEventListener("click", e => {
+                    console.log("Editing message", msg.data.who_alt, e);
+                    let target = document.querySelector(".altwho");
+                    target.innerHTML = "";
+
+                    // Also add the ones present in the window
+                    let additional = [];
+                    app.subsequencer.getActiveCues().forEach(cue => {
+                        if (additional.indexOf(cue.data.who) == -1)
+                            additional.push([cue.data.who, 0]);
+                    });
+                    let people;
+                    if (msg.data.data.who_alt) {
+                        people = msg.data.data.who_alt.concat(additional);
+                    } else {
+                        people = additional;
+                    }
+                    let added = [];
+                    console.log("PEOPLE", people);
+                    people.forEach(w => {
+                        if (added.indexOf(w[0]) > -1) return;
+                        console.log("Adding", w);
+                        added.push(w[0]);
+                        console.log(w[0]);
+                        let list = document.createElement("li");
+                        let s = "";
+                        if (app.cast[w[0]]) s = app.cast[w[0]].src;
+                        list.innerHTML = "<img class='icon' src='" + s + "'/> " + w[0] + " (" + parseFloat(w[1]).toFixed(2) + ") </li>";
+                        target.appendChild(list);
+                        let _w = w[0];
+                        list.addEventListener("click", function() {
+                            let copy = {...msg.data.data};
+                            copy.who = _w;
+                            console.log("Updating to", _w, msg.data.key, msg.data.interval, copy);
+                            app.subsequencer.addCue(msg.data.key, msg.data.interval, copy);
+                            target.style.display = "none";
+                            document.querySelector("#download").style.display = "block";
+                        });
+                    });
+                    target.style.display = "block";
+                    target.style.left = "0px";
+                    target.style.top = "0px";
+
+                });
+            }
+
+            return msg;
+        }
+
+        let msg;
+        if (Array.isArray(message.who)) {
+        // The sub has multiple messages within them, assume <br> or "- " is the limiter in the text
+        let lines = message.text.split("<br>");
+        for (let idx=0; idx<message.who.length; idx++) {
+            data.idx = idx;
+            msg = _make_msg(message.who[idx], lines[idx], data);
+            if (msg) _insert_sort(body, msg);
+        }
+    } else {
+       msg = _make_msg(message.who, message.text, data);
+       if(msg) _insert_sort(body, msg);
+   }
+   if (msg) msg.scrollIntoView();
+};
+
+app.indents = {};
+app.last_indent = 0;
+
+app.to = new TIMINGSRC.TimingObject();
+app.ready.then(function() {
+  app.to.timingsrc = app.motions.private;
+});
+let to_low = new TIMINGSRC.SkewConverter(app.to, -60);
+app.sequencer = new TIMINGSRC.Sequencer(to_low, app.to);
+app.subsequencer = new TIMINGSRC.Sequencer(to_low, app.to);
+
+app.subsequencer.on("change", evt => add_message(evt.new, target));
+app.subsequencer.on("remove", evt => {
+    document.querySelectorAll("#" + evt.key).forEach(child => target.removeChild(child))
+});
+
+// TODO: ADD REMOVE EMOTION 
+app.sequencer.on("change", _evt => {
+    let data = _evt.new.data;
+    if (data.type == "emotion") {
+        setTimeout(function() {
+            //console.log("Checking for emotions", document.querySelectorAll(".message").length);
+            // We give it another second end time, as it cuts off too quickly)
+        data.begin -= 0.0;
+        data.end += 0.6;
+        console.log("CHANGE", _evt.new);
+        data.start = data.start || _evt.new.interval.low;
+        data.end = data.end || _evt.new.interval.high;
+
+
+        // Check if there are any subs for this time and put on some emojis
+        document.querySelectorAll(".message").forEach(msg => {
+            if ((msg.startts <= data.end && msg.endts >= data.start) ||
+                (data.end <= msg.endts && data.end >= msg.startts) ||
+                    (data.start <= msg.endts && data.start >= msg.startts)
+                        ) {
+                            // console.log("Found one!", msg);
+                            if (msg.classList.contains("infomessage")) return;
+                            app._add_emotion(msg, data);
+                        }
+                    });    
+                    console.log("Should implement removing of emotions too");        
+                }, 100);
+            }
+        });
+
+let manifest = getParameterByName("url") || "bbt_s01e01.json";
+fetch(manifest + "?ts=" + new Date().getTime())
+.then(response => response.json())
+.then(function(data) {
+    app.manifest = data;
+    app.load_emotions();
+    let idx = 0;
+
+    if (data.dc) {
+      console.log("Using datacannon")
+      app.dcannon = new DataCannon("wss://nlive.no/dc", [app.sequencer]);
+          app.dcannon.ready.then(function() { app.dcannon.subscribe(data.dc)});
+      }
+
+      if (data.cast) {
+        fetch(data.cast)
+        .then(response => response.json())
+        .then(response => app.cast = response);
+    }
+
+    if (data.subtitles) {
+        data.subtitles.forEach(item => {
+            fetch(item.src)
+                .then(response => response.json())
+                .then(r => {
+                 r.forEach(sub => {
+                    let id = "sub" + idx;
+                    idx++;
+                    app.subsequencer.addCue(id, [sub.start, sub.end], sub);
+                });
+                 if (data.aux) {
+                  fetch(data.aux)
+                  .then(response => response.json())
+                  .then(response => {
+                    response.forEach(item => {
+                      app.sequencer.addCue(String(Math.random()), new TIMINGSRC.Interval(item.start, item.end), item);
+                  });
+                });
+              }
+          });
+            });
+        }
+    });
+    
+    document.querySelector("#download").addEventListener("click", function() {
+
+        let texts = [];
+        app.subsequencer.getCues().forEach(cue => texts.push(cue.data)); 
+
+        texts.forEach(text => delete(text.who_alt));
+
+        downloadObjectAsJson(texts, "UpdatedSubs.json");
+    });
+
+</script>
+
+
+</body>
+</html>

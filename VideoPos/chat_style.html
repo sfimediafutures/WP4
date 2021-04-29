@@ -293,7 +293,7 @@
             // For advanced subs, we remove all newlines and end hyphens and let 
             // the browser break the text
             console.log("TEXT", text);
-            text = text.replace("-<br>", " ").replace("<br>", " ");
+            text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
             console.log(" TO ", text);
 
             if (who == "scene" || who == "info" || app.cast[who] === undefined) {

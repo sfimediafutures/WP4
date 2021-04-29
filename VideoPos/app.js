@@ -1019,7 +1019,7 @@ var rubberDuck = function(target, options) {
         let _make_msg = function(who, text, data) {
             if (!text) throw new Error("Refusing to make message with no text");
 
-            text = text.replace("-<br>", " ").replace("<br>", " ");
+            text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
 
             console.log("_make_msg", who, text, data, API.cast[who]);
 

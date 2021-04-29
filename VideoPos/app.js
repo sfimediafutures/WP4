@@ -424,6 +424,10 @@ var rubberDuck = function(target, options) {
     // ***************************** TTS engine ****************
     if (API.options.tts) {
         API.speak = function(text, voice, force) {
+            if (API.synstolkElement || !API.targetElement.querySelector("#btnsynstolk").classList.contains("active")) 
+                return;
+
+
             console.log("SPEAK", text);
             return new Promise(function(resolve, reject) {
               if (!force && API.videoElement.muted) {console.log("NOPE", force); return};  // No talking when muted

@@ -180,7 +180,7 @@
   let vid = {src: getParameterByName("url")};
 
   let start = function() {
-
+    app.play();
     app.manifest = app.manifest || {};
 
       let video = document.querySelector("video");
@@ -313,8 +313,8 @@
             app.sequencer.removeCue(cue.key);            
         }
     });},
-    "start": function() { app.to.update({position: 18.32})},
-    "back5": function() { app.to.update({position: app.to.pos - 0.166})},
+    "start": function() { app.to.update({position: 0})},
+    "back5": function() { app.to.update({position: app.to.pos})},
     "backf": function() { 
         let iframe = app.idxsequencer.cues()[0].data;
         let p = iframe.current;

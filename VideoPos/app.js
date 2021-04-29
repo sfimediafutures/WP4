@@ -563,7 +563,7 @@ var rubberDuck = function(target, options) {
                         }
                     });
 
-                    if (data.pip) {
+                    if (data.pip && API.options.pip) {
                         API.targetElement.querySelector(".pip").src = data.pip.src;
                         API.targetElement.querySelectorAll(".pipctrl").forEach(p => p.style.display = "inline-block");
                     } else {

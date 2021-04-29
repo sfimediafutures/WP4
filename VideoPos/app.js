@@ -20,7 +20,8 @@ var rubberDuck = function(target, options) {
         tts_lang: "no",
         tts_autopause: true,
         controls: true,
-        synstolk: true
+        synstolk: true,
+        audioon: false
     };
     let __autopaused = false;
     let _is_speaking = false;
@@ -80,6 +81,14 @@ var rubberDuck = function(target, options) {
         } else {
             API.to.update({position: 0, velocity:1});
         }
+
+        // Default audio on?
+        if (API.options.audioon) {
+          let snd = API.targetElement.querySelector("#btnsound");
+          let soundOn = snd.classList.contains("active");
+          if (!soundOn) snd.click();
+        }
+
     }
 
     API.sequencer = new TIMINGSRC.Sequencer(API.to);
@@ -588,7 +597,8 @@ var rubberDuck = function(target, options) {
                         API.load_synstolk(data.synstolk);
                     } else {
                         // Disable button
-                        API.targetElement.querySelector("#btnsynstolk").classList.add("hidden");
+                        if (API.targetElement.querySelector("#btnsynstolk"))
+                            API.targetElement.querySelector("#btnsynstolk").classList.add("hidden");
                     }
 
                     if (data.index && API.options.index) {

@@ -330,11 +330,13 @@
       pipskew: false,
       mcorp_appid: "4704154345375000225",
       index: false,
-      tts: true
+      tts: true,
+      audioon: true
   };
   var app = rubberDuck(document.querySelector(".videocontainer"), options);
 
   document.querySelector("#playbtn").addEventListener("click", evt => {
+    app.play();
     document.querySelector("video").play();
     document.querySelector(".overlay").style.display = "none";
   });

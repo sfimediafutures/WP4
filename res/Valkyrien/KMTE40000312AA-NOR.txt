@@ -1,0 +1,1180 @@
+ No    TC Inn/Ut   Tid      KMTE40000312AA-NOR.pac
+
+  0   00:00:00:00  00:08    L02  KMTE40000312A     388t
+      00:00:00:08           L03  Valkyrien 1:8
+                            L04  Navn: KMTE40000312AA
+                            L05  Type: NOR
+                            L06  Oppsett: 0
+                            L07  Variant: BOK
+                            L08  wmv
+                            L09  46'03"
+                            L10  30.12.2016
+                            L11  blo, korr. efr
+
+  1   00:01:08:18  03:12    L10  <Null en, Oskar fire.>
+      00:01:12:05           L11  <Vi er på vei, ber om bevæpning.>
+
+  2   00:01:12:07  05:10    L10  <Det er mottatt.>
+      00:01:17:17           L11  <Iverksett bevæpning. Over.>
+
+  3   00:01:39:06  03:00    L11  Hei!
+      00:01:42:06           
+
+  4   00:01:46:23  03:10    L11  Jeg får det ikke til!
+      00:01:50:08           
+
+  5   00:05:07:08  03:10    L11  Hei. Ikke vær redd.
+      00:05:10:18           
+
+  6   00:05:10:20  03:21    L11  Du har klart deg, hva? Ja ...
+      00:05:14:16           
+
+  7   00:05:15:16  04:13    L11  Du er en liten tøffing, du da?
+      00:05:20:04           
+
+  8   00:05:38:07  03:00    L11  Ravn?
+      00:05:41:07           
+
+  9   00:05:44:16  03:11    L10  - Hei.
+      00:05:48:02           L11  - Hei, god morgen.
+
+ 10   00:05:48:04  03:08    L11  Gjemt deg baki der i dag.
+      00:05:51:12           
+
+ 11   00:05:51:14  02:16    L11  Ja.
+      00:05:54:05           
+
+ 12   00:05:54:07  03:21    L11  Det er helt utrolig.
+      00:05:58:03           
+
+ 13   00:05:58:05  04:08    L10  Jeg har sagt det sikkert hundre
+      00:06:02:13           L11  ganger at det er bare meg.
+
+ 14   00:06:02:15  03:17    L10  Jeg vet det,
+      00:06:06:07           L11  jeg ville bare være sikker.
+
+ 15   00:06:09:20  04:10    L10  Og her går det ...
+      00:06:14:05           L11  Her går det framover?
+
+ 16   00:06:14:07  04:23    L10  Nei, bakover.
+      00:06:19:05           L11  Mangler skikkelig utstyr.
+
+ 17   00:06:19:07  03:06    L10  - Masse utstyr her.
+      00:06:22:13           L11  - Ikke det jeg trenger.
+
+ 18   00:06:22:15  04:01    L10  Jeg kan sikkert prøve
+      00:06:26:16           L11  å skaffe mer. Hva trenger du?
+
+ 19   00:06:26:18  04:11    L10  - Massespektrometer blant annet.
+      00:06:31:04           L11  - Jaha ...
+
+ 20   00:06:31:06  05:23    L10  Det er en maskin som analyserer
+      00:06:37:04           L11  blodet på en måte bare den kan.
+
+ 21   00:06:37:06  06:14    L10  - Dyr? Trenger penger, du?
+      00:06:43:20           L11  - Enkelte ting kan bare sykehus kjøpe.
+
+ 22   00:06:47:23  04:01    L10  - Det er frokost her.
+      00:06:51:24           L11  - Nei takk.
+
+ 23   00:06:52:01  06:10    L10  Jeg tenkte at du kanskje kunne
+      00:06:58:11           L11  tatt en liten kikk på meg i dag?
+
+ 24   00:06:58:13  03:05    L11  Hånda di? Har akkurat sett på den.
+      00:07:01:18           
+
+ 25   00:07:01:20  03:11    L11  Den blir fin, bare ta det med ro.
+      00:07:05:06           
+
+ 26   00:07:05:08  03:10    L11  Når jeg vrir hånda, får jeg smerter.
+      00:07:08:18           
+
+ 27   00:07:08:20  03:18    L11  Du vet hvilken dag det er i dag?
+      00:07:12:13           
+
+ 28   00:07:12:15  02:06    L11  Ja da.
+      00:07:14:21           
+
+ 29   00:07:16:08  06:10    L10  Men jeg kan jo se på deg i kveld
+      00:07:22:18           L11  hvis du hjelper meg med noe nå?
+
+ 30   00:07:27:16  04:07    L11  Rolig nå. Ikke ta for mye.
+      00:07:31:23           
+
+ 31   00:07:32:00  03:10    L11  Nei da. Det blir fint dette her.
+      00:07:35:10           
+
+ 32   00:07:36:06  02:23    L11  Du ...
+      00:07:39:04           
+
+ 33   00:07:39:06  03:15    L11  Det er bare et ritual.
+      00:07:42:21           
+
+ 34   00:08:20:21  03:22    L10  - Jeg beklager.
+      00:08:24:18           L11  - Du bek...
+
+ 35   00:08:24:20  03:07    L11  Du beklager?
+      00:08:28:02           
+
+ 36   00:08:28:04  06:06    L10  Behandlingen du foreslår, er aldri
+      00:08:34:10           L11  prøvd på mennesker. Kun på labdyr.
+
+ 37   00:08:34:12  06:04    L10  - Uten godkjente tester.
+      00:08:40:16           L11  - Det har jeg ikke tid til.
+
+ 38   00:08:40:18  06:20    L10  Vilma ... Det du har tenkt å sette i gang,
+      00:08:47:13           L11  er mye farligere enn du skisserer.
+
+ 39   00:08:47:15  04:07    L10  Komiteen er enstemmig.
+      00:08:51:22           L11  Det er risiko for motorisk svikt.
+
+ 40   00:08:51:24  05:12    L10  - Full katatoni. I verste fall død.
+      00:08:57:11           L11  - Jeg dør hvis jeg ikke gjør noe.
+
+ 41   00:08:57:13  04:14    L10  Jeg har utviklet preparatet selv
+      00:09:02:02           L11  som forsker og ikke pasient.
+
+ 42   00:09:02:04  05:16    L10  Jeg har veldig stor tro på det. Unn
+      00:09:07:20           L11  og Ravn kommer til å hjelpe meg.
+
+ 43   00:09:07:22  02:20    L11  Jeg tar ansvaret.
+      00:09:10:17           
+
+ 44   00:09:10:19  05:09    L10  Det kan sette avdelingen i fare,
+      00:09:16:03           L11  dere kan miste lisensen.
+
+ 45   00:09:16:05  07:11    L10  - Jeg kan bli satt i fengsel.
+      00:09:23:16           L11  - Du er redd for å bli saksøkt!
+
+ 46   00:09:23:18  04:11    L10  Du sitter som dommer
+      00:09:28:04           L11  over det eneste håpet hun har!
+
+ 47   00:09:28:06  04:16    L10  Det er tryggest for dere
+      00:09:32:22           L11  at hun bare dør av seg selv!
+
+ 48   00:09:32:24  03:15    L10  Hvem kan dette fagfeltet
+      00:09:36:14           L11  bedre enn Vilma?
+
+ 49   00:09:36:16  03:06    L11  Ingen av dere. Ingen av dere!
+      00:09:39:22           
+
+ 50   00:09:39:24  07:02    L10  - Tror du dette er noe lett for oss?
+      00:09:47:01           L11  - Det er det mest uverdige og korrupte ...
+
+ 51   00:09:47:03  04:13    L10  Det er langt utenfor din egen ekspertise!
+      00:09:51:16           L11  Du mister jobben!
+
+ 52   00:09:51:18  04:02    L10  Tror du jeg bryr meg om jobben?!
+      00:09:55:20           L11  At jeg vil jobbe her etter dette?!
+
+ 53   00:09:55:22  03:12    L11  Alle vet at du setter deg selv først!
+      00:09:59:09           
+
+ 54   00:09:59:11  04:04    L10  Vilma skal faen ikke dø
+      00:10:03:15           L11  pga. feigheten deres!
+
+ 55   00:10:12:22  07:10    L10  <- Hva kan du si om det du ser nå?>
+      00:10:20:07           L11  <- Politiet har sperret av et område ->
+
+ 56   00:10:20:09  02:20    L11  <- ved det som er en utbrent bil.>
+      00:10:23:04           
+
+ 57   00:10:23:06  05:04    L10  <Bilen er høyst sannsynlig>
+      00:10:28:10           L11  <den bilen den siste raneren brukte, - >
+
+ 58   00:10:28:12  03:01    L10  <- men politiet har ikke>
+      00:10:31:13           L11  <  villet bekrefte det.>
+
+ 59   00:10:36:09  03:00    L11  Faen!
+      00:10:39:09           
+
+ 60   00:10:48:01  05:16    L10  Jeg vil gjerne takke
+      00:10:53:17           L11  Alf og Signe, Vilmas foreldre, -
+
+ 61   00:10:53:19  05:14    L10  - for at de har ordnet med
+      00:10:59:08           L11    en så fin minnestund.
+
+ 62   00:11:03:03  04:24    L10  Jeg vil gjerne beklage til alle dere
+      00:11:08:02           L11  som har prøvd å få tak i meg -
+
+ 63   00:11:08:04  02:23    L11  - i de seks månedene som har gått.
+      00:11:11:02           
+
+ 64   00:11:11:04  05:14    L10  At jeg har vært
+      00:11:16:18           L11  så unyttig for dere alle.
+
+ 65   00:11:19:00  03:16    L11  Særlig min stedatter Siv.
+      00:11:22:16           
+
+ 66   00:11:22:18  03:20    L11  Jeg vet at Vilma ...
+      00:11:26:13           
+
+ 67   00:11:30:23  04:02    L10  Jeg vet at mange av dere
+      00:11:35:00           L11  er såret over det Vilma gjorde.
+
+ 68   00:11:35:02  04:12    L10  Men når vi i dag er samlet
+      00:11:39:14           L11  rundt en kiste som er tom, -
+
+ 69   00:11:39:16  03:01    L11  - er det fordi Vilma ville ha det sånn.
+      00:11:42:17           
+
+ 70   00:11:42:19  06:11    L10  Hun visste hva hun gjorde da hun dro
+      00:11:49:05           L11  så langt ut. Hun ville ikke bli funnet.
+
+ 71   00:11:49:07  03:00    L10  Det er vanskelig å godta,
+      00:11:52:07           L11  men det må vi.
+
+ 72   00:11:52:09  06:11    L10  Vilma var en person som
+      00:11:58:20           L11  ofret alt for forskningen sin.
+
+ 73   00:11:58:22  05:05    L10  Hennes høyeste ønske var å skape
+      00:12:04:02           L11  noe som kunne komme alle til gode.
+
+ 74   00:12:04:04  06:19    L10  Forskningen gjorde henne syk.
+      00:12:10:23           L11  Hun fikk ikke den hjelpen hun skulle fått.
+
+ 75   00:12:11:00  04:11    L10  Men hun ga ikke opp.
+      00:12:15:11           L11  Hun gjorde ikke det.
+
+ 76   00:12:15:13  03:14    L11  Det var ikke letteste vei hun valgte.
+      00:12:19:02           
+
+ 77   00:12:19:04  06:04    L10  Hadde det vært et alternativ,
+      00:12:25:08           L11  ville hun valgt det. Uansett pris.
+
+ 78   00:12:25:10  06:12    L10  Hun ville ikke bli en skygge av seg
+      00:12:31:22           L11  selv, hun ville huskes som den hun var.
+
+ 79   00:13:18:11  02:22    L10  - Leif!
+      00:13:21:08           L11  - Hva gjør du her?
+
+ 80   00:13:21:10  04:04    L11  Jeg får ikke stoppa blodet.
+      00:13:25:14           
+
+ 81   00:13:26:21  01:00    L11  Få se.
+      00:13:27:21           
+
+ 82   00:13:31:14  03:19    L10  - Jeg dreit meg ut.
+      00:13:35:08           L11  - Hold. Hvor er de andre?
+
+ 83   00:13:35:10  03:03    L11  Det er bare meg. De andre er tatt.
+      00:13:38:13           
+
+ 84   00:13:38:15  03:09    L10  Av politiet?
+      00:13:41:24           L11  Og så kommer du hit?!
+
+ 85   00:13:42:01  04:01    L10  Jeg kjørte på en politimann.
+      00:13:46:02           L11  Du må hjelpe meg.
+
+ 86   00:13:46:04  04:12    L10  - Du må vekk herfra.
+      00:13:50:16           L11  - Jeg har alle pengene.
+
+ 87   00:13:50:18  03:24    L11  Her?
+      00:13:54:17           
+
+ 88   00:13:57:24  04:09    L11  Jeg fryser.
+      00:14:02:08           
+
+ 89   00:14:04:18  02:09    L11  Hjelper du meg?
+      00:14:07:02           
+
+ 90   00:14:13:07  03:04    L10  - Kondolerer.
+      00:14:16:11           L11  - Takk.
+
+ 91   00:14:26:00  04:14    L10  - Jeg syns det var en nydelig tale.
+      00:14:30:14           L11  - Takk, Unn. Tusen takk.
+
+ 92   00:14:30:16  03:20    L10  Kom til meg,
+      00:14:34:11           L11  hvis du trenger hjelp til noe.
+
+ 93   00:14:34:13  04:13    L11  Jeg mener det. Hva som helst.
+      00:14:39:01           
+
+ 94   00:14:43:06  04:06    L11  Hei, Ravn. Jeg kondolerer.
+      00:14:47:12           
+
+ 95   00:14:51:23  06:03    L10  Jeg gjorde alt jeg kunne. Jeg gjorde
+      00:14:58:01           L11  alt jeg kunne uten å bryte loven.
+
+ 96   00:14:58:03  05:22    L10  Hvis jeg hadde trodd på behandlings-
+      00:15:04:00           L11  planen, hadde jeg vurdert den.
+
+ 97   00:15:04:02  03:24    L10  Og du lurer på hvorfor
+      00:15:08:01           L11  jeg ikke kommer tilbake?
+
+ 98   00:15:08:03  07:04    L10  - Du og Vilma var ikke rasjonelle!
+      00:15:15:07           L11  - Jeg står her i dag pga. deg!
+
+ 99   00:15:16:04  03:06    L10  - Hei, Ravn ...
+      00:15:19:10           L11  - Hei.
+
+100   00:15:19:12  02:15    L11  Siv?
+      00:15:22:02           
+
+101   00:15:25:08  03:00    L11  Hei, Siv.
+      00:15:28:08           
+
+102   00:15:29:19  05:02    L10  - Jeg har tenkt mye på deg.
+      00:15:34:21           L11  - Hvorfor var det en kiste der?
+
+103   00:15:34:23  04:02    L10  Mormor og morfar ville
+      00:15:39:00           L11  at alt skulle være som vanlig.
+
+104   00:15:39:02  05:09    L10  Da tror folk at mamma er der.
+      00:15:44:11           L11  Hun er jo der ute et sted.
+
+105   00:15:44:13  03:20    L11  Skal de bare slutte å lete?!
+      00:15:48:08           
+
+106   00:15:51:19  03:05    L11  Kan jeg få en klem?
+      00:15:54:24           
+
+107   00:16:11:05  06:03    L10  - Jeg trenger noen ting hjemmefra.
+      00:16:17:08           L11  - Ja. Bare ring, så fikser vi det.
+
+108   00:16:17:10  03:13    L10  Det er noe viktig
+      00:16:20:23           L11  jeg må snakke med deg om ...
+
+109   00:16:26:01  03:23    L10  - Jeg må gå ...
+      00:16:29:24           L11  - Jeg må snakke med deg.
+
+110   00:16:31:15  02:18    L11  Ravn!
+      00:16:34:08           
+
+111   00:16:36:01  04:15    L10  - Hva har skjedd?
+      00:16:40:16           L11  - Du skal aldri slå av telefonen!
+
+112   00:16:45:10  02:23    L10  - Hva ...
+      00:16:48:08           L11  - Kom igjen!
+
+113   00:16:57:10  05:05    L10  - Hvem faen er dette? En venn av deg?
+      00:17:02:15           L11  - Se på magen hans!
+
+114   00:17:02:17  02:21    L11  Han er skutt, for faen!
+      00:17:05:13           
+
+115   00:17:05:15  05:01    L10  Hallo! Hallo! Er du våken?
+      00:17:10:16           L11  Vi må få ham på sykehus!
+
+116   00:17:10:18  03:16    L10  Kunne han vært på legevakta,
+      00:17:14:09           L11  hadde han vært der nå!
+
+117   00:17:14:11  05:07    L10  - Vet du blodtypen hans?
+      00:17:19:18           L11  - Han har sånn dog-tag rundt halsen.
+
+118   00:18:02:03  05:23    L10  Jeg tar hodet!
+      00:18:08:01           L11  Vi legger ham på bordet der borte.
+
+119   00:18:08:03  02:24    L11  Sånn. Det er bra.
+      00:18:11:02           
+
+120   00:18:11:04  03:08    L11  Sånn. Hent to poser med A- blod.
+      00:18:14:12           
+
+121   00:18:14:14  04:17    L10  Ligger i kjøleskapet.
+      00:18:19:06           L11  Står på posen! Kom igjen!
+
+122   00:18:26:03  06:00    L10  Og operasjonsutstyret mitt. Ligger på
+      00:18:32:03           L11  benken ved siden av rottene der inne.
+
+123   00:18:33:00  03:13    L11  Flott. Putt alt oppi her.
+      00:18:36:13           
+
+124   00:18:38:08  04:24    L11  Pass på at du får alt nedi. Sånn.
+      00:18:43:07           
+
+125   00:18:43:09  05:08    L10  - Si hva jeg skal gjøre.
+      00:18:48:17           L11  - Stå der. Jeg begynner å skjære.
+
+126   00:19:00:09  03:22    L11  Nyra hans er skutt i stykker.
+      00:19:04:06           
+
+127   00:19:05:01  06:01    L10  - Jeg må ta den ut. Ellers dør han.
+      00:19:11:02           L11  - Er ikke det litt voldsomt?
+
+128   00:19:11:04  04:07    L10  Hjelp meg nå.
+      00:19:15:11           L11  Hold disse. Hold de to.
+
+129   00:19:17:10  04:01    L11  Så drar du litt ut til siden.
+      00:19:21:11           
+
+130   00:19:21:13  03:18    L11  Så skal jeg bare komme ned her ...
+      00:19:25:06           
+
+131   00:19:28:01  03:06    L10  - Går det bra?
+      00:19:31:07           L11  - Ja.
+
+132   00:19:37:17  02:17    L11  Der!
+      00:19:40:09           
+
+133   00:19:43:18  05:14    L10  - Leif? Leif!
+      00:19:49:07           L11  - Jeg er med! Helt med.
+
+134   00:19:49:09  04:12    L10  <Velkommen til denne sendingen>
+      00:19:53:21           L11  <i forbindelse med ranet i går.>
+
+135   00:19:53:23  05:19    L10  <Under pågripelsene ble en>
+      00:19:59:17           L11  <politimann påkjørt av ransbilen.>
+
+136   00:19:59:19  03:08    L11  <Tilstanden er beskrevet som kritisk.>
+      00:20:03:02           
+
+137   00:20:03:04  05:19    L10  <Politiet går ut med følgende>
+      00:20:08:23           L11  <etterlysning: Teodor Naustvik ...>
+
+138   00:20:09:00  03:14    L10  - Du sa han ikke var ettersøkt!
+      00:20:12:14           L11  - De andre har tysta.
+
+139   00:20:12:16  03:19    L10  - Han har kjørt ned en politimann!
+      00:20:16:10           L11  - Han er ikke død.
+
+140   00:20:16:12  04:20    L10  - De skjøt ham i magen, selvforsvar.
+      00:20:21:07           L11  - Be ham si det til politiet!
+
+141   00:20:21:09  04:06    L10  Han kan ikke det.
+      00:20:25:15           L11  De dreper ham i fengsel òg.
+
+142   00:20:25:17  04:21    L10  - Politiet dreper ham?
+      00:20:30:13           L11  - Ikke politiet. De andre ranerne.
+
+143   00:20:30:15  04:10    L10  Det er konspirasjoner som du
+      00:20:35:00           L11  og chattekompisene dine ...
+
+144   00:20:35:02  05:12    L10  Siden 95 har 68 fanger dødd i norske
+      00:20:40:14           L11  fengsler. Bare 10 var selvmord.
+
+145   00:20:40:16  04:14    L11  Kom her. Så skal vi se på noe her.
+      00:20:45:05           
+
+146   00:20:48:02  06:03    R10  Teo sitter igjen med hele utbyttet. De han
+      00:20:54:05           R11  jobba med, er mye verre enn politiet.
+
+147   00:20:54:07  03:16    L10  - Hvor mye er det snakk om?
+      00:20:57:23           L11  - 62 millioner.
+
+148   00:20:58:00  03:16    L10  - 62 millioner?!
+      00:21:01:16           L11  - Står det i avisa.
+
+149   00:21:01:18  05:00    L10  - Hva om noen finner ham her?!
+      00:21:06:18           L11  - De gjør ikke det.
+
+150   00:21:06:20  06:13    L10  - Nei, nei, nei! Legg deg ned!
+      00:21:13:08           L11  - Hvordan går det med politimannen?
+
+151   00:21:13:10  04:23    L10  Det går så bra. Han har det
+      00:21:18:08           L11  kjempefint, han politimannen.
+
+152   00:21:18:10  05:04    L10  - Dette er legen. Gjør som han sier.
+      00:21:23:14           L11  - Jeg må snakke med Marit!
+
+153   00:21:23:16  03:21    L10  - Hold ham.
+      00:21:27:12           L11  - Det går fint. Det går fint.
+
+154   00:21:27:14  02:23    L11  Vi må få ham på sykehus.
+      00:21:30:12           
+
+155   00:21:30:14  05:20    L10  De ser at han er operert av en lege.
+      00:21:36:09           L11  Du vil ikke at de skal leite her?
+
+156   00:21:36:11  03:10    L11  Hva hvis han dør?
+      00:21:39:21           
+
+157   00:21:41:05  05:02    L10  - Hva slags utstyr trenger du?
+      00:21:46:07           L11  - Forverrer det seg, trenger jeg -
+
+158   00:21:46:09  04:07    L11  - hjertestarter, respirator ...
+      00:21:50:16           
+
+159   00:21:50:18  06:12    L10  Hjelper du meg med dette, har vi
+      00:21:57:05           L11  plutselig mye penger. Skjønner du?
+
+160   00:21:57:07  05:02    L10  Da kan vi lage klinikk her!
+      00:22:02:09           L11  Med alt du trenger til forskninga di.
+
+161   00:22:02:11  05:24    L10  Klinikk?
+      00:22:08:10           L11  Det er blod på de pengene, Leif.
+
+162   00:22:08:12  03:15    L10  Hva het maskinen
+      00:22:12:02           L11  som var umulig å få tak i?
+
+163   00:22:12:04  02:18    L11  Massespektrometer?
+      00:22:14:22           
+
+164   00:22:14:24  05:17    L10  - Hva har du med dette å gjøre?
+      00:22:20:16           L11  - Absolutt ingenting.
+
+165   00:22:22:01  05:08    L10  Er det onkel Leif du ser på?
+      00:22:27:09           L11  Der sitter'n! Det er onkel Leif.
+
+166   00:22:27:11  03:17    L11  Hun prøvde å få kontakt med deg.
+      00:22:31:03           
+
+167   00:22:31:05  05:15    L10  Ser du på onkel Leif? Det er veldig
+      00:22:36:20           L11  hyggelig. Det er altfor lenge siden.
+
+168   00:22:36:22  03:10    L10  Ja, det har vært
+      00:22:40:07           L11  mye jobbing i det siste.
+
+169   00:22:40:09  03:21    L10  Jeg trodde ideen med Sivilforsvaret
+      00:22:44:05           L11  var å få faste rammer.
+
+170   00:22:44:07  03:23    L10  - Jeg er ikke der lenger nå.
+      00:22:48:05           L11  - Ikke?
+
+171   00:22:48:07  05:17    L10  Nei, jeg er blitt flytta over til
+      00:22:53:24           L11  Beredskapsetaten i Oslo kommune.
+
+172   00:22:54:01  04:13    L10  Blitt teknisk ansvarlig der.
+      00:22:58:14           L11  Litt mer ansvar.
+
+173   00:22:58:16  04:01    L10  - Gratulerer med det, da!
+      00:23:02:17           L11  - Takk.
+
+174   00:23:02:19  07:20    L10  - Hva er det du gjør nå?
+      00:23:10:14           L11  - Vedlikehold, drift, utleie ...
+
+175   00:23:10:16  02:20    L11  Av?
+      00:23:13:11           
+
+176   00:23:13:13  05:03    L10  - Tilfluktsrom.
+      00:23:18:16           L11  - Wow! Er det mange?
+
+177   00:23:18:18  04:14    L10  457 i Oslo og Akershus.
+      00:23:23:07           L11  Det er svære anlegg.
+
+178   00:23:23:09  05:03    L10  Det er faktisk mulig,
+      00:23:28:12           L11  hvis du kombinerer -
+
+179   00:23:28:14  03:13    L10  - tuneller, T-bane,
+      00:23:32:02           L11    vann og avløp, parkering, -
+
+180   00:23:32:04  03:15    L10  - å gå tørrskodd
+      00:23:35:19           L11    fra Carl Berner til Operaen.
+
+181   00:23:35:21  04:10    L11  Er det en stor avdeling?
+      00:23:40:06           
+
+182   00:23:40:08  02:23    L10  - I Oslo er det bare meg.
+      00:23:43:06           L11  - Du kødder?
+
+183   00:23:43:08  03:23    L11  De fleste rommene er ikke operative.
+      00:23:47:06           
+
+184   00:23:47:08  06:01    L10  - Ble du flytta over? Søkte du deg dit?
+      00:23:53:09           L11  - Jeg ble på mange måter headhunta.
+
+185   00:23:53:11  02:10    L11  Så fint, da!
+      00:23:55:21           
+
+186   00:23:55:23  07:07    L10  Du kan mye om sikkerhet. Jeg vet ikke
+      00:24:03:05           L11  hvor nærmeste tilfluktsrom er hen!
+
+187   00:24:03:07  04:01    L10  Fredensborgveien 18.
+      00:24:07:08           L11  Rett overfor Vulkan.
+
+188   00:24:07:10  03:00    L10  Hvis flyalarmen går,
+      00:24:10:10           L11  er det dit man skal.
+
+189   00:24:10:12  05:03    L10  Rommene skal være operative innen
+      00:24:15:15           L11  72 t etter erklært unntakstilstand.
+
+190   00:24:15:17  03:21    L10  Er ikke det ganske lenge
+      00:24:19:13           L11  hvis man blir bomba?
+
+191   00:24:19:15  04:21    L10  Godt poeng, men det er ikke
+      00:24:24:11           L11  flyangrep vi forbereder oss på.
+
+192   00:24:24:13  03:01    L11  Hva er det nå? Islamister? IS?
+      00:24:27:14           
+
+193   00:24:30:12  05:06    L10  - De er ganske langt ned på lista.
+      00:24:35:18           L11  - Det fins en liste?
+
+194   00:24:35:20  05:09    L10  - Ja, absolutt.
+      00:24:41:04           L11  - Hva er på førsteplass f.eks.?
+
+195   00:24:43:12  04:23    L10  - De listene blir oppdatert hele tida.
+      00:24:48:10           L11  - Åssen går det på damefronten?
+
+196   00:24:48:12  03:04    L10  - Skjedd noe der siden sist?
+      00:24:51:16           L11  - Nei.
+
+197   00:24:51:18  05:09    L10  Nei? Det hender du treffer
+      00:24:57:02           L11  litt andre folk sånn innimellom?
+
+198   00:24:57:04  04:08    L11  Hvem da? Hvem er det du treffer?
+      00:25:01:12           
+
+199   00:25:02:16  02:22    L11  Treffer folk.
+      00:25:05:13           
+
+200   00:25:08:12  05:11    L10  - Håper vi ses snart igjen, Leif.
+      00:25:13:23           L11  - Ja. Ok ...
+
+201   00:25:14:00  07:20    L10  Hjelper du meg med å bære peisen
+      00:25:21:20           L11  ut på fortauet? Noen skal hente den.
+
+202   00:25:21:22  03:17    L10  - Ja, selvfølgelig. Kjøpt ny?
+      00:25:25:14           L11  - Nei.
+
+203   00:25:25:16  06:04    L10  Vi har så liten plass,
+      00:25:31:20           L11  og den er såpass svær.
+
+204   00:25:31:22  05:10    L10  Det er koselig, men når Anna begynner
+      00:25:37:07           L11  å gå, må vi tenke på sikkerheten.
+
+205   00:25:37:09  02:02    L11  Ok ...
+      00:25:39:11           
+
+206   00:25:39:13  06:00    L10  Jeg kjenner at jeg har såpass vondt i
+      00:25:45:13           L11  den hånda, at jeg tror ikke det går.
+
+207   00:25:46:03  03:00    L11  Du! Leif ...
+      00:25:49:03           
+
+208   00:25:50:04  03:12    L11  Er du bare helt ute igjen eller?
+      00:25:53:16           
+
+209   00:25:53:18  03:23    L10  Det er litt vel uansvarlig
+      00:25:57:16           L11  når du har en liten baby.
+
+210   00:25:57:18  02:20    L11  Hva er uansvarlig?
+      00:26:00:13           
+
+211   00:26:00:15  04:19    L10  Hvis strømmen går i - 10,
+      00:26:05:09           L11  tar det to døgn før dere fryser i hjel.
+
+212   00:26:05:11  02:14    L10  Hvis vi ikke går til
+      00:26:08:00           L11  noen som har peis.
+
+213   00:26:08:02  04:09    L10  Umulig å forestille seg scenarioet
+      00:26:12:11           L11  der du ikke vil gå ut med en baby?
+
+214   00:26:12:13  04:11    L10  Der står muslimene, først kapper
+      00:26:16:24           L11  de strømmen, så dreper de oss ...
+
+215   00:26:17:01  05:10    L10  Muslimene er ikke farlige! Strøm-
+      00:26:22:11           L11  brudd er! Det er nr. 1 på lista.
+
+216   00:26:22:13  05:07    L10  Alle trusler fører til strømbrudd,
+      00:26:27:20           L11  naturkatastrofer, pandemi og opprør.
+
+217   00:26:27:22  05:19    L10  Strømbrudd fører til pandemi,
+      00:26:33:16           L11  opprør, plyndring og kaos.
+
+218   00:26:33:18  05:15    L10  Vi har solgt strømnettet til private
+      00:26:39:08           L11  aktører som bare tenker profitt.
+
+219   00:26:39:10  04:24    L10  Jeg bryr meg ikke om at dere ikke
+      00:26:44:09           L11  vet hvor nærmeste tilfluktsrom er, -
+
+220   00:26:44:11  05:17    L10  - men dere kan ikke sette et menneske
+      00:26:50:03           L11    til verden og slenge ut peisen!
+
+221   00:26:52:05  03:00    L11  Brorsan ...
+      00:26:55:05           
+
+222   00:26:58:14  03:05    L11  Leif! Leif!
+      00:27:01:19           
+
+223   00:27:01:21  03:07    L10  - Leif!
+      00:27:05:03           L11  - Det går fint. Takk for meg!
+
+224   00:27:14:05  04:03    L10  Leif sa at du kan hjelpe meg med
+      00:27:18:08           L11  å skaffe meg et nytt ansikt.
+
+225   00:27:18:10  03:03    L10  - Leif sa det?
+      00:27:21:13           L11  - Ja.
+
+226   00:27:21:15  07:00    L10  Det går an. Folk har forsvunnet
+      00:27:28:15           L11  sånn før. Jeg har lest om det.
+
+227   00:27:28:17  03:19    L11  Du trenger en ny nyre.
+      00:27:32:11           
+
+228   00:27:32:13  03:16    L11  Straks noen ser meg, er jeg død.
+      00:27:36:04           
+
+229   00:27:36:06  03:10    L11  Jeg kan betale. Jeg har masse penger.
+      00:27:39:16           
+
+230   00:27:39:18  03:03    L11  Det er ikke dine penger, skjønner du?
+      00:27:42:21           
+
+231   00:27:42:23  04:23    L10  Jeg jobber med akutte skader.
+      00:27:47:21           L11  Med folk som har mistet et øye, -
+
+232   00:27:47:23  06:21    L10  - som har svidd av huden, fått knust
+      00:27:54:19           L11    kjeven. Ikke idioter som stjeler.
+
+233   00:27:54:21  05:21    L10  Ansiktet er én ting, men du har en
+      00:28:00:17           L11  høyde, kroppsspråk, en stemme, øyne.
+
+234   00:28:00:19  04:10    L10  - Tannstilling, fingeravtrykk, DNA.
+      00:28:05:04           L11  - Ingen har DNA-et mitt.
+
+235   00:28:05:06  02:16    L11  Har aldri vært hos tannlege i Norge.
+      00:28:07:22           
+
+236   00:28:07:24  04:07    L10  Fingeravtrykkene har jeg
+      00:28:12:06           L11  manipulert siden jeg var 16.
+
+237   00:28:15:08  03:23    L10  - Du heter Teodor Naustvik?
+      00:28:19:06           L11  - Ja. Jeg er ingen idiot.
+
+238   00:28:19:08  03:23    L11  Jeg har en kone. Hun er gravid.
+      00:28:23:06           
+
+239   00:28:25:09  03:00    L11  Jeg trengte de pengene.
+      00:28:28:09           
+
+240   00:28:28:11  04:02    L10  - Så vi kan være forberedt.
+      00:28:32:13           L11  - På hva?
+
+241   00:28:32:15  04:07    L10  - På det som kommer.
+      00:28:36:22           L11  - Hva er det?
+
+242   00:28:38:13  03:17    L10  - Hvor godt kjenner du Leif?
+      00:28:42:05           L11  - Han er en gammel pasient.
+
+243   00:28:42:07  03:16    L10  - Du er en av oss?
+      00:28:45:23           L11  - Spørs hva du mener.
+
+244   00:28:46:00  06:09    L10  Hallo! Da har jeg
+      00:28:52:09           L11  fått tak i nesten alt på lista di.
+
+245   00:28:52:11  03:21    L10  - Jeg må snakke med deg nå!
+      00:28:56:07           L11  - Det dyreste utstyret ...
+
+246   00:28:56:09  04:11    L11  Kom igjen. Nå! Kom!
+      00:29:00:20           
+
+247   00:29:00:22  03:18    L11  Går det bra her, eller?
+      00:29:04:15           
+
+248   00:29:08:07  04:11    L10  Hvorfor har du sagt til ham
+      00:29:12:18           L11  at jeg kan gi ham et nytt ansikt?
+
+249   00:29:12:20  06:02    L10  - Fordi du kan det.
+      00:29:18:22           L11  - Nei! Det holder ikke med bandasjer -
+
+250   00:29:18:24  06:13    L10  - og antibiotika. Tar den andre nyren
+      00:29:25:12           L11    kvelden, trenger han dialyse.
+
+251   00:29:25:14  04:17    L10  Med pengene hans og kontaktene
+      00:29:30:06           L11  mine får vi tak i det vi trenger.
+
+252   00:29:30:08  05:08    L10  Han kan være død lenge før den tid.
+      00:29:35:16           L11  Jeg rører ikke blodpengene hans.
+
+253   00:29:35:18  07:07    L10  Skal vi trappe ned litt på hykleriet her?
+      00:29:43:00           L11  Du leier her. Du henger etter på leia.
+
+254   00:29:43:02  04:11    L10  Truer du meg?
+      00:29:47:13           L11  Er det meg eller ham?
+
+255   00:29:47:15  03:23    L10  Det er bare du som vet
+      00:29:51:13           L11  at han er her. Han trenger hjelp.
+
+256   00:29:51:15  05:11    L10  Han trenger en god psykolog.
+      00:29:57:01           L11  Ikke et nytt ansikt.
+
+257   00:29:57:03  04:15    L10  Tror du ikke jeg kjenner igjen
+      00:30:01:18           L11  det dommedagspreiket ditt?
+
+258   00:30:01:20  04:11    L10  Det gnålet om at verden
+      00:30:06:06           L11  kommer til å gå under!
+
+259   00:30:06:08  03:23    L10  Konspirasjoner,
+      00:30:10:06           L11  sausa sammen i en patalogisk røre!
+
+260   00:30:10:08  05:08    L10  Noen blir jævla redde av sånt!
+      00:30:15:16           L11  Det tok nesten livet av han der!
+
+261   00:30:17:10  03:02    L11  Så han er gæren og trenger psykolog?
+      00:30:20:12           
+
+262   00:30:20:14  03:07    L11  En til meg òg, da?
+      00:30:23:21           
+
+263   00:30:26:10  04:05    L10  Nå er det vel
+      00:30:30:15           L11  én ting du glemmer? Ravn!
+
+264   00:30:30:17  03:21    L11  Du trenger meg!
+      00:30:34:13           
+
+265   00:30:41:12  05:23    L10  <Null en, null en. Dette er tre. Da har>
+      00:30:47:10           L11  <vi fått et signalement på hun dama ...>
+
+266   00:30:56:11  04:07    L10  - Halla!
+      00:31:00:18           L11  - Halla!
+
+267   00:31:00:20  06:02    L10  - Jeg bestilte det vanlige til deg.
+      00:31:06:22           L11  - Assaf, har du et glass vann til meg?
+
+268   00:31:09:11  03:13    L11  Glad for at du ringte. Går det bra?
+      00:31:12:24           
+
+269   00:31:13:01  05:09    R10  - Går greit med meg. Hadde et svært ran.
+      00:31:18:10           R11  - Hørte om det.
+
+270   00:31:18:12  05:04    L10  - Har de tatt dem nå?
+      00:31:23:16           L11  - Jo, tatt alle sammen.
+
+271   00:31:23:18  06:19    L10  Bortsett fra én jævel.
+      00:31:30:12           L11  Det er han som sitter med alle penga.
+
+272   00:31:30:14  06:16    L10  Litt rart, for de slo til akkurat den
+      00:31:37:05           L11  dagen vi hadde minst bemanning.
+
+273   00:31:37:07  05:09    L10  - De har sikkert visst om det.
+      00:31:42:16           L11  - Det tror jeg òg. De må ha visst det.
+
+274   00:31:42:18  04:19    L10  Men hvordan visste de det?
+      00:31:47:12           L11  Det lurer jeg på.
+
+275   00:31:50:13  02:21    L10  - Tror du det er<meg?>
+      00:31:53:09           L11  - Ikke det jeg sier.
+
+276   00:31:53:11  04:10    L10  - Det sa jo at du tenkte det nå.
+      00:31:57:21           L11  - Vi snakka om det sist.
+
+277   00:31:57:23  04:06    L10  Den kvelden, sa jeg, er det
+      00:32:02:04           L11  kritisk bemanning pga. statsbesøket.
+
+278   00:32:02:06  03:02    L10  En fortrolig samtale
+      00:32:05:08           L11  mellom oss, som vanlig.
+
+279   00:32:05:10  03:23    L10  Topp hemmelig info.
+      00:32:09:08           L11  Jeg har ikke sagt det til noen andre.
+
+280   00:32:09:10  07:13    L10  Disse folka kommer sikkert ut av et
+      00:32:16:23           L11  miljø! Jeg kjenner ikke sånne folk.
+
+281   00:32:17:00  06:19    L10  Han Naustvik er visst
+      00:32:23:19           L11  litt sånn dommedagsnerd.
+
+282   00:32:23:21  05:18    L10  - Hva da?
+      00:32:29:14           L11  - Ut i skauen og jakt og ...
+
+283   00:32:29:16  04:20    L10  Hamstrer boksemat ... Lager
+      00:32:34:11           L11  reint vann av piss. De greiene der.
+
+284   00:32:34:13  05:04    L10  - Du kjenner jo de folka?
+      00:32:39:17           L11  - Ja, jeg vet hvem de er.
+
+285   00:32:42:17  03:24    L10  Men jeg har aldri
+      00:32:46:16           L11  hørt om Nøstvik. Aldri.
+
+286   00:32:46:18  05:04    L10  - Naustvik.
+      00:32:51:22           L11  - Naustvik. Aldri hørt om.
+
+287   00:32:51:24  05:20    L10  Men den infoen som jeg
+      00:32:57:19           L11  gir deg når vi møtes ...
+
+288   00:32:57:21  03:01    L11  Hva bruker du den til?
+      00:33:00:22           
+
+289   00:33:00:24  03:15    L11  Kartlegging. Trusselvurdering.
+      00:33:04:14           
+
+290   00:33:04:16  05:18    L10  Sånne ting. Du gir noe til meg,
+      00:33:10:09           L11  men jeg gir også noe til deg.
+
+291   00:33:10:11  04:24    L10  Sånn som de har holdt på
+      00:33:15:10           L11  siden 71 og Borten- regjeringa.
+
+292   00:33:15:12  05:14    L10  Eneste måten å sikre reell beredskap
+      00:33:21:01           L11  på, er den uformelle kontakten -
+
+293   00:33:21:03  04:11    L10  - mellom etatene. Sånn som vi
+      00:33:25:14           L11    gjør fordi det er sånn det er.
+
+294   00:33:25:16  05:17    L10  Det som ikke er greit, er at en god
+      00:33:31:08           L11  kompis ligger kritisk på sjukehuset.
+
+295   00:33:31:10  06:21    L10  Jeg kjenner ham og kona godt. Og nå
+      00:33:38:06           L11  er det en gærning som sitter på 60 mill.
+
+296   00:33:38:08  03:13    L11  Det er for jævlig at det går an.
+      00:33:41:21           
+
+297   00:33:41:23  04:11    L10  Det er sikkert noen
+      00:33:46:09           L11  som lekker et eller annet sted.
+
+298   00:33:46:11  04:10    L10  Har du sagt til noen
+      00:33:50:21           L11  at vi snakker sammen?
+
+299   00:33:50:23  04:20    L10  - Vi er venner, Per.
+      00:33:55:18           L11  - Jeg kan ha sagt ting jeg ikke burde.
+
+300   00:33:55:20  07:06    L10  De snur hver stein på jobben. Alle
+      00:34:03:01           L11  skjønner det må ha vært en lekkasje.
+
+301   00:34:03:03  06:20    L10  - Stoler du ikke på meg?
+      00:34:09:23           L11  - Jeg vil. Du har noen svin på skauen.
+
+302   00:34:10:00  04:10    L10  Tror de kan finne mye rart
+      00:34:14:10           L11  nedi de tilfluktsrommene dine.
+
+303   00:34:14:12  03:02    L11  Det er feil?
+      00:34:17:14           
+
+304   00:34:18:20  06:11    L10  Jeg kommer aldri til å si noe om
+      00:34:25:06           L11  noe av det du har sagt til meg.
+
+305   00:34:25:08  02:01    L11  Aldri.
+      00:34:27:09           
+
+306   00:34:27:11  03:13    L11  Jeg ble litt overrumpla av dette.
+      00:34:30:24           
+
+307   00:34:31:01  04:08    L10  Jeg blir litt lei meg
+      00:34:35:09           L11  fordi du tenker sånn om meg.
+
+308   00:34:35:11  03:12    L11  Etter så mange år.
+      00:34:38:23           
+
+309   00:34:40:14  05:24    L10  Jeg vet ikke, jeg.
+      00:34:46:13           L11  Det ble bare litt mye nå.
+
+310   00:34:51:10  03:15    L10  Jeg er nødt til å stikke,
+      00:34:55:00           L11  er egentlig på jobb.
+
+311   00:34:55:02  05:07    L10  - Si fra hvis du hører noe.
+      00:35:00:09           L11  - Jeg lover. Alltid.
+
+312   00:35:19:21  04:06    L10  <... den kvelden, sa jeg, er det>
+      00:35:24:02           L11  <kritisk bemanning pga. statsbesøket.>
+
+313   00:35:24:04  03:04    L10  <En fortrolig samtale>
+      00:35:27:08           L11  <mellom oss, som vanlig.>
+
+314   00:35:27:10  04:05    L10  <Jeg kan ha sagt ting jeg ikke burde.>
+      00:35:31:15           L11  <De snur hver stein på jobben.>
+
+315   00:35:31:17  04:17    L10  <Alle skjønner det må>
+      00:35:36:09           L11  <ha vært en lekkasje ...>
+
+316   00:35:40:00  07:19    L10  <Da Titanic gikk ned, spilte>
+      00:35:47:19           L11  <orkesteret på dekk til det siste.>
+
+317   00:35:47:21  05:09    L10  <Det mange ikke vet,>
+      00:35:53:05           L11  <er at mange valgte å danse - >
+
+318   00:35:53:07  03:23    L10  <- selv når de visste>
+      00:35:57:05           L11  <  at alt gikk til helvete.>
+
+319   00:35:57:07  06:23    L10  <Vi tenkte slik for 30 år siden da vi>
+      00:36:04:05           L11  <ikke skulle bygge flere tilfluktsrom.>
+
+320   00:36:04:07  05:15    L10  <Selv om bare 1/3 får plass i de rom- >
+      00:36:09:22           L11  <mene vi har, får vi nøye oss med det.>
+
+321   00:36:09:24  03:24    L10  <Vi er ikke redde for>
+      00:36:13:23           L11  <atombomber lenger.>
+
+322   00:36:14:18  07:01    L10  <Vi tenker ikke på det ubehagelige.>
+      00:36:21:19           L11  <Det som skiller idyll fra kaos.>
+
+323   00:36:21:21  06:06    L10  <Historien har vist at det er 12 ting som>
+      00:36:28:02           L11  <til enhver tid kan gjøre at alt kollapser.>
+
+324   00:36:28:04  06:22    L10  <Det viktigste er overbefokning. Det>
+      00:36:35:01           L11  <blir født 255 babyer hvert minutt.>
+
+325   00:36:35:03  04:07    L10  <Ettbarnspolitikk er eneste håp,>
+      00:36:39:10           L11  <men det vil ingen snakke om.>
+
+326   00:36:39:12  03:01    L11  <Nr. 2 er klimaforandring.>
+      00:36:42:13           
+
+327   00:36:42:15  07:18    L10  <Nr. 3: avskoging. Matjorda blir øde- >
+      00:36:50:08           L11  <lagt av erosjon og dårlig landbruk.>
+
+328   00:36:50:10  05:20    L10  <Vi har ikke nok vann. Og vi driter>
+      00:36:56:05           L11  <i det vi har. Bokstavelig talt.>
+
+329   00:36:56:07  06:21    L10  <Vi fisker for mye, og stadig mer.>
+      00:37:03:03           L11  <Historisk sett har vi jakta for mye.>
+
+330   00:37:05:16  04:18    L10  <Nå dreper vi bare dyr>
+      00:37:10:09           L11  <som står i bur eller bås.>
+
+331   00:37:10:11  06:19    L10  <Men hver dag ett sted>
+      00:37:17:05           L11  <på jorda blir en art utrydda.>
+
+332   00:37:17:07  07:17    L10  <Vi makser ut fotosyntesen, og>
+      00:37:24:24           L11  <får ikke nok oksygen ut av naturen.>
+
+333   00:37:25:01  06:05    L10  <I Kina triller det 50 000 nye biler>
+      00:37:31:06           L11  <ut på veien hver dag.>
+
+334   00:37:31:08  05:00    L10  <Forgiftning er punkt 11.>
+      00:37:36:08           L11  <Den siste er energimangel.>
+
+335   00:37:36:10  03:01    L11  <Det er der vi er mest sårbare.>
+      00:37:39:11           
+
+336   00:37:39:13  05:10    L10  <Hvis bare én av disse 12 truslene>
+      00:37:44:23           L11  <når et kritisk punkt, er vi ferdige.>
+
+337   00:37:45:00  04:06    L10  <Ikke alle 12 eller fem eller>
+      00:37:49:06           L11  <seks av dem. Det holder med én.>
+
+338   00:37:49:08  05:09    L10  <Da synker skipet,>
+      00:37:54:17           L11  <selv om vi danser.>
+
+339   00:38:08:22  04:24    L10  <... Smestad,>
+      00:38:13:21           L11  <overgang til linje 3 Kolsås ...>
+
+340   00:38:23:20  03:16    L10  - Hei, Ravn.
+      00:38:27:11           L11  - Hei.
+
+341   00:38:44:00  05:09    L10  - Hvordan går det? Hva gjør du her?
+      00:38:49:09           L11  - Det er noe jeg holder på med.
+
+342   00:38:49:11  05:07    L10  Det er veldig spennende, men uten
+      00:38:54:18           L11  tilgang her kommer jeg ikke videre.
+
+343   00:38:54:20  04:03    L10  - Med hva?
+      00:38:58:23           L11  - Det kan jeg ikke si så mye om.
+
+344   00:38:59:00  06:21    L10  Det er et oppdrag for Sivilforsvaret,
+      00:39:05:21           L11  så det er untatt offentligheten.
+
+345   00:39:05:23  06:14    L10  Jeg tenkte på det du sa sist ... Hvis
+      00:39:12:12           L11  det var noe, kunne jeg komme til deg.
+
+346   00:39:12:14  04:13    L11  Absolutt. Hva som helst. Ja.
+      00:39:17:02           
+
+347   00:39:24:01  06:05    L10  - Massespektrometer?
+      00:39:30:06           L11  - De er ikke i bruk hele tiden.
+
+348   00:39:30:08  06:04    L10  Jeg kan ikke bare gi deg
+      00:39:36:12           L11  medisinsk utstyr til flere hundre tusen.
+
+349   00:39:36:14  06:09    L10  Du skal bare ... Du skal bare
+      00:39:42:23           L11  åpne en dør, så fikser jeg resten.
+
+350   00:39:43:23  05:06    L10  - Går det bra med deg?
+      00:39:49:04           L11  - Det forsvinner ting herfra hver dag.
+
+351   00:39:49:06  05:09    L10  - Du sa "hva som helst"!
+      00:39:54:15           L11  - Har dette noe med Vilma å gjøre?
+
+352   00:39:56:10  03:09    L10  Det er noe jeg må finne ut av.
+      00:39:59:19           L11  Vil du hjelpe meg eller ikke?
+
+353   00:39:59:21  05:20    L10  Jeg vil veldig gjerne hjelpe,
+      00:40:05:16           L11  men ikke på denne måen.
+
+354   00:40:06:19  03:12    L11  Ravn, det forstår du vel?
+      00:40:10:06           
+
+355   00:40:54:23  06:09    L10  <Vi har fått leder for seksjonen>
+      00:41:01:07           L11  <for organisert kriminalitet i studio ...>
+
+356   00:41:01:09  04:10    L11  <Hva kan du si om sikkerheten ...>
+      00:41:05:19           
+
+357   00:41:08:11  04:04    L10  <Vi gjennomgår alle våre rutiner,>
+      00:41:12:15           L11  <men dette handler om ...>
+
+358   00:41:12:17  04:15    L10  - Leif, kan du skru opp?
+      00:41:17:07           R11  <Hvordan er stemningen hos politiet?>
+
+359   00:41:17:09  04:07    L10  <Det er en vanskelig tid for oss.>
+      00:41:21:16           L11  <Når en av våre egne blir skadet, - >
+
+360   00:41:21:18  04:07    L10  <- påvirker det oss alle.>
+      00:41:26:00           L11  <- Hva kan du si om den skadde?>
+
+361   00:41:26:02  04:23    L10  <Han er godt likt og>
+      00:41:31:00           L11  <en viktig del av innsatsstyrken.>
+
+362   00:41:31:02  03:11    L11  <Han har kone og to små barn ...>
+      00:41:34:13           
+
+363   00:41:34:15  04:15    L10  - Har han familie?
+      00:41:39:05           L11  - Ja. Får bare håpe at han overlever.
+
+364   00:41:39:07  05:11    L10  <Vi har gått ut med en etterlysning. Vi>
+      00:41:44:18           L11  <jobber med å innhente opplysninger, - >
+
+365   00:41:44:20  02:24    L11  <- som kan føre til pågripelse.>
+      00:41:47:19           
+
+366   00:41:47:21  04:23    L10  <Det er gått to dager>
+      00:41:52:19           L11  <siden dette brutale ranet ...>
+
+367   00:42:11:20  04:21    R10  <- Det har gått til helvete her ...>
+      00:42:16:16           L11  - Det skal vi nok få til.
+
+368   00:42:16:18  04:07    R10  <- Han blør fra trynet og ...>
+      00:42:21:00           L11  - Ta det med ro. Det går nok bra.
+
+369   00:42:21:02  02:19    L11  Jeg kommer med en gang.
+      00:42:23:21           
+
+370   00:42:25:13  02:23    L10  - Gå først, du.
+      00:42:28:11           L11  - Ja takk. Takk.
+
+371   00:42:33:08  05:04    L10  - Hvordan klarte han dette, da?!
+      00:42:38:12           L11  - Han datt ned trappa.
+
+372   00:42:38:14  02:10    L11  Det holder du der.
+      00:42:40:24           
+
+373   00:42:41:01  05:07    L10  Teo? Pulsen er veldig svak.
+      00:42:46:08           L11  Blod. Hent blod!
+
+374   00:42:46:10  06:04    L10  - Var det A?
+      00:42:52:14           L11  - Ja. To poser! Dette skal gå bra.
+
+375   00:42:52:16  03:18    L11  Vi har ikke mer A! Hva med AB?
+      00:42:56:09           
+
+376   00:42:56:11  03:08    L11  Nei. Nei, nei. Kom tilbake!
+      00:42:59:19           
+
+377   00:43:01:07  02:02    L11  Åpne den.
+      00:43:03:09           
+
+378   00:43:03:11  05:06    L10  - Hva holder du på med nå?
+      00:43:08:17           L11  - Jeg har blodtype 0. Takk.
+
+379   00:43:20:21  05:13    L10  Du sa jeg skulle vekke deg
+      00:43:26:09           L11  hvis du sovna.
+
+380   00:43:31:05  04:10    L11  Er det nå? Ta en kikk på ...
+      00:43:35:15           
+
+381   00:43:35:17  03:08    L11  Hånda di?
+      00:43:39:00           
+
+382   00:43:40:00  03:14    L11  Det er bare den tøyinga som hjelper.
+      00:43:43:14           
+
+383   00:43:45:06  02:19    L10  - Sånn?
+      00:43:48:00           L11  - Ja, den er veldig god.
+
+384   00:43:48:02  02:21    L10  - Sånn?
+      00:43:50:23           L11  - Den er veldig øm.
+
+385   00:43:51:00  05:23    L10  Det skal være litt ømt.
+      00:43:56:23           L11  Disse øvelsene her kan du klare selv.
+
+386   00:43:57:00  04:16    L10  Det er ikke det samme.
+      00:44:01:16           L11  Ikke det samme!
+
+387   00:44:03:06  05:04    L10  Det er bare meg her nede nå
+      00:44:08:10           L11  som ikke har rana noe.
+
+388   00:44:10:02  04:07    L11  Kom og hent meg når han våkner. 
+      00:44:14:09           
+
+389   65:535:00:00  00:00    R255  
+      65:535:00:00           
+

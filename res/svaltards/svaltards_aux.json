@@ -1,0 +1,370 @@
+[
+ {
+  "start": 0,
+  "slide": "start",
+  "end": 38
+ },
+ {
+  "start": 38,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/kull.jpg"
+  },
+  "end": 105
+ },
+ {
+  "start": 105,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/00425.jpg"
+  },
+  "end": 128
+ },
+ {
+  "start": 128,
+  "slide": "kull3",
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/5.jpg"
+  },
+  "end": 168
+ },
+ {
+  "start": 168,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/2013-06-29 090 gruve 7.JPG",
+   "p": "Gruve 7 er en av to \u00e5pne gruver til Store Norske Kullkompani p\u00e5 Svalbard."
+  },
+  "end": 221
+ },
+ {
+  "start": 221,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/DSC_0038.JPG"
+  },
+  "end": 240
+ },
+ {
+  "start": 240,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/kull1.jpg",
+   "p": "Jim Cato \u00d8verg\u00e5rd Havn (20) har har flyttet fra Aurskog-H\u00f8land hit til Svalbard p\u00e5 grunn av l\u00e6rlingplassen han fikk hos Store Norske Spitsbergen Kullkompani.<br>Siden september han arbeidet i Gruve 7. Den ligger rundt 15 km fra Longyearbyen og her arbeider rundt 20 personer."
+  },
+  "end": 285
+ },
+ {
+  "start": 285,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/morketid.jpg",
+   "p": "Svalbard har en befolkning p\u00e5 omtrent 2600, noe som betyr at det finns flere isbj\u00f8rner enn fastboende. <br /> <br />\u00d8ygruppen n\u00e5r helt opp til 81 grader nord, og er n\u00e6rmere nordpolen enn den er Oslo.<br /> <br />M\u00f8rketiden p\u00e5 Svalbard strekker seg fra 27. oktober til 15. februar.  Til gjengjeld er det midnattssol mellom 19. april og 22. august. Gjennomsnittstemperaturen i november er -10,2 grader. "
+  },
+  "end": 307.5
+ },
+ {
+  "start": 307.5,
+  "content": {
+   "video": "https://mcorp.no/examples/p3dok/ungdomsklubben.webm"
+  },
+  "end": 352
+ },
+ {
+  "start": 352,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/74_1longyearbyen.jpg"
+  },
+  "end": 386
+ },
+ {
+  "start": 386,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/longyearbyen.jpg"
+  },
+  "end": 404
+ },
+ {
+  "start": 404,
+  "content": {
+   "video": "https://mcorp.no/examples/p3dok/scooter.webm"
+  },
+  "end": 462
+ },
+ {
+  "start": 462,
+  "content": {
+   "video": "https://mcorp.no/examples/p3dok/Polar_eufori_Polar_euphoria_hd720.webm",
+   "offset": 32,
+   "p": "Det er folk fra omtrent 40 nasjoner bare i Longyearbyen, men de f\u00e6rreste blir lenge. <br><br> Norge har suverenitet over Svalbard, men Svalbard har til dels eget lovverk og eget skattekontor."
+  },
+  "end": 634
+ },
+ {
+  "start": 634,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/Longyear-Town-Centre.jpg"
+  },
+  "end": 663
+ },
+ {
+  "start": 663,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/unis.jpg"
+  },
+  "end": 673
+ },
+ {
+  "start": 673,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/studentbrakker.jpg"
+  },
+  "end": 694
+ },
+ {
+  "start": 694,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/isbre.JPG"
+  },
+  "end": 711
+ },
+ {
+  "start": 711,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/kalving.jpg"
+  },
+  "end": 726
+ },
+ {
+  "start": 726,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/isbj\u00f8rn.jpg"
+  },
+  "end": 734
+ },
+ {
+  "start": 734,
+  "content": {
+   "video": "https://mcorp.no/examples/p3dok/snow2.webm"
+  },
+  "end": 817
+ },
+ {
+  "start": 817,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/isbjornfare.jpg"
+  },
+  "end": 847
+ },
+ {
+  "start": 847,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/isbjorn2.jpg"
+  },
+  "end": 912
+ },
+ {
+  "start": 912,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/barnehage.jpg"
+  },
+  "end": 986
+ },
+ {
+  "start": 986,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/sykehus.jpg"
+  },
+  "end": 1005
+ },
+ {
+  "start": 1005,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/skole.jpg"
+  },
+  "end": 1055
+ },
+ {
+  "start": 1055,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/sentrum.jpg"
+  },
+  "end": 1110
+ },
+ {
+  "start": 1110,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/by1.jpg"
+  },
+  "end": 1170
+ },
+ {
+  "start": 1170,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/by2.jpg"
+  },
+  "end": 1211
+ },
+ {
+  "start": 1211,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/Costa Deliziosa.jpg",
+   "p": "Flere av cruiseskipene som har anl\u00f8p p\u00e5 Svalbard har flere mennesker ombord enn det bor totalt p\u00e5 \u00f8yene.  Skipet avbildet her har opp til 3.928 mennesker ombord, mot de rundt 2.600 fastboende.  Dette gir noen spesielle utfordringer."
+  },
+  "end": 1245
+ },
+ {
+  "start": 1245,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/cruise2.jpg"
+  },
+  "end": 1273
+ },
+ {
+  "start": 1273,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/P1010982.jpg"
+  },
+  "end": 1350
+ },
+ {
+  "start": 1350,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/chirawut.jpg"
+  },
+  "end": 1452
+ },
+ {
+  "start": 1452,
+  "content": {
+   "video": "https://mcorp.no/examples/p3dok/snow.webm"
+  },
+  "end": 1540
+ },
+ {
+  "start": 1540,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/Svalbard_Airport_-_Longyear_NO.jpg"
+  },
+  "end": 1575
+ },
+ {
+  "start": 1575,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/MR0157.jpg"
+  },
+  "end": 1633
+ },
+ {
+  "start": 1633,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/sonsofsvalbard.jpg"
+  },
+  "end": 1685
+ },
+ {
+  "start": 1685,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/IMG_7107.jpg",
+   "p": "Det er rundt en og en halv sn\u00f8skuter for hver innbygger p\u00e5 Svalbard, og det er lov \u00e5 kj\u00f8re nesten over alt.  Kombinasjonen er noe Sons of Svalbard setter pris p\u00e5."
+  },
+  "end": 1717
+ },
+ {
+  "start": 1717,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/IMG_7216.jpg"
+  },
+  "end": 1756
+ },
+ {
+  "start": 1756,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/synnes-bilder-2-021.jpg"
+  },
+  "end": 1772
+ },
+ {
+  "start": 1772,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/IMG_7359.jpg"
+  },
+  "end": 1801
+ },
+ {
+  "start": 1801,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/IMG_7362.jpg"
+  },
+  "end": 1818
+ },
+ {
+  "start": 1818,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/Synnes-bilder-068.jpg"
+  },
+  "end": 1838
+ },
+ {
+  "start": 1838,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/synnes-bilder-2-035.jpg"
+  },
+  "end": 1858
+ },
+ {
+  "start": 1858,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/IMG_7110.jpg"
+  },
+  "end": 1905
+ },
+ {
+  "start": 1905,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/IMG_7002.jpg"
+  },
+  "end": 1930
+ },
+ {
+  "start": 1930,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/morketid2.jpg"
+  },
+  "end": 1961
+ },
+ {
+  "start": 1961,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/morketid3.JPG"
+  },
+  "end": 1990
+ },
+ {
+  "start": 1990,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/morketid4.jpg"
+  },
+  "end": 2014
+ },
+ {
+  "start": 2014,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/gruve.jpg"
+  },
+  "end": 2066
+ },
+ {
+  "start": 2066,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/kraftverk.jpg"
+  },
+  "end": 2130
+ },
+ {
+  "start": 2130,
+  "content": {
+   "img": "https://mcorp.no/examples/p3dok/Spitzbergen-2_hg.jpg"
+  },
+  "end": 2191
+ },
+ {
+  "start": 2191,
+  "slide": "end",
+  "end": 100000
+ }
+]

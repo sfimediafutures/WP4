@@ -1,0 +1,772 @@
+[
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 13.69,
+        "end": 14.64,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 18.01,
+        "end": 19.05,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 27.26,
+        "end": 28.07,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 30.15,
+        "end": 31.51,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 47.37,
+        "end": 47.85,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 65.25,
+        "end": 66.67,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 81.34,
+        "end": 82.8,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 90.04,
+        "end": 90.9,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 97.29,
+        "end": 98.7,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 108.43,
+        "end": 108.89,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 134.3,
+        "end": 136.67,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 142.51,
+        "end": 143.5,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 150.59,
+        "end": 152.23,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 166.29,
+        "end": 168.14,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 180.46,
+        "end": 181.69,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 203.09,
+        "end": 205.37,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 215.31,
+        "end": 216.72,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 219.22,
+        "end": 220.38,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 220.77,
+        "end": 223.01,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 230.19,
+        "end": 231.28,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 232.29,
+        "end": 232.94,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 234.23,
+        "end": 235.93,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 237.45,
+        "end": 239.61,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 239.87,
+        "end": 241.17,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 260.16,
+        "end": 261.15,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 265.35,
+        "end": 265.96,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 273.1,
+        "end": 274.22,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 282.62,
+        "end": 285.21,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 287.03,
+        "end": 287.87,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 294.94,
+        "end": 295.87,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 298.96,
+        "end": 300.04,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 307.31,
+        "end": 308.66,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 320.2,
+        "end": 321.02,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 324.91,
+        "end": 325.59,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 327.24,
+        "end": 327.95,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 333.86,
+        "end": 335.37,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 345.13,
+        "end": 346.57,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 351.22,
+        "end": 353.45,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 364.65,
+        "end": 365.43,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 380.49,
+        "end": 383.08,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 386.09,
+        "end": 389.01,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 394.11,
+        "end": 395.66,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 403.39,
+        "end": 404.21,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 417.09,
+        "end": 417.52,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 426.62,
+        "end": 427.59,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 434.68,
+        "end": 436.38,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 438.77,
+        "end": 440.22,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 448.17,
+        "end": 449.27,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 453.3,
+        "end": 455.25,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 462.08,
+        "end": 462.74,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 466.19,
+        "end": 467.49,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 483.88,
+        "end": 485.46,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 489.78,
+        "end": 491.94,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 501.71,
+        "end": 502.73,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 506.18,
+        "end": 507.48,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 524.87,
+        "end": 529.45,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 531.27,
+        "end": 532.44,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 542.26,
+        "end": 542.76,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 564.67,
+        "end": 565.8,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 582.11,
+        "end": 582.84,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 590.85,
+        "end": 592.1,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 601.68,
+        "end": 602.71,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 630.93,
+        "end": 632.1,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 635.91,
+        "end": 636.32,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 642.99,
+        "end": 644.01,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 650.29,
+        "end": 651.77,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 655.38,
+        "end": 656.48,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 677.62,
+        "end": 678.22,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 682.01,
+        "end": 683.35,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 695.63,
+        "end": 696.59,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 704.28,
+        "end": 705.53,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 721.61,
+        "end": 722.39,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 738.96,
+        "end": 739.99,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 766.2,
+        "end": 766.72,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 770.05,
+        "end": 770.45,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 777.87,
+        "end": 779.08,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 783.97,
+        "end": 786.64,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 790.54,
+        "end": 791.65,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 803.81,
+        "end": 804.55,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 823.68,
+        "end": 826.21,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 833.99,
+        "end": 835.9,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 845.86,
+        "end": 847.12,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 853.04,
+        "end": 853.89,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 868.74,
+        "end": 874.24,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 882.18,
+        "end": 883.77,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 918.47,
+        "end": 919.42,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 923.94,
+        "end": 925.53,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 946.63,
+        "end": 947.99,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 961.38,
+        "end": 962.19,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 971.24,
+        "end": 971.87,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 973.35,
+        "end": 974.3,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 975.18,
+        "end": 981.59,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 987.21,
+        "end": 989.45,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 997.93,
+        "end": 999.23,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1008.14,
+        "end": 1008.83,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1022.63,
+        "end": 1024.37,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1033.36,
+        "end": 1036.18,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1041.23,
+        "end": 1041.99,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1044.62,
+        "end": 1045.44,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1047.93,
+        "end": 1049.63,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1072.51,
+        "end": 1072.95,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1087.45,
+        "end": 1088.64,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1098.56,
+        "end": 1100.1,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1120.11,
+        "end": 1120.65,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1125.55,
+        "end": 1127.44,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1194.18,
+        "end": 1195.72,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1211.03,
+        "end": 1213.19,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1217.13,
+        "end": 1218.13,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1232.39,
+        "end": 1232.83,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1238.35,
+        "end": 1239.79,
+        "url": "/sfi/res/emotions/laugh.png"
+    }
+]

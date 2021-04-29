@@ -1,0 +1,3649 @@
+[
+ {
+  "start": 68.72,
+  "end": 72.2,
+  "text": "<i>Null en, Oskar fire.</i><br><i>Vi er p\u00e5 vei, ber om bev\u00e6pning.</i>",
+  "who": "Police 1"
+ },
+ {
+  "start": 72.28,
+  "end": 77.68,
+  "text": "<i>Det er mottatt.</i><br><i>Iverksett bev\u00e6pning. Over.</i>",
+  "who": "Police 2"
+ },
+ {
+  "start": 99.24,
+  "end": 102.24,
+  "text": "Hei!",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 106.92,
+  "end": 110.32,
+  "text": "Jeg f\u00e5r det ikke til!",
+  "who": "Teo"
+ },
+ {
+  "start": 307.32,
+  "end": 310.72,
+  "text": "Hei. Ikke v\u00e6r redd.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 310.8,
+  "end": 314.64,
+  "text": "Du har klart deg, hva? Ja ...",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 315.64,
+  "end": 320.16,
+  "text": "Du er en liten t\u00f8ffing, du da?",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 338.28,
+  "end": 341.28,
+  "text": "Ravn?",
+  "who": "Leif"
+ },
+ {
+  "start": 344.65,
+  "end": 348.08,
+  "text": "Hei, god morgen.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 344.64,
+  "end": 348.08,
+  "text": "-Hei.",
+  "who": "Ravn"
+ },
+ {
+  "start": 348.16,
+  "end": 351.48,
+  "text": "Gjemt deg baki der i dag.",
+  "who": "Leif"
+ },
+ {
+  "start": 351.56,
+  "end": 354.2,
+  "text": "Ja.",
+  "who": "Ravn"
+ },
+ {
+  "start": 354.28,
+  "end": 358.12,
+  "text": "Det er helt utrolig.",
+  "who": "Leif"
+ },
+ {
+  "start": 358.2,
+  "end": 362.52,
+  "text": "Jeg har sagt det sikkert hundre<br>ganger at det er bare meg.",
+  "who": "Leif"
+ },
+ {
+  "start": 362.6,
+  "end": 366.28,
+  "text": "Jeg vet det,<br>jeg ville bare v\u00e6re sikker.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 369.8,
+  "end": 374.2,
+  "text": "Og her g\u00e5r det ...<br>Her g\u00e5r det framover?",
+  "who": "Leif"
+ },
+ {
+  "start": 374.28,
+  "end": 379.2,
+  "text": "Nei, bakover.<br>Mangler skikkelig utstyr.",
+  "who": "Ravn"
+ },
+ {
+  "start": 379.28999999999996,
+  "end": 382.52,
+  "text": "Ikke det jeg trenger.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 379.28,
+  "end": 382.52,
+  "text": "-Masse utstyr her.",
+  "who": "Leif"
+ },
+ {
+  "start": 382.6,
+  "end": 386.64,
+  "text": "Jeg kan sikkert pr\u00f8ve<br>\u00e5 skaffe mer. Hva trenger du?",
+  "who": "Leif"
+ },
+ {
+  "start": 386.73,
+  "end": 391.16,
+  "text": "Jaha ...",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 386.72,
+  "end": 391.16,
+  "text": "-Massespektrometer blant annet.",
+  "who": "Ravn"
+ },
+ {
+  "start": 391.24,
+  "end": 397.16,
+  "text": "Det er en maskin som analyserer<br>blodet p\u00e5 en m\u00e5te bare den kan.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 397.25,
+  "end": 403.8,
+  "text": "Enkelte ting kan bare sykehus kj\u00f8pe.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 397.24,
+  "end": 403.8,
+  "text": "-Dyr? Trenger penger, du?",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 407.93,
+  "end": 411.96,
+  "text": "Nei takk.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 407.92,
+  "end": 411.96,
+  "text": "-Det er frokost her.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 412.04,
+  "end": 418.44,
+  "text": "Jeg tenkte at du kanskje kunne<br>tatt en liten kikk p\u00e5 meg i dag?",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 418.52,
+  "end": 421.72,
+  "text": "H\u00e5nda di? Har akkurat sett p\u00e5 den.",
+  "who": "Ravn"
+ },
+ {
+  "start": 421.8,
+  "end": 425.24,
+  "text": "Den blir fin, bare ta det med ro.",
+  "who": "Ravn"
+ },
+ {
+  "start": 425.32,
+  "end": 428.72,
+  "text": "N\u00e5r jeg vrir h\u00e5nda, f\u00e5r jeg smerter.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 428.8,
+  "end": 432.52,
+  "text": "Du vet hvilken dag det er i dag?",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 432.6,
+  "end": 434.84,
+  "text": "Ja da.",
+  "who": "Leif"
+ },
+ {
+  "start": 436.32,
+  "end": 442.72,
+  "text": "Men jeg kan jo se p\u00e5 deg i kveld<br>hvis du hjelper meg med noe n\u00e5?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 447.64,
+  "end": 451.92,
+  "text": "Rolig n\u00e5. Ikke ta for mye.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 452.0,
+  "end": 455.4,
+  "text": "Nei da. Det blir fint dette her.",
+  "who": "Leif"
+ },
+ {
+  "start": 456.24,
+  "end": 459.16,
+  "text": "Du ...",
+  "who": "Vilma",
+  "guesswho": "pure"
+ },
+ {
+  "start": 459.24,
+  "end": 462.84,
+  "text": "Det er bare et ritual.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 500.84999999999997,
+  "end": 504.72,
+  "text": "Du bek...",
+  "who": "Vilma",
+  "guesswho": "pure"
+ },
+ {
+  "start": 500.84,
+  "end": 504.72,
+  "text": "-Jeg beklager.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 504.8,
+  "end": 508.08,
+  "text": "Du beklager?",
+  "who": "Vilma",
+  "guesswho": "pure"
+ },
+ {
+  "start": 508.16,
+  "end": 514.4,
+  "text": "Behandlingen du foresl\u00e5r, er aldri<br>pr\u00f8vd p\u00e5 mennesker. Kun p\u00e5 labdyr.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 514.49,
+  "end": 520.64,
+  "text": "Det har jeg ikke tid til.",
+  "who": "Vilma",
+  "guesswho": "pure"
+ },
+ {
+  "start": 514.48,
+  "end": 520.64,
+  "text": "-Uten godkjente tester.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 520.72,
+  "end": 527.52,
+  "text": "Vilma ... Det du har tenkt \u00e5 sette i gang,<br>er mye farligere enn du skisserer.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 527.6,
+  "end": 531.88,
+  "text": "Komiteen er enstemmig.<br>Det er risiko for motorisk svikt.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 531.97,
+  "end": 537.44,
+  "text": "Jeg d\u00f8r hvis jeg ikke gj\u00f8r noe.",
+  "who": "Vilma",
+  "guesswho": "pure"
+ },
+ {
+  "start": 531.96,
+  "end": 537.44,
+  "text": "-Full katatoni. I verste fall d\u00f8d.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 537.52,
+  "end": 542.08,
+  "text": "Jeg har utviklet preparatet selv<br>som forsker og ikke pasient.",
+  "who": "Vilma",
+  "guesswho": "pure"
+ },
+ {
+  "start": 542.16,
+  "end": 547.8,
+  "text": "Jeg har veldig stor tro p\u00e5 det. Unn<br>og Ravn kommer til \u00e5 hjelpe meg.",
+  "who": "Vilma",
+  "guesswho": "pure"
+ },
+ {
+  "start": 547.88,
+  "end": 550.68,
+  "text": "Jeg tar ansvaret.",
+  "who": "Vilma",
+  "guesswho": "pure"
+ },
+ {
+  "start": 550.76,
+  "end": 556.12,
+  "text": "Det kan sette avdelingen i fare,<br>dere kan miste lisensen.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 556.21,
+  "end": 563.64,
+  "text": "Du er redd for \u00e5 bli saks\u00f8kt!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 556.2,
+  "end": 563.64,
+  "text": "-Jeg kan bli satt i fengsel.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 563.72,
+  "end": 568.16,
+  "text": "Du sitter som dommer<br>over det eneste h\u00e5pet hun har!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 568.24,
+  "end": 572.88,
+  "text": "Det er tryggest for dere<br>at hun bare d\u00f8r av seg selv!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 572.96,
+  "end": 576.56,
+  "text": "Hvem kan dette fagfeltet<br>bedre enn Vilma?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 576.64,
+  "end": 579.88,
+  "text": "Ingen av dere. Ingen av dere!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 579.97,
+  "end": 587.04,
+  "text": "Det er det mest uverdige og korrupte ...",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 579.96,
+  "end": 587.04,
+  "text": "-Tror du dette er noe lett for oss?",
+  "who": "Grethe",
+  "guesswho": "good"
+ },
+ {
+  "start": 587.12,
+  "end": 591.64,
+  "text": "Det er langt utenfor din egen ekspertise!<br>Du mister jobben!",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 591.72,
+  "end": 595.8,
+  "text": "Tror du jeg bryr meg om jobben?!<br>At jeg vil jobbe her etter dette?!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 595.88,
+  "end": 599.36,
+  "text": "Alle vet at du setter deg selv f\u00f8rst!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 599.44,
+  "end": 603.6,
+  "text": "Vilma skal faen ikke d\u00f8<br>pga. feigheten deres!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 612.88,
+  "end": 620.28,
+  "text": "<i>-Hva kan du si om det du ser n\u00e5?</i><br><i>-Politiet har sperret av et omr\u00e5de -</i>",
+  "who": "Reporter",
+  "guesswho": "pure"
+ },
+ {
+  "start": 620.36,
+  "end": 623.16,
+  "text": "<i>- ved det som er en utbrent bil.</i>",
+  "who": "Reporter",
+  "guesswho": "pure"
+ },
+ {
+  "start": 623.24,
+  "end": 628.4,
+  "text": "<i>Bilen er h\u00f8yst sannsynlig</i><br><i>den bilen den siste raneren brukte, -</i>",
+  "who": "Reporter",
+  "guesswho": "pure"
+ },
+ {
+  "start": 628.48,
+  "end": 631.52,
+  "text": "<i>- men politiet har ikke</i><br><i>  villet bekrefte det.</i>",
+  "who": "Reporter",
+  "guesswho": "pure"
+ },
+ {
+  "start": 636.36,
+  "end": 639.36,
+  "text": "Faen!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 648.04,
+  "end": 653.68,
+  "text": "Jeg vil gjerne takke<br>Alf og Signe, Vilmas foreldre, -",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 653.76,
+  "end": 659.32,
+  "text": "- for at de har ordnet med<br>en s\u00e5 fin minnestund.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 663.12,
+  "end": 668.08,
+  "text": "Jeg vil gjerne beklage til alle dere<br>som har pr\u00f8vd \u00e5 f\u00e5 tak i meg -",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 668.16,
+  "end": 671.08,
+  "text": "- i de seks m\u00e5nedene som har g\u00e5tt.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 671.16,
+  "end": 676.72,
+  "text": "At jeg har v\u00e6rt<br>s\u00e5 unyttig for dere alle.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 679.0,
+  "end": 682.64,
+  "text": "S\u00e6rlig min stedatter Siv.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 682.72,
+  "end": 686.52,
+  "text": "Jeg vet at Vilma ...",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 690.92,
+  "end": 695.0,
+  "text": "Jeg vet at mange av dere<br>er s\u00e5ret over det Vilma gjorde.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 695.08,
+  "end": 699.56,
+  "text": "Men n\u00e5r vi i dag er samlet<br>rundt en kiste som er tom, -",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 699.64,
+  "end": 702.68,
+  "text": "- er det fordi Vilma ville ha det s\u00e5nn.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 702.76,
+  "end": 709.2,
+  "text": "Hun visste hva hun gjorde da hun dro<br>s\u00e5 langt ut. Hun ville ikke bli funnet.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 709.28,
+  "end": 712.28,
+  "text": "Det er vanskelig \u00e5 godta,<br>men det m\u00e5 vi.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 712.36,
+  "end": 718.8,
+  "text": "Vilma var en person som<br>ofret alt for forskningen sin.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 718.88,
+  "end": 724.08,
+  "text": "Hennes h\u00f8yeste \u00f8nske var \u00e5 skape<br>noe som kunne komme alle til gode.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 724.16,
+  "end": 730.92,
+  "text": "Forskningen gjorde henne syk.<br>Hun fikk ikke den hjelpen hun skulle f\u00e5tt.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 731.0,
+  "end": 735.44,
+  "text": "Men hun ga ikke opp.<br>Hun gjorde ikke det.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 735.52,
+  "end": 739.08,
+  "text": "Det var ikke letteste vei hun valgte.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 739.16,
+  "end": 745.32,
+  "text": "Hadde det v\u00e6rt et alternativ,<br>ville hun valgt det. Uansett pris.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 745.4,
+  "end": 751.88,
+  "text": "Hun ville ikke bli en skygge av seg<br>selv, hun ville huskes som den hun var.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 798.45,
+  "end": 801.32,
+  "text": "Hva gj\u00f8r du her?",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 798.44,
+  "end": 801.32,
+  "text": "-Leif!",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 801.4,
+  "end": 805.56,
+  "text": "Jeg f\u00e5r ikke stoppa blodet.",
+  "who": "Teo"
+ },
+ {
+  "start": 806.84,
+  "end": 807.84,
+  "text": "F\u00e5 se.",
+  "who": "Leif"
+ },
+ {
+  "start": 811.5699999999999,
+  "end": 815.32,
+  "text": "Hold. Hvor er de andre?",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 811.56,
+  "end": 815.32,
+  "text": "-Jeg dreit meg ut.",
+  "who": "Teo"
+ },
+ {
+  "start": 815.4,
+  "end": 818.52,
+  "text": "Det er bare meg. De andre er tatt.",
+  "who": "Teo"
+ },
+ {
+  "start": 818.6,
+  "end": 821.96,
+  "text": "Av politiet?<br>Og s\u00e5 kommer du hit?!",
+  "who": "Leif"
+ },
+ {
+  "start": 822.04,
+  "end": 826.08,
+  "text": "Jeg kj\u00f8rte p\u00e5 en politimann.<br>Du m\u00e5 hjelpe meg.",
+  "who": "Teo"
+ },
+ {
+  "start": 826.17,
+  "end": 830.64,
+  "text": "Jeg har alle pengene.",
+  "who": "Teo",
+  "guesswho": "good"
+ },
+ {
+  "start": 826.16,
+  "end": 830.64,
+  "text": "-Du m\u00e5 vekk herfra.",
+  "who": "Leif"
+ },
+ {
+  "start": 830.72,
+  "end": 834.68,
+  "text": "Her?",
+  "who": "Leif"
+ },
+ {
+  "start": 837.96,
+  "end": 842.32,
+  "text": "Jeg fryser.",
+  "who": "Teo"
+ },
+ {
+  "start": 844.72,
+  "end": 847.08,
+  "text": "Hjelper du meg?",
+  "who": "Teo"
+ },
+ {
+  "start": 853.29,
+  "end": 856.44,
+  "text": "Takk.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 853.28,
+  "end": 856.44,
+  "text": "-Kondolerer.",
+  "who": "Woman in Church"
+ },
+ {
+  "start": 866.01,
+  "end": 870.56,
+  "text": "Takk, Unn. Tusen takk.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 866.0,
+  "end": 870.56,
+  "text": "-Jeg syns det var en nydelig tale.",
+  "who": "Unn"
+ },
+ {
+  "start": 870.64,
+  "end": 874.44,
+  "text": "Kom til meg,<br>hvis du trenger hjelp til noe.",
+  "who": "Unn"
+ },
+ {
+  "start": 874.52,
+  "end": 879.04,
+  "text": "Jeg mener det. Hva som helst.",
+  "who": "Unn"
+ },
+ {
+  "start": 883.24,
+  "end": 887.48,
+  "text": "Hei, Ravn. Jeg kondolerer.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 891.92,
+  "end": 898.04,
+  "text": "Jeg gjorde alt jeg kunne. Jeg gjorde<br>alt jeg kunne uten \u00e5 bryte loven.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 898.12,
+  "end": 904.0,
+  "text": "Hvis jeg hadde trodd p\u00e5 behandlings-<br>planen, hadde jeg vurdert den.",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 904.08,
+  "end": 908.04,
+  "text": "Og du lurer p\u00e5 hvorfor<br>jeg ikke kommer tilbake?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 908.13,
+  "end": 915.28,
+  "text": "Jeg st\u00e5r her i dag pga. deg!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 908.12,
+  "end": 915.28,
+  "text": "-Du og Vilma var ikke rasjonelle!",
+  "who": "Grethe",
+  "guesswho": "pure"
+ },
+ {
+  "start": 916.17,
+  "end": 919.4,
+  "text": "Hei, Ravn...",
+  "who": "Odd",
+  "guesswho": "pure"
+ },
+ {
+  "start": 916.16,
+  "end": 919.4,
+  "text": "Hei",
+  "who": "Ravn"
+ },
+ {
+  "start": 919.48,
+  "end": 922.08,
+  "text": "Siv?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 925.32,
+  "end": 928.32,
+  "text": "Hei, Siv.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 929.77,
+  "end": 934.84,
+  "text": "Hvorfor var det en kiste der?",
+  "who": "Siv",
+  "guesswho": "good"
+ },
+ {
+  "start": 929.76,
+  "end": 934.84,
+  "text": "-Jeg har tenkt mye p\u00e5 deg.",
+  "who": "Ravn"
+ },
+ {
+  "start": 934.92,
+  "end": 939.0,
+  "text": "Mormor og morfar ville<br>at alt skulle v\u00e6re som vanlig.",
+  "who": "Ravn"
+ },
+ {
+  "start": 939.08,
+  "end": 944.44,
+  "text": "Da tror folk at mamma er der.<br>Hun er jo der ute et sted.",
+  "who": "Siv"
+ },
+ {
+  "start": 944.52,
+  "end": 948.32,
+  "text": "Skal de bare slutte \u00e5 lete?!",
+  "who": "Siv",
+  "guesswho": "pure"
+ },
+ {
+  "start": 951.76,
+  "end": 954.96,
+  "text": "Kan jeg f\u00e5 en klem?",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 971.21,
+  "end": 977.32,
+  "text": "Ja. Bare ring, s\u00e5 fikser vi det.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 971.2,
+  "end": 977.32,
+  "text": "-Jeg trenger noen ting hjemmefra.",
+  "who": "Siv"
+ },
+ {
+  "start": 977.4,
+  "end": 980.92,
+  "text": "Det er noe viktig<br>jeg m\u00e5 snakke med deg om ...",
+  "who": "Siv",
+  "guesswho": "pure"
+ },
+ {
+  "start": 986.05,
+  "end": 989.96,
+  "text": "Jeg m\u00e5 snakke med deg.",
+  "who": "Siv",
+  "guesswho": "pure"
+ },
+ {
+  "start": 986.04,
+  "end": 989.96,
+  "text": "-Jeg m\u00e5 g\u00e5 ...",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 991.6,
+  "end": 994.32,
+  "text": "Ravn!",
+  "who": "Siv",
+  "guesswho": "pure"
+ },
+ {
+  "start": 996.05,
+  "end": 1000.64,
+  "text": "Du skal aldri sl\u00e5 av telefonen!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 996.04,
+  "end": 1000.64,
+  "text": "-Hva har skjedd?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1005.41,
+  "end": 1008.32,
+  "text": "Kom igjen!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1005.4,
+  "end": 1008.32,
+  "text": "-Hva ...",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1017.41,
+  "end": 1022.6,
+  "text": "Se p\u00e5 magen hans!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1017.4,
+  "end": 1022.6,
+  "text": "-Hvem faen er dette? En venn av deg?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1022.68,
+  "end": 1025.52,
+  "text": "Han er skutt, for faen!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1025.6,
+  "end": 1030.64,
+  "text": "Hallo! Hallo! Er du v\u00e5ken?<br>Vi m\u00e5 f\u00e5 ham p\u00e5 sykehus!",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1030.72,
+  "end": 1034.36,
+  "text": "Kunne han v\u00e6rt p\u00e5 legevakta,<br>hadde han v\u00e6rt der n\u00e5!",
+  "who": "Leif"
+ },
+ {
+  "start": 1034.45,
+  "end": 1039.72,
+  "text": "Han har s\u00e5nn dog-tag rundt halsen.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1034.44,
+  "end": 1039.72,
+  "text": "-Vet du blodtypen hans?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1082.12,
+  "end": 1088.04,
+  "text": "Jeg tar hodet!<br>Vi legger ham p\u00e5 bordet der borte.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1088.12,
+  "end": 1091.08,
+  "text": "S\u00e5nn. Det er bra.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1091.16,
+  "end": 1094.48,
+  "text": "S\u00e5nn. Hent to poser med A-blod.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1094.56,
+  "end": 1099.24,
+  "text": "Ligger i kj\u00f8leskapet.<br>St\u00e5r p\u00e5 posen! Kom igjen!",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1106.12,
+  "end": 1112.12,
+  "text": "Og operasjonsutstyret mitt. Ligger p\u00e5<br>benken ved siden av rottene der inne.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1113.0,
+  "end": 1116.52,
+  "text": "Flott. Putt alt oppi her.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1118.32,
+  "end": 1123.28,
+  "text": "Pass p\u00e5 at du f\u00e5r alt nedi. S\u00e5nn.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1123.37,
+  "end": 1128.68,
+  "text": "St\u00e5 der. Jeg begynner \u00e5 skj\u00e6re.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1123.36,
+  "end": 1128.68,
+  "text": "-Si hva jeg skal gj\u00f8re.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1140.36,
+  "end": 1144.24,
+  "text": "Nyra hans er skutt i stykker.",
+  "who": "Ravn"
+ },
+ {
+  "start": 1145.05,
+  "end": 1151.08,
+  "text": "Er ikke det litt voldsomt?",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1145.04,
+  "end": 1151.08,
+  "text": "-Jeg m\u00e5 ta den ut. Ellers d\u00f8r han.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1151.16,
+  "end": 1155.44,
+  "text": "Hjelp meg n\u00e5.<br>Hold disse. Hold de to.",
+  "who": "Ravn"
+ },
+ {
+  "start": 1157.4,
+  "end": 1161.44,
+  "text": "S\u00e5 drar du litt ut til siden.",
+  "who": "Ravn"
+ },
+ {
+  "start": 1161.52,
+  "end": 1165.24,
+  "text": "S\u00e5 skal jeg bare komme ned her ...",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1168.05,
+  "end": 1171.28,
+  "text": "Ja.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1168.04,
+  "end": 1171.28,
+  "text": "-G\u00e5r det bra?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1177.68,
+  "end": 1180.36,
+  "text": "Der!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1183.73,
+  "end": 1189.28,
+  "text": "Jeg er med! Helt med.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1183.72,
+  "end": 1189.28,
+  "text": "-Leif? Leif!",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1189.36,
+  "end": 1193.84,
+  "text": "<i>Velkommen til denne sendingen</i><br><i>i forbindelse med ranet i g\u00e5r.</i>",
+  "who": "News anchor",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1193.92,
+  "end": 1199.68,
+  "text": "<i>Under p\u00e5gripelsene ble en</i><br><i>politimann p\u00e5kj\u00f8rt av ransbilen.</i>",
+  "who": "News anchor",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1199.76,
+  "end": 1203.08,
+  "text": "<i>Tilstanden er beskrevet som kritisk.</i>",
+  "who": "News anchor",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1203.16,
+  "end": 1208.92,
+  "text": "<i>Politiet g\u00e5r ut med f\u00f8lgende</i><br><i>etterlysning: Teodor Naustvik ...</i>",
+  "who": "News anchor",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1209.01,
+  "end": 1212.56,
+  "text": "De andre har tysta.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1209.0,
+  "end": 1212.56,
+  "text": "-Du sa han ikke var etters\u00f8kt!",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1212.65,
+  "end": 1216.4,
+  "text": "Han er ikke d\u00f8d.",
+  "who": "Leif"
+ },
+ {
+  "start": 1212.64,
+  "end": 1216.4,
+  "text": "-Han har kj\u00f8rt ned en politimann!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1216.49,
+  "end": 1221.28,
+  "text": "Be ham si det til politiet!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1216.48,
+  "end": 1221.28,
+  "text": "-De skj\u00f8t ham i magen, selvforsvar.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1221.36,
+  "end": 1225.6,
+  "text": "Han kan ikke det.<br>De dreper ham i fengsel \u00f2g.",
+  "who": "Leif"
+ },
+ {
+  "start": 1225.69,
+  "end": 1230.52,
+  "text": "Ikke politiet. De andre ranerne.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1225.68,
+  "end": 1230.52,
+  "text": "Politiet dreper ham?",
+  "who": "Ravn"
+ },
+ {
+  "start": 1230.6,
+  "end": 1235.0,
+  "text": "Det er konspirasjoner som du<br>og chattekompisene dine ...",
+  "who": "Ravn"
+ },
+ {
+  "start": 1235.08,
+  "end": 1240.56,
+  "text": "Siden 95 har 68 fanger d\u00f8dd i norske<br>fengsler. Bare 10 var selvmord.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1240.64,
+  "end": 1245.2,
+  "text": "Kom her. S\u00e5 skal vi se p\u00e5 noe her.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1248.08,
+  "end": 1254.2,
+  "text": "Teo sitter igjen med hele utbyttet. De han<br>jobba med, er mye verre enn politiet.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1254.29,
+  "end": 1257.92,
+  "text": "62 millioner.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1254.28,
+  "end": 1257.92,
+  "text": "-Hvor mye er det snakk om?",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1258.01,
+  "end": 1261.64,
+  "text": "St\u00e5r det i avisa.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1258.0,
+  "end": 1261.64,
+  "text": "-62 millioner?!",
+  "who": "Ravn"
+ },
+ {
+  "start": 1261.73,
+  "end": 1266.72,
+  "text": "De gj\u00f8r ikke det.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1261.72,
+  "end": 1266.72,
+  "text": "-Hva om noen finner ham her?!",
+  "who": "Ravn"
+ },
+ {
+  "start": 1266.81,
+  "end": 1273.32,
+  "text": "Hvordan g\u00e5r det med politimannen?",
+  "who": "Teo",
+  "guesswho": "good"
+ },
+ {
+  "start": 1266.8,
+  "end": 1273.32,
+  "text": "-Nei, nei, nei! Legg deg ned!",
+  "who": "Ravn"
+ },
+ {
+  "start": 1273.4,
+  "end": 1278.32,
+  "text": "Det g\u00e5r s\u00e5 bra. Han har det<br>kjempefint, han politimannen.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1278.41,
+  "end": 1283.56,
+  "text": "Jeg m\u00e5 snakke med Marit!",
+  "who": "Teo",
+  "guesswho": "good"
+ },
+ {
+  "start": 1278.4,
+  "end": 1283.56,
+  "text": "-Dette er legen. Gj\u00f8r som han sier.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1283.65,
+  "end": 1287.48,
+  "text": "Det g\u00e5r fint. Det g\u00e5r fint.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1283.64,
+  "end": 1287.48,
+  "text": "-Hold ham.",
+  "who": "Ravn"
+ },
+ {
+  "start": 1287.56,
+  "end": 1290.48,
+  "text": "Vi m\u00e5 f\u00e5 ham p\u00e5 sykehus.",
+  "who": "Ravn"
+ },
+ {
+  "start": 1290.56,
+  "end": 1296.36,
+  "text": "De ser at han er operert av en lege.<br>Du vil ikke at de skal leite her?",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1296.44,
+  "end": 1299.84,
+  "text": "Hva hvis han d\u00f8r?",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1301.21,
+  "end": 1306.28,
+  "text": "Forverrer det seg, trenger jeg -",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1301.2,
+  "end": 1306.28,
+  "text": "-Hva slags utstyr trenger du?",
+  "who": "Leif"
+ },
+ {
+  "start": 1306.36,
+  "end": 1310.64,
+  "text": "- hjertestarter, respirator ...",
+  "who": "Ravn"
+ },
+ {
+  "start": 1310.72,
+  "end": 1317.2,
+  "text": "Hjelper du meg med dette, har vi<br>plutselig mye penger. Skj\u00f8nner du?",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1317.28,
+  "end": 1322.36,
+  "text": "Da kan vi lage klinikk her!<br>Med alt du trenger til forskninga di.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1322.44,
+  "end": 1328.4,
+  "text": "Klinikk?<br>Det er blod p\u00e5 de pengene, Leif.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1328.48,
+  "end": 1332.08,
+  "text": "Hva het maskinen<br>som var umulig \u00e5 f\u00e5 tak i?",
+  "who": "Leif"
+ },
+ {
+  "start": 1332.16,
+  "end": 1334.88,
+  "text": "Massespektrometer?",
+  "who": "Ravn"
+ },
+ {
+  "start": 1334.97,
+  "end": 1340.64,
+  "text": "Absolutt ingenting.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1334.96,
+  "end": 1340.64,
+  "text": "-Hva har du med dette \u00e5 gj\u00f8re?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1342.04,
+  "end": 1347.36,
+  "text": "Er det onkel Leif du ser p\u00e5?<br>Der sitter'n! Det er onkel Leif.",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1347.44,
+  "end": 1351.12,
+  "text": "Hun pr\u00f8vde \u00e5 f\u00e5 kontakt med deg.",
+  "who": "Karsten",
+  "guesswho": "good"
+ },
+ {
+  "start": 1351.2,
+  "end": 1356.8,
+  "text": "Ser du p\u00e5 onkel Leif? Det er veldig<br>hyggelig. Det er altfor lenge siden.",
+  "who": "Ida"
+ },
+ {
+  "start": 1356.88,
+  "end": 1360.28,
+  "text": "Ja, det har v\u00e6rt<br>mye jobbing i det siste.",
+  "who": "Leif"
+ },
+ {
+  "start": 1360.36,
+  "end": 1364.2,
+  "text": "Jeg trodde ideen med Sivilforsvaret<br>var \u00e5 f\u00e5 faste rammer.",
+  "who": "Karsten"
+ },
+ {
+  "start": 1364.29,
+  "end": 1368.2,
+  "text": "Ikke?",
+  "who": "Leif"
+ },
+ {
+  "start": 1364.28,
+  "end": 1368.2,
+  "text": "-Jeg er ikke der lenger n\u00e5.",
+  "who": "Leif"
+ },
+ {
+  "start": 1368.28,
+  "end": 1373.96,
+  "text": "Nei, jeg er blitt flytta over til<br>Beredskapsetaten i Oslo kommune.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1374.04,
+  "end": 1378.56,
+  "text": "Blitt teknisk ansvarlig der.<br>Litt mer ansvar.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1378.65,
+  "end": 1382.68,
+  "text": "Takk.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1378.64,
+  "end": 1382.68,
+  "text": "-Gratulerer med det, da!",
+  "who": "Ida"
+ },
+ {
+  "start": 1382.77,
+  "end": 1390.56,
+  "text": "Vedlikehold, drift, utleie ...",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1382.76,
+  "end": 1390.56,
+  "text": "-Hva er det du gj\u00f8r n\u00e5?",
+  "who": "Karsten",
+  "guesswho": "good"
+ },
+ {
+  "start": 1390.64,
+  "end": 1393.44,
+  "text": "Av?",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1393.53,
+  "end": 1398.64,
+  "text": "Wow! Er det mange?",
+  "who": "Ida",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1393.52,
+  "end": 1398.64,
+  "text": "-Tilfluktsrom.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1398.72,
+  "end": 1403.28,
+  "text": "457 i Oslo og Akershus.<br>Det er sv\u00e6re anlegg.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1403.36,
+  "end": 1408.48,
+  "text": "Det er faktisk mulig,<br>hvis du kombinerer -",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1408.56,
+  "end": 1412.08,
+  "text": "- tuneller, T-bane,<br>vann og avl\u00f8p, parkering, -",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1412.16,
+  "end": 1415.76,
+  "text": "- \u00e5 g\u00e5 t\u00f8rrskodd<br>fra Carl Berner til Operaen.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1415.84,
+  "end": 1420.24,
+  "text": "Er det en stor avdeling?",
+  "who": "Ida",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1420.33,
+  "end": 1423.24,
+  "text": "Du k\u00f8dder?",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1420.32,
+  "end": 1423.24,
+  "text": "-I Oslo er det bare meg.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1423.32,
+  "end": 1427.24,
+  "text": "De fleste rommene er ikke operative.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1427.33,
+  "end": 1433.36,
+  "text": "Jeg ble p\u00e5 mange m\u00e5ter headhunta.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1427.32,
+  "end": 1433.36,
+  "text": "-Ble du flytta over? S\u00f8kte du deg dit?",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1433.44,
+  "end": 1435.84,
+  "text": "S\u00e5 fint, da!",
+  "who": "Ida"
+ },
+ {
+  "start": 1435.92,
+  "end": 1443.2,
+  "text": "Du kan mye om sikkerhet. Jeg vet ikke<br>hvor n\u00e6rmeste tilfluktsrom er hen!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1443.28,
+  "end": 1447.32,
+  "text": "Fredensborgveien 18.<br>Rett overfor Vulkan.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1447.4,
+  "end": 1450.4,
+  "text": "Hvis flyalarmen g\u00e5r,<br>er det dit man skal.",
+  "who": "Ida",
+  "guesswho": "good"
+ },
+ {
+  "start": 1450.48,
+  "end": 1455.6,
+  "text": "Rommene skal v\u00e6re operative innen<br>72 t etter erkl\u00e6rt unntakstilstand.",
+  "who": "Leif"
+ },
+ {
+  "start": 1455.68,
+  "end": 1459.52,
+  "text": "Er ikke det ganske lenge<br>hvis man blir bomba?",
+  "who": "Ida"
+ },
+ {
+  "start": 1459.6,
+  "end": 1464.44,
+  "text": "Godt poeng, men det er ikke<br>flyangrep vi forbereder oss p\u00e5.",
+  "who": "Leif"
+ },
+ {
+  "start": 1464.52,
+  "end": 1467.56,
+  "text": "Hva er det n\u00e5? Islamister? IS?",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1470.49,
+  "end": 1475.72,
+  "text": "Det fins en liste?",
+  "who": "Ida",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1470.48,
+  "end": 1475.72,
+  "text": "-De er ganske langt ned p\u00e5 lista.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1475.81,
+  "end": 1481.16,
+  "text": "Hva er p\u00e5 f\u00f8rsteplass f.eks.?",
+  "who": "Ida",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1475.8,
+  "end": 1481.16,
+  "text": "-Ja, absolutt.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1483.49,
+  "end": 1488.4,
+  "text": "\u00c5ssen g\u00e5r det p\u00e5 damefronten?",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1483.48,
+  "end": 1488.4,
+  "text": "-De listene blir oppdatert hele tida.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1488.49,
+  "end": 1491.64,
+  "text": "Nei.",
+  "who": "Leif"
+ },
+ {
+  "start": 1488.48,
+  "end": 1491.64,
+  "text": "-Skjedd noe der siden sist?",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1491.72,
+  "end": 1497.08,
+  "text": "Nei? Det hender du treffer<br>litt andre folk s\u00e5nn innimellom?",
+  "who": "Karsten",
+  "guesswho": "good"
+ },
+ {
+  "start": 1497.16,
+  "end": 1501.48,
+  "text": "Hvem da? Hvem er det du treffer?",
+  "who": "Karsten",
+  "guesswho": "good"
+ },
+ {
+  "start": 1502.64,
+  "end": 1505.52,
+  "text": "Treffer folk.",
+  "who": "Leif"
+ },
+ {
+  "start": 1508.49,
+  "end": 1513.92,
+  "text": "Ja. Ok ...",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1508.48,
+  "end": 1513.92,
+  "text": "-H\u00e5per vi ses snart igjen, Leif.",
+  "who": "Ida"
+ },
+ {
+  "start": 1514.0,
+  "end": 1521.8,
+  "text": "Hjelper du meg med \u00e5 b\u00e6re peisen<br>ut p\u00e5 fortauet? Noen skal hente den.",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1521.89,
+  "end": 1525.56,
+  "text": "Nei.",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1521.88,
+  "end": 1525.56,
+  "text": "-Ja, selvf\u00f8lgelig. Kj\u00f8pt ny?",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1525.64,
+  "end": 1531.8,
+  "text": "Vi har s\u00e5 liten plass,<br>og den er s\u00e5pass sv\u00e6r.",
+  "who": "Karsten"
+ },
+ {
+  "start": 1531.88,
+  "end": 1537.28,
+  "text": "Det er koselig, men n\u00e5r Anna begynner<br>\u00e5 g\u00e5, m\u00e5 vi tenke p\u00e5 sikkerheten.",
+  "who": "Ida",
+  "guesswho": "good"
+ },
+ {
+  "start": 1537.36,
+  "end": 1539.44,
+  "text": "Ok ...",
+  "who": "Leif"
+ },
+ {
+  "start": 1539.52,
+  "end": 1545.52,
+  "text": "Jeg kjenner at jeg har s\u00e5pass vondt i<br>den h\u00e5nda, at jeg tror ikke det g\u00e5r.",
+  "who": "Leif"
+ },
+ {
+  "start": 1546.12,
+  "end": 1549.12,
+  "text": "Du! Leif ...",
+  "who": "Karsten"
+ },
+ {
+  "start": 1550.16,
+  "end": 1553.64,
+  "text": "Er du bare helt ute igjen eller?",
+  "who": "Karsten"
+ },
+ {
+  "start": 1553.72,
+  "end": 1557.64,
+  "text": "Det er litt vel uansvarlig<br>n\u00e5r du har en liten baby.",
+  "who": "Leif"
+ },
+ {
+  "start": 1557.72,
+  "end": 1560.52,
+  "text": "Hva er uansvarlig?",
+  "who": "Ida",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1560.6,
+  "end": 1565.36,
+  "text": "Hvis str\u00f8mmen g\u00e5r i -10,<br>tar det to d\u00f8gn f\u00f8r dere fryser i hjel.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1565.44,
+  "end": 1568.0,
+  "text": "Hvis vi ikke g\u00e5r til<br>noen som har peis.",
+  "who": "Karsten"
+ },
+ {
+  "start": 1568.08,
+  "end": 1572.44,
+  "text": "Umulig \u00e5 forestille seg scenarioet<br>der du ikke vil g\u00e5 ut med en baby?",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1572.52,
+  "end": 1576.96,
+  "text": "Der st\u00e5r muslimene, f\u00f8rst kapper<br>de str\u00f8mmen, s\u00e5 dreper de oss ...",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1577.04,
+  "end": 1582.44,
+  "text": "Muslimene er ikke farlige! Str\u00f8m-<br>brudd er! Det er nr. 1 p\u00e5 lista.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1582.52,
+  "end": 1587.8,
+  "text": "Alle trusler f\u00f8rer til str\u00f8mbrudd,<br>naturkatastrofer, pandemi og oppr\u00f8r.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1587.88,
+  "end": 1593.64,
+  "text": "Str\u00f8mbrudd f\u00f8rer til pandemi,<br>oppr\u00f8r, plyndring og kaos.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1593.72,
+  "end": 1599.32,
+  "text": "Vi har solgt str\u00f8mnettet til private<br>akt\u00f8rer som bare tenker profitt.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1599.4,
+  "end": 1604.36,
+  "text": "Jeg bryr meg ikke om at dere ikke<br>vet hvor n\u00e6rmeste tilfluktsrom er,",
+  "who": "Leif"
+ },
+ {
+  "start": 1604.44,
+  "end": 1610.12,
+  "text": "men dere kan ikke sette et menneske<br>til verden og slenge ut peisen!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1612.2,
+  "end": 1615.2,
+  "text": "Brorsan ...",
+  "who": "Karsten"
+ },
+ {
+  "start": 1618.56,
+  "end": 1621.76,
+  "text": "Leif! Leif!",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1621.85,
+  "end": 1625.12,
+  "text": "Det g\u00e5r fint. Takk for meg!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1621.84,
+  "end": 1625.12,
+  "text": "-Leif!",
+  "who": "Karsten",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1634.2,
+  "end": 1638.32,
+  "text": "Leif sa at du kan hjelpe meg med<br>\u00e5 skaffe meg et nytt ansikt.",
+  "who": "Teo",
+  "guesswho": "good"
+ },
+ {
+  "start": 1638.41,
+  "end": 1641.52,
+  "text": "Ja.",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1638.4,
+  "end": 1641.52,
+  "text": "-Leif sa det?",
+  "who": "Ravn"
+ },
+ {
+  "start": 1641.6,
+  "end": 1648.6,
+  "text": "Det g\u00e5r an. Folk har forsvunnet<br>s\u00e5nn f\u00f8r. Jeg har lest om det.",
+  "who": "Teo"
+ },
+ {
+  "start": 1648.68,
+  "end": 1652.44,
+  "text": "Du trenger en ny nyre.",
+  "who": "Ravn"
+ },
+ {
+  "start": 1652.52,
+  "end": 1656.16,
+  "text": "Straks noen ser meg, er jeg d\u00f8d.",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1656.24,
+  "end": 1659.64,
+  "text": "Jeg kan betale. Jeg har masse penger.",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1659.72,
+  "end": 1662.84,
+  "text": "Det er ikke dine penger, skj\u00f8nner du?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1662.92,
+  "end": 1667.84,
+  "text": "Jeg jobber med akutte skader.<br>Med folk som har mistet et \u00f8ye, -",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1667.92,
+  "end": 1674.76,
+  "text": "- som har svidd av huden, f\u00e5tt knust<br>kjeven. Ikke idioter som stjeler.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1674.84,
+  "end": 1680.68,
+  "text": "Ansiktet er \u00e9n ting, men du har en<br>h\u00f8yde, kroppsspr\u00e5k, en stemme, \u00f8yne.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1680.77,
+  "end": 1685.16,
+  "text": "Ingen har DNA-et mitt.",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1680.76,
+  "end": 1685.16,
+  "text": "-Tannstilling, fingeravtrykk, DNA.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1685.24,
+  "end": 1687.88,
+  "text": "Har aldri v\u00e6rt hos tannlege i Norge.",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1687.96,
+  "end": 1692.24,
+  "text": "Fingeravtrykkene har jeg<br>manipulert siden jeg var 16.",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1695.33,
+  "end": 1699.24,
+  "text": "Ja. Jeg er ingen idiot.",
+  "who": "Teo",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1695.32,
+  "end": 1699.24,
+  "text": "-Du heter Teodor Naustvik?",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1699.32,
+  "end": 1703.24,
+  "text": "Jeg har en kone. Hun er gravid.",
+  "who": "Teo"
+ },
+ {
+  "start": 1705.36,
+  "end": 1708.36,
+  "text": "Jeg trengte de pengene.",
+  "who": "Teo"
+ },
+ {
+  "start": 1708.45,
+  "end": 1712.52,
+  "text": "P\u00e5 hva?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1708.44,
+  "end": 1712.52,
+  "text": "-S\u00e5 vi kan v\u00e6re forberedt.",
+  "who": "Teo"
+ },
+ {
+  "start": 1712.61,
+  "end": 1716.88,
+  "text": "Hva er det?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1712.6,
+  "end": 1716.88,
+  "text": "-P\u00e5 det som kommer.",
+  "who": "Teo",
+  "guesswho": "good"
+ },
+ {
+  "start": 1718.53,
+  "end": 1722.2,
+  "text": "Han er en gammel pasient.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1718.52,
+  "end": 1722.2,
+  "text": "-Hvor godt kjenner du Leif?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1722.29,
+  "end": 1725.92,
+  "text": "Sp\u00f8rs hva du mener.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1722.28,
+  "end": 1725.92,
+  "text": "-Du er en av oss?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1726.0,
+  "end": 1732.36,
+  "text": "Hallo! Da har jeg<br>f\u00e5tt tak i nesten alt p\u00e5 lista di.",
+  "who": "Leif"
+ },
+ {
+  "start": 1732.45,
+  "end": 1736.28,
+  "text": "Det dyreste utstyret ...",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1732.44,
+  "end": 1736.28,
+  "text": "-Jeg m\u00e5 snakke med deg n\u00e5!",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1736.36,
+  "end": 1740.8,
+  "text": "Kom igjen. N\u00e5! Kom!",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 1740.88,
+  "end": 1744.6,
+  "text": "G\u00e5r det bra her, eller?",
+  "who": "Leif"
+ },
+ {
+  "start": 1748.28,
+  "end": 1752.72,
+  "text": "Hvorfor har du sagt til ham<br>at jeg kan gi ham et nytt ansikt?",
+  "who": "Ravn"
+ },
+ {
+  "start": 1752.81,
+  "end": 1758.88,
+  "text": "Nei! Det holder ikke med bandasjer -",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1752.8,
+  "end": 1758.88,
+  "text": "-Fordi du kan det.",
+  "who": "Leif"
+ },
+ {
+  "start": 1758.96,
+  "end": 1765.48,
+  "text": "- og antibiotika. Tar den andre nyren<br>kvelden, trenger han dialyse.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1765.56,
+  "end": 1770.24,
+  "text": "Med pengene hans og kontaktene<br>mine f\u00e5r vi tak i det vi trenger.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1770.32,
+  "end": 1775.64,
+  "text": "Han kan v\u00e6re d\u00f8d lenge f\u00f8r den tid.<br>Jeg r\u00f8rer ikke blodpengene hans.",
+  "who": "Ravn"
+ },
+ {
+  "start": 1775.72,
+  "end": 1783.0,
+  "text": "Skal vi trappe ned litt p\u00e5 hykleriet her?<br>Du leier her. Du henger etter p\u00e5 leia.",
+  "who": "Leif"
+ },
+ {
+  "start": 1783.08,
+  "end": 1787.52,
+  "text": "Truer du meg?<br>Er det meg eller ham?",
+  "who": "Ravn"
+ },
+ {
+  "start": 1787.6,
+  "end": 1791.52,
+  "text": "Det er bare du som vet<br>at han er her. Han trenger hjelp.",
+  "who": "Leif"
+ },
+ {
+  "start": 1791.6,
+  "end": 1797.04,
+  "text": "Han trenger en god psykolog.<br>Ikke et nytt ansikt.",
+  "who": "Ravn"
+ },
+ {
+  "start": 1797.12,
+  "end": 1801.72,
+  "text": "Tror du ikke jeg kjenner igjen<br>det dommedagspreiket ditt?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1801.8,
+  "end": 1806.24,
+  "text": "Det gn\u00e5let om at verden<br>kommer til \u00e5 g\u00e5 under!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1806.32,
+  "end": 1810.24,
+  "text": "Konspirasjoner,<br>sausa sammen i en patalogisk r\u00f8re!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1810.32,
+  "end": 1815.64,
+  "text": "Noen blir j\u00e6vla redde av s\u00e5nt!<br>Det tok nesten livet av han der!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1817.4,
+  "end": 1820.48,
+  "text": "S\u00e5 han er g\u00e6ren og trenger psykolog?",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1820.56,
+  "end": 1823.84,
+  "text": "En til meg \u00f2g, da?",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1826.4,
+  "end": 1830.6,
+  "text": "N\u00e5 er det vel<br>\u00e9n ting du glemmer? Ravn!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1830.68,
+  "end": 1834.52,
+  "text": "Du trenger meg!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1841.48,
+  "end": 1847.4,
+  "text": "<i>Null en, null en. Dette er tre. Da har</i><br><i>vi f\u00e5tt et signalement p\u00e5 hun dama ...</i>",
+  "who": "Police dispatch",
+  "guesswho": "good"
+ },
+ {
+  "start": 1856.45,
+  "end": 1860.72,
+  "text": "Halla!",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1856.44,
+  "end": 1860.72,
+  "text": "-Halla!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1860.81,
+  "end": 1866.88,
+  "text": "Assaf, har du et glass vann til meg?",
+  "who": "Per",
+  "guesswho": "good"
+ },
+ {
+  "start": 1860.8,
+  "end": 1866.88,
+  "text": "-Jeg bestilte det vanlige til deg.",
+  "who": "Leif"
+ },
+ {
+  "start": 1869.44,
+  "end": 1872.96,
+  "text": "Glad for at du ringte. G\u00e5r det bra?",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1873.05,
+  "end": 1878.4,
+  "text": "H\u00f8rte om det.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1873.04,
+  "end": 1878.4,
+  "text": "-G\u00e5r greit med meg. Hadde et sv\u00e6rt ran.",
+  "who": "Per"
+ },
+ {
+  "start": 1878.49,
+  "end": 1883.64,
+  "text": "Jo, tatt alle sammen.",
+  "who": "Per",
+  "guesswho": "good"
+ },
+ {
+  "start": 1878.48,
+  "end": 1883.64,
+  "text": "-Har de tatt dem n\u00e5?",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1883.72,
+  "end": 1890.48,
+  "text": "Bortsett fra \u00e9n j\u00e6vel.<br>Det er han som sitter med alle penga.",
+  "who": "Per",
+  "guesswho": "good"
+ },
+ {
+  "start": 1890.56,
+  "end": 1897.2,
+  "text": "Litt rart, for de slo til akkurat den<br>dagen vi hadde minst bemanning.",
+  "who": "Per",
+  "guesswho": "good"
+ },
+ {
+  "start": 1897.29,
+  "end": 1902.64,
+  "text": "Det tror jeg \u00f2g. De m\u00e5 ha visst det.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1897.28,
+  "end": 1902.64,
+  "text": "-De har sikkert visst om det.",
+  "who": "Leif"
+ },
+ {
+  "start": 1902.72,
+  "end": 1907.48,
+  "text": "Men hvordan visste de det?<br>Det lurer jeg p\u00e5.",
+  "who": "Per"
+ },
+ {
+  "start": 1910.53,
+  "end": 1913.36,
+  "text": "Ikke det jeg sier.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1910.52,
+  "end": 1913.36,
+  "text": "-Tror du det er<i> meg?</i>",
+  "who": "Leif"
+ },
+ {
+  "start": 1913.45,
+  "end": 1917.84,
+  "text": "Vi snakka om det sist.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1913.44,
+  "end": 1917.84,
+  "text": "-Det sa jo at du tenkte det n\u00e5.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1917.92,
+  "end": 1922.16,
+  "text": "Den kvelden, sa jeg, er det<br>kritisk bemanning pga. statsbes\u00f8ket.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1922.24,
+  "end": 1925.32,
+  "text": "En fortrolig samtale<br>mellom oss, som vanlig.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1925.4,
+  "end": 1929.32,
+  "text": "Topp hemmelig info.<br>Jeg har ikke sagt det til noen andre.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1929.4,
+  "end": 1936.92,
+  "text": "Disse folka kommer sikkert ut av et<br>milj\u00f8! Jeg kjenner ikke s\u00e5nne folk.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1937.0,
+  "end": 1943.76,
+  "text": "Han Naustvik er visst<br>litt s\u00e5nn dommedagsnerd.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1943.85,
+  "end": 1949.56,
+  "text": "Ut i skauen og jakt og ...",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1943.84,
+  "end": 1949.56,
+  "text": "-Hva da?",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1949.64,
+  "end": 1954.44,
+  "text": "Hamstrer boksemat ... Lager<br>reint vann av piss. De greiene der.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1954.53,
+  "end": 1959.68,
+  "text": "Ja, jeg vet hvem de er.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1954.52,
+  "end": 1959.68,
+  "text": "-Du kjenner jo de folka?",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 1962.68,
+  "end": 1966.64,
+  "text": "Men jeg har aldri<br>h\u00f8rt om N\u00f8stvik. Aldri.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1966.73,
+  "end": 1971.88,
+  "text": "Naustvik. Aldri h\u00f8rt om.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 1966.72,
+  "end": 1971.88,
+  "text": "Naustvik.",
+  "who": "Per"
+ },
+ {
+  "start": 1971.96,
+  "end": 1977.76,
+  "text": "Men den infoen som jeg<br>gir deg n\u00e5r vi m\u00f8tes ...",
+  "who": "Per"
+ },
+ {
+  "start": 1977.84,
+  "end": 1980.88,
+  "text": "Hva bruker du den til?",
+  "who": "Per"
+ },
+ {
+  "start": 1980.96,
+  "end": 1984.56,
+  "text": "Kartlegging. Trusselvurdering.",
+  "who": "Leif"
+ },
+ {
+  "start": 1984.64,
+  "end": 1990.36,
+  "text": "S\u00e5nne ting. Du gir noe til meg,<br>men jeg gir ogs\u00e5 noe til deg.",
+  "who": "Leif"
+ },
+ {
+  "start": 1990.44,
+  "end": 1995.4,
+  "text": "S\u00e5nn som de har holdt p\u00e5<br>siden 71 og Borten-regjeringa.",
+  "who": "Leif"
+ },
+ {
+  "start": 1995.48,
+  "end": 2001.04,
+  "text": "Eneste m\u00e5ten \u00e5 sikre reell beredskap<br>p\u00e5, er den uformelle kontakten -",
+  "who": "Leif"
+ },
+ {
+  "start": 2001.12,
+  "end": 2005.56,
+  "text": "- mellom etatene. S\u00e5nn som vi<br>gj\u00f8r fordi det er s\u00e5nn det er.",
+  "who": "Leif"
+ },
+ {
+  "start": 2005.64,
+  "end": 2011.32,
+  "text": "Det som ikke er greit, er at en god<br>kompis ligger kritisk p\u00e5 sjukehuset.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2011.4,
+  "end": 2018.24,
+  "text": "Jeg kjenner ham og kona godt. Og n\u00e5<br>er det en g\u00e6rning som sitter p\u00e5 60 mill.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2018.32,
+  "end": 2021.84,
+  "text": "Det er for j\u00e6vlig at det g\u00e5r an.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2021.92,
+  "end": 2026.36,
+  "text": "Det er sikkert noen<br>som lekker et eller annet sted.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2026.44,
+  "end": 2030.84,
+  "text": "Har du sagt til noen<br>at vi snakker sammen?",
+  "who": "Per",
+  "guesswho": "good"
+ },
+ {
+  "start": 2030.93,
+  "end": 2035.72,
+  "text": "Jeg kan ha sagt ting jeg ikke burde.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2030.92,
+  "end": 2035.72,
+  "text": "-Vi er venner, Per.",
+  "who": "Leif"
+ },
+ {
+  "start": 2035.8,
+  "end": 2043.04,
+  "text": "De snur hver stein p\u00e5 jobben. Alle<br>skj\u00f8nner det m\u00e5 ha v\u00e6rt en lekkasje.",
+  "who": "Per"
+ },
+ {
+  "start": 2043.1299999999999,
+  "end": 2049.92,
+  "text": "Jeg vil. Du har noen svin p\u00e5 skauen.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2043.12,
+  "end": 2049.92,
+  "text": "-Stoler du ikke p\u00e5 meg?",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 2050.0,
+  "end": 2054.4,
+  "text": "Tror de kan finne mye rart<br>nedi de tilfluktsrommene dine.",
+  "who": "Per"
+ },
+ {
+  "start": 2054.48,
+  "end": 2057.56,
+  "text": "Det er feil?",
+  "who": "Per"
+ },
+ {
+  "start": 2058.8,
+  "end": 2065.24,
+  "text": "Jeg kommer aldri til \u00e5 si noe om<br>noe av det du har sagt til meg.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2065.32,
+  "end": 2067.36,
+  "text": "Aldri.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2067.44,
+  "end": 2070.96,
+  "text": "Jeg ble litt overrumpla av dette.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2071.04,
+  "end": 2075.36,
+  "text": "Jeg blir litt lei meg<br>fordi du tenker s\u00e5nn om meg.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2075.44,
+  "end": 2078.92,
+  "text": "Etter s\u00e5 mange \u00e5r.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2080.56,
+  "end": 2086.52,
+  "text": "Jeg vet ikke, jeg.<br>Det ble bare litt mye n\u00e5.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2091.4,
+  "end": 2095.0,
+  "text": "Jeg er n\u00f8dt til \u00e5 stikke,<br>er egentlig p\u00e5 jobb.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2095.09,
+  "end": 2100.36,
+  "text": "Jeg lover. Alltid.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2095.08,
+  "end": 2100.36,
+  "text": "-Si fra hvis du h\u00f8rer noe.",
+  "who": "Per",
+  "guesswho": "good"
+ },
+ {
+  "start": 2119.84,
+  "end": 2124.08,
+  "text": "<i>... den kvelden, sa jeg, er det</i><br><i>kritisk bemanning pga. statsbes\u00f8ket.</i>",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2124.16,
+  "end": 2127.32,
+  "text": "<i>En fortrolig samtale</i><br><i>mellom oss, som vanlig.</i>",
+  "who": "Leif"
+ },
+ {
+  "start": 2127.4,
+  "end": 2131.6,
+  "text": "<i>Jeg kan ha sagt ting jeg ikke burde.</i><br><i>De snur hver stein p\u00e5 jobben.</i>",
+  "who": "Per"
+ },
+ {
+  "start": 2131.68,
+  "end": 2136.36,
+  "text": "<i>Alle skj\u00f8nner det m\u00e5</i><br><i>ha v\u00e6rt en lekkasje ...</i>",
+  "who": "Per"
+ },
+ {
+  "start": 2140.0,
+  "end": 2147.76,
+  "text": "<i>Da Titanic gikk ned, spilte</i><br><i>orkesteret p\u00e5 dekk til det siste.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2147.84,
+  "end": 2153.2,
+  "text": "<i>Det mange ikke vet,</i><br><i>er at mange valgte \u00e5 danse -</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2153.28,
+  "end": 2157.2,
+  "text": "<i>- selv n\u00e5r de visste</i><br><i>  at alt gikk til helvete.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2157.28,
+  "end": 2164.2,
+  "text": "<i>Vi tenkte slik for 30 \u00e5r siden da vi</i><br><i>ikke skulle bygge flere tilfluktsrom.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2164.28,
+  "end": 2169.88,
+  "text": "<i>Selv om bare 1/3 f\u00e5r plass i de rom-</i><br><i>mene vi har, f\u00e5r vi n\u00f8ye oss med det.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2169.96,
+  "end": 2173.92,
+  "text": "<i>Vi er ikke redde for</i><br><i>atombomber lenger.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2174.72,
+  "end": 2181.76,
+  "text": "<i>Vi tenker ikke p\u00e5 det ubehagelige.</i><br><i>Det som skiller idyll fra kaos.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2181.84,
+  "end": 2188.08,
+  "text": "<i>Historien har vist at det er 12 ting som</i><br><i>til enhver tid kan gj\u00f8re at alt kollapser.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2188.16,
+  "end": 2195.04,
+  "text": "<i>Det viktigste er overbefokning. Det</i><br><i>blir f\u00f8dt 255 babyer hvert minutt.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2195.12,
+  "end": 2199.4,
+  "text": "<i>Ettbarnspolitikk er eneste h\u00e5p,</i><br><i>men det vil ingen snakke om.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2199.48,
+  "end": 2202.52,
+  "text": "<i>Nr. 2 er klimaforandring.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2202.6,
+  "end": 2210.32,
+  "text": "<i>Nr. 3: avskoging. Matjorda blir \u00f8de-</i><br><i>lagt av erosjon og d\u00e5rlig landbruk.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2210.4,
+  "end": 2216.2,
+  "text": "<i>Vi har ikke nok vann. Og vi driter</i><br><i>i det vi har. Bokstavelig talt.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2216.28,
+  "end": 2223.12,
+  "text": "<i>Vi fisker for mye, og stadig mer.</i><br><i>Historisk sett har vi jakta for mye.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2225.64,
+  "end": 2230.36,
+  "text": "<i>N\u00e5 dreper vi bare dyr</i><br><i>som st\u00e5r i bur eller b\u00e5s.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2230.44,
+  "end": 2237.2,
+  "text": "<i>Men hver dag ett sted</i><br><i>p\u00e5 jorda blir en art utrydda.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2237.28,
+  "end": 2244.96,
+  "text": "<i>Vi makser ut fotosyntesen, og</i><br><i>f\u00e5r ikke nok oksygen ut av naturen.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2245.04,
+  "end": 2251.24,
+  "text": "<i>I Kina triller det 50 000 nye biler</i><br><i>ut p\u00e5 veien hver dag.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2251.32,
+  "end": 2256.32,
+  "text": "<i>Forgiftning er punkt 11.</i><br><i>Den siste er energimangel.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2256.4,
+  "end": 2259.44,
+  "text": "<i>Det er der vi er mest s\u00e5rbare.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2259.52,
+  "end": 2264.92,
+  "text": "<i>Hvis bare \u00e9n av disse 12 truslene</i><br><i>n\u00e5r et kritisk punkt, er vi ferdige.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2265.0,
+  "end": 2269.24,
+  "text": "<i>Ikke alle 12 eller fem eller</i><br><i>seks av dem. Det holder med \u00e9n.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2269.32,
+  "end": 2274.68,
+  "text": "<i>Da synker skipet,</i><br><i>selv om vi danser.</i>",
+  "who": "Leif V.O.",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2288.88,
+  "end": 2293.84,
+  "text": "<i>... Smestad,</i><br><i>overgang til linje 3 Kols\u00e5s ...</i>",
+  "who": "Public annoncement",
+  "guesswho": "good"
+ },
+ {
+  "start": 2303.8100000000004,
+  "end": 2307.44,
+  "text": "Hei.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2303.8,
+  "end": 2307.44,
+  "text": "-Hei, Ravn.",
+  "who": "Nurse"
+ },
+ {
+  "start": 2324.01,
+  "end": 2329.36,
+  "text": "Det er noe jeg holder p\u00e5 med.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2324.0,
+  "end": 2329.36,
+  "text": "Hvordan g\u00e5r det? Hva gj\u00f8r du her?",
+  "who": "Unn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2329.44,
+  "end": 2334.72,
+  "text": "Det er veldig spennende, men uten<br>tilgang her kommer jeg ikke videre.",
+  "who": "Ravn"
+ },
+ {
+  "start": 2334.8100000000004,
+  "end": 2338.92,
+  "text": "Det kan jeg ikke si s\u00e5 mye om.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2334.8,
+  "end": 2338.92,
+  "text": "-Med hva?",
+  "who": "Unn"
+ },
+ {
+  "start": 2339.0,
+  "end": 2345.84,
+  "text": "Det er et oppdrag for Sivilforsvaret,<br>s\u00e5 det er untatt offentligheten.",
+  "who": "Ravn"
+ },
+ {
+  "start": 2345.92,
+  "end": 2352.48,
+  "text": "Jeg tenkte p\u00e5 det du sa sist ... Hvis<br>det var noe, kunne jeg komme til deg.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2352.56,
+  "end": 2357.08,
+  "text": "Absolutt. Hva som helst. Ja.",
+  "who": "Unn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2364.05,
+  "end": 2370.24,
+  "text": "De er ikke i bruk hele tiden.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2364.04,
+  "end": 2370.24,
+  "text": "Massespektrometer?",
+  "who": "Unn"
+ },
+ {
+  "start": 2370.32,
+  "end": 2376.48,
+  "text": "Jeg kan ikke bare gi deg<br>medisinsk utstyr til flere hundre tusen.",
+  "who": "Unn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2376.56,
+  "end": 2382.92,
+  "text": "Du skal bare ... Du skal bare<br>\u00e5pne en d\u00f8r, s\u00e5 fikser jeg resten.",
+  "who": "Ravn"
+ },
+ {
+  "start": 2383.9300000000003,
+  "end": 2389.16,
+  "text": "Det forsvinner ting herfra hver dag.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2383.92,
+  "end": 2389.16,
+  "text": "-G\u00e5r det bra med deg?",
+  "who": "Unn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2389.25,
+  "end": 2394.6,
+  "text": "Har dette noe med Vilma \u00e5 gj\u00f8re?",
+  "who": "Unn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2389.24,
+  "end": 2394.6,
+  "text": "-Du sa \"hva som helst\"!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2396.4,
+  "end": 2399.76,
+  "text": "Det er noe jeg m\u00e5 finne ut av.<br>Vil du hjelpe meg eller ikke?",
+  "who": "Ravn"
+ },
+ {
+  "start": 2399.84,
+  "end": 2405.64,
+  "text": "Jeg vil veldig gjerne hjelpe,<br>men ikke p\u00e5 denne m\u00e5en.",
+  "who": "Unn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2406.76,
+  "end": 2410.24,
+  "text": "Ravn, det forst\u00e5r du vel?",
+  "who": "Unn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2454.92,
+  "end": 2461.28,
+  "text": "<i>Vi har f\u00e5tt leder for seksjonen</i><br><i>for organisert kriminalitet i studio ...</i>",
+  "who": "News anchor",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2461.36,
+  "end": 2465.76,
+  "text": "<i>Hva kan du si om sikkerheten ...</i>",
+  "who": "News anchor"
+ },
+ {
+  "start": 2468.44,
+  "end": 2472.6,
+  "text": "<i>Vi gjennomg\u00e5r alle v\u00e5re rutiner,</i><br><i>men dette handler om ...</i>",
+  "who": "Police",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2472.64,
+  "end": 2477.28,
+  "text": "Leif, kan du skru opp?",
+  "who": "Teo",
+  "guesswho": "good"
+ },
+ {
+  "start": 2472.68,
+  "end": 2477.28,
+  "text": "<i>Hvordan er stemningen hos politiet?</i>",
+  "who": "News anchor",
+  "guesswho": "good"
+ },
+ {
+  "start": 2477.36,
+  "end": 2481.64,
+  "text": "<i>Det er en vanskelig tid for oss.</i><br><i>N\u00e5r en av v\u00e5re egne blir skadet, -</i>",
+  "who": "Police"
+ },
+ {
+  "start": 2481.72,
+  "end": 2486.0,
+  "text": "<i>- p\u00e5virker det oss alle.</i><br><i>-Hva kan du si om den skadde?</i>",
+  "who": "Unknown"
+ },
+ {
+  "start": 2486.08,
+  "end": 2491.0,
+  "text": "<i>Han er godt likt og</i><br><i>en viktig del av innsatsstyrken.</i>",
+  "who": "Police",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2491.08,
+  "end": 2494.52,
+  "text": "<i>Han har kone og to sm\u00e5 barn ...</i>",
+  "who": "Police",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2494.61,
+  "end": 2499.2,
+  "text": "Ja. F\u00e5r bare h\u00e5pe at han overlever.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 2494.6,
+  "end": 2499.2,
+  "text": "-Har han familie?",
+  "who": "Unknown"
+ },
+ {
+  "start": 2499.28,
+  "end": 2504.72,
+  "text": "<i>Vi har g\u00e5tt ut med en etterlysning. Vi</i><br><i>jobber med \u00e5 innhente opplysninger, -</i>",
+  "who": "Police"
+ },
+ {
+  "start": 2504.8,
+  "end": 2507.76,
+  "text": "<i>- som kan f\u00f8re til p\u00e5gripelse.</i>",
+  "who": "Police"
+ },
+ {
+  "start": 2507.84,
+  "end": 2512.76,
+  "text": "<i>Det er g\u00e5tt to dager</i><br><i>siden dette brutale ranet ...</i>",
+  "who": "News anchor",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2531.8100000000004,
+  "end": 2536.64,
+  "text": "Det skal vi nok f\u00e5 til.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2531.8,
+  "end": 2536.64,
+  "text": "<i>-Det har g\u00e5tt til helvete her ...</i>",
+  "who": "Leif"
+ },
+ {
+  "start": 2536.73,
+  "end": 2541.0,
+  "text": "Ta det med ro. Det g\u00e5r nok bra.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2536.72,
+  "end": 2541.0,
+  "text": "<i>-Han bl\u00f8r fra trynet og ...</i>",
+  "who": "Leif"
+ },
+ {
+  "start": 2541.08,
+  "end": 2543.84,
+  "text": "Jeg kommer med en gang.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2545.53,
+  "end": 2548.44,
+  "text": "Ja takk. Takk.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2545.52,
+  "end": 2548.44,
+  "text": "-G\u00e5 f\u00f8rst, du.",
+  "who": "Per",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2553.3300000000004,
+  "end": 2558.48,
+  "text": "Han datt ned trappa.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 2553.32,
+  "end": 2558.48,
+  "text": "-Hvordan klarte han dette, da?!",
+  "who": "Ravn"
+ },
+ {
+  "start": 2558.56,
+  "end": 2560.96,
+  "text": "Det holder du der.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2561.04,
+  "end": 2566.32,
+  "text": "Teo? Pulsen er veldig svak.<br>Blod. Hent blod!",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2566.4100000000003,
+  "end": 2572.56,
+  "text": "Ja. To poser! Dette skal g\u00e5 bra.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2566.4,
+  "end": 2572.56,
+  "text": "-Var det A?",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2572.64,
+  "end": 2576.36,
+  "text": "Vi har ikke mer A! Hva med AB?",
+  "who": "Leif"
+ },
+ {
+  "start": 2576.44,
+  "end": 2579.76,
+  "text": "Nei. Nei, nei. Kom tilbake!",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2581.28,
+  "end": 2583.36,
+  "text": "\u00c5pne den.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2583.4500000000003,
+  "end": 2588.68,
+  "text": "Jeg har blodtype 0. Takk.",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2583.44,
+  "end": 2588.68,
+  "text": "-Hva holder du p\u00e5 med n\u00e5?",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 2600.84,
+  "end": 2606.36,
+  "text": "Du sa jeg skulle vekke deg<br>hvis du sovna.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 2611.2,
+  "end": 2615.6,
+  "text": "Er det n\u00e5? Ta en kikk p\u00e5 ...",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 2615.68,
+  "end": 2619.0,
+  "text": "H\u00e5nda di?",
+  "who": "Ravn"
+ },
+ {
+  "start": 2620.0,
+  "end": 2623.56,
+  "text": "Det er bare den t\u00f8yinga som hjelper.",
+  "who": "Leif"
+ },
+ {
+  "start": 2625.25,
+  "end": 2628.0,
+  "text": "Ja, den er veldig god.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 2625.24,
+  "end": 2628.0,
+  "text": "S\u00e5nn?",
+  "who": "Ravn",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2628.09,
+  "end": 2630.92,
+  "text": "Den er veldig \u00f8m.",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2628.08,
+  "end": 2630.92,
+  "text": "-S\u00e5nn?",
+  "who": "Ravn"
+ },
+ {
+  "start": 2631.0,
+  "end": 2636.92,
+  "text": "Det skal v\u00e6re litt \u00f8mt.<br>Disse \u00f8velsene her kan du klare selv.",
+  "who": "Ravn",
+  "guesswho": "good"
+ },
+ {
+  "start": 2637.0,
+  "end": 2641.64,
+  "text": "Det er ikke det samme.<br>Ikke det samme!",
+  "who": "Leif",
+  "guesswho": "pure"
+ },
+ {
+  "start": 2643.24,
+  "end": 2648.4,
+  "text": "Det er bare meg her nede n\u00e5<br>som ikke har rana noe.",
+  "who": "Leif",
+  "guesswho": "good"
+ },
+ {
+  "start": 208.73,
+  "end": 210.22,
+  "text": "skilt h\u00f8gspenning livsfare"
+ },
+ {
+  "start": 499.24999999999994,
+  "end": 500.73999999999995,
+  "text": "6 m\u00e5neder tidligere"
+ },
+ {
+  "start": 1038.13,
+  "end": 1039.6200000000001,
+  "text": "skilt adgang forbudt"
+ },
+ {
+  "start": 2287.2900000000004,
+  "end": 2288.78,
+  "text": "tekst p\u00e5 pc skjerm dette var utrolig bra tyf0n kudos jeg synes du skal pr\u00f8ve \u00e5 f\u00e5 dette ut til folk tekst p\u00e5 pc skjerm sjukt bra det her mr t og enig med forrige poster dette m\u00e5 ut til folket"
+ },
+ {
+  "start": 2302.2100000000005,
+  "end": 2303.7000000000003,
+  "text": "skilt oslo universitetssykehus"
+ },
+ {
+  "start": 2305.8500000000004,
+  "end": 2307.34,
+  "text": "skilt lab for nevroimmunologi"
+ },
+ {
+  "start": 2453.3300000000004,
+  "end": 2454.82,
+  "text": "skilt teknisk lager"
+ },
+  {
+  "start": 0.018,
+  "end": 5.023,
+  "text": "Logo NRK.Tordenfilm i samproduksjon med Fridjov film",
+  "who": "info"
+ },
+ {
+  "start": 10.009,
+  "end": 13.016,
+  "text": "En mann i svart finlandshette.",
+  "who": "info"
+ },
+ {
+  "start": 18.017,
+  "end": 22.021,
+  "text": "Flere menn i finlandshetter stormer ut av en svart kassebil.",
+  "who": "info"
+ },
+ {
+  "start": 37.017,
+  "end": 59.016,
+  "text": "Kodenboksen utenfor d\u00f8ren blir skrudd opp og ledninger blir koblet om. N\u00e5r d\u00f8ren g\u00e5r opp l\u00f8per alle  inn mens alarmen g\u00e5r p\u00e5. En mann, Theo blir st\u00e5ende igjen p\u00e5 utsiden som vakt. Han f\u00f8lger med p\u00e5 stoppeklokken p\u00e5 armen. Svarte bagger blir fylt med pengesedler i store bunker, og b\u00e6res i raskt tempo ut av d\u00f8ren som st\u00e5r p\u00e5 klem med en bag som st\u00f8tte.",
+  "who": "info"
+ },
+ {
+  "start": 64.004,
+  "end": 68.009,
+  "text": "Theo setter seg inn i f\u00f8rersetet, og drar av seg finlandshetten.",
+  "who": "info"
+ },
+ {
+  "start": 76.013,
+  "end": 81.012,
+  "text": "Han ser flere politibiler, og kaster seg ut av bilen",
+  "who": "info"
+ },
+ {
+  "start": 83.012,
+  "end": 90.024,
+  "text": "Theo bl\u00e5ser i en fl\u00f8yte. Han lykkes med \u00e5 f\u00e5 oppmerksomheten fra de andre som fremdeles er inne i bygningen. Han pakker de siste baggene med pengesedler.",
+  "who": "info"
+ },
+ {
+  "start": 95.001,
+  "end": 104.009,
+  "text": "I det han r\u00f8sker med seg den siste baggen, g\u00e5r d\u00f8ren i l\u00e5s. Han fors\u00f8ker \u00e5 \u00e5pne den. En av mennene p\u00e5 innsiden f\u00e5r med seg det som skjer gjennom et vindu.",
+  "who": "info"
+ },
+ {
+  "start": 108.015,
+  "end": 124.014,
+  "text": "Mennene p\u00e5 innsiden pr\u00f8ver \u00e5 knuse vinduet med slegge. Theo observerer livredd  En av de andre tar av seg finlandshetten, stirrer rett mot Leif og trekker et h\u00e5ndv\u00e5pen opp fra en sidelomme p\u00e5 dressen.",
+  "who": "info"
+ },
+ {
+  "start": 130.011,
+  "end": 134.023,
+  "text": "En kule g\u00e5r ut gjennom glasset.",
+  "who": "info"
+ },
+ {
+  "start": 147.005,
+  "end": 186.022,
+  "text": "Forsteinete bier st\u00e5r p\u00e5 kanten av en sekskantet bikube celle i stein. Fra cellen kommer det et sterkt, varmt lys. Det er st\u00f8v og partikler i luften. Store for forsteinete blomster \u00e5pner kronbladene. Bier svever over lysende bikube celler. Lysenen  i cellene slukkes br\u00e5tt, ett tennes med et bl\u00e5tt lys. En d\u00f8d bie faller sakte ned. En st\u00f8vete operasjonslampe tennes, og et mikroskop skrus p\u00e5. Bikuben er plassert rundt \u00e5pningen p\u00e5 en t-banetunnel. \"Valekyrien\"<br>Sven Nordin P\u00e5l Sverre Hagen Pia Halvorsen Ellen Birgitte Winter Mikkel Bratt Silset Laila GoodyJoachimRafaelsenAmeli Isungset Agbota  Produsenter Eric Vogel, Nina B. Anderson Serieskaper og regiss\u00f8r: Erik Richter Strand<br>Manus: Thomas Seeberg Torjussen, Eric Richter Strand",
+  "who": "info"
+ },
+ {
+  "start": 197.021,
+  "end": 210.014,
+  "text": "En kassebil st\u00e5r i full fyr p\u00e5 en sti. I Kirkeveien p\u00e5 Majorstua i Oslo. Gaten er full av trafikk.",
+  "who": "info"
+ },
+ {
+  "start": 214.014,
+  "end": 224.001,
+  "text": "En mann i 50-\u00e5rene, Ravn sitter i et m\u00f8rkt rom p\u00e5 nedlagte  Valekyrien t-banestasjon p\u00e5 Majorstua. D\u00f8ren til rommet er merket med \"h\u00f8yspenning. livsfare\". Ravn har blondt h\u00e5r, briller og kort skjegg. Han skriver p\u00e5 en notatblokk.",
+  "who": "info"
+ },
+ {
+  "start": 230.005,
+  "end": 243.011,
+  "text": "Ravn st\u00e5r foran et speil og barberer seg. Han klipper h\u00e5ret sitt. Store h\u00e5rlokker faller p\u00e5 gulvet. S\u00e5 tar han frem en svart dress som er pakket i en renseripose.",
+  "who": "info"
+ },
+ {
+  "start": 249.0,
+  "end": 259.018,
+  "text": "Han l\u00e5ser seg ut av rommet, g\u00e5r opp noen trapper og over til den andre siden av stasjonen. Der l\u00e5ser han seg inn i et rom i det Linje 5 passerer stasjonen.",
+  "who": "info"
+ },
+ {
+  "start": 266.005,
+  "end": 289.003,
+  "text": "Han tenner lyset. Rommet har en gang med glassvegger p\u00e5 hver side. I plastfrakk og plasthansker kikker han p\u00e5 noen reagensglass med blodpr\u00f8ver som st\u00e5r i en maskin. Han tar notater.P\u00e5 en datamaskin vises bilder av blodplater. I rommet st\u00e5r en arbeidsbenk med et mikroskop, p\u00e5 veggene henger mange post-it lapper. Han tar han ut en d\u00f8d rotte fra en gjennomsiktig boks og studerer den.",
+  "who": "info"
+ },
+ {
+  "start": 294.023,
+  "end": 301.013,
+  "text": "T-baner fyker forbi utenfor rommet, han putter en d\u00f8d rotte i en s\u00f8ppelsekk.",
+  "who": "info"
+ },
+ {
+  "start": 305.023,
+  "end": 311.003,
+  "text": "Han tar opp en levende rotte fra en annen boks.",
+  "who": "info"
+ },
+ {
+  "start": 326.003,
+  "end": 337.008,
+  "text": "Han snakker forsiktig til rotta. En mann, Leif i slutten av tyve \u00e5rene g\u00e5r med en stor n\u00f8kkelring med flere n\u00f8kler. Han er kledd i en gul og bl\u00e5 arbeidsdress.",
+  "who": "info"
+ },
+ {
+  "start": 340.006,
+  "end": 343.014,
+  "text": "Ravn g\u00e5r mot Leif.",
+  "who": "info"
+ },
+ {
+  "start": 461.001,
+  "end": 467.005,
+  "text": "Leif stusser h\u00e5ret til Ravn. Ravn leser fra notatblokken sin.",
+  "who": "info"
+ },
+ {
+  "start": 471.014,
+  "end": 495.02,
+  "text": "Seks m\u00e5neder tidligere. I et lyst rom med store glassvinduer sitter Ravn, en kvinne,Vilma i 50-\u00e5rene og en dame, Unn i 40-\u00e5rene rundt et bord. Alle b\u00e6rer legefrakker. Wilma har en slange koblet inn i nesen. Ravn holder Vilma kj\u00e6rlig i h\u00e5nden. Alle tre ser bekymret fremfor seg og venter. Inn i rommet kommer flere mennsker i hvite frakker. De setter seg ned. Vilma skuer utover bordet og puster tungt.",
+  "who": "info"
+ },
+ {
+  "start": 604.024,
+  "end": 609.0,
+  "text": "Ravn triller Vilma i rullestolen ut av m\u00f8terommet.",
+  "who": "info"
+ },
+ {
+  "start": 637.0,
+  "end": 643.0,
+  "text": "P\u00e5 Valekyrien stasjon g\u00e5r alarmen, og Leif reiser seg raskt.",
+  "who": "info"
+ },
+ {
+  "start": 644.012,
+  "end": 647.015,
+  "text": "Ravn st\u00e5r ved Vilmas kiste",
+  "who": "info"
+ },
+ {
+  "start": 758.008,
+  "end": 782.0,
+  "text": "Leif har kj\u00f8rt bilen frem til en hytte i skogen. Han g\u00e5r forsiktig inn en d\u00f8r med blod p\u00e5 h\u00e5ndtaket. I et rom ligger en f\u00f8rstehjelpskoffert med innholdet slengt ut. Leif beveger seg innover i rommet. Han tar en rifle ned  fra veggen. I en k\u00f8yeseng i andre etasje ligger Theo hardt skadet. Han har et skuddhull i magen som bl\u00f8r kraftig.",
+  "who": "info"
+ },
+ {
+  "start": 847.011,
+  "end": 850.006,
+  "text": "Ved en kirke.",
+  "who": "info"
+ },
+ {
+  "start": 861.022,
+  "end": 864.023,
+  "text": "Ravn g\u00e5r ut p\u00e5 kirketrappen.",
+  "who": "info"
+ },
+ {
+  "start": 879.011,
+  "end": 882.013,
+  "text": "Ravn g\u00e5r mot Siv",
+  "who": "info"
+ },
+ {
+  "start": 957.008,
+  "end": 969.009,
+  "text": "Ravn g\u00e5r n\u00e6rmere Siv, en ung, m\u00f8rkhudet jente i 20-\u00e5rene. Hun st\u00e5r alene p\u00e5 gresset mellom noen gravsteiner. Hun er kledd i svart t\u00f8y. Han pr\u00f8ver forsiktig \u00e5 gi henne en klem. Hun trykker seg tett inntil ham. S\u00e5 slipper hun taket og beveger seg bakover.",
+  "who": "info"
+ },
+ {
+  "start": 982.022,
+  "end": 985.022,
+  "text": "Leif kommer kj\u00f8rende.",
+  "who": "info"
+ },
+ {
+  "start": 1008.015,
+  "end": 1015.004,
+  "text": "Inne i Sivilforsvarets bil ligger Theo med en blodig t-skjorte. Ravn blir med.",
+  "who": "info"
+ },
+ {
+  "start": 1042.021,
+  "end": 1077.009,
+  "text": "Leif kj\u00f8rer bilen inn i et garasjeanlegg. Ravn har tatt av seg dressjakken og slipset og pr\u00f8ver \u00e5 stabilisere Theo. Bilen kj\u00f8rer inn en port som er merket \" Adgang forbudt\" Den kj\u00f8rer i svinger nedover en underjordisk anlegg med dunkel belysning. De passerer noen trapper.",
+  "who": "info"
+ },
+ {
+  "start": 1098.009,
+  "end": 1105.0,
+  "text": "De er tilbake p\u00e5 Valekyrien stasjon. Inne i rommet med glassvegger.",
+  "who": "info"
+ },
+ {
+  "start": 1128.021,
+  "end": 1134.004,
+  "text": "Ravn snitter forsiktig opp buken ved skudds\u00e5ret.",
+  "who": "info"
+ },
+ {
+  "start": 1137.001,
+  "end": 1140.0,
+  "text": "Han stikker h\u00e5nden i \u00e5pningen.",
+  "who": "info"
+ },
+ {
+  "start": 1174.014,
+  "end": 1177.022,
+  "text": "Ravn lirker forsiktig ut nyren med bare neven.",
+  "who": "info"
+ },
+ {
+  "start": 1503.018,
+  "end": 1508.009,
+  "text": "Leifs stirrer s\u00f8rgmodig i bordplaten.",
+  "who": "info"
+ },
+ {
+  "start": 1626.006,
+  "end": 1629.001,
+  "text": "Leifs bror pr\u00f8ver \u00e5 f\u00e5 kontakt.",
+  "who": "info"
+ },
+ {
+  "start": 1691.0,
+  "end": 1694.007,
+  "text": "Theo l\u00f8fter h\u00e5nden sin opp mot Ravn som kikker p\u00e5 fingertuppene hans.",
+  "who": "info"
+ },
+ {
+  "start": 1744.006,
+  "end": 1746.007,
+  "text": "Ravn og Leif g\u00e5r opp en trapp.",
+  "who": "info"
+ },
+ {
+  "start": 1822.0,
+  "end": 1825.012,
+  "text": "Leif stirrer p\u00e5 Ravn. Ravn slipper \u00f8yekontakten og g\u00e5r.",
+  "who": "info"
+ },
+ {
+  "start": 1834.01,
+  "end": 1838.024,
+  "text": "Leif stirrer mot d\u00f8ren som g\u00e5r igjen. Han kikker alvorlig nedover.",
+  "who": "info"
+ },
+ {
+  "start": 1848.009,
+  "end": 1851.013,
+  "text": "Per sitter i en bil utenfor Valekyrien grill.",
+  "who": "info"
+ },
+ {
+  "start": 1906.023,
+  "end": 1909.008,
+  "text": "Pers blikk m\u00f8ter Leifs.",
+  "who": "info"
+ },
+ {
+  "start": 1960.004,
+  "end": 1962.011,
+  "text": "Leif tygger.",
+  "who": "info"
+ },
+ {
+  "start": 2086.015,
+  "end": 2089.003,
+  "text": "Leif blir blank i \u00f8ynene.",
+  "who": "info"
+ },
+ {
+  "start": 2101.017,
+  "end": 2109.007,
+  "text": "Per reiser seg og strekker h\u00e5nden ut mot Leif. Han tar i mot. Per klapper Leif p\u00e5 skulderen.",
+  "who": "info"
+ },
+ {
+  "start": 2110.022,
+  "end": 2116.022,
+  "text": "Leif har tatt opp hele samtalen med Per p\u00e5 telefonen sin.",
+  "who": "info"
+ },
+ {
+  "start": 2136.009,
+  "end": 2138.021,
+  "text": "Leif reiser seg og g\u00e5r ut.",
+  "who": "info"
+ },
+ {
+  "start": 2274.0,
+  "end": 2280.008,
+  "text": "Leif avslutter innlegget p\u00e5 datamaskinen og legger det ut under kallenavnet Tyfon og f\u00e5r straks anerkjennelse fra en annen p\u00e5 forumet.",
+  "who": "info"
+ },
+ {
+  "start": 2287.013,
+  "end": 2289.023,
+  "text": "Ravn sitter p\u00e5 t-banen.",
+  "who": "info"
+ },
+ {
+  "start": 2297.022,
+  "end": 2303.008,
+  "text": "Han kikker p\u00e5 bildet av Wilma fra programmet i kirken. Han inn p\u00e5 Oslo universitetssykehus.",
+  "who": "info"
+ },
+ {
+  "start": 2311.0,
+  "end": 2317.011,
+  "text": "Han pr\u00f8ver \u00e5 komme inn p\u00e5 et laboratorie med n\u00f8kkelkortet sitt.",
+  "who": "info"
+ },
+ {
+  "start": 2319.023,
+  "end": 2322.004,
+  "text": "Unn og Ravn g\u00e5r opp en trapp.",
+  "who": "info"
+ },
+ {
+  "start": 2412.011,
+  "end": 2424.01,
+  "text": "Ravn gir henne en lapp. Hun tar imot men gir tilbake. S\u00e5 reiser han seg. Men han snur seg br\u00e5tt og gir henne en klem mens han klyper av n\u00f8kkelkortet hennes som er festet p\u00e5 legefrakken.",
+  "who": "info"
+ },
+ {
+  "start": 2431.003,
+  "end": 2452.021,
+  "text": "Han beveger seg i raskt tempo bortover gangene, og rasker med seg en brukt legefrakk fra en skittent\u00f8yskurv. Han bruker n\u00f8kkelkortet og l\u00e5ser seg inn p\u00e5 et teknisk lager. Ravm lukker d\u00f8ren forsiktig bak seg. Han laster en tralle med diverse medisinsk utstyr.",
+  "who": "info"
+ },
+ {
+  "start": 2464.015,
+  "end": 2471.008,
+  "text": "P\u00e5 en benk p\u00e5 Valkekyrien stasjon reiser Theo seg opp og r\u00f8sker ut en kanyle av armen",
+  "who": "info"
+ },
+ {
+  "start": 2506.016,
+  "end": 2511.016,
+  "text": "Theo mister bevisstheten og  faller ned trappen han nettopp har g\u00e5tt opp. P\u00e5 tv-skjermen er det bilde av ham.",
+  "who": "info"
+ },
+ {
+  "start": 2519.019,
+  "end": 2531.002,
+  "text": "I heisen p\u00e5 sykehuset st\u00e5r Ravn med en fullesset tralle. Inn i heisen kommer Per og flere andre kollegaer i politiuniformer. En kvinne holder en stor blomsterbukett i armene. Ravns telefon ringer.",
+  "who": "info"
+ },
+ {
+  "start": 2590.018,
+  "end": 2595.021,
+  "text": "Ravn setter en kanyle i sin egen arm. Theo er bandasjert, vasket og ligger p\u00e5 en benk med oksygenmaske.",
+  "who": "info"
+ },
+ {
+  "start": 2607.01,
+  "end": 2610.022,
+  "text": "Ravn sitter ved siden av Theo med en ledningen fremdeles i armen.",
+  "who": "info"
+ },
+ {
+  "start": 2655.016,
+  "end": 2677.001,
+  "text": "Ravn tar en pose med v\u00e6ske fra et kj\u00f8leskap og g\u00e5r over fra den ene siden av stasjonen via en trapp og ned p\u00e5 andre siden mens t-baner passerer i begge retninger. Han g\u00e5r inn d\u00f8ren som er merket \"H\u00f8gspenning livsfare\".",
+  "who": "info"
+ },
+ {
+  "start": 2686.005,
+  "end": 2691.012,
+  "text": "Han vasker hendene og ansiktet med vann i en provisorisk vask.",
+  "who": "info"
+ },
+ {
+  "start": 2696.023,
+  "end": 2708.001,
+  "text": "Han stirrer tomt inn i speilet over vasken og gnir seg flere ganger med hendene. I rommet st\u00e5r en seng. Ravn tar et pledd over skuldrene.",
+  "who": "info"
+ },
+ {
+  "start": 2717.008,
+  "end": 2729.022,
+  "text": "I rommet st\u00e5r en seng. I sengen ligger Vilma koblet til slanger og maskiner. Ravn l\u00f8fter h\u00e5nden hennes i sine og kysser \u00f8mt. Han brer forsiktig et ullteppe over hennes kropp.",
+  "who": "info"
+ }
+
+]

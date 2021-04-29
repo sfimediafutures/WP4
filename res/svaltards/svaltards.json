@@ -1,0 +1,11 @@
+{
+  "video": {
+    "src": "/sfi/res/svaltards/p3dokumentar-svaltards.mp3"
+  },
+  "subtitles": [
+    {"src": "/sfi/res/svaltards/svaltards_subs.json", "lang": "no"}
+  ],
+  "aux": "/sfi/res/svaltards/svaltards_aux.json",
+  "cast": "/sfi/res/svaltards/cast.json",
+  "dc": "SFI-markup-svaltards"
+}

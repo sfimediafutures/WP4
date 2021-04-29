@@ -1,0 +1,127 @@
+{
+ "Police 1": {
+  "name": "Politimann i radio 1",
+  "color": "#7A86DBA6",
+  "src": "/sfi/res/Valkyrien/cast/Police_1.png"
+ },
+ "Police 2": {
+  "name": "Politimann i radio 2",
+  "color": "#5EFB05A6",
+  "src": "/sfi/res/Valkyrien/cast/Police_2.png"
+ },
+ "Teo": {
+  "name": "Teo",
+  "color": "#BF61C5A6",
+  "src": "/sfi/res/Valkyrien/cast/Teo.png"
+ },
+ "info": {
+  "name": "Skilt",
+  "color": "#157659A6",
+  "src": "/sfi/res/Valkyrien/cast/info.png"
+ },
+ "Ravn": {
+  "name": "Ravn",
+  "color": "#0182A2A6",
+  "src": "/sfi/res/Valkyrien/cast/Ravn.png"
+ },
+ "Leif": {
+  "name": "Leif",
+  "color": "#725DC7A6",
+  "src": "/sfi/res/Valkyrien/cast/Leif.png"
+ },
+ "Grethe": {
+  "name": "Grethe",
+  "color": "#416977A6",
+  "src": "/sfi/res/Valkyrien/cast/Grethe.png"
+ },
+ "Vilma": {
+  "name": "Vilma",
+  "color": "#8E3672A6",
+  "src": "/sfi/res/Valkyrien/cast/Vilma.png"
+ },
+ "News anchor": {
+  "name": "Nyhetsanker (f)(off) ",
+  "color": "#2EE87FA6",
+  "src": "/sfi/res/Valkyrien/cast/News_anchor.png"
+ },
+ "Reporter": {
+  "name": "Reporter",
+  "color": "#21059DA6",
+  "src": "/sfi/res/Valkyrien/cast/Reporter.png"
+ },
+ "Woman in Church": {
+  "name": "Dame i kirke",
+  "color": "#F8BA58A6",
+  "src": "/sfi/res/Valkyrien/cast/Woman_in_Church.png"
+ },
+ "Unn": {
+  "name": "Unn",
+  "color": "#CD2487A6",
+  "src": "/sfi/res/Valkyrien/cast/Unn.png"
+ },
+ "Odd": {
+  "name": "Odd",
+  "color": "#EF875EA6",
+  "src": "/sfi/res/Valkyrien/cast/Odd.png"
+ },
+ "Siv": {
+  "name": "Siv",
+  "color": "#B8787AA6",
+  "src": "/sfi/res/Valkyrien/cast/Siv.png"
+ },
+ "Karsten": {
+  "name": "Karsten",
+  "color": "#1A2B12A6",
+  "src": "/sfi/res/Valkyrien/cast/Karsten.png"
+ },
+ "Ida": {
+  "name": "Ida",
+  "color": "#98AEBFA6",
+  "src": "/sfi/res/Valkyrien/cast/Ida.png"
+ },
+ "Police dispatch": {
+  "name": "Politisentralen (off)",
+  "color": "#EBA1EBA6",
+  "src": "/sfi/res/Valkyrien/cast/Police_dispatch.png"
+ },
+ "Per": {
+  "name": "Per",
+  "color": "#A1D83AA6",
+  "src": "/sfi/res/Valkyrien/cast/Per.png"
+ },
+ "Assaf": {
+  "name": "Assaf",
+  "color": "#2144A5A6",
+  "src": "/sfi/res/Valkyrien/cast/Assaf.png"
+ },
+ "Leif V.O.": {
+  "name": "Leif V.O.",
+  "color": "#699A9BA6",
+  "src": "/sfi/res/Valkyrien/cast/Leif_V.O..png"
+ },
+ "Voice": {
+  "name": "Stemme (off)",
+  "color": "#2EC050A6",
+  "src": "/sfi/res/Valkyrien/cast/Voice.png"
+ },
+ "Public annoncement": {
+  "name": "PA",
+  "color": "#42A83AA6",
+  "src": "/sfi/res/Valkyrien/cast/Public_annoncement.png"
+ },
+ "Nurse": {
+  "name": "Sykepleier",
+  "color": "#BC2BD6A6",
+  "src": "/sfi/res/Valkyrien/cast/Nurse.png"
+ },
+ "Police": {
+  "name": "Politikvinne p\u00e5 TV (off)",
+  "color": "#0A9CF7A6",
+  "src": "/sfi/res/Valkyrien/cast/Police.png"
+ },
+ "Unknown": {
+  "name": "Ukjent",
+  "color": "#0A9CF7A6",
+  "src": "/sfi/res/Valkyrien/cast/Unknown.png"
+ }
+}

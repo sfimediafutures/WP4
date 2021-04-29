@@ -1,0 +1,3851 @@
+[
+  {
+    "start": 66.02199999999993,
+    "end": 71.59499999999994,
+    "who": "Police 1",
+    "text": "Null en, dette er Oskar fire. Vi er på vei. Ber om bevæpning.",
+    "role": "Politimann i radio 1",
+    "aux": "(m)"
+  },
+  {
+    "start": 69.01899999999978,
+    "end": 73.24699999999977,
+    "who": "Police 2",
+    "text": "Det er mottatt. Iverksett bevæpning. Over.",
+    "role": "Politimann i radio 2",
+    "aux": "(m)"
+  },
+  {
+    "start": 102.01699999999983,
+    "end": 104.21199999999982,
+    "who": "Teo",
+    "text": "Jeg får det ikke til!",
+    "role": "Teo"
+  },
+  {
+    "start": 206.01099999999997,
+    "end": 208.50099999999998,
+    "who": "info",
+    "text": "Høgspenning. Livsfare.",
+    "role": "Skilt"
+  },
+  {
+    "start": 302.0169999999998,
+    "end": 303.21799999999985,
+    "who": "Ravn",
+    "text": "Hei.",
+    "role": "Ravn"
+  },
+  {
+    "start": 304.0189999999998,
+    "end": 305.9799999999998,
+    "who": "Ravn",
+    "text": "Ikke vær redd.",
+    "role": "Ravn"
+  },
+  {
+    "start": 307,
+    "end": 309.455,
+    "who": "Ravn",
+    "text": "Du har klart deg, hva?",
+    "role": "Ravn"
+  },
+  {
+    "start": 308.0189999999998,
+    "end": 309.1049999999998,
+    "who": "Ravn",
+    "text": "Ja...",
+    "role": "Ravn"
+  },
+  {
+    "start": 314.0050000000001,
+    "end": 317.4340000000001,
+    "who": "Ravn",
+    "text": "Så du er en liten tøffing du da, hæ?",
+    "role": "Ravn"
+  },
+  {
+    "start": 333.0239999999999,
+    "end": 334.3049999999999,
+    "who": "Leif",
+    "text": "Ravn?",
+    "role": "Leif"
+  },
+  {
+    "start": 339.0160000000001,
+    "end": 340.23100000000005,
+    "who": "Ravn",
+    "text": "Hei.",
+    "role": "Ravn"
+  },
+  {
+    "start": 342.00300000000016,
+    "end": 344.09000000000015,
+    "who": "Leif",
+    "text": "Hei, god morgen. ",
+    "role": "Leif"
+  },
+  {
+    "start": 344.0160000000001,
+    "end": 346.58600000000007,
+    "who": "Leif",
+    "text": "Gjemt deg baki der i dag?",
+    "role": "Leif"
+  },
+  {
+    "start": 347,
+    "end": 348.111,
+    "who": "Ravn",
+    "text": "Ja.",
+    "role": "Ravn"
+  },
+  {
+    "start": 341.00700000000006,
+    "end": 343.11800000000005,
+    "who": "Leif",
+    "text": "Er jo helt utrolig. ",
+    "role": "Leif"
+  },
+  {
+    "start": 357.0039999999999,
+    "end": 364.8119999999999,
+    "who": "Leif",
+    "text": "Altså, jeg har sagt det sikkert hundre ganger, at det er bare meg. Kan ikke være noen andre enn meg.",
+    "role": "Leif"
+  },
+  {
+    "start": 359.009,
+    "end": 362.762,
+    "who": "Ravn",
+    "text": "Jeg vet det. Jeg ville bare være sikker.",
+    "role": "Ravn"
+  },
+  {
+    "start": 368.0129999999999,
+    "end": 372.0179999999999,
+    "who": "Leif",
+    "text": "Ja, her går det.. Her går det framover?",
+    "role": "Leif"
+  },
+  {
+    "start": 369.02,
+    "end": 371.049,
+    "who": "Ravn",
+    "text": "Nei, bakover.",
+    "role": "Ravn"
+  },
+  {
+    "start": 373,
+    "end": 375.236,
+    "who": "Ravn",
+    "text": "Mangler skikkelig utstyr.",
+    "role": "Ravn"
+  },
+  {
+    "start": 375.00300000000016,
+    "end": 377.06500000000017,
+    "who": "Leif",
+    "text": "Masse utstyr her.",
+    "role": "Leif"
+  },
+  {
+    "start": 376.0189999999998,
+    "end": 378.1919999999998,
+    "who": "Ravn",
+    "text": "Ikke det jeg trenger.",
+    "role": "Ravn"
+  },
+  {
+    "start": 380.02300000000014,
+    "end": 385.2910000000001,
+    "who": "Leif",
+    "text": "Jeg kan sikkert prøve å skaffe mer jeg. Hva er det du trenger da?",
+    "role": "Leif"
+  },
+  {
+    "start": 383.0160000000001,
+    "end": 385.8160000000001,
+    "who": "Ravn",
+    "text": "Masse-spektrometer blant annet.",
+    "role": "Ravn"
+  },
+  {
+    "start": 385.0210000000002,
+    "end": 386.1870000000002,
+    "who": "Leif",
+    "text": "Jaha…",
+    "role": "Leif"
+  },
+  {
+    "start": 391.00599999999986,
+    "end": 398.47199999999987,
+    "who": "Ravn",
+    "text": "Ja, det er en maskin som analyserer blodet på en... På en måte som bare den kan... Det er avansert.",
+    "role": "Ravn"
+  },
+  {
+    "start": 393.01200000000017,
+    "end": 396.5590000000002,
+    "who": "Leif",
+    "text": "Den er dyr den da. Trenger penger du.",
+    "role": "Leif"
+  },
+  {
+    "start": 396.0169999999998,
+    "end": 401.6299999999998,
+    "who": "Ravn",
+    "text": "Enkelte ting er det bare sykehus som kan kjøpe. Så penger hjelper ikke.",
+    "role": "Ravn"
+  },
+  {
+    "start": 398.009,
+    "end": 400.13800000000003,
+    "who": "Leif",
+    "text": "Penger hjelper ikke?",
+    "role": "Leif"
+  },
+  {
+    "start": 403.0160000000001,
+    "end": 405.72800000000007,
+    "who": "Leif",
+    "text": "Ja, da er det frokost her.",
+    "role": "Leif"
+  },
+  {
+    "start": 404.02199999999993,
+    "end": 405.46799999999996,
+    "who": "Ravn",
+    "text": "Nei takk.",
+    "role": "Ravn"
+  },
+  {
+    "start": 401.02300000000014,
+    "end": 406.92200000000014,
+    "who": "Leif",
+    "text": "Nei, for jeg tenkte bare at du kanskje kunne tatt en liten kikk på meg i dag?",
+    "role": "Leif"
+  },
+  {
+    "start": 415.0239999999999,
+    "end": 419.5229999999999,
+    "who": "Ravn",
+    "text": "Hånda di? Jeg har akkurat sett på den, Leif.",
+    "role": "Ravn"
+  },
+  {
+    "start": 419.0239999999999,
+    "end": 426.8659999999999,
+    "who": "Ravn",
+    "text": "Ja, men den kommer til å bli fin. Du må bare ta det litt med ro, og ikke sitte så mye på dataen.",
+    "role": "Ravn"
+  },
+  {
+    "start": 423.01800000000003,
+    "end": 429.773,
+    "who": "Leif",
+    "text": "Sitte på dataen? Altså når jeg vrir hånda mot tastaturet, så får jeg smerter…",
+    "role": "Leif"
+  },
+  {
+    "start": 425.0100000000002,
+    "end": 429.0060000000002,
+    "who": "Ravn",
+    "text": "Du vet hvilken dag det er i dag, ikke sant?",
+    "role": "Ravn"
+  },
+  {
+    "start": 428.01099999999997,
+    "end": 430.06499999999994,
+    "who": "Leif",
+    "text": "Jada, vet det.",
+    "role": "Leif"
+  },
+  {
+    "start": 436.00300000000016,
+    "end": 441.70200000000017,
+    "who": "Ravn",
+    "text": "Men, jeg kan jo ta å se på deg  ikveld hvis du hjelper meg med noe nå?",
+    "role": "Ravn"
+  },
+  {
+    "start": 442.0140000000001,
+    "end": 444.8650000000001,
+    "who": "Ravn",
+    "text": "Hun ville ikke ha likt... Nei.",
+    "role": "Ravn"
+  },
+  {
+    "start": 443.0169999999998,
+    "end": 445.46799999999985,
+    "who": "Leif",
+    "text": "Rolig nå, rolig rolig…",
+    "role": "Leif"
+  },
+  {
+    "start": 446,
+    "end": 448.783,
+    "who": "Ravn",
+    "text": "Ikke ta for mye nå, da.",
+    "role": "Ravn"
+  },
+  {
+    "start": 449.0129999999999,
+    "end": 451.7929999999999,
+    "who": "Leif",
+    "text": "Neida, blir fint dette her.",
+    "role": "Leif"
+  },
+  {
+    "start": 451.01200000000017,
+    "end": 452.18800000000016,
+    "who": "Leif",
+    "text": "Du?",
+    "role": "Leif"
+  },
+  {
+    "start": 452.0100000000002,
+    "end": 453.0650000000002,
+    "who": "Ravn",
+    "text": "Hmm?",
+    "role": "Ravn"
+  },
+  {
+    "start": 455.0079999999998,
+    "end": 457.1689999999998,
+    "who": "Leif",
+    "text": "Det er bare et rituale.",
+    "role": "Leif"
+  },
+  {
+    "start": 462,
+    "end": 464.466,
+    "who": "info",
+    "text": "6 måneder tidligere",
+    "role": "SUPER"
+  },
+  {
+    "start": 496.0140000000001,
+    "end": 497.67900000000014,
+    "who": "Grethe",
+    "text": "Jeg beklager.",
+    "role": "Grethe"
+  },
+  {
+    "start": 501.0100000000002,
+    "end": 503.4270000000002,
+    "who": "Vilma",
+    "text": "Du be... Du beklager?",
+    "role": "Vilma"
+  },
+  {
+    "start": 506.02400000000034,
+    "end": 511.43000000000035,
+    "who": "Grethe",
+    "text": "Den behandlingen du foreslår, den er aldri vært prøvd på mennesker før.",
+    "role": "Grethe"
+  },
+  {
+    "start": 511.0069999999996,
+    "end": 515.9849999999996,
+    "who": "Grethe",
+    "text": "Kun på labdyr. Uten godkjente tester og kontrollgrupper.",
+    "role": "Grethe"
+  },
+  {
+    "start": 513.0060000000003,
+    "end": 516.5290000000003,
+    "who": "Vilma",
+    "text": "Det har jeg ikke tid til og det vet du.",
+    "role": "Vilma"
+  },
+  {
+    "start": 520.0129999999999,
+    "end": 526.9699999999999,
+    "who": "Grethe",
+    "text": "Vilma... Det du har tenkt å sette i gang, det er mye farligere enn du skisserer for oss her. ",
+    "role": "Grethe"
+  },
+  {
+    "start": 526.0150000000003,
+    "end": 534.3420000000003,
+    "who": "Grethe",
+    "text": "Hele komiteen er enstemmig. Det er stor risiko for motorisk svikt, full katatoni, i det verste fall død.",
+    "role": "Grethe"
+  },
+  {
+    "start": 530.0219999999999,
+    "end": 532.929,
+    "who": "Vilma",
+    "text": "Jeg dør hvis jeg ikke gjør noe.",
+    "role": "Vilma"
+  },
+  {
+    "start": 537.0100000000002,
+    "end": 545.1060000000002,
+    "who": "Vilma",
+    "text": "Jeg har utviklet dette preparatet selv, som forsker og ikke pasient. Og jeg har veldig stor tro på det.",
+    "role": "Vilma"
+  },
+  {
+    "start": 538.0200000000004,
+    "end": 540.3810000000004,
+    "who": "Grethe",
+    "text": "Ja, jeg forstår det.",
+    "role": "Grethe"
+  },
+  {
+    "start": 544,
+    "end": 548.554,
+    "who": "Vilma",
+    "text": "Unn og Ravn kommer til å hjelpe meg. Jeg tar ansvaret.",
+    "role": "Vilma"
+  },
+  {
+    "start": 550.0100000000002,
+    "end": 556.6460000000002,
+    "who": "Grethe",
+    "text": "Det kan sette hele avdelingen i fare. Du kan miste lisensen din. Unns lisens, Ravns. ",
+    "role": "Grethe"
+  },
+  {
+    "start": 553.0069999999996,
+    "end": 556.8279999999996,
+    "who": "Grethe",
+    "text": "Jeg kan bli satt i fengsel som øverste ansvarlig.",
+    "role": "Grethe"
+  },
+  {
+    "start": 558.0029999999997,
+    "end": 567.0499999999997,
+    "who": "Ravn",
+    "text": "Det er det du er redd for? Etter alt hun har gjort for dette sykehuset, så er du redd for å bli saksøkt. Er det sånn?",
+    "role": "Ravn"
+  },
+  {
+    "start": 558.0100000000002,
+    "end": 559.2950000000002,
+    "who": "Vilma",
+    "text": "Ravn.",
+    "role": "Vilma"
+  },
+  {
+    "start": 564.0069999999996,
+    "end": 575.7809999999996,
+    "who": "Ravn",
+    "text": "Altså, du sitter som dommer over det eneste håpet hun har igjen. Men du nekter, fordi det er tryggest for  dere at hun bare dør av seg selv sånn helt uten videre?",
+    "role": "Ravn"
+  },
+  {
+    "start": 567.0200000000004,
+    "end": 571.6730000000005,
+    "who": "Grethe",
+    "text": "Eva, du må protokollføre dette her..",
+    "role": "Grethe"
+  },
+  {
+    "start": 572.018,
+    "end": 579.639,
+    "who": "Ravn",
+    "text": "Hvem i dette rommet her kan dette fagfeltet bedre enn Vilma? Hm? Ingen av dere. Ingen av dere!",
+    "role": "Ravn"
+  },
+  {
+    "start": 576.009,
+    "end": 580.105,
+    "who": "Grethe",
+    "text": "Ravn, tror du dette her er noe lett for oss?",
+    "role": "Grethe"
+  },
+  {
+    "start": 581.009,
+    "end": 588.258,
+    "who": "Ravn",
+    "text": "Det er det mest uverdige og korrupte... Da hun var frisk så brukte du henne for alt hun var verdt!",
+    "role": "Ravn"
+  },
+  {
+    "start": 586.0119999999997,
+    "end": 593.9239999999998,
+    "who": "Grethe",
+    "text": "Du kan ikke behandle din egen kone! Det er jo langt utenfor din egen ekspertise, du kommer til å miste jobben.",
+    "role": "Grethe"
+  },
+  {
+    "start": 589.0240000000003,
+    "end": 594.5800000000004,
+    "who": "Ravn",
+    "text": "Tror du jeg bryr meg om jobben, at jeg vil jobbe her etter dette?!",
+    "role": "Ravn"
+  },
+  {
+    "start": 596.0039999999999,
+    "end": 604.4869999999999,
+    "who": "Ravn",
+    "text": "Alle her vet at du setter deg selv først, alltid. Og Vilma hun skal faen ikke dø på grunn av feigheten deres!",
+    "role": "Ravn"
+  },
+  {
+    "start": 612.0219999999999,
+    "end": 617.2439999999999,
+    "who": "News anchor",
+    "text": "Joakim Reigstad, hva kan du si om det du ser der hvor du er nå?",
+    "role": "Nyhetsanker (f)(off) ",
+    "aux": "(f) (off)"
+  },
+  {
+    "start": 616.0230000000001,
+    "end": 636.9360000000001,
+    "who": "Reporter",
+    "text": "Her har politiet nå sperret av et område ved det som er en utbrent bil. Det er høyst sannsynlig da den bilen  som den siste raneren brukte, men politiet har ikke villet bekrefte det her på stedet og er svært tilbakeholdne  med opplysninger. Men som vi nå ser, så er Kripos i gang med undersøkelser.",
+    "role": "Reporter",
+    "aux": "(off)"
+  },
+  {
+    "start": 635.0209999999997,
+    "end": 636.3459999999998,
+    "who": "Leif",
+    "text": "Faen.",
+    "role": "Leif"
+  },
+  {
+    "start": 648,
+    "end": 655.022,
+    "who": "Ravn",
+    "text": "Jeg vil gjerne få takke Odd og Signe, Vilmas foreldre for at de har ordnet med så fin minnestund.",
+    "role": "Ravn"
+  },
+  {
+    "start": 663.0039999999999,
+    "end": 674.6189999999999,
+    "who": "Ravn",
+    "text": "Og så vil jeg gjerne beklage til alle dere som har prøvd å få tak i meg i de 6 månedene som  har gått, og at jeg har vært så unyttig, vært så unytting for dere alle.",
+    "role": "Ravn"
+  },
+  {
+    "start": 679.0050000000001,
+    "end": 681.6310000000001,
+    "who": "Ravn",
+    "text": "Og særlig min stedatter Siv.",
+    "role": "Ravn"
+  },
+  {
+    "start": 682.0110000000004,
+    "end": 684.2330000000004,
+    "who": "Ravn",
+    "text": "Jeg vet at Vilma…",
+    "role": "Ravn"
+  },
+  {
+    "start": 690.0219999999999,
+    "end": 695.212,
+    "who": "Ravn",
+    "text": "Jeg vet at mange av dere er såret over det Vilma gjorde, men... ",
+    "role": "Ravn"
+  },
+  {
+    "start": 697.0140000000001,
+    "end": 703.7300000000001,
+    "who": "Ravn",
+    "text": "Når vi i dag er samlet rundt en kiste som er tom så er det fordi Vilma ville ha det sånn. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 702.0150000000003,
+    "end": 706.6180000000003,
+    "who": "Ravn",
+    "text": "Hun visste hva hun gjorde da hun dro så langt ut i fjorden. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 706.0159999999996,
+    "end": 708.4799999999997,
+    "who": "Ravn",
+    "text": "Hun ville ikke bli funnet.",
+    "role": "Ravn"
+  },
+  {
+    "start": 709.0020000000004,
+    "end": 712.5880000000004,
+    "who": "Ravn",
+    "text": "Det er vanskelig å godta, men det må vi.",
+    "role": "Ravn"
+  },
+  {
+    "start": 712.0100000000002,
+    "end": 716.7400000000002,
+    "who": "Ravn",
+    "text": "Vilma... var en person som ofret alt for forskningen sin. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 718.0209999999997,
+    "end": 723.6019999999997,
+    "who": "Ravn",
+    "text": "Hennes høyeste ønske det var å skape noe som kunne komme oss alle sammen til gode. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 724.0050000000001,
+    "end": 730.4540000000001,
+    "who": "Ravn",
+    "text": "Istedet så gjorde denne forskningen henne syk, og hun fikk ikke den hjelpen hun skulle ha fått.",
+    "role": "Ravn"
+  },
+  {
+    "start": 731.0050000000001,
+    "end": 734.6020000000001,
+    "who": "Ravn",
+    "text": "Men hun ga ikke opp. Hun gjorde ikke det. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 735.0230000000001,
+    "end": 738.1090000000002,
+    "who": "Ravn",
+    "text": "Det var ikke letteste vei hun valgte. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 739.0039999999999,
+    "end": 745.7009999999999,
+    "who": "Ravn",
+    "text": "Hadde det vært et alternativ, så ville hun valgt det, uansett pris. Det vet jeg.",
+    "role": "Ravn"
+  },
+  {
+    "start": 745.0159999999996,
+    "end": 750.8639999999996,
+    "who": "Ravn",
+    "text": "Hun ville ikke bli en skygge av seg selv, hun ville huskes som den hun var. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 798.0050000000001,
+    "end": 799.3130000000001,
+    "who": "Teo",
+    "text": "Leif!",
+    "role": "Teo"
+  },
+  {
+    "start": 799.009,
+    "end": 800.943,
+    "who": "Leif",
+    "text": "Hva gjør du her?",
+    "role": "Leif"
+  },
+  {
+    "start": 801.0100000000002,
+    "end": 803.6000000000003,
+    "who": "Teo",
+    "text": "Jeg får ikke stoppa blodet.",
+    "role": "Teo"
+  },
+  {
+    "start": 806.0169999999998,
+    "end": 807.4699999999998,
+    "who": "Leif",
+    "text": "Få se.",
+    "role": "Leif"
+  },
+  {
+    "start": 811.0119999999997,
+    "end": 813.1159999999998,
+    "who": "Teo",
+    "text": "Jeg dreit meg ut.",
+    "role": "Teo"
+  },
+  {
+    "start": 813,
+    "end": 814.717,
+    "who": "Leif",
+    "text": "Hold, hold.",
+    "role": "Leif"
+  },
+  {
+    "start": 814.0159999999996,
+    "end": 815.9519999999997,
+    "who": "Leif",
+    "text": "Hvor er de andre?",
+    "role": "Leif"
+  },
+  {
+    "start": 815.0129999999999,
+    "end": 818.256,
+    "who": "Teo",
+    "text": "Det er bare meg. De andre er tatt.",
+    "role": "Teo"
+  },
+  {
+    "start": 818.0150000000003,
+    "end": 821.5060000000003,
+    "who": "Leif",
+    "text": "Av politiet? Og så kommer du hit?",
+    "role": "Leif"
+  },
+  {
+    "start": 821.0159999999996,
+    "end": 825.6849999999996,
+    "who": "Teo",
+    "text": "Jeg kjørte på en politimann. Leif, du må hjelpe meg.",
+    "role": "Teo"
+  },
+  {
+    "start": 826.0069999999996,
+    "end": 830.1469999999996,
+    "who": "Leif",
+    "text": "Du må vekk herfra. Vi må ta deg vekk herfra.",
+    "role": "Leif"
+  },
+  {
+    "start": 828.018,
+    "end": 829.972,
+    "who": "Teo",
+    "text": "Jeg har alle pengene.",
+    "role": "Teo"
+  },
+  {
+    "start": 830.0159999999996,
+    "end": 831.2919999999996,
+    "who": "Leif",
+    "text": "Her?",
+    "role": "Leif"
+  },
+  {
+    "start": 838.0029999999997,
+    "end": 839.7039999999997,
+    "who": "Teo",
+    "text": " Jeg fryser.",
+    "role": "Teo"
+  },
+  {
+    "start": 844.0010000000002,
+    "end": 845.4690000000002,
+    "who": "Teo",
+    "text": "Leif... ",
+    "role": "Teo"
+  },
+  {
+    "start": 844.0159999999996,
+    "end": 845.8389999999996,
+    "who": "Teo",
+    "text": "Hjelper du meg?",
+    "role": "Teo"
+  },
+  {
+    "start": 853.0119999999997,
+    "end": 854.6849999999997,
+    "who": "Woman in Church",
+    "text": "Kondolerer.",
+    "role": "Dame i kirke"
+  },
+  {
+    "start": 865.0230000000001,
+    "end": 867.7730000000001,
+    "who": "Unn",
+    "text": "Jeg synes det var en nydelig tale.",
+    "role": "Unn"
+  },
+  {
+    "start": 868.0020000000004,
+    "end": 870.8340000000004,
+    "who": "Ravn",
+    "text": "Takk, Unn, tusen takk.",
+    "role": "Ravn"
+  },
+  {
+    "start": 870.0169999999998,
+    "end": 874.8729999999998,
+    "who": "Unn",
+    "text": "Kom nå til meg, Ravn. Hvis du trenger hjelp til noe.",
+    "role": "Unn"
+  },
+  {
+    "start": 874.0209999999997,
+    "end": 877.0049999999998,
+    "who": "Unn",
+    "text": "Jeg mener det. Hva som helst.",
+    "role": "Unn"
+  },
+  {
+    "start": 878.0069999999996,
+    "end": 879.0909999999996,
+    "who": "Ravn",
+    "text": "Ja.",
+    "role": "Ravn"
+  },
+  {
+    "start": 883.0069999999996,
+    "end": 884.5639999999996,
+    "who": "Grethe",
+    "text": "Hei Ravn.",
+    "role": "Grethe"
+  },
+  {
+    "start": 885.0079999999998,
+    "end": 886.9179999999998,
+    "who": "Grethe",
+    "text": "Jeg kondolerer.",
+    "role": "Grethe"
+  },
+  {
+    "start": 891.0140000000001,
+    "end": 894.0740000000001,
+    "who": "Grethe",
+    "text": "Ravn. Jeg gjorde alt jeg kunne.",
+    "role": "Grethe"
+  },
+  {
+    "start": 893.0190000000002,
+    "end": 894.2070000000002,
+    "who": "Ravn",
+    "text": "Fint.",
+    "role": "Ravn"
+  },
+  {
+    "start": 895.0100000000002,
+    "end": 898.6920000000002,
+    "who": "Grethe",
+    "text": "Jeg gjorde alt jeg kunne uten å bryte loven. ",
+    "role": "Grethe"
+  },
+  {
+    "start": 897.0129999999999,
+    "end": 904.2239999999999,
+    "who": "Grethe",
+    "text": "Og hvis jeg, bare et sekund hadde trodd på din og Vilmas behandlingplan, så hadde jeg vurdert den.",
+    "role": "Grethe"
+  },
+  {
+    "start": 904.0029999999997,
+    "end": 910.3559999999997,
+    "who": "Ravn",
+    "text": "Så du trodde ikke på oss, og likevel så lurer du på hvorfor jeg ikke kommer tilbake?",
+    "role": "Ravn"
+  },
+  {
+    "start": 907.0079999999998,
+    "end": 909.1099999999998,
+    "who": "Unn",
+    "text": "Ravn, ikke…",
+    "role": "Unn"
+  },
+  {
+    "start": 908.0200000000004,
+    "end": 913.5000000000005,
+    "who": "Grethe",
+    "text": "Sånn som jeg så på det den gangen, så var ikke du og Vilma rasjonelle!",
+    "role": "Grethe"
+  },
+  {
+    "start": 910.0230000000001,
+    "end": 915.4640000000002,
+    "who": "Ravn",
+    "text": "Og sånn som jeg ser det, så står jeg her i dag på grunn av deg.",
+    "role": "Ravn"
+  },
+  {
+    "start": 915.0209999999997,
+    "end": 917.2819999999997,
+    "who": "Odd",
+    "text": "Hei Ravn, kanskje.",
+    "role": "Odd"
+  },
+  {
+    "start": 917.0100000000002,
+    "end": 918.6330000000003,
+    "who": "Ravn",
+    "text": "Ja, hei.",
+    "role": "Ravn"
+  },
+  {
+    "start": 919.0119999999997,
+    "end": 920.3579999999997,
+    "who": "Ravn",
+    "text": "Siv!",
+    "role": "Ravn"
+  },
+  {
+    "start": 925.0020000000004,
+    "end": 926.5360000000004,
+    "who": "Ravn",
+    "text": "Hei Siv.",
+    "role": "Ravn"
+  },
+  {
+    "start": 929.0140000000001,
+    "end": 931.6360000000001,
+    "who": "Ravn",
+    "text": "Jeg har tenkt mye på deg.",
+    "role": "Ravn"
+  },
+  {
+    "start": 932.0190000000002,
+    "end": 934.6130000000003,
+    "who": "Siv",
+    "text": "Hvorfor var det en kiste der?",
+    "role": "Siv"
+  },
+  {
+    "start": 935.009,
+    "end": 942.397,
+    "who": "Ravn",
+    "text": "Nei, det var mormor og morfar. De ville gjerne at alt skulle være sånn som vanlig, på en måte.",
+    "role": "Ravn"
+  },
+  {
+    "start": 939.0039999999999,
+    "end": 942.7779999999999,
+    "who": "Siv",
+    "text": "Ja, men da tror jo folk at mamma er der.",
+    "role": "Siv"
+  },
+  {
+    "start": 940.0150000000003,
+    "end": 944.9270000000004,
+    "who": "Ravn",
+    "text": "Nei, nei, de tror ikke det. Altså jeg sa jo det at...",
+    "role": "Ravn"
+  },
+  {
+    "start": 33342.012,
+    "end": 33347.884000000005,
+    "who": "Siv",
+    "text": "Ja, men hun er jo der ute et sted. Skal de bare slutte å lete da eller?",
+    "role": "Siv"
+  },
+  {
+    "start": 33351.017,
+    "end": 33353.229,
+    "who": "Ravn",
+    "text": "Kan jeg få en klem?",
+    "role": "Ravn"
+  },
+  {
+    "start": 33370.022,
+    "end": 33372.926,
+    "who": "Siv",
+    "text": "Jeg trenger noen ting hjemmefra jeg.",
+    "role": "Siv"
+  },
+  {
+    "start": 33374.002,
+    "end": 33379.767,
+    "who": "Ravn",
+    "text": "Ja, ja, det går fint. Bare ring på på forhånd, så fikser vi det.",
+    "role": "Ravn"
+  },
+  {
+    "start": 977.0100000000002,
+    "end": 982.1880000000002,
+    "who": "Siv",
+    "text": "Og så er det noe viktig jeg må snakke med om, så hvis du har tid...",
+    "role": "Siv"
+  },
+  {
+    "start": 986.0029999999997,
+    "end": 989.0499999999997,
+    "who": "Ravn",
+    "text": "Jeg er nødt, jeg må gå nå.",
+    "role": "Ravn"
+  },
+  {
+    "start": 987.0100000000002,
+    "end": 990.2320000000002,
+    "who": "Siv",
+    "text": "Ja, men jeg må snakke med deg!",
+    "role": "Siv"
+  },
+  {
+    "start": 990.0069999999996,
+    "end": 991.3449999999996,
+    "who": "Siv",
+    "text": "Ravn!",
+    "role": "Siv"
+  },
+  {
+    "start": 995.0200000000004,
+    "end": 997.4560000000005,
+    "who": "Ravn",
+    "text": "Hva er det som har skjedd?",
+    "role": "Ravn"
+  },
+  {
+    "start": 997.0039999999999,
+    "end": 1001.6719999999999,
+    "who": "Leif",
+    "text": "Jeg har sagt at du aldri skal slå av telefonen, aldri!",
+    "role": "Leif"
+  },
+  {
+    "start": 1004.0240000000003,
+    "end": 1005.5060000000003,
+    "who": "Ravn",
+    "text": "Hva faen?",
+    "role": "Ravn"
+  },
+  {
+    "start": 1005.009,
+    "end": 1006.923,
+    "who": "Leif",
+    "text": "Ja, kom igjen!",
+    "role": "Leif"
+  },
+  {
+    "start": 1017.0100000000002,
+    "end": 1021.7480000000003,
+    "who": "Ravn",
+    "text": "Hvem faen er dette her Leif? Er det en venn av deg? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1019.0100000000002,
+    "end": 1022.2690000000002,
+    "who": "Leif",
+    "text": "Se på magen hans, se på magen!",
+    "role": "Leif"
+  },
+  {
+    "start": 1022.0169999999998,
+    "end": 1024.4889999999998,
+    "who": "Ravn",
+    "text": "Han er skutt for faen!",
+    "role": "Ravn"
+  },
+  {
+    "start": 1025.0200000000004,
+    "end": 1028.6080000000004,
+    "who": "Ravn",
+    "text": "Hallo! Hallo! Er du våken?",
+    "role": "Ravn"
+  },
+  {
+    "start": 1029.005,
+    "end": 1032.1750000000002,
+    "who": "Ravn",
+    "text": "Nå må vi få ham på sykehuset!",
+    "role": "Ravn"
+  },
+  {
+    "start": 1030.0169999999998,
+    "end": 1034.7569999999998,
+    "who": "Leif",
+    "text": "Hvis han kunne vært på legevakta, så hadde han vært der nå. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1034.0119999999997,
+    "end": 1036.4229999999998,
+    "who": "Ravn",
+    "text": "Vet du blodtypen hans?",
+    "role": "Ravn"
+  },
+  {
+    "start": 1035.0119999999997,
+    "end": 1038.2079999999996,
+    "who": "Leif",
+    "text": "Han har sånn dog-tag rundt halsen der.",
+    "role": "Leif"
+  },
+  {
+    "start": 1047.009,
+    "end": 1048.797,
+    "who": "info",
+    "text": "Adgang forbudt",
+    "role": "SKILT"
+  },
+  {
+    "start": 1082.0060000000003,
+    "end": 1083.7790000000002,
+    "who": "Ravn",
+    "text": "Jeg tar hodet.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1083,
+    "end": 1084.118,
+    "who": "Leif",
+    "text": "Ja.",
+    "role": "Leif"
+  },
+  {
+    "start": 1084.0100000000002,
+    "end": 1087.1200000000001,
+    "who": "Ravn",
+    "text": "Vi legger han på det bordet der borte. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1085.0079999999998,
+    "end": 1086.0949999999998,
+    "who": "Leif",
+    "text": "Ja.",
+    "role": "Leif"
+  },
+  {
+    "start": 1088.0110000000004,
+    "end": 1090.1910000000005,
+    "who": "Ravn",
+    "text": "Sånn. Det er bra.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1091.0029999999997,
+    "end": 1095.1159999999998,
+    "who": "Ravn",
+    "text": "Sånn. Og så henter du to poser med A-blod. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1093.0209999999997,
+    "end": 1095.4769999999996,
+    "who": "Leif",
+    "text": "Ja, hvor har vi det da?",
+    "role": "Leif"
+  },
+  {
+    "start": 1094.0119999999997,
+    "end": 1098.9639999999997,
+    "who": "Ravn",
+    "text": "Det ligger i kjøleskapet, det står på posen. Kom igjen! ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1105.0119999999997,
+    "end": 1106.2609999999997,
+    "who": "Leif",
+    "text": "Her. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1106.0029999999997,
+    "end": 1112.2609999999997,
+    "who": "Ravn",
+    "text": "Og så operasjonsutstyret mitt, det ligger på benken ved siden av rottene der inne. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1113.0010000000002,
+    "end": 1116.275,
+    "who": "Ravn",
+    "text": "Flott, så putter du alt oppi her. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1118.009,
+    "end": 1120.915,
+    "who": "Ravn",
+    "text": "Pass på at du får alt nedi. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1122.0119999999997,
+    "end": 1123.2199999999998,
+    "who": "Ravn",
+    "text": "Sånn.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1123.005,
+    "end": 1125.412,
+    "who": "Leif",
+    "text": "Bare si hva jeg skal gjøre. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1124.004,
+    "end": 1128.895,
+    "who": "Ravn",
+    "text": "Bare stå på den andre siden der. Så begynner jeg å skjære. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1127.0190000000002,
+    "end": 1128.3020000000001,
+    "who": "Ravn",
+    "text": "Okei.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1140.005,
+    "end": 1143.4940000000001,
+    "who": "Ravn",
+    "text": "Nyra. Nyra hans er skutt i stykker.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1145.0010000000002,
+    "end": 1147.1310000000003,
+    "who": "Ravn",
+    "text": "Jeg må ta den ut. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1146.0119999999997,
+    "end": 1147.8459999999998,
+    "who": "Leif",
+    "text": "Ta den ut? ",
+    "role": "Leif"
+  },
+  {
+    "start": 1146.0200000000004,
+    "end": 1148.5440000000003,
+    "who": "Ravn",
+    "text": "Ja, eller så dør han. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1149.0110000000004,
+    "end": 1152.2280000000005,
+    "who": "Leif",
+    "text": "Er ikke det litt voldsomt, liksom?",
+    "role": "Leif"
+  },
+  {
+    "start": 1151.0010000000002,
+    "end": 1152.9930000000002,
+    "who": "Ravn",
+    "text": "Hjelp meg nå!",
+    "role": "Ravn"
+  },
+  {
+    "start": 1152.0069999999996,
+    "end": 1156.0629999999996,
+    "who": "Ravn",
+    "text": "Holder du disse her? Holde de to? Sånn.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1157.0169999999998,
+    "end": 1160.649,
+    "who": "Ravn",
+    "text": "Og så... så drar du litt ut til siden. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1160.0230000000001,
+    "end": 1161.1000000000001,
+    "who": "Leif",
+    "text": "Ja.",
+    "role": "Leif"
+  },
+  {
+    "start": 1161.013,
+    "end": 1164.9119999999998,
+    "who": "Ravn",
+    "text": "Så skal jeg bare komme ned... Komme ned her. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1168.0029999999997,
+    "end": 1169.9349999999997,
+    "who": "Ravn",
+    "text": "Går det bra? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1168.009,
+    "end": 1170.099,
+    "who": "Leif",
+    "text": "Ja, det går bra. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1177.0209999999997,
+    "end": 1179.5029999999997,
+    "who": "Ravn",
+    "text": "Der! Der er den.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1183.0159999999996,
+    "end": 1184.5649999999996,
+    "who": "Ravn",
+    "text": "Leif? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1184.0079999999998,
+    "end": 1185.6829999999998,
+    "who": "Leif",
+    "text": "Jeg tenkte at....",
+    "role": "Leif"
+  },
+  {
+    "start": 1185.0060000000003,
+    "end": 1186.6030000000003,
+    "who": "Ravn",
+    "text": "Leif? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1186.0200000000004,
+    "end": 1189.6750000000004,
+    "who": "Leif",
+    "text": "Jeg er med, jeg er med. Helt med. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1189.009,
+    "end": 1194.261,
+    "who": "News anchor",
+    "text": "Velkommen til denne sendingen i forbindelse med det brutale ranet i går. ",
+    "role": "Nyhetsanker (f)",
+    "aux": "(f)"
+  },
+  {
+    "start": 1194.0010000000002,
+    "end": 1199.4680000000003,
+    "who": "News anchor",
+    "text": "Under pågripelsen ble en politimann påkjørt av ransbilen, og alvorlig skadet. ",
+    "role": "Nyhetsanker (f)",
+    "aux": "(f)"
+  },
+  {
+    "start": 1200,
+    "end": 1203.747,
+    "who": "News anchor",
+    "text": "Hans tilstand blir nå beskrevet som kritisk. ",
+    "role": "Nyhetsanker (f)",
+    "aux": "(f)"
+  },
+  {
+    "start": 1203.0060000000003,
+    "end": 1209.6070000000004,
+    "who": "News anchor",
+    "text": "Politiet har gått ut med følgende etterlysning; Teodor Naustvik, 24 år. ",
+    "role": "Nyhetsanker (f)",
+    "aux": "(f)"
+  },
+  {
+    "start": 1208.022,
+    "end": 1211.146,
+    "who": "Ravn",
+    "text": "Du sa at han ikke var ettersøkt? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1210.0060000000003,
+    "end": 1214.1870000000004,
+    "who": "Leif",
+    "text": "Han var ikke det. Nå har de andre tysta på han. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1212.013,
+    "end": 1218.0559999999998,
+    "who": "Ravn",
+    "text": "Han har kjørt ned en politimann, som prøvde å stoppe han fra å stjele? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1214.0150000000003,
+    "end": 1219.9790000000003,
+    "who": "Leif",
+    "text": "Den politimannen er ikke død. De har skutt han i magen og det er selvforsvar. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1218.013,
+    "end": 1221.337,
+    "who": "Ravn",
+    "text": "Du får be han si det til politiet da. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1221.005,
+    "end": 1222.864,
+    "who": "Leif",
+    "text": "Han kan ikke det.",
+    "role": "Leif"
+  },
+  {
+    "start": 1222.005,
+    "end": 1224.25,
+    "who": "Ravn",
+    "text": "Hvorfor ikke det? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1223.0079999999998,
+    "end": 1225.9419999999998,
+    "who": "Leif",
+    "text": "Fordi de dreper han i fengsel da. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1225.0169999999998,
+    "end": 1229.8429999999998,
+    "who": "Ravn",
+    "text": "Tror du de dreper han fordi han har skada en av deres egne? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1228.0010000000002,
+    "end": 1231.0020000000002,
+    "who": "Leif",
+    "text": "Ikke politiet, de andre ranerene. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1230.0140000000001,
+    "end": 1237.3300000000002,
+    "who": "Ravn",
+    "text": "Det der, det er sånne konspirasjoner som du og disse chattekompisene dine holder på med hele tiden. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1234.022,
+    "end": 1243.018,
+    "who": "Leif",
+    "text": "Siden femognitti så har sekstiåtte fanger dødd i norske fengsler. Bare ti av de var beviselige selvmord. Kom her! ",
+    "role": "Leif"
+  },
+  {
+    "start": 1241,
+    "end": 1243.099,
+    "who": "Ravn",
+    "text": "Hva er det nå? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1241.013,
+    "end": 1243.49,
+    "who": "Leif",
+    "text": "Skal vi se på noe her. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1247.022,
+    "end": 1256.606,
+    "who": "Leif",
+    "text": "Teo her, sitter igjen med hele utbyttet. Eneste som ikke ble tatt. De folka han har jobba med, de er mye verre enn politiet.",
+    "role": "Leif"
+  },
+  {
+    "start": 1254.0100000000002,
+    "end": 1256.7720000000002,
+    "who": "Ravn",
+    "text": "Hvor mye er det snakk om? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1256.005,
+    "end": 1258.506,
+    "who": "Leif",
+    "text": "Det er sekstito millioner. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1257.0240000000003,
+    "end": 1259.5060000000003,
+    "who": "Ravn",
+    "text": "Sekstito millioner? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1259.0100000000002,
+    "end": 1261.6810000000003,
+    "who": "Leif",
+    "text": "Ja. Står det i avisa.",
+    "role": "Leif"
+  },
+  {
+    "start": 1261.0100000000002,
+    "end": 1266.8940000000002,
+    "who": "Ravn",
+    "text": "Så fyren er ettersøkt over hele landet. Hva om noen finner han her nede?",
+    "role": "Ravn"
+  },
+  {
+    "start": 1264.0020000000004,
+    "end": 1268.5010000000004,
+    "who": "Leif",
+    "text": "De gjør ikke det. Det er en av fordelene med å være...",
+    "role": "Leif"
+  },
+  {
+    "start": 1265.0119999999997,
+    "end": 1267.0739999999996,
+    "who": "Teo",
+    "text": "Hvor er vi? ",
+    "role": "Teo"
+  },
+  {
+    "start": 1266.0159999999996,
+    "end": 1269.9779999999996,
+    "who": "Ravn",
+    "text": "Neineineinei. Jeg synes du skal legge deg ned. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1268,
+    "end": 1270.032,
+    "who": "Teo",
+    "text": "Jeg kjørte på ham...",
+    "role": "Teo"
+  },
+  {
+    "start": 1269.0029999999997,
+    "end": 1270.8679999999997,
+    "who": "Leif",
+    "text": "Det synes jeg og.",
+    "role": "Leif"
+  },
+  {
+    "start": 1270.0110000000004,
+    "end": 1273.9240000000004,
+    "who": "Teo",
+    "text": "Han politimannen! Hvordan går det med han?",
+    "role": "Teo"
+  },
+  {
+    "start": 1271.0240000000003,
+    "end": 1273.3160000000003,
+    "who": "Ravn",
+    "text": "Ligg rolig, ligg rolig. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1273.0060000000003,
+    "end": 1276.6570000000004,
+    "who": "Leif",
+    "text": "Det går så bra. Han har det kjempefint.",
+    "role": "Leif"
+  },
+  {
+    "start": 1275.0010000000002,
+    "end": 1280.3060000000003,
+    "who": "Teo",
+    "text": "Er det du som er legen? Leif, er det han som er legen? ",
+    "role": "Teo"
+  },
+  {
+    "start": 1278.0079999999998,
+    "end": 1283.3039999999999,
+    "who": "Leif",
+    "text": "Dette er legen. Nå skal du bare gjøre akkurat sånn som han sier. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1281.0020000000004,
+    "end": 1283.3620000000003,
+    "who": "Leif",
+    "text": "Det er ikke noe problem",
+    "role": "Leif"
+  },
+  {
+    "start": 1281.004,
+    "end": 1285.1219999999998,
+    "who": "Teo",
+    "text": "Jeg må..jeg må snakke med Marit.",
+    "role": "Teo"
+  },
+  {
+    "start": 1282.0119999999997,
+    "end": 1283.9609999999998,
+    "who": "Leif",
+    "text": "Snakk med legen.",
+    "role": "Leif"
+  },
+  {
+    "start": 1283.0029999999997,
+    "end": 1285.2099999999998,
+    "who": "Ravn",
+    "text": "Hold han, hold han. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1285,
+    "end": 1287.774,
+    "who": "Leif",
+    "text": "Det går fint. Det går fint.",
+    "role": "Leif"
+  },
+  {
+    "start": 1287.0100000000002,
+    "end": 1291.6340000000002,
+    "who": "Ravn",
+    "text": "Dette her det går ikke. Vi må få ham på sykehus. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1285.0150000000003,
+    "end": 1296.7370000000003,
+    "who": "Leif",
+    "text": "Hvis han kommer på sykehus, så ser de at han er operert av en ordentlig lege.  Det har du ikke lyst til. Vil ikke at folk skal begynne å leite rundt oppi her du.",
+    "role": "Leif"
+  },
+  {
+    "start": 1296.0100000000002,
+    "end": 1298.3730000000003,
+    "who": "Ravn",
+    "text": "Hva hvis han dør da? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1297.0230000000001,
+    "end": 1298.287,
+    "who": "Leif",
+    "text": "Hvis…",
+    "role": "Leif"
+  },
+  {
+    "start": 1301.0060000000003,
+    "end": 1304.2460000000003,
+    "who": "Leif",
+    "text": "Hva slags utstyr er det du trenger? ",
+    "role": "Leif"
+  },
+  {
+    "start": 1302.004,
+    "end": 1310.222,
+    "who": "Ravn",
+    "text": "Ja, men altså... hvis situasjonen forverrer seg så trenger jeg masse utstyr som jeg ikke har, Leif! ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1306.0100000000002,
+    "end": 1312.4720000000002,
+    "who": "Ravn",
+    "text": "Jeg trenger en hjertestarter, jeg trenger respirator, jeg trenger masse medisiner! ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1308.0069999999996,
+    "end": 1311.4369999999997,
+    "who": "Leif",
+    "text": "Det er greit. Greit. Jeg vet. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1310.0169999999998,
+    "end": 1315.5309999999997,
+    "who": "Leif",
+    "text": "Hvis du hjelper meg med dette her, så har vi plutselig vanvittig mye penger. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1316.0100000000002,
+    "end": 1324.1950000000002,
+    "who": "Leif",
+    "text": "Skjønner du? Da kan vi.. Altså, da kan vi lage klinikk her vi, med alt du trenger til forskningen din. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1322.0100000000002,
+    "end": 1323.553,
+    "who": "Ravn",
+    "text": "Klinikk?",
+    "role": "Ravn"
+  },
+  {
+    "start": 1323.018,
+    "end": 1324.0910000000001,
+    "who": "Leif",
+    "text": "Ja.",
+    "role": "Leif"
+  },
+  {
+    "start": 1325.0119999999997,
+    "end": 1327.9459999999997,
+    "who": "Ravn",
+    "text": "Det er blod på de pengene, Leif. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1328.0119999999997,
+    "end": 1333.2509999999997,
+    "who": "Leif",
+    "text": "Hva var det den het, den maskina som var så umulig å få tak i? ",
+    "role": "Leif"
+  },
+  {
+    "start": 1332.005,
+    "end": 1334.1740000000002,
+    "who": "Ravn",
+    "text": "Masse-spektrometer. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1333.005,
+    "end": 1334.211,
+    "who": "Leif",
+    "text": "Den.",
+    "role": "Leif"
+  },
+  {
+    "start": 1334.0209999999997,
+    "end": 1337.4609999999998,
+    "who": "Ravn",
+    "text": "Hva har du med dette her å gjøre egentlig?",
+    "role": "Ravn"
+  },
+  {
+    "start": 1338.0060000000003,
+    "end": 1340.0820000000003,
+    "who": "Leif",
+    "text": "Absolutt ingenting.",
+    "role": "Leif"
+  },
+  {
+    "start": 1341.0230000000001,
+    "end": 1343.6740000000002,
+    "who": "Karsten",
+    "text": "Er det onkel Leif du ser på?",
+    "role": "Karsten"
+  },
+  {
+    "start": 1344.0150000000003,
+    "end": 1347.2360000000003,
+    "who": "Karsten",
+    "text": "Der sitter'n! Det er onkel Leif.",
+    "role": "Karsten"
+  },
+  {
+    "start": 1347.0100000000002,
+    "end": 1350.3210000000001,
+    "who": "Karsten",
+    "text": "Hun prøvde å få kontakt med deg.",
+    "role": "Karsten"
+  },
+  {
+    "start": 1349.0169999999998,
+    "end": 1350.2269999999999,
+    "who": "Karsten",
+    "text": "Du.",
+    "role": "Karsten"
+  },
+  {
+    "start": 1351.0029999999997,
+    "end": 1353.9929999999997,
+    "who": "Ida",
+    "text": "Ser du på onkel Leif du da? ",
+    "role": "Ida"
+  },
+  {
+    "start": 1353.0029999999997,
+    "end": 1358.2859999999996,
+    "who": "Ida",
+    "text": "Du, det er veldig veldig hyggelig Leif. Det er alt for lenge siden. ",
+    "role": "Ida"
+  },
+  {
+    "start": 1356.022,
+    "end": 1359.462,
+    "who": "Leif",
+    "text": "Ja. Det har vært mye jobbing i det siste. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1360.0159999999996,
+    "end": 1366.2129999999995,
+    "who": "Karsten",
+    "text": "Jeg trodde hele idéen med sivilforsvaret var å få litt mer faste rammer, jeg. ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1364.0010000000002,
+    "end": 1367.2480000000003,
+    "who": "Leif",
+    "text": "Ja, men jeg er ikke der lenger nå. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1366.0169999999998,
+    "end": 1367.9059999999997,
+    "who": "Karsten",
+    "text": "Er du ikke? ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1368,
+    "end": 1374.234,
+    "who": "Leif",
+    "text": "Nei, jeg har blitt flytta over til beredskapsetaten i Oslo kommune, så... ",
+    "role": "Leif"
+  },
+  {
+    "start": 1373.0150000000003,
+    "end": 1374.1280000000004,
+    "who": "Karsten",
+    "text": "Å?",
+    "role": "Karsten"
+  },
+  {
+    "start": 1374.0010000000002,
+    "end": 1378.5110000000002,
+    "who": "Leif",
+    "text": "Ja... Blitt teknisk ansvarlig der. Litt mer ansvar da. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1379.0029999999997,
+    "end": 1381.5409999999997,
+    "who": "Ida",
+    "text": "Gratulerer med det da! ",
+    "role": "Ida"
+  },
+  {
+    "start": 1380.0200000000004,
+    "end": 1381.3300000000004,
+    "who": "Leif",
+    "text": "Takk. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1383,
+    "end": 1385.657,
+    "who": "Karsten",
+    "text": "Hva er det du gjør nå da? ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1385.0150000000003,
+    "end": 1388.0850000000003,
+    "who": "Leif",
+    "text": "Vedlikehold, drift. Utleie. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1390.0140000000001,
+    "end": 1391.082,
+    "who": "Karsten",
+    "text": "Av?",
+    "role": "Karsten"
+  },
+  {
+    "start": 1393.0119999999997,
+    "end": 1394.7999999999997,
+    "who": "Leif",
+    "text": "Tilfluktsrom. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1395.0169999999998,
+    "end": 1398.2319999999997,
+    "who": "Ida",
+    "text": "Wow! Er det mange da eller? ",
+    "role": "Ida"
+  },
+  {
+    "start": 1398.013,
+    "end": 1405.125,
+    "who": "Leif",
+    "text": "Det er 457 i Oslo og Akershus. Så det er svære anlegg. Eh..",
+    "role": "Leif"
+  },
+  {
+    "start": 1403.009,
+    "end": 1410.522,
+    "who": "Leif",
+    "text": "Det er faktisk, det er litt morsomt da, det er faktisk mulig hvis du kombinerer, eh.. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1408.018,
+    "end": 1416.2160000000001,
+    "who": "Leif",
+    "text": "tunneler og t-bane, vann og avløp og parkering, så kan du gå tørrskodd helt fra Carl Berner til Operaen.",
+    "role": "Leif"
+  },
+  {
+    "start": 1415.009,
+    "end": 1417.094,
+    "who": "Leif",
+    "text": "Mhm, det er svært. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1415.0240000000003,
+    "end": 1419.0030000000004,
+    "who": "Ida",
+    "text": "Men, er det en stor avdeling da, eller? ",
+    "role": "Ida"
+  },
+  {
+    "start": 1420.005,
+    "end": 1422.891,
+    "who": "Leif",
+    "text": "Nei, i Oslo er det bare meg. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1422.0029999999997,
+    "end": 1423.8129999999996,
+    "who": "Karsten",
+    "text": "Du kødder nå?",
+    "role": "Karsten"
+  },
+  {
+    "start": 1427.0060000000003,
+    "end": 1433.4190000000003,
+    "who": "Leif",
+    "text": "Ja altså, de fleste av de rommene er ikke operative. Veldig mange av de er ikke det. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1427.0069999999996,
+    "end": 1433.3519999999996,
+    "who": "Karsten",
+    "text": "Ja, men ble du bare flytta over, da eller? Var det du som søkte deg dit? ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1430.0060000000003,
+    "end": 1432.9480000000003,
+    "who": "Leif",
+    "text": "Jeg ble på mange måter headhunta. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1433.0029999999997,
+    "end": 1438.0749999999996,
+    "who": "Ida",
+    "text": "Du, så fint da! For du kan jo masse om sikkerhet og sånn. ",
+    "role": "Ida"
+  },
+  {
+    "start": 1438.0119999999997,
+    "end": 1440.5589999999997,
+    "who": "Leif",
+    "text": "Jada, ja kan litt om det. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1439.022,
+    "end": 1442.848,
+    "who": "Ida",
+    "text": "Jeg vet ikke engang hvor nærmeste tilfluktsrom er. ",
+    "role": "Ida"
+  },
+  {
+    "start": 1443.013,
+    "end": 1448.1399999999999,
+    "who": "Leif",
+    "text": "Ja, det er Fredensborgveien 18, rett ovenfor Vulkan der. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1449.0240000000003,
+    "end": 1453.7530000000004,
+    "who": "Ida",
+    "text": "Okey, så hvis flyalarmen går så er det dit man skal da?",
+    "role": "Ida"
+  },
+  {
+    "start": 1455.0060000000003,
+    "end": 1460.9770000000003,
+    "who": "Leif",
+    "text": "De rommene skal være operative innen 72 timer etter erklært unntakstilstand.",
+    "role": "Leif"
+  },
+  {
+    "start": 1455.0150000000003,
+    "end": 1459.4150000000004,
+    "who": "Ida",
+    "text": "Ja, men er ikke det ganske lenge hvis man blir bomba? ",
+    "role": "Ida"
+  },
+  {
+    "start": 1459.0140000000001,
+    "end": 1467.8390000000002,
+    "who": "Leif",
+    "text": "Nei, det er faktisk et godt poeng. Men nå er det sånn at det ikke er først og fremst flyangrep vi forbereder oss på lenger. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1464.0110000000004,
+    "end": 1468.7060000000004,
+    "who": "Karsten",
+    "text": "Nei, hva er det for noe nå da? Islamister? IS?",
+    "role": "Karsten"
+  },
+  {
+    "start": 1470.0100000000002,
+    "end": 1473.8700000000001,
+    "who": "Leif",
+    "text": "Nei, de er faktisk ganske langt nede på lista. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1472.0110000000004,
+    "end": 1473.1710000000005,
+    "who": "Karsten",
+    "text": "Ok.",
+    "role": "Karsten"
+  },
+  {
+    "start": 1472.0230000000001,
+    "end": 1476.5680000000002,
+    "who": "Ida",
+    "text": "Ja, fordi det er en liste, det finnes en liste liksom? ",
+    "role": "Ida"
+  },
+  {
+    "start": 1475.0159999999996,
+    "end": 1477.6589999999997,
+    "who": "Leif",
+    "text": "Ja absolutt, absolutt.",
+    "role": "Leif"
+  },
+  {
+    "start": 1477.0119999999997,
+    "end": 1481.2039999999997,
+    "who": "Ida",
+    "text": "Hva er det som er på første plass for eksempel? ",
+    "role": "Ida"
+  },
+  {
+    "start": 1479.0159999999996,
+    "end": 1484.3749999999995,
+    "who": "Leif",
+    "text": "Nei, altså.. De listene de blir oppdatert hele tida i forhold til...",
+    "role": "Leif"
+  },
+  {
+    "start": 1486.0020000000004,
+    "end": 1489.8480000000004,
+    "who": "Karsten",
+    "text": "Du åssen går det på damefronten da, Leif?  ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1488.0100000000002,
+    "end": 1490.8090000000002,
+    "who": "Karsten",
+    "text": "Skjedd noe der siden sist eller?",
+    "role": "Karsten"
+  },
+  {
+    "start": 1489.0140000000001,
+    "end": 1491.3690000000001,
+    "who": "Leif",
+    "text": "Nei, det har ikke det. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1491.0240000000003,
+    "end": 1496.8250000000003,
+    "who": "Karsten",
+    "text": "Nei? Men det hender at du treffer litt andre folk, sånn innimellom? ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1496.005,
+    "end": 1498.515,
+    "who": "Leif",
+    "text": "Absolutt, det gjør jeg. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1497.0020000000004,
+    "end": 1500.9140000000004,
+    "who": "Karsten",
+    "text": "Hvem da? Hvem er det du treffer? Hmm? ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1502.0069999999996,
+    "end": 1503.8199999999997,
+    "who": "Leif",
+    "text": "Treffer folk. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1508.009,
+    "end": 1512.074,
+    "who": "Ida",
+    "text": "Får håpe vi ses snart igjen da eller, Leif? ",
+    "role": "Ida"
+  },
+  {
+    "start": 1510.0159999999996,
+    "end": 1511.7709999999997,
+    "who": "Leif",
+    "text": "Ja. Ok. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1514,
+    "end": 1523.322,
+    "who": "Karsten",
+    "text": "Kanskje du gidder å hjelpe meg bære den peisen ut på fortauet før du går? Den skal stå der nede til noen kommer å henter den.",
+    "role": "Karsten"
+  },
+  {
+    "start": 1521.0240000000003,
+    "end": 1524.5510000000004,
+    "who": "Leif",
+    "text": "Ja, selvfølgelig. Kjøpt ny? ",
+    "role": "Leif"
+  },
+  {
+    "start": 1524.0209999999997,
+    "end": 1530.8279999999997,
+    "who": "Karsten",
+    "text": "Nei nei... Bare... Vi har bare så liten plass. Og den er såpass svær. Så det...",
+    "role": "Karsten"
+  },
+  {
+    "start": 1530.0240000000003,
+    "end": 1532.4650000000004,
+    "who": "Leif",
+    "text": "Skal du ikke ha peis? ",
+    "role": "Leif"
+  },
+  {
+    "start": 1531.0240000000003,
+    "end": 1538.8920000000003,
+    "who": "Ida",
+    "text": "Vel, det er jo veldig koselig, men når Anna begynner å gå og sånn, så må vi tenke på sikkerheten. ",
+    "role": "Ida"
+  },
+  {
+    "start": 1532.0020000000004,
+    "end": 1540.6810000000005,
+    "who": "Leif",
+    "text": "Ok. Ja for jeg kjenner faktisk at jeg har såpass vondt i den hånda jeg at jeg tror ikke det... går. Sorry... ",
+    "role": "Leif"
+  },
+  {
+    "start": 1546.0010000000002,
+    "end": 1548.3180000000002,
+    "who": "Karsten",
+    "text": "Du! Leif! ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1550.004,
+    "end": 1553.07,
+    "who": "Karsten",
+    "text": "Er du bare helt ute igjen eller? ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1553.013,
+    "end": 1559.547,
+    "who": "Leif",
+    "text": "Jeg er ikke ute. Men synes kanskje det er litt vel uansvarlig når du har en liten baby?",
+    "role": "Leif"
+  },
+  {
+    "start": 1557.0200000000004,
+    "end": 1559.9970000000005,
+    "who": "Ida",
+    "text": "Hva er det som er uansvarlig? ",
+    "role": "Ida"
+  },
+  {
+    "start": 1562.0230000000001,
+    "end": 1567.901,
+    "who": "Leif",
+    "text": "Hvis strømmen går i minus 10 så tar det to døgn før dere fryser ihjel. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1565.0119999999997,
+    "end": 1569.6099999999997,
+    "who": "Karsten",
+    "text": "Hvis vi ikke tusler ned til noen venner som har peis da. ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1568.0010000000002,
+    "end": 1576.3660000000002,
+    "who": "Leif",
+    "text": "Selvfølgelig helt umulig å forestille seg et scenario der du ikke har lyst å tusle ned på gata her, med en baby. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1572.013,
+    "end": 1581.78,
+    "who": "Karsten",
+    "text": "Ja, for da står muslima der. Først så kapper dem strømmen, og så dreper de oss når vi går ut for å hente ved.. ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1576.0240000000003,
+    "end": 1584.3010000000004,
+    "who": "Leif",
+    "text": "Muslimene er ikke farlig! Strømbrudd er farlig. Det er det som er nr.1 på lista siden du spurte om det. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1582.013,
+    "end": 1588.146,
+    "who": "Leif",
+    "text": "Alle trusler fører til strømbrudd. Naturkatastrofer, pandemi og opprør. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1587.022,
+    "end": 1593.281,
+    "who": "Leif",
+    "text": "Og strømbrudd i seg selv det fører til pandemi, opprør, plyndring og kaos.",
+    "role": "Leif"
+  },
+  {
+    "start": 1592.018,
+    "end": 1594.865,
+    "who": "Leif",
+    "text": "Derfor er det nummer 1. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1593.018,
+    "end": 1602.506,
+    "who": "Leif",
+    "text": "Og bare så dere vet det så har vi solgt strømnettet vårt til private aktører som driter i vedlikehold og bare tenker profitt. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1599.0140000000001,
+    "end": 1608.1740000000002,
+    "who": "Leif",
+    "text": "Og jeg bryr meg ikke om jeg, jeg bryr meg ikke om dere ikke vet hvor nærmeste tilfluktsrom er, det er helt greit for meg det. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1604.0110000000004,
+    "end": 1612.9560000000004,
+    "who": "Leif",
+    "text": "Men du kan ikke, du kan ikke sette et lite menneske til verden og så slenge ut peisen fra leiligheten. Det går ikke det!",
+    "role": "Leif"
+  },
+  {
+    "start": 1612.0060000000003,
+    "end": 1613.4310000000003,
+    "who": "Karsten",
+    "text": "Brosjan. ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1618.0140000000001,
+    "end": 1620.0200000000002,
+    "who": "Karsten",
+    "text": "Leif! Leif. ",
+    "role": "Karsten"
+  },
+  {
+    "start": 1621.0190000000002,
+    "end": 1622.3190000000002,
+    "who": "Karsten",
+    "text": "Leif!",
+    "role": "Karsten"
+  },
+  {
+    "start": 34022.022,
+    "end": 34025.267,
+    "who": "Leif",
+    "text": "Det går fint. Takk for meg. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1634.004,
+    "end": 1638.7849999999999,
+    "who": "Teo",
+    "text": "Leif sa at du kunne hjelpe meg med å skaffe meg et nytt ansikt. ",
+    "role": "Teo"
+  },
+  {
+    "start": 1638.0100000000002,
+    "end": 1640.0250000000003,
+    "who": "Ravn",
+    "text": "Leif sa det? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1639.0110000000004,
+    "end": 1640.0870000000004,
+    "who": "Teo",
+    "text": "Ja. ",
+    "role": "Teo"
+  },
+  {
+    "start": 1641.0119999999997,
+    "end": 1646.3849999999998,
+    "who": "Teo",
+    "text": "Det går an! Folk har forsvunnet sånn før, jeg har lest om det. ",
+    "role": "Teo"
+  },
+  {
+    "start": 1648.0209999999997,
+    "end": 1652.5269999999998,
+    "who": "Ravn",
+    "text": "Du trenger jo ikke noe nytt ansikt, du trenger en ny nyre. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1652.0119999999997,
+    "end": 1656.8089999999997,
+    "who": "Teo",
+    "text": "Spiller jo ingen rolle, så snart noen ser meg er jeg død. ",
+    "role": "Teo"
+  },
+  {
+    "start": 1657.0079999999998,
+    "end": 1660.0559999999998,
+    "who": "Teo",
+    "text": "Jeg kan betale, jeg har masse penger. ",
+    "role": "Teo"
+  },
+  {
+    "start": 1659.0190000000002,
+    "end": 1662.5500000000002,
+    "who": "Ravn",
+    "text": "Det er jo ikke dine penger, skjønner du? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1662.022,
+    "end": 1673.5359999999998,
+    "who": "Ravn",
+    "text": "Og så jobber jeg med akutte skader. Jeg jobber med folk som har mistet et øye, som har fått svidd av huden, som har fått knust kjeven, og som trenger hjelp.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1672.0029999999997,
+    "end": 1676.9009999999996,
+    "who": "Ravn",
+    "text": "Ikke idioter som stjeler og flyr og gjemmer seg etterpå. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1673.0240000000003,
+    "end": 1675.4600000000003,
+    "who": "Teo",
+    "text": "Jeg trenger ikke bli pen. ",
+    "role": "Teo"
+  },
+  {
+    "start": 1734.018,
+    "end": 1746.066,
+    "who": "Ravn",
+    "text": "Og ansiktet er jo en ting, men du har jo en en høyde, du har et kroppspråk. Du har en stemme, du har to øyne, du har en tannstilling, du har fingeravtrykk, du har DNA. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1683.0119999999997,
+    "end": 1696.2889999999998,
+    "who": "Teo",
+    "text": "Ingen har DNAen min. Jeg har aldri vært hos tannlegen i Norge, jeg har aldri vært hos lege under eget navn. Fingeravtrykkene mine - jeg har manipulert de siden jeg var 16. ",
+    "role": "Teo"
+  },
+  {
+    "start": 1695.0079999999998,
+    "end": 1698.1789999999999,
+    "who": "Ravn",
+    "text": "Men du heter Teodor Naustvik? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1696.0150000000003,
+    "end": 1705.7530000000004,
+    "who": "Teo",
+    "text": "Ja, og jeg er ikke en idiot. Jeg har en kone, hun er gravid. Jeg trengte de pengene ikke sant? Så at vi kan være forberedt. ",
+    "role": "Teo"
+  },
+  {
+    "start": 1714.0010000000002,
+    "end": 1716.0940000000003,
+    "who": "Ravn",
+    "text": "Forberedt på hva?",
+    "role": "Ravn"
+  },
+  {
+    "start": 1712.0159999999996,
+    "end": 1714.1709999999996,
+    "who": "Teo",
+    "text": "På det som kommer. ",
+    "role": "Teo"
+  },
+  {
+    "start": 1713.0200000000004,
+    "end": 1715.1070000000004,
+    "who": "Ravn",
+    "text": "Og hva er det? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1718.0119999999997,
+    "end": 1720.9319999999998,
+    "who": "Teo",
+    "text": "Hvor godt kjenner du Leif egentlig?",
+    "role": "Teo"
+  },
+  {
+    "start": 1720.0069999999996,
+    "end": 1722.5529999999997,
+    "who": "Ravn",
+    "text": "Leif er en gammel pasient. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1722.0029999999997,
+    "end": 1724.0649999999996,
+    "who": "Teo",
+    "text": "Men du er en av oss?",
+    "role": "Teo"
+  },
+  {
+    "start": 1724.0020000000004,
+    "end": 1726.7200000000005,
+    "who": "Ravn",
+    "text": "Det spørs vel hva du mener? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1727.0010000000002,
+    "end": 1734.5640000000003,
+    "who": "Leif",
+    "text": "Hallo! Da har jeg fått tak i nesten alt på den lista din jeg, hvertfall det som er forbruksmateriell. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1732.0110000000004,
+    "end": 1735.1320000000005,
+    "who": "Ravn",
+    "text": "Jeg må snakke med deg, nå!",
+    "role": "Ravn"
+  },
+  {
+    "start": 1734.0110000000004,
+    "end": 1738.2890000000004,
+    "who": "Leif",
+    "text": "Det som er det dyreste utstyret, det har de ikke borte på...",
+    "role": "Leif"
+  },
+  {
+    "start": 1736.005,
+    "end": 1737.9540000000002,
+    "who": "Ravn",
+    "text": "Kom igjen, nå!",
+    "role": "Ravn"
+  },
+  {
+    "start": 1739.0169999999998,
+    "end": 1740.3519999999999,
+    "who": "Ravn",
+    "text": "Kom!",
+    "role": "Ravn"
+  },
+  {
+    "start": 1741.0230000000001,
+    "end": 1743.601,
+    "who": "Leif",
+    "text": "Går det bra her eller? ",
+    "role": "Leif"
+  },
+  {
+    "start": 1747.0240000000003,
+    "end": 1748.1240000000003,
+    "who": "Leif",
+    "text": "Ja?",
+    "role": "Leif"
+  },
+  {
+    "start": 1748.0060000000003,
+    "end": 1753.2940000000003,
+    "who": "Ravn",
+    "text": "Hvorfor har du sagt til han fyren at jeg kan gi han et nytt ansikt? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1751.0060000000003,
+    "end": 1753.7740000000003,
+    "who": "Leif",
+    "text": "Eh... Fordi du kan det? ",
+    "role": "Leif"
+  },
+  {
+    "start": 1753.0150000000003,
+    "end": 1755.9740000000004,
+    "who": "Ravn",
+    "text": "Nei, det er ikke sånn det funker.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1755.0029999999997,
+    "end": 1759.5679999999998,
+    "who": "Leif",
+    "text": "Ja, men han kan ikke dra herfra sånn som han ser ut nå.",
+    "role": "Leif"
+  },
+  {
+    "start": 1757.0190000000002,
+    "end": 1762.3780000000002,
+    "who": "Ravn",
+    "text": "Ja, tror du det holder med bandasjer og antibiotika, Leif? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1762.0159999999996,
+    "end": 1766.9519999999995,
+    "who": "Ravn",
+    "text": "Og hvis den andre nyra hans tar kvelden, så trenger han dialyse.",
+    "role": "Ravn"
+  },
+  {
+    "start": 1765.0110000000004,
+    "end": 1772.1450000000004,
+    "who": "Leif",
+    "text": "Med pengene hans og kontaktene mine, så får vi tak i det vi trenger. Finnes marked for alt. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1770.0100000000002,
+    "end": 1775.6850000000002,
+    "who": "Ravn",
+    "text": "Han kan være død lenge før den tid, og jeg rører ikke de blodpengene hans. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1774.0020000000004,
+    "end": 1783.5780000000004,
+    "who": "Leif",
+    "text": "Oi. Skal vi trappe ned litt på hykleriet her. Altså, du leier her, og du henger etter på leia, for å si det sånn. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1783.0010000000002,
+    "end": 1786.9750000000001,
+    "who": "Ravn",
+    "text": "Truer du meg? Er det meg eller han? ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1787.018,
+    "end": 1791.713,
+    "who": "Leif",
+    "text": "Det er bare du som vet at han er her. Han trenger hjelp. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1791.0169999999998,
+    "end": 1795.244,
+    "who": "Ravn",
+    "text": "Han trenger en god pyskolog, ikke noe nytt ansikt. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1795.0110000000004,
+    "end": 1797.1850000000004,
+    "who": "Leif",
+    "text": "Hva sa du nå? ",
+    "role": "Leif"
+  },
+  {
+    "start": 1796.0230000000001,
+    "end": 1804.9850000000001,
+    "who": "Ravn",
+    "text": "Tror du ikke jeg kjenner igjen det der dommedagspreiket ditt Leif, jeg har hørt det siden første gang du kom til meg som pasient. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1802.0020000000004,
+    "end": 1809.1030000000005,
+    "who": "Ravn",
+    "text": "Alt det der gnålet om at hele verden kommer til å gå under, det... Alt det der er bare noia. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1806.004,
+    "end": 1811.3809999999999,
+    "who": "Ravn",
+    "text": "Konspirasjoner fra internett som er sausa sammen i en patalogisk røre. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1810.009,
+    "end": 1816.584,
+    "who": "Ravn",
+    "text": "Og noen blir jævla redde av sånt og gjør idiotiske ting, det tok nesten livet av han der. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 1817.0060000000003,
+    "end": 1822.6570000000004,
+    "who": "Leif",
+    "text": "Så han er gæren og trenger psykolog. En til meg og da eller? ",
+    "role": "Leif"
+  },
+  {
+    "start": 1826.0119999999997,
+    "end": 1830.9779999999996,
+    "who": "Leif",
+    "text": "Nå er det jo en ting du glemmer. Ravn! Du trenger meg. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1840.0159999999996,
+    "end": 1845.9969999999996,
+    "who": "Police dispatch",
+    "text": "Null en, Null en. Dette er tre. Da har vi fått et signalement på hun dama.",
+    "role": "Politisentralen (off)",
+    "aux": "(off)"
+  },
+  {
+    "start": 1856.0060000000003,
+    "end": 1857.3030000000003,
+    "who": "Leif",
+    "text": "Hei!",
+    "role": "Leif"
+  },
+  {
+    "start": 1856.0069999999996,
+    "end": 1857.3559999999995,
+    "who": "Per",
+    "text": "Halla!",
+    "role": "Per"
+  },
+  {
+    "start": 1858.0100000000002,
+    "end": 1859.3750000000002,
+    "who": "Leif",
+    "text": "Halla!",
+    "role": "Leif"
+  },
+  {
+    "start": 1860.0209999999997,
+    "end": 1862.9229999999998,
+    "who": "Leif",
+    "text": "Jeg bestilte det vanlige til deg.",
+    "role": "Leif"
+  },
+  {
+    "start": 1863.0020000000004,
+    "end": 1864.6920000000005,
+    "who": "Per",
+    "text": "Halla Assaf!",
+    "role": "Per"
+  },
+  {
+    "start": 1863.0169999999998,
+    "end": 1865.2109999999998,
+    "who": "Assaf",
+    "text": "Hvordan går det 'a?",
+    "role": "Assaf"
+  },
+  {
+    "start": 1863.005,
+    "end": 1865.816,
+    "who": "Per",
+    "text": "Har du et glass vann til meg eller?",
+    "role": "Per"
+  },
+  {
+    "start": 1865.0190000000002,
+    "end": 1866.2920000000001,
+    "who": "Assaf",
+    "text": "Jepp.",
+    "role": "Assaf"
+  },
+  {
+    "start": 1868.0159999999996,
+    "end": 1872.7459999999996,
+    "who": "Leif",
+    "text": "Ah, jeg er glad for at du ringte, jeg. Går det bra?",
+    "role": "Leif"
+  },
+  {
+    "start": 1872.0190000000002,
+    "end": 1876.5120000000002,
+    "who": "Per",
+    "text": "Ja, går greit med meg. Hadde et svært ran da!",
+    "role": "Per"
+  },
+  {
+    "start": 1876.0119999999997,
+    "end": 1881.3169999999998,
+    "who": "Leif",
+    "text": "Ja, shit, jeg hørte om det. Dere har tatt dem nå, eller?",
+    "role": "Leif"
+  },
+  {
+    "start": 1879.0230000000001,
+    "end": 1881.9520000000002,
+    "who": "Per",
+    "text": "Jo, vi har tatt alle sammen!",
+    "role": "Per"
+  },
+  {
+    "start": 1882.0169999999998,
+    "end": 1883.149,
+    "who": "Leif",
+    "text": "Bra.",
+    "role": "Leif"
+  },
+  {
+    "start": 1883.0169999999998,
+    "end": 1888.3429999999998,
+    "who": "Per",
+    "text": "Bortsett fra en jævel. Ja, det er han som sitter med alle penga.",
+    "role": "Per"
+  },
+  {
+    "start": 1887.0119999999997,
+    "end": 1888.6089999999997,
+    "who": "Leif",
+    "text": "Er det sant?",
+    "role": "Leif"
+  },
+  {
+    "start": 1890.0079999999998,
+    "end": 1896.5509999999997,
+    "who": "Per",
+    "text": "Det er litt rart for at det, eh, de slo til akkurat den dagen vi hadde minst bemanning.",
+    "role": "Per"
+  },
+  {
+    "start": 1897.0069999999996,
+    "end": 1899.8409999999997,
+    "who": "Leif",
+    "text": "Sikkert visst om det, vøtt.",
+    "role": "Leif"
+  },
+  {
+    "start": 1898.0230000000001,
+    "end": 1905.478,
+    "who": "Per",
+    "text": "Ja, det tror jeg og. De må jo ha visst det! Men hvordan visste dem det? Det lurer jeg på.",
+    "role": "Per"
+  },
+  {
+    "start": 1910.0200000000004,
+    "end": 1912.3670000000004,
+    "who": "Leif",
+    "text": "Tror du det er meg?",
+    "role": "Leif"
+  },
+  {
+    "start": 1912.004,
+    "end": 1914.857,
+    "who": "Per",
+    "text": "Det er ikke det jeg sier, Leif.",
+    "role": "Per"
+  },
+  {
+    "start": 1913.0020000000004,
+    "end": 1917.1010000000003,
+    "who": "Leif",
+    "text": "Tenkte du, men du sa jo at du tenkte det nå?",
+    "role": "Leif"
+  },
+  {
+    "start": 1914.0200000000004,
+    "end": 1923.9430000000004,
+    "who": "Per",
+    "text": "Vi snakka om det sist vi traff hverandre. Akkurat den kvelden, sa jeg til deg, er det kritisk bemanning på grunn av det statsbesøket.",
+    "role": "Per"
+  },
+  {
+    "start": 1921.0240000000003,
+    "end": 1926.4150000000004,
+    "who": "Leif",
+    "text": "Ja, og det var en samtale mellom deg og meg, fortrolig som vanlig.",
+    "role": "Leif"
+  },
+  {
+    "start": 1925.0100000000002,
+    "end": 1927.4040000000002,
+    "who": "Per",
+    "text": "Det var topp hemmelig info.",
+    "role": "Per"
+  },
+  {
+    "start": 1926.0150000000003,
+    "end": 1927.1690000000003,
+    "who": "Leif",
+    "text": "Ja!",
+    "role": "Leif"
+  },
+  {
+    "start": 1927.009,
+    "end": 1930.845,
+    "who": "Per",
+    "text": "Og jeg har ikke sagt det til noen andre enn deg.",
+    "role": "Per"
+  },
+  {
+    "start": 1929.0100000000002,
+    "end": 1939.6710000000003,
+    "who": "Leif",
+    "text": "Ja, jeg, men jeg ville aldri, altså. Herregud, disse folka her kommer sikkert ut av et sånt miljø! Jeg kjenner jo ikke noen sånne folk.",
+    "role": "Leif"
+  },
+  {
+    "start": 1936.022,
+    "end": 1942.3719999999998,
+    "who": "Per",
+    "text": "Nei, jeg forsto det sånn at den derre Naustvik, han er visst litt sånn dommedags-nerd.",
+    "role": "Per"
+  },
+  {
+    "start": 1944.0079999999998,
+    "end": 1945.3009999999997,
+    "who": "Leif",
+    "text": "Hva da?",
+    "role": "Leif"
+  },
+  {
+    "start": 1945.0150000000003,
+    "end": 1956.0390000000002,
+    "who": "Per",
+    "text": "Du skjønner hva jeg mener; ut i skaugen og jakt og, takk skal du ha, hamstre boksmat, lage reint vann av piss, de greiene der. Du kjenner jo de folka?",
+    "role": "Per"
+  },
+  {
+    "start": 1955.0200000000004,
+    "end": 1958.7850000000005,
+    "who": "Leif",
+    "text": "Ja, jeg vet hvem de er, jeg gjør det!",
+    "role": "Leif"
+  },
+  {
+    "start": 1962.018,
+    "end": 1965.842,
+    "who": "Leif",
+    "text": "Men jeg har aldri hørt om han Nøstvik, aldri!",
+    "role": "Leif"
+  },
+  {
+    "start": 1966.0150000000003,
+    "end": 1967.5010000000004,
+    "who": "Per",
+    "text": "Naustvik.",
+    "role": "Per"
+  },
+  {
+    "start": 1967.022,
+    "end": 1969.72,
+    "who": "Leif",
+    "text": "Naustvik. Aldri hørt om.",
+    "role": "Leif"
+  },
+  {
+    "start": 1972,
+    "end": 1978,
+    "who": "Per",
+    "text": "Men Leif, den infoen som jeg gir deg når vi møtes. Hva bruker du den til?",
+    "role": "Per"
+  },
+  {
+    "start": 1980.0169999999998,
+    "end": 1983.6699999999998,
+    "who": "Leif",
+    "text": "Kartlegging, trusselvurdering, sånne ting. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1987.0010000000002,
+    "end": 1991.4300000000003,
+    "who": "Leif",
+    "text": "Du gir noe til meg, men jeg gir også noe til deg. ",
+    "role": "Leif"
+  },
+  {
+    "start": 1990.0119999999997,
+    "end": 1996.0399999999997,
+    "who": "Leif",
+    "text": "Sånn som de har holdt på her i byen helt siden en og søtti og Borten-regjeringa.",
+    "role": "Leif"
+  },
+  {
+    "start": 1995.0119999999997,
+    "end": 2001.6339999999998,
+    "who": "Leif",
+    "text": "Fordi den eneste måten å sikre reel beredskap er i den uformelle kontakten mellom etatene. ",
+    "role": "Leif"
+  },
+  {
+    "start": 2002.0230000000001,
+    "end": 2006.893,
+    "who": "Leif",
+    "text": "Sånn som vi holder på med, fordi vi veit at det er sånn det er.",
+    "role": "Leif"
+  },
+  {
+    "start": 2005.0140000000001,
+    "end": 2012.7800000000002,
+    "who": "Per",
+    "text": "Alt det der er greit. Det som ikke er greit er at en god kompis av meg ligger kritisk på sjukehuset. ",
+    "role": "Per"
+  },
+  {
+    "start": 2011.0119999999997,
+    "end": 2015.1459999999997,
+    "who": "Per",
+    "text": "Jeg kjenner han godt, Leif, jeg kjenner kona hans. ",
+    "role": "Per"
+  },
+  {
+    "start": 2014.0140000000001,
+    "end": 2020.1190000000001,
+    "who": "Per",
+    "text": "Og nå er det en eller annen gærning der ute som sitter på mer enn 60 mill!",
+    "role": "Per"
+  },
+  {
+    "start": 2017.013,
+    "end": 2024.8919999999998,
+    "who": "Leif",
+    "text": "Jeg skjønner. Det er så forjævlig så det går an. Det er sikkert noen som lekker ett eller annet sted.",
+    "role": "Leif"
+  },
+  {
+    "start": 2025.0079999999998,
+    "end": 2028.6279999999997,
+    "who": "Per",
+    "text": "Har du sagt til noen at vi snakker sammen?",
+    "role": "Per"
+  },
+  {
+    "start": 2030.018,
+    "end": 2032.417,
+    "who": "Leif",
+    "text": "Vi er venner, Per!",
+    "role": "Leif"
+  },
+  {
+    "start": 2031.022,
+    "end": 2045.5829999999999,
+    "who": "Per",
+    "text": "Mhm, og opp gjennom åra så har jeg sagt en del ting til deg som jeg kanskje ikke burde ha sagt,  og nå snur de hver stein på jobben, for alle skjønner at det må ha vært en lekkasje om bemanninga akkurat den kvelden.",
+    "role": "Per"
+  },
+  {
+    "start": 1983,
+    "end": 1985.496,
+    "who": "Leif",
+    "text": "Stoler du ikke på meg?",
+    "role": "Leif"
+  },
+  {
+    "start": 2045.0010000000002,
+    "end": 2049.7940000000003,
+    "who": "Per",
+    "text": "Jeg vil det. Du har noen svin på skauen du og, Leif. ",
+    "role": "Per"
+  },
+  {
+    "start": 2050.0020000000004,
+    "end": 2056.5270000000005,
+    "who": "Per",
+    "text": "Tror du kan finne ganske mye rart nedi de derre tilfluktsrommene dine. Tar jeg feil?",
+    "role": "Per"
+  },
+  {
+    "start": 2058.0150000000003,
+    "end": 2063.5730000000003,
+    "who": "Leif",
+    "text": "Jeg kommer aldri til å si noe om noe av det du har sagt til meg, aldri. ",
+    "role": "Leif"
+  },
+  {
+    "start": 2067.0159999999996,
+    "end": 2073.5319999999997,
+    "who": "Leif",
+    "text": "Og nå er jeg, ble jeg, litt overrumpla av dette her, fordi jeg blir litt lei meg. ",
+    "role": "Leif"
+  },
+  {
+    "start": 2073.01,
+    "end": 2078.4990000000003,
+    "who": "Leif",
+    "text": "Fordi at du tenker sånn om meg, etter alle, så mange år liksom! ",
+    "role": "Leif"
+  },
+  {
+    "start": 2080.014,
+    "end": 2084.347,
+    "who": "Leif",
+    "text": "Ja, jeg vet ikke jeg. Det ble bare litt mye nå.",
+    "role": "Leif"
+  },
+  {
+    "start": 2091.0069999999996,
+    "end": 2097.5979999999995,
+    "who": "Per",
+    "text": "Jeg er nødt til å stikke, jeg er egentlig på jobb, men si fra hvis du hører noe da!",
+    "role": "Per"
+  },
+  {
+    "start": 2096.01,
+    "end": 2098.255,
+    "who": "Leif",
+    "text": "Jeg lover, alltid!",
+    "role": "Leif"
+  },
+  {
+    "start": 2123.023,
+    "end": 2128.406,
+    "who": "Leif",
+    "text": "Ja, og det var en samtale mellom deg og meg, fortrolig som vanlig.",
+    "role": "Leif (Opptak)",
+    "aux": "(Recording)(OFF)"
+  },
+  {
+    "start": 2127.008,
+    "end": 2141.1879999999996,
+    "who": "Per",
+    "text": "Og opp gjennom åra så har jeg sagt en del ting til deg som jeg kanskje ikke burde ha sagt, og nå snur de  hver stein på jobben, for alle skjønner at det må ha vært en lekkasje om bemanninga akkurat den kvelden.",
+    "role": "Per (Opptak)",
+    "aux": "(Recording)(OFF)"
+  },
+  {
+    "start": 2140.001,
+    "end": 2146.4120000000003,
+    "who": "Leif V.O.",
+    "text": "Alle vet at da Titanic gikk ned, så spilte orkesteret på dekk helt til det siste. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2148.0029999999997,
+    "end": 2156.5759999999996,
+    "who": "Leif V.O.",
+    "text": "Men det mange ikke vet, er at en god del av passasjerene valgte å danse, selv når de visste at alt gikk til hælvete. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2157.0110000000004,
+    "end": 2165.5850000000005,
+    "who": "Leif V.O.",
+    "text": "Vi tenkte på samme måte for tredve år siden, da vi bestemte at vi ikke skulle bygge flere tilfluktsrom her i Norge.",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2162.013,
+    "end": 2169.938,
+    "who": "Voice",
+    "text": "H-minus ten seconds, nine, eight, seven, six, five, four, three, two, one",
+    "role": "Stemme (off)",
+    "aux": "(off)"
+  },
+  {
+    "start": 2163.022,
+    "end": 2169.532,
+    "who": "Leif V.O.",
+    "text": "Selv om bare en tredjedel av oss får plass i de rommene vi har, så får vi nøye oss med det.",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2170.022,
+    "end": 2176.631,
+    "who": "Leif V.O.",
+    "text": "Vi er ikke redde for atombomben lenger. Vi har slutta å tenke på det som er ubehagelig. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2177.017,
+    "end": 2180.819,
+    "who": "Leif V.O.",
+    "text": "Den tynne hinnen som skiller idyll fra kaos. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2182.009,
+    "end": 2188.53,
+    "who": "Leif V.O.",
+    "text": "Historien har vist at det er tolv ting som til en hver tid kan gjøre at alt kollapser: ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2188.0029999999997,
+    "end": 2190.7719999999995,
+    "who": "Leif V.O.",
+    "text": "Det viktigste er overbefolkning.",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2191.0029999999997,
+    "end": 2195.0779999999995,
+    "who": "Leif V.O.",
+    "text": "Det blir født 255 babyer hvert eneste minutt…",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2192.0200000000004,
+    "end": 2198.0960000000005,
+    "who": "Leif V.O.",
+    "text": "Ettbarnspolitikk er vårt eneste håp. Men det er det jo ingen som vil snakke om. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2197.0069999999996,
+    "end": 2200.5149999999994,
+    "who": "Leif V.O.",
+    "text": "Som nummer to kan vi sette klimaforandring. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2201.005,
+    "end": 2208.9990000000003,
+    "who": "Leif V.O.",
+    "text": "Nummer tre er avskoging. Vi hogger for mange trær, og matjorda blir ødelagt av erosjon og dårlig landbruk. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2210.022,
+    "end": 2217.814,
+    "who": "Leif V.O.",
+    "text": "Vi har ikke nok vann, og vi driter i det vi har, bokstavelig talt. Vi fisker for mye, og stadig mer. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2219.022,
+    "end": 2222.442,
+    "who": "Leif V.O.",
+    "text": "Historisk sett har vi jakta for mye og. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2226.008,
+    "end": 2230.513,
+    "who": "Leif V.O.",
+    "text": "Nå dreper vi bare dyr som står i bur eller bås. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2230.0060000000003,
+    "end": 2234.3240000000005,
+    "who": "Leif V.O.",
+    "text": "Men hver dag, et sted på jorda, blir en art utrydda.",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2236.0209999999997,
+    "end": 2241.5759999999996,
+    "who": "Leif V.O.",
+    "text": "Vi makser ut fotosyntesen, og får ikke nok oksygen ut av naturen. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2241.008,
+    "end": 2246.125,
+    "who": "Leif V.O.",
+    "text": "Nye arter som blir introdusert i kretsløpet, skaper ubalanse.",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2246.023,
+    "end": 2251.202,
+    "who": "Leif V.O.",
+    "text": "I Kina triller det femtitusen nye biler ut på veien, hver dag. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2251.0119999999997,
+    "end": 2254.2029999999995,
+    "who": "Leif V.O.",
+    "text": "Forgiftning er punkt 11.",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2243.013,
+    "end": 2248.005,
+    "who": "Leif V.O.",
+    "text": "...og den siste er energimangel. Og det er der vi er mest sårbare. ",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2259.0069999999996,
+    "end": 2263.4619999999995,
+    "who": "Leif V.O.",
+    "text": "Hvis bare én av disse tolv truslene når et kritisk punkt...",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2263.0159999999996,
+    "end": 2264.8639999999996,
+    "who": "Leif V.O.",
+    "text": "så er vi ferdig.",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2264.023,
+    "end": 2270.619,
+    "who": "Leif V.O.",
+    "text": "Ikke alle tolv, eller fem eller seks av de, det holder med en. Da synker skipet.",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2272,
+    "end": 2274.077,
+    "who": "Leif V.O.",
+    "text": "Selv om vi danser.",
+    "role": "Leif V.O."
+  },
+  {
+    "start": 2278.0069999999996,
+    "end": 2285.7519999999995,
+    "who": "info",
+    "text": "Dette var utrolig bra, Tyf0n, kudos! Jeg synes du skal prøve å få dette ut til folk... ",
+    "role": "Tekst på PC-skjerm",
+    "aux": "(PC)"
+  },
+  {
+    "start": 2279.022,
+    "end": 2285.363,
+    "who": "info",
+    "text": "Sjukt bra det her mr T. Og enig med forrige poster, dette må ut til folket!",
+    "role": "Tekst på PC-skjerm",
+    "aux": "(PC)"
+  },
+  {
+    "start": 2288.022,
+    "end": 2291.4519999999998,
+    "who": "Public annoncement",
+    "text": "Smestad. Overgang Linje 3 Kolsås.",
+    "role": "PA"
+  },
+  {
+    "start": 2302,
+    "end": 2304.77,
+    "who": "info",
+    "text": "Oslo Universitetssykehus",
+    "role": "SKILT"
+  },
+  {
+    "start": 2303.018,
+    "end": 2304.635,
+    "who": "Nurse",
+    "text": "Hei Ravn!",
+    "role": "Sykepleier"
+  },
+  {
+    "start": 2304.0029999999997,
+    "end": 2305.296,
+    "who": "Ravn",
+    "text": "Hei!",
+    "role": "Ravn"
+  },
+  {
+    "start": 2305.017,
+    "end": 2307.845,
+    "who": "info",
+    "text": "LAB. FOR NEVROIMMUNOLOGI",
+    "role": "SKILT"
+  },
+  {
+    "start": 2323.022,
+    "end": 2326.906,
+    "who": "Unn",
+    "text": "Hvordan går det, Ravn? Hva gjør du her?",
+    "role": "Unn"
+  },
+  {
+    "start": 2327.0020000000004,
+    "end": 2329.6280000000006,
+    "who": "Ravn",
+    "text": "Det er noe jeg holder på med. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 2329.0110000000004,
+    "end": 2335.1940000000004,
+    "who": "Ravn",
+    "text": "Det er veldig spennende egentlig, men uten tilgang her så kommer jeg ikke videre.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2335.0020000000004,
+    "end": 2336.5750000000003,
+    "who": "Unn",
+    "text": "Med hva da?",
+    "role": "Unn"
+  },
+  {
+    "start": 2336.0159999999996,
+    "end": 2343.6569999999997,
+    "who": "Ravn",
+    "text": "Det kan jeg ikke si så mye om, det er et oppdrag for sivilforsvaret, så det er unntatt offentligheten.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2342.014,
+    "end": 2343.295,
+    "who": "Unn",
+    "text": "Okei.",
+    "role": "Unn"
+  },
+  {
+    "start": 2345.0119999999997,
+    "end": 2352.899,
+    "who": "Ravn",
+    "text": "Jeg tenkte på det du sa sist, i Vilmas begravelse, at hvis det var noe jeg trengte hjelp til, så kunne jeg... ",
+    "role": "Ravn"
+  },
+  {
+    "start": 2352.0020000000004,
+    "end": 2353.9670000000006,
+    "who": "Ravn",
+    "text": "...komme til deg?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2352.0119999999997,
+    "end": 2354.7099999999996,
+    "who": "Unn",
+    "text": "Absolutt. Hva som helst.",
+    "role": "Unn"
+  },
+  {
+    "start": 2363.023,
+    "end": 2365.166,
+    "who": "Unn",
+    "text": "Masse-spektrometer?",
+    "role": "Unn"
+  },
+  {
+    "start": 2365.022,
+    "end": 2371.565,
+    "who": "Ravn",
+    "text": "Det er jo flere av dem her på huset, det er jo ikke sånn at de er i bruk hele tiden?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2370.005,
+    "end": 2375.147,
+    "who": "Unn",
+    "text": "Jeg kan jo ikke bare gi deg medisinsk utstyr til flere hundretusen?",
+    "role": "Unn"
+  },
+  {
+    "start": 2373.0150000000003,
+    "end": 2377.5250000000005,
+    "who": "Ravn",
+    "text": "Jeg skjønner det, du trenger ikke det. Du skal bare... ",
+    "role": "Ravn"
+  },
+  {
+    "start": 2379.0159999999996,
+    "end": 2383.028,
+    "who": "Ravn",
+    "text": "Du skal bare åpne en dør, også fikser jeg resten.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2383.022,
+    "end": 2385.986,
+    "who": "Unn",
+    "text": "Ravn, går det bra med deg?",
+    "role": "Unn"
+  },
+  {
+    "start": 2385.0209999999997,
+    "end": 2391.207,
+    "who": "Ravn",
+    "text": "Det er et stort hus, det forsvinner ting herfra hver dag! Du sa hva som helst!",
+    "role": "Ravn"
+  },
+  {
+    "start": 2390.0150000000003,
+    "end": 2393.2030000000004,
+    "who": "Unn",
+    "text": "Men har dette noe med Vilma å gjøre?",
+    "role": "Unn"
+  },
+  {
+    "start": 2396.0110000000004,
+    "end": 2398.6720000000005,
+    "who": "Ravn",
+    "text": "Det er noe jeg må finne ut av.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2397.023,
+    "end": 2398.317,
+    "who": "Unn",
+    "text": "Hva da?",
+    "role": "Unn"
+  },
+  {
+    "start": 2398.0150000000003,
+    "end": 2401.4860000000003,
+    "who": "Ravn",
+    "text": "Ja, vil du hjelpe meg eller vil du ikke?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2399.023,
+    "end": 2403.445,
+    "who": "Unn",
+    "text": "Jeg vil veldig gjerne hjelpe deg, men ikke på denne måten.",
+    "role": "Unn"
+  },
+  {
+    "start": 2404.01,
+    "end": 2405.672,
+    "who": "Ravn",
+    "text": "Jeg forstår.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2406.0159999999996,
+    "end": 2409.3509999999997,
+    "who": "Unn",
+    "text": "Nei, Ravn, det forstår du vel?",
+    "role": "Unn"
+  },
+  {
+    "start": 2441.0069999999996,
+    "end": 2442.6939999999995,
+    "who": "info",
+    "text": "Teknisk lager.",
+    "role": "SKILT"
+  },
+  {
+    "start": 2456.022,
+    "end": 2464.4809999999998,
+    "who": "News anchor",
+    "text": "Da har vi fått leder for seksjon for organisert kriminalitet fra Oslo politiet hit i studio, og Hege Salvesen...",
+    "role": "Nyhetsanker (f)(OFF)",
+    "aux": "(f)(OFF)"
+  },
+  {
+    "start": 2469.0029999999997,
+    "end": 2476.843,
+    "who": "Police",
+    "text": "Ja, vi gjennomgår alle våre rutiner. Dette handler i hovedsak om en spesielt brutal..",
+    "role": "Politikvinne på TV (off)",
+    "aux": "(f)(OFF)"
+  },
+  {
+    "start": 2472.014,
+    "end": 2474.605,
+    "who": "Teo",
+    "text": "Leif, kan du skru opp?",
+    "role": "Teo"
+  },
+  {
+    "start": 2474.014,
+    "end": 2477.397,
+    "who": "News anchor",
+    "text": "Hvordan er stemningen hos politiet nå?",
+    "role": "Nyhetsanker (f)(OFF)",
+    "aux": "(f)(OFF)"
+  },
+  {
+    "start": 2477.014,
+    "end": 2485.288,
+    "who": "Police",
+    "text": "Det er naturligvis en veldig vanskelig tid for oss, når en av våre egne blir skadet i tjenesten, så påvirker det oss alle.",
+    "role": "Politikvinne på TV",
+    "aux": "(f)"
+  },
+  {
+    "start": 2483.0200000000004,
+    "end": 2486.0210000000006,
+    "who": "News anchor",
+    "text": "Hva kan du si om han som er skadet?",
+    "role": "Nyhetsanker (f)(OFF)",
+    "aux": "(f)(OFF)"
+  },
+  {
+    "start": 2486,
+    "end": 2498.142,
+    "who": "Police",
+    "text": "Han er en godt likt tjenestemann. Han er en viktig del av innsatsstyrken. Han har kone og to små barn, og våre tanker går naturligvis til dem i denne vanskelige tiden.",
+    "role": "Politikvinne på TV",
+    "aux": "(f)(OFF)"
+  },
+  {
+    "start": 2494.013,
+    "end": 2495.84,
+    "who": "Teo",
+    "text": "Har han familie?",
+    "role": "Teo"
+  },
+  {
+    "start": 2496.004,
+    "end": 2499.759,
+    "who": "News anchor",
+    "text": "Hvor langt har dere nå kommet i etterforskningen?",
+    "role": "Nyhetsanker (f)(OFF)",
+    "aux": "(f)(OFF)"
+  },
+  {
+    "start": 2496.009,
+    "end": 2499.488,
+    "who": "Leif",
+    "text": "Jada, får bare håpe at han overlever.",
+    "role": "Leif"
+  },
+  {
+    "start": 2499.004,
+    "end": 2509.9739999999997,
+    "who": "Police",
+    "text": "Vi har gått ut med etterlysning av en navngitt person, og vi jobber nå for fullt med å innhente opplysninger som kan føre til en rask og trygg pågripelse. ",
+    "role": "Politikvinne på TV",
+    "aux": "(f)(OFF)"
+  },
+  {
+    "start": 2507.018,
+    "end": 2513.787,
+    "who": "News anchor",
+    "text": "Det er gått to dager siden dette brutale ranet altså. Hvorfor har dere ikke funnet Naustvik?",
+    "role": "Nyhetsanker (f)(OFF)",
+    "aux": "(f)(OFF)"
+  },
+  {
+    "start": 2531.0240000000003,
+    "end": 2532.8660000000004,
+    "who": "Ravn",
+    "text": "Ja, hallo!",
+    "role": "Ravn"
+  },
+  {
+    "start": 2531.018,
+    "end": 2539.092,
+    "who": "Leif",
+    "text": "Det har gått til helvete her. Han blør masse. Jeg prøvde å trykke på det åpne såret.. ",
+    "role": "Leif (telefon)",
+    "aux": "(telephone)"
+  },
+  {
+    "start": 2534.0200000000004,
+    "end": 2536.8260000000005,
+    "who": "Ravn",
+    "text": "Ja, det skal vi nok få til. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 2536.01,
+    "end": 2540.8300000000004,
+    "who": "Leif",
+    "text": "Det blør. Masse blod. Han blør fra trynet også. ",
+    "role": "Leif (telefon)",
+    "aux": "(telephone)"
+  },
+  {
+    "start": 2537.022,
+    "end": 2540.89,
+    "who": "Ravn",
+    "text": "Ja, men ta det med ro, det går nok bra. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 2539.0240000000003,
+    "end": 2543.8500000000004,
+    "who": "Leif",
+    "text": "Såret er helt åpent. Det fosser blod..",
+    "role": "Leif (telefon)",
+    "aux": "(telephone)"
+  },
+  {
+    "start": 2540.0209999999997,
+    "end": 2542.421,
+    "who": "Ravn",
+    "text": "Jeg kommer med en gang.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2531.022,
+    "end": 2532.58,
+    "who": "Leif",
+    "text": "Du må kom…",
+    "role": "Leif (telefon)",
+    "aux": "(telephone)"
+  },
+  {
+    "start": 2545.0069999999996,
+    "end": 2546.7469999999994,
+    "who": "Per",
+    "text": "Gå først du.",
+    "role": "Per"
+  },
+  {
+    "start": 2546.023,
+    "end": 2549.0080000000003,
+    "who": "Ravn",
+    "text": "Ja, takk! Takk, takk.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2553.0069999999996,
+    "end": 2555.7789999999995,
+    "who": "Ravn",
+    "text": "Hvordan klarte han dette her da?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2554.013,
+    "end": 2556.734,
+    "who": "Leif",
+    "text": "Han datt ned trappa her.",
+    "role": "Leif"
+  },
+  {
+    "start": 2555.0110000000004,
+    "end": 2559.1510000000003,
+    "who": "Ravn",
+    "text": "Datt ned trappa? Du skulle jo passe på ham!",
+    "role": "Ravn"
+  },
+  {
+    "start": 2557.008,
+    "end": 2559.223,
+    "who": "Leif",
+    "text": "Ja, jeg veit det.",
+    "role": "Leif"
+  },
+  {
+    "start": 2558.01,
+    "end": 2561.3320000000003,
+    "who": "Ravn",
+    "text": "Ser du her? Nå holder du der. ",
+    "role": "Ravn"
+  },
+  {
+    "start": 2559.0190000000002,
+    "end": 2560.7160000000003,
+    "who": "Leif",
+    "text": "Ja, okei.",
+    "role": "Leif"
+  },
+  {
+    "start": 2560.0240000000003,
+    "end": 2561.3810000000003,
+    "who": "Ravn",
+    "text": "Teo?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2561.022,
+    "end": 2566.574,
+    "who": "Ravn",
+    "text": "Pulsen er veldig svak. Blod! Blod! Kom igjen, hent blod.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2564.0020000000004,
+    "end": 2565.1270000000004,
+    "who": "Leif",
+    "text": "Ja.",
+    "role": "Leif"
+  },
+  {
+    "start": 2566.005,
+    "end": 2567.532,
+    "who": "Leif",
+    "text": "Var det A?",
+    "role": "Leif"
+  },
+  {
+    "start": 2567.004,
+    "end": 2570.295,
+    "who": "Ravn",
+    "text": "A, ja! Ta med to poser!",
+    "role": "Ravn"
+  },
+  {
+    "start": 2570.0029999999997,
+    "end": 2572.7609999999995,
+    "who": "Ravn",
+    "text": "Dette skal gå bra, Teo!",
+    "role": "Ravn"
+  },
+  {
+    "start": 2532.0110000000004,
+    "end": 2535.5520000000006,
+    "who": "Leif",
+    "text": "Vi har ikke A! Vi har ikke mer A!",
+    "role": "Leif"
+  },
+  {
+    "start": 2574.023,
+    "end": 2575.253,
+    "who": "Ravn",
+    "text": "Hæ?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2575.0110000000004,
+    "end": 2576.78,
+    "who": "Leif",
+    "text": "Hva med AB?",
+    "role": "Leif"
+  },
+  {
+    "start": 2576.008,
+    "end": 2581.499,
+    "who": "Ravn",
+    "text": "Hva? Nei. Nei, nei, nei, nei. Kom tilbake!",
+    "role": "Ravn"
+  },
+  {
+    "start": 2581.0060000000003,
+    "end": 2584.1580000000004,
+    "who": "Ravn",
+    "text": "Se her! Åpner du opp den?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2582.0150000000003,
+    "end": 2583.09,
+    "who": "Leif",
+    "text": "Ja.",
+    "role": "Leif"
+  },
+  {
+    "start": 2583.013,
+    "end": 2585.99,
+    "who": "Leif",
+    "text": "Hva er det du holder på med nå?",
+    "role": "Leif"
+  },
+  {
+    "start": 2584.018,
+    "end": 2589.231,
+    "who": "Ravn",
+    "text": "Jeg har blodtype 0, alle kan ta i mot det. Sånn, takk.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2599.0060000000003,
+    "end": 2600.1830000000004,
+    "who": "Ravn",
+    "text": "Hm?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2600.009,
+    "end": 2603.762,
+    "who": "Leif",
+    "text": "Du sa at jeg skulle vekke deg hvis du sovna.",
+    "role": "Leif"
+  },
+  {
+    "start": 2602.013,
+    "end": 2603.0969999999998,
+    "who": "Ravn",
+    "text": "Ja...",
+    "role": "Ravn"
+  },
+  {
+    "start": 2611.0060000000003,
+    "end": 2614.3810000000003,
+    "who": "Leif",
+    "text": "Er det nå? Ta en liten kikk på…",
+    "role": "Leif"
+  },
+  {
+    "start": 2615.0159999999996,
+    "end": 2616.555,
+    "who": "Ravn",
+    "text": "Hånda di?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2616.0209999999997,
+    "end": 2617.098,
+    "who": "Leif",
+    "text": "Ja.",
+    "role": "Leif"
+  },
+  {
+    "start": 2619.0209999999997,
+    "end": 2622.5299999999997,
+    "who": "Leif",
+    "text": "Det er bare den tøyinga som hjelper vet du.",
+    "role": "Leif"
+  },
+  {
+    "start": 2625.005,
+    "end": 2626.206,
+    "who": "Ravn",
+    "text": "Sånn?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2625.0190000000002,
+    "end": 2627.434,
+    "who": "Leif",
+    "text": "Ja, den er veldig god.",
+    "role": "Leif"
+  },
+  {
+    "start": 2627.0020000000004,
+    "end": 2628.6030000000005,
+    "who": "Ravn",
+    "text": "Er det godt?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2627.01,
+    "end": 2628.505,
+    "who": "Leif",
+    "text": "Den der. ",
+    "role": "Leif"
+  },
+  {
+    "start": 2628.0020000000004,
+    "end": 2630.1320000000005,
+    "who": "Ravn",
+    "text": "Hvis jeg gjør sånn da?",
+    "role": "Ravn"
+  },
+  {
+    "start": 2628.018,
+    "end": 2633.141,
+    "who": "Leif",
+    "text": "Ja, den er veldig øm, den er øm, der må du være forsiktig.",
+    "role": "Leif"
+  },
+  {
+    "start": 2631.004,
+    "end": 2634.7329999999997,
+    "who": "Ravn",
+    "text": "Jo, men det skal være litt ømt skjønner du!",
+    "role": "Ravn"
+  },
+  {
+    "start": 2632.0110000000004,
+    "end": 2633.9530000000004,
+    "who": "Leif",
+    "text": "Jo, men ikke...",
+    "role": "Leif"
+  },
+  {
+    "start": 2633.01,
+    "end": 2637.8100000000004,
+    "who": "Ravn",
+    "text": "Men vet du hva? Disse øvelsene her, de kan du klare selv.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2636.023,
+    "end": 2638.8410000000003,
+    "who": "Leif",
+    "text": "Ja, men det er ikke det samme.",
+    "role": "Leif"
+  },
+  {
+    "start": 2638.0069999999996,
+    "end": 2640.124,
+    "who": "Ravn",
+    "text": "Akkurat det samme.",
+    "role": "Ravn"
+  },
+  {
+    "start": 2639,
+    "end": 2641.021,
+    "who": "Leif",
+    "text": "Ikke det samme!",
+    "role": "Leif"
+  },
+  {
+    "start": 2703.0060000000003,
+    "end": 2707.1540000000005,
+    "who": "Leif",
+    "text": "Det er bare meg her nede nå, som ikke har rana noe.",
+    "role": "Leif"
+  },
+  {
+    "start": 2710.01,
+    "end": 2713.512,
+    "who": "Ravn",
+    "text": "Leif, kom og hent meg når han våkner.",
+    "role": "Ravn"
+  }
+]

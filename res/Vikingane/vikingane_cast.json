@@ -1,0 +1,92 @@
+{
+ "JARL VARG": {
+  "name": "JARL VARG",
+  "color": "#740841A6",
+  "src": "/sfi/res/Vikingane/cast/JARL_VARG.png"
+ },
+ "TORSTEIN HUND": {
+  "name": "TORSTEIN HUND",
+  "color": "#222330A6",
+  "src": "/sfi/res/Vikingane/cast/TORSTEIN_HUND.png"
+ },
+ "Unknown": {
+  "name": "Unknown",
+  "color": "#F9B2A5A6",
+  "src": "/sfi/res/Vikingane/cast/Unknown.png"
+ },
+ "JARL BJ\u00d8RN": {
+  "name": "JARL BJ\u00d8RN",
+  "color": "#C4CE62A6",
+  "src": "/sfi/res/Vikingane/cast/JARL_BJ\u00d8RN.png"
+ },
+ "REIDUN": {
+  "name": "REIDUN",
+  "color": "#5ABA9BA6",
+  "src": "/sfi/res/Vikingane/cast/REIDUN.png"
+ },
+ "OLAV": {
+  "name": "OLAV",
+  "color": "#F86DA8A6",
+  "src": "/sfi/res/Vikingane/cast/OLAV.png"
+ },
+ "ARNSTEIN": {
+  "name": "ARNSTEIN",
+  "color": "#048D4EA6",
+  "src": "/sfi/res/Vikingane/cast/ARNSTEIN.png"
+ },
+ "ODDVAR GAMLING": {
+  "name": "ODDVAR GAMLING",
+  "color": "#8A5501A6",
+  "src": "/sfi/res/Vikingane/cast/ODDVAR_GAMLING.png"
+ },
+ "ORM": {
+  "name": "ORM",
+  "color": "#5B4258A6",
+  "src": "/sfi/res/Vikingane/cast/ORM.png"
+ },
+ "ODDVAR GAMLING ORM": {
+  "name": "ODDVAR GAMLING ORM",
+  "color": "#18A332A6",
+  "src": "/sfi/res/Vikingane/cast/ODDVAR_GAMLING_ORM.png"
+ },
+ "OLAV ORM": {
+  "name": "OLAV ORM",
+  "color": "#DAAF1AA6",
+  "src": "/sfi/res/Vikingane/cast/OLAV_ORM.png"
+ },
+ "DOBANDITTEN": {
+  "name": "DOBANDITTEN",
+  "color": "#366717A6",
+  "src": "/sfi/res/Vikingane/cast/DOBANDITTEN.png"
+ },
+ "\u00d8RN": {
+  "name": "\u00d8RN",
+  "color": "#E469E6A6",
+  "src": "/sfi/res/Vikingane/cast/\u00d8RN.png"
+ },
+ "LIV": {
+  "name": "LIV",
+  "color": "#65768BA6",
+  "src": "/sfi/res/Vikingane/cast/LIV.png"
+ },
+ "FR\u00d8YA": {
+  "name": "FR\u00d8YA",
+  "color": "#B20E3AA6",
+  "src": "/sfi/res/Vikingane/cast/FR\u00d8YA.png"
+ },
+ "HILDUR": {
+  "name": "HILDUR",
+  "color": "#6DDF8EA6",
+  "src": "/sfi/res/Vikingane/cast/HILDUR.png"
+ },
+ "KARK": {
+  "name": "KARK",
+  "color": "#7601A0A6",
+  "src": "/sfi/res/Vikingane/cast/KARK.png"
+ },
+ "ARVID": {
+  "name": "ARVID",
+  "color": "#3D0D73A6",
+  "src": "/sfi/res/Vikingane/cast/ARVID.png"
+ }
+}

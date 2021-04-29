@@ -1,0 +1,45 @@
+{
+    "amy": {
+        "src": "/sfi/res/bbt/amy.png",
+        "name": "Amy Farrah Fowler",
+        "color": "#e0e0d1a0"
+    },
+    "bernadette": {
+        "src": "/sfi/res/bbt/bernadette.png",
+        "name": "Bernadette Rauch",
+        "color": "#ddccffa0"
+    },
+    "howard": {
+        "src": "/sfi/res/bbt/howard.png",
+        "name": "Howard Wolowitz",
+        "color": "#99ff99a0"
+    },
+    "raj": {
+        "src": "/sfi/res/bbt/raj.png",
+        "name": "Raj Koothrappali",
+        "color": "#d9b38ca0"
+    },
+    "leonard": {
+        "src": "/sfi/res/bbt/leonard.png",
+        "name": "Leonard Hofstadter",
+        "color": "#ff6666a0"
+    },
+    "penny": {
+        "src": "/sfi/res/bbt/penny.png",
+        "name": "Penny",
+        "color": "#ffccffa0"
+    },
+    "sheldon": {
+        "src": "/sfi/res/bbt/sheldon.png",
+        "name": "Sheldon Cooper",
+        "color": "#3399ffa0"
+    },
+    "unknown": {
+        "src": "/sfi/res/bbt/unknown.png",
+        "color": "#775599a0"
+    },
+    "undefined": {
+        "src": "/sfi/res/bbt/undefined.png",
+        "color": "#ff6699a0"
+    }
+}

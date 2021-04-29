@@ -1,0 +1,87 @@
+{
+ "ADAMS TELEFONSVARER": {
+  "name": "ADAMS TELEFONSVARER",
+  "color": "#D8F13EA6",
+  "src": "/sfi/res/Exit2/cast/ADAMS_TELEFONSVARER.png"
+ },
+ "Unknown": {
+  "name": "Unknown",
+  "color": "#C88DC0A6",
+  "src": "/sfi/res/Exit2/cast/Unknown.png"
+ },
+ "ADAM": {
+  "name": "ADAM",
+  "color": "#2FC0F9A6",
+  "src": "/sfi/res/Exit2/cast/ADAM.png"
+ },
+ "PHILIP WESSEL WIERLAND": {
+  "name": "PHILIP WESSEL WIERLAND",
+  "color": "#533AACA6",
+  "src": "/sfi/res/Exit2/cast/PHILIP_WESSEL_WIERLAND.png"
+ },
+ "P.W. WIERLAND": {
+  "name": "P.W. WIERLAND",
+  "color": "#444B96A6",
+  "src": "/sfi/res/Exit2/cast/P.W._WIERLAND.png"
+ },
+ "REHAB LEGE": {
+  "name": "REHAB LEGE",
+  "color": "#0AB0C1A6",
+  "src": "/sfi/res/Exit2/cast/REHAB_LEGE.png"
+ },
+ "WILLIAM": {
+  "name": "WILLIAM",
+  "color": "#7FC1CDA6",
+  "src": "/sfi/res/Exit2/cast/WILLIAM.png"
+ },
+ "JEPPE": {
+  "name": "JEPPE",
+  "color": "#A1A6BEA6",
+  "src": "/sfi/res/Exit2/cast/JEPPE.png"
+ },
+ "LEGE, HELSESTASJON": {
+  "name": "LEGE, HELSESTASJON",
+  "color": "#37D988A6",
+  "src": "/sfi/res/Exit2/cast/LEGE,_HELSESTASJON.png"
+ },
+ "HERMINE": {
+  "name": "HERMINE",
+  "color": "#3465A5A6",
+  "src": "/sfi/res/Exit2/cast/HERMINE.png"
+ },
+ "HENRIK": {
+  "name": "HENRIK",
+  "color": "#C2CA52A6",
+  "src": "/sfi/res/Exit2/cast/HENRIK.png"
+ },
+ "PORTIERE P\u00c5 HOTELL": {
+  "name": "PORTIERE P\u00c5 HOTELL",
+  "color": "#07496BA6",
+  "src": "/sfi/res/Exit2/cast/PORTIERE_P\u00c5_HOTELL.png"
+ },
+ "MANN P\u00c5 TELEFON": {
+  "name": "MANN P\u00c5 TELEFON",
+  "color": "#B2B4E1A6",
+  "src": "/sfi/res/Exit2/cast/MANN_P\u00c5_TELEFON.png"
+ },
+ "CELINE": {
+  "name": "CELINE",
+  "color": "#97A08EA6",
+  "src": "/sfi/res/Exit2/cast/CELINE.png"
+ },
+ "SEBASTIAN": {
+  "name": "SEBASTIAN",
+  "color": "#488BA7A6",
+  "src": "/sfi/res/Exit2/cast/SEBASTIAN.png"
+ },
+ "MILLE": {
+  "name": "MILLE",
+  "color": "#1373DFA6",
+  "src": "/sfi/res/Exit2/cast/MILLE.png"
+ },
+ "JEPPES DATTER": {
+  "name": "JEPPES DATTER",
+  "color": "#AE6A7CA6",
+  "src": "/sfi/res/Exit2/cast/JEPPES_DATTER.png"
+ }
+}

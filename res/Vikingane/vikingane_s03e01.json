@@ -1,0 +1,19 @@
+{
+  "video": {
+    "src": "/sfi/res/Vikingane/MUHH32000118BA.mp4"
+  },
+  "subtitles": [
+    {"src": "/sfi/res/Vikingane/vikingane_s03e01_subs_updated.json"}
+  ],
+  "normalsubtitles": [
+    {"src": "/sfi/res/Vikingane/MUHH32000118.vtt"}
+  ],
+  "index": "/sfi/res/Vikingane/MUHH32000118BA.idx",
+  "fpip": {
+    "src": "../res/Valkyrien_s01e01_tegnspraak.webm"
+  },
+  "synstolk": "/sfi/res/Vikingane/vikingane_s03e01_synstolk.mp3",
+  "aux": "/sfi/res/Vikingane/vikingane_s03e01_aux.json",
+  "cast": "/sfi/res/Vikingane/vikingane_cast.json",
+  "fdc": "SFI-markup-vikingane_s03e01"
+}

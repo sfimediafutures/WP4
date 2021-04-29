@@ -1,0 +1,24 @@
+{
+  "video": {
+    "src": "/sfi/res/Valkyrien_s01e01_crop.mp4"
+  },
+  "subtitles": [
+    {"src": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_proc_polished.json"}
+  ],
+  "fsubtitles": [
+    {"src": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_proc.json"},
+
+
+    {"vsrc": "/sfi/res/KMTE40000312AA.vtt"},
+    {"fsrc": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_updated.json"}
+  ],
+  "index": "../res/Valkyrien_s01e01_crop.idx",
+  "pip": {
+    "src": "../res/Valkyrien_s01e01_tegnspraak.webm"
+  },
+  "synstolk": "/sfi/res/Valkyrien/Valkyrien_s01e01_synstolk.mp3",
+  "aux": "/sfi/res/Valkyrien/Valkyrien_s01e01_aux2.json",
+  "cast": "/sfi/res/Valkyrien/Valkyrien_cast.json",
+  "fdc": "SFI-markup-Valkyrien_s01e01"
+
+}

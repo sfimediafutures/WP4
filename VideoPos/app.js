@@ -21,10 +21,12 @@ var rubberDuck = function(target, options) {
         tts_autopause: true,
         controls: true,
         synstolk: true,
-        audioon: false
+        audioon: false,
+        wakelock: false
     };
     let __autopaused = false;
     let _is_speaking = false;
+    let wakeLock = null;
 
     let get_hash = function(str) {
 
@@ -48,6 +50,31 @@ var rubberDuck = function(target, options) {
     }
     API.to = new TIMINGSRC.TimingObject();
 
+    if (API.options.wakelock && "wakeLock" in navigator) {
+        const requestWakeLock = async () => {
+          try {
+            wakeLock = await navigator.wakeLock.request();
+            wakeLock.addEventListener('release', () => {
+              console.log('Screen Wake Lock released:', wakeLock.released);
+            });
+            console.log('Screen Wake Lock released:', wakeLock.released);
+          } catch (err) {
+            console.error(`${err.name}, ${err.message}`);
+          }
+        };
+
+        API.to.on("change", evt => {
+            if (this.vel == 0) {
+                // Paused, release the lock
+                if (wakeLock) {
+                    wakeLock.release();
+                }
+            } else {
+                requestWakeLock();
+            }
+        });
+    }
+
     if (options.mcorp_appid) {
         API.app = MCorp.app(options.mcorp_appid);
     }
@@ -66,7 +93,8 @@ var rubberDuck = function(target, options) {
 
                 if (API.videoElement) {
                     console.log("Video loaded, and mcorp app ready - check entry");
-                    let hash = get_hash(API.videoElement.src);
+                    let hash = get_hash(API.manifest.video.src);
+                    // let hash = get_hash(API.videoElement.src);
                     console.log("HASH", hash, API.app.motions.entry.pos);
                     if (API.app.motions.entry.pos != hash) {
                         API.app.motions.entry.update(hash);

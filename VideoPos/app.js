@@ -93,10 +93,10 @@ var rubberDuck = function(target, options) {
 
                 if (API.videoElement) {
                     console.log("Video loaded, and mcorp app ready - check entry");
-                    let hash = get_hash(API.manifest.video.src);
+                    let hash = API.manifest.id || 0;
                     // let hash = get_hash(API.videoElement.src);
-                    console.log("HASH", hash, API.app.motions.entry.pos);
                     if (API.app.motions.entry.pos != hash) {
+                        console.log("Changed content", API.app.motions.entry.pos, hash);
                         API.app.motions.entry.update(hash);
                         API.app.motions.private.update(0,1);
                     }

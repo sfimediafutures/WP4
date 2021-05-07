@@ -15,7 +15,7 @@
   ],
   "index": "../res/Valkyrien_s01e01_crop.idx",
   "pip": {
-    "src": "../res/Valkyrien_s01e01_tegnspraak.webm"
+    "src": "../res/Valkyrien/Valkyrien_s01e01_tegnspraak.webm"
   },
   "synstolk": "/sfi/res/Valkyrien/Valkyrien_s01e01_synstolk.mp3",
   "aux": "/sfi/res/Valkyrien/Valkyrien_s01e01_aux2.json",

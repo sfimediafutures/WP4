@@ -589,6 +589,11 @@ var rubberDuck = function(target, options) {
                     if (API.videoElement)
                         API.load_video(data.video, videotarget);
 
+                    if (API.manifest.poster) {
+                        console.log("Poster file", API.manifest.poster);
+                        document.querySelector(".overlay").style.backgroundImage = "url('" + API.manifest.poster + "')";
+                    }
+
                     let s = data.subtitles;
                     if (!API.options.advancedsubs && data.normalsubtitles)
                         s = data.normalsubtitles;

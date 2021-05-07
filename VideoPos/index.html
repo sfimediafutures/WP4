@@ -409,7 +409,6 @@
   app.pbar = document.querySelector(".controls .progressbar input");
   app.to.on("timeupdate", function() {
     let percent = 100 * (this.pos / app.videoElement.duration);
-    console.log("PERCENT");
     app.pbar.value = percent;
   });
 

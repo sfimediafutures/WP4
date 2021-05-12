@@ -691,8 +691,10 @@ var rubberDuck = function(target, options) {
         API.mediaElement = null;  // document.querySelector(mediatarget);
         console.log("TargetElement is", API.targetElement);
 
-        API.targetElement.querySelector("#btnsound").style.display = "none";
-        API.targetElement.querySelector("#btnsynstolk").style.display = "none";
+        if (API.targetElement.querySelector("#btnsound"))
+            API.targetElement.querySelector("#btnsound").style.display = "none";
+        if (API.targetElement.querySelector("#btnsynstolk"))
+            API.targetElement.querySelector("#btnsynstolk").style.display = "none";
 
 
         options = options || {};

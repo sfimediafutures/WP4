@@ -554,7 +554,12 @@ var rubberDuck = function(target, options) {
 
             if (API.options.responsive_voice) {
                 // TODO: More languages
-                responsiveVoice.setDefaultVoice("Norwegian Male");
+                try {
+                    responsiveVoice.setDefaultVoice("Norwegian Male");                    
+                } catch (err) {
+                    API.options.responsive_voice = false;
+                    console.log("Responsive voice failed", err);
+                }
                 resolve("ResponsiveVoice");
                 return;
             }

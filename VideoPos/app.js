@@ -17,12 +17,16 @@ var rubberDuck = function(target, options) {
         keyboard: true,
         index: true,
         tts: false,
-        tts_lang: "no",
+        tts_lang: "nb",
         tts_autopause: true,
         controls: true,
         synstolk: true,
         audioon: false,
-        wakelock: false
+        wakelock: false,
+        video: true,
+        hide_controls: true,
+        responsive_voice: false,
+        screenreadersubs: true
     };
     let __autopaused = false;
     let _is_speaking = false;
@@ -48,6 +52,10 @@ var rubberDuck = function(target, options) {
         if (API.options[d] === undefined)
             API.options[d] = default_options[d]
     }
+    if (API.options.tts_lang == "nb")
+        console.log("USING RESPONSIVE VOICE");
+        API.options.responsive_voice = true;
+
     API.to = new TIMINGSRC.TimingObject();
 
     if (API.options.wakelock && "wakeLock" in navigator) {
@@ -80,8 +88,13 @@ var rubberDuck = function(target, options) {
     }
 
     API.play = function() {
-        if (API.videoElement)
-            API.videoElement.play();
+
+        API.targetElement.querySelector(".controls").classList.remove("hidden");
+
+        API.screenreadersub = API.targetElement.querySelector(".screenreadersub");
+
+        if (API.mediaElement)
+            API.mediaElement.play();
 
         if (API.targetElement.querySelector(".overlay")) {
             API.targetElement.querySelector(".overlay").style.display = "none";
@@ -91,10 +104,10 @@ var rubberDuck = function(target, options) {
             // API.app = MCorp.app(options.mcorp_appid);
             API.app.ready.then(function() {
 
-                if (API.videoElement) {
+                if (API.mediaElement) {
                     console.log("Video loaded, and mcorp app ready - check entry");
                     let hash = API.manifest.id || 0;
-                    // let hash = get_hash(API.videoElement.src);
+                    // let hash = get_hash(API.mediaElement.src);
                     if (API.app.motions.entry.pos != hash) {
                         console.log("Changed content", API.app.motions.entry.pos, hash);
                         API.app.motions.entry.update(hash);
@@ -126,7 +139,8 @@ var rubberDuck = function(target, options) {
     // ***************** Controls ******************'
     let ctrltimeout;
     let showControls = function(visible) {
-      if (!options.controls) return;
+      if (API.options.hide_controls == false) return;
+      if (!options.control) return;
       clearTimeout(ctrltimeout);
 
         let ctrl = API.targetElement.querySelector(".controls");
@@ -156,11 +170,17 @@ var rubberDuck = function(target, options) {
       let soundOn = !snd.classList.contains("active");
             console.log("SoundOn:", soundOn);
             if (!soundOn) {
-                API.videoElement.muted = true;
+                if (API.mediaElement) {
+                    API.mediaElement.muted = true;
+                    API.mediaElement.sync.pause(true);
+                }
                 snd.classList.remove("active");
                 toggle_synstolk(null, false);
             } else {
-                API.videoElement.muted = false;
+                if (API.mediaElement) {
+                    API.mediaElement.sync.pause(false);
+                    API.mediaElement.muted = false;
+                }
                 snd.classList.add("active");
                 toggle_synstolk(null, false);
             }
@@ -172,7 +192,7 @@ var rubberDuck = function(target, options) {
 
         let btn = API.targetElement.querySelector("#btnsynstolk");
         let isOn = !btn.classList.contains("active");
-        console.log("isOn:", isOn);
+        console.log("synstolkOn:", isOn);
         if (!isOn || force == false) {
             // Check if sound is on
             let snd = API.targetElement.querySelector("#btnsound");
@@ -181,7 +201,8 @@ var rubberDuck = function(target, options) {
                 API.synstolk_sync.pause()
                 API.synstolkElement.muted = true;
                 API.synstolkElement.pause();
-                API.videoElement.muted = !soundOn;
+                if (API.mediaElement)
+                    API.mediaElement.muted = !soundOn;
             } else {
                 // Enable TTS here if we don't have a separate sound track
                 API.tts = true;
@@ -191,7 +212,8 @@ var rubberDuck = function(target, options) {
         } else {
             // Syns tolk is on - mute video and get the synstolk going
             if (API.synstolkElement) {
-                API.videoElement.muted = true;
+                if (API.mediaElement)
+                    API.mediaElement.muted = true;
                 API.synstolk_sync.pause(false);
                 API.synstolkElement.muted = false;                
             } else {
@@ -257,7 +279,7 @@ var rubberDuck = function(target, options) {
             } else {
                 evt.srcElement.classList.remove("active");
                 // In case we used pipskew, return the width of the outer container
-                API.videoElement.style.width = "100%";
+                API.mediaElement.style.width = "100%";
                 API.resize();
             }
             API.resize();
@@ -310,7 +332,7 @@ var rubberDuck = function(target, options) {
             evt.preventDefault();
             let on = !evt.srcElement.classList.contains("active");
             let pip = API.targetElement.querySelector(".pip");
-            let vid = API.videoElement;
+            let vid = API.mediaElement;
             console.log("NRK tegnspraak:", on);
             if (on) {
                 if (!pip.sync) {
@@ -336,8 +358,8 @@ var rubberDuck = function(target, options) {
 
                 evt.srcElement.classList.add("active");
                 // Make video container smaller
-                API.videoElement.style.width = "80%";
-                API.videoElement.style.height = "80%";
+                API.mediaElement.style.width = "80%";
+                API.mediaElement.style.height = "80%";
                 vid.style.left = "0px";
                 vid.style.width = "100%";
                 vid.style.top = "0px";
@@ -349,8 +371,8 @@ var rubberDuck = function(target, options) {
                 pip.style.position = "";
                 pip.style.right = "";
                 pip.style.bottom = "";
-                API.videoElement.style.width = "100%";
-                API.videoElement.style.height = "100%";
+                API.mediaElement.style.width = "100%";
+                API.mediaElement.style.height = "100%";
                 vid.style.left = "";
                 vid.style.maxHeight = "";
                 vid.style.maxWidth = "";
@@ -364,7 +386,7 @@ var rubberDuck = function(target, options) {
             evt.preventDefault();
             let on = !evt.srcElement.classList.contains("active");
             let pip = API.targetElement.querySelector(".pip");
-            let vid = API.videoElement;
+            let vid = API.mediaElement;
             console.log("NRK tegnspraak:", on);
             if (on) {
                 if (!pip.sync) {
@@ -383,11 +405,11 @@ var rubberDuck = function(target, options) {
                 evt.srcElement.classList.add("active");
                 // Make PIP fixed on the side
                 // Make video container smaller
-                API.videoElement.style.width = "80%";
+                API.mediaElement.style.width = "80%";
             } else {
                 pip.classList.remove("pipfixed");
                 evt.srcElement.classList.remove("active");
-                API.videoElement.style.width = "100%";
+                API.mediaElement.style.width = "100%";
                 API.resize();
             }
         }
@@ -397,6 +419,7 @@ var rubberDuck = function(target, options) {
         let opt = API.options[btn.substr(3)];
         if (opt != false) {
           let b = btn;
+          console.log("Looking for '#" + btn + "' in", API.targetElement);
           if (API.targetElement.querySelector("#" + btn))
               API.targetElement.querySelector("#" + btn).addEventListener("click", evt => {evt.stopPropagation(); btns[b](evt)});
         } else if (!opt) {
@@ -420,12 +443,33 @@ var rubberDuck = function(target, options) {
     });
 
     // ***************** Subtitles - either "normal" or "advanced" ***************
-    if (API.options.rendersubs) {
+    if (API.options.rendersubs || API.options.screenreadersubs) {
         API.subsequencer.on("change", evt => {
             let subs = API.targetElement.querySelector(".subtitle");
+
+            if (API.screenreadersub && API.options.screenreadersubs) {
+                let text = evt.new.data;
+
+                if (typeof(text) != "string")
+                    text = evt.new.data.text;
+
+                // Clean up a bit - if hyphenated concat
+                text = text.replace("<br>", "\n")
+                text = text.replace(/-\W/, "")
+                text = text.replace(/^-/, "")
+
+                let t = document.createElement("span");
+                t.innerHTML = text + " ";
+                t.setAttribute("id", "txt_" + evt.key);
+                API.screenreadersub.appendChild(t);
+                // API.screenreadersub.innerHTML = text;
+            }
+            if (!API.options.rendersubs) return;
             if (evt.new.data && typeof(evt.new.data) == "string") {
                 subs.innerHTML = "<span>" + evt.new.data.replace("\n", "<br>") + "</span>";
             } else {
+                if (!API.options.rendersubs) return;
+    
                 if (!API.options.advancedsubs) {
                     subs.innerHTML = "<span>" + evt.new.data.text.replace("\n", "<br>") + "</span>";
                 } else {
@@ -436,8 +480,9 @@ var rubberDuck = function(target, options) {
                         console.log("Advanced render failed", e);
                     }
                 }
-            }
-            subs.classList.remove("hidden");
+            } 
+            if(subs)
+                subs.classList.remove("hidden");
         })
 
         API.subsequencer.on("remove", evt => {
@@ -455,19 +500,37 @@ var rubberDuck = function(target, options) {
             }
 
             API.targetElement.querySelectorAll(".subtitle #" + evt.key).forEach(i => API.targetElement.querySelector(".subtitle").removeChild(i));
+
+            API.targetElement.querySelectorAll(".screenreadersub #txt_" + evt.key).forEach(i => i.parentElement.removeChild(i));
+
         });
     }
 
     // ***************************** TTS engine ****************
     if (API.options.tts) {
         API.speak = function(text, voice, force) {
-            if (API.synstolkElement || !API.targetElement.querySelector("#btnsynstolk").classList.contains("active")) 
+            if (!force && (API.synstolkElement || !API.targetElement.querySelector("#btnsynstolk").classList.contains("active")))
                 return;
+
+            if (API.options.responsive_voice) {
+                _is_speaking++;
+                responsiveVoice.speak(text);
+                responsiveVoice.fallback_audio.onended = function() {
+                  _is_speaking--;
+
+                  if (API.options.tts_autopause && __autopaused) {
+                    __autopaused = false;
+                    app.to.update({velocity: 1});
+                  }
+                    console.log("Speech OK");
+                };
+                return;
+            }
 
 
             console.log("SPEAK", text);
             return new Promise(function(resolve, reject) {
-              if (!force && API.videoElement.muted) {console.log("NOPE", force); return};  // No talking when muted
+              if (!force && API.mediaElement.muted) {console.log("NOPE", force); return};  // No talking when muted
                 let utterance = new SpeechSynthesisUtterance(text);
                 utterance.voice = API.tts_voices[voice || 0];
                 utterance.onend = function() {
@@ -488,26 +551,43 @@ var rubberDuck = function(target, options) {
 
         API.tts_voices = [];
         API.tts_ready = new Promise(function(resolve, reject) {
+
+            if (API.options.responsive_voice) {
+                // TODO: More languages
+                responsiveVoice.setDefaultVoice("Norwegian Male");
+                resolve("ResponsiveVoice");
+                return;
+            }
+
             speechSynthesis.onvoiceschanged = function() {
-                let v = speechSynthesis.getVoices();
+                let def;
                 speechSynthesis.getVoices().forEach(voice => {
-                    if (voice.lang.startsWith(API.options.tts_lang)) {
+                    console.log("VOICE", voice.lang);
+                    if (voice.lang.startsWith("en") && !def) def = voice;
+                    if (voice.lang.startsWith(API.options.tts_lang || "en")) {
                         if (API.tts_voices.indexOf(voice) == -1) {
                             API.tts_voices.push(voice);
                         }
                     };
                 });
+                if (API.tts_voices.length == 0 && def)
+                    API.tts_voices.push(def);
+
                 console.log("Loaded", API.tts_voices.length, "voices");
                 if (API.tts_voices.length > 0) {
                     // API.speak("Ready", 0);
                     console.log("READY");
                     resolve(API.tts_voices);
+                } else {
+                    reject("No voices");
                 }
-            }
+            };
+            speechSynthesis.onvoiceschanged();
         });
     }
     // Load a video file into the video target
     API.load_video = function(info) {
+        console.log("loading video", info);
         videotarget = API.targetElement;
         if (!videotarget) return;
         let video = document.createElement("video");
@@ -523,9 +603,30 @@ var rubberDuck = function(target, options) {
         video.sync = MCorp.mediaSync(video, API.to, {
             skew: info.offset || 0
         });
-        API.videoElement = video;
-        API.videoElement.pos = API.videoElement.pos || [50, 50];
+        API.mediaElement = video;
+        API.mediaElement.pos = API.mediaElement.pos || [50, 50];
         videotarget.appendChild(video);
+        API.targetElement.querySelector("#btnsound").style.display = "";
+    };
+
+    // Load an audio file into the audio target
+    API.load_audio = function(info) {
+        console.log("Loading audio", info);
+        audiotarget = API.targetElement;
+        if (!audiotarget) return;
+        let audio = document.createElement("audio");
+        audio.src = info.src;
+        audio.classList.add("maincontent");
+        audio.sync = MCorp.mediaSync(audio, API.to, {
+            skew: info.offset || 0
+        });
+        audio.muted = true;
+        audio.sync.pause(true);
+        audio.pause()
+        API.mediaElement = audio;
+        API.mediaElement.pos = API.mediaElement.pos || [50, 50];
+        audiotarget.appendChild(audio);
+        API.targetElement.querySelector("#btnsound").style.display = "";
     };
 
     // Load iframe index
@@ -565,29 +666,41 @@ var rubberDuck = function(target, options) {
         API.synstolkElement.muted = false;
         API.synstolk_sync.pause(true);
         console.log("Synstolk loaded");
+        API.targetElement.querySelector("#btnsynstolk").style.display = "";
     }
 
     // Load a manifest
-    API.load = function(url, videotarget, options) {
-        if (!API.videoElement) {
-            // Bind click to toggle controls
-            API.targetElement.addEventListener("click", evt => {
-              showControls();
-            });
+    API.load = function(url, mediatarget, options) {
+        if (API.options.video) {
+            if (!API.mediaElement) {
+                // Bind click to toggle controls
+                API.targetElement.addEventListener("click", evt => {
+                  showControls();
+                });
 
-            API.targetElement.addEventListener("dblclick", evt => {
-                API.toggle_fullscreen(API.targetElement);
-            });
+                API.targetElement.addEventListener("dblclick", evt => {
+                    API.toggle_fullscreen(API.targetElement);
+                });
+            }
         }
-        API.videoElement = document.querySelector(videotarget);
+        API.mediaElement = null;  // document.querySelector(mediatarget);
+        console.log("TargetElement is", API.targetElement);
+
+        API.targetElement.querySelector("#btnsound").style.display = "none";
+        API.targetElement.querySelector("#btnsynstolk").style.display = "none";
+
+
         options = options || {};
         return new Promise(function(resolve, reject) {
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     API.manifest = data;
-                    if (API.videoElement)
-                        API.load_video(data.video, videotarget);
+                    if (mediatarget && API.options.video)
+                        API.load_video(data.video, mediatarget);
+                    if (API.options.video == false && data.audio) {
+                        API.load_audio(data.audio, mediatarget);
+                    }
 
                     if (API.manifest.poster) {
                         console.log("Poster file", API.manifest.poster);
@@ -664,7 +777,7 @@ var rubberDuck = function(target, options) {
                         let i = 0;
                         data.cues.forEach(item => {
                             if (!options.dataonly)
-                                item.target = videotarget;
+                                item.target = mediatarget;
                             if (!item.end) {
                                 console.log("MISSING ITEM STOP");
                             }
@@ -1078,8 +1191,6 @@ var rubberDuck = function(target, options) {
                     velocity: 0
                 });
                 __autopaused = true;
-            } else {
-              console.log("Not pausing", API.options.tts, API.options.tts_autopause, _is_speaking);
             }
 
             let template = document.querySelector("template#message").content.cloneNode(true);
@@ -1104,15 +1215,17 @@ var rubberDuck = function(target, options) {
                 else msg.classList.add("higher");
             } else {
               // Detect if there is another one on screen already
-              if (targetElement.querySelectorAll(".advancedsub").length > 0) {
-                console.log("Going hi and lo (auto)", targetElement, );
-                targetElement.querySelector(".advancedsub").classList.add("higher");
+              if (API.targetElement.querySelectorAll(".advancedsub").length > 0) {
+                console.log("Going hi and lo (auto)", API.targetElement, );
+                API.targetElement.querySelector(".advancedsub").classList.add("higher");
                 msg.classList.add("lower");
               }
 
             }
 
-            if (text.startsWith("- ")) text = text.substr(2);
+            text = text.replace(/^- ?/, "")
+
+            // if (text.startsWith("- ")) text = text.substr(2);
             msg.querySelector(".text").innerHTML = text || "";
             // If right aligned, fix that
             if (data.data.align == "right") {
@@ -1128,7 +1241,6 @@ var rubberDuck = function(target, options) {
                     msg.style.display = original
                 }, 700 * data.idx);
             }
-            console.log("woop");
             return msg;
         }
 
@@ -1138,11 +1250,11 @@ var rubberDuck = function(target, options) {
             for (let idx = 0; idx < message.who.length; idx++) {
                 data.idx = idx;
                 let msg = _make_msg(message.who[idx], lines[idx], data);
-                if (msg) targetElement.appendChild(msg);
+                if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);
             }
         } else {
             let msg = _make_msg(message.who, message.text, data);
-            if (msg) targetElement.appendChild(msg);
+            if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);
         }
     };
 
@@ -1163,14 +1275,16 @@ var rubberDuck = function(target, options) {
       console.log("Position", itm.pos);
       if (!itm.target) itm.target = ".maincontent";
       let target = API.targetElement.querySelector(itm.target);
-      target.pos = itm.pos;
-      API.targetElement.pos = itm.pos;
-      target.animate = itm.animate;
-      API.targetElement.animate = itm.animate;
-      //console.log("Will resize", target.parentElement, target);
-      //API.resize(target.parentElement);
-      API.resize();
-      API.resize(target);
+      if (target) {
+          target.pos = itm.pos;
+          API.targetElement.pos = itm.pos;
+          target.animate = itm.animate;
+          API.targetElement.animate = itm.animate;
+          //console.log("Will resize", target.parentElement, target);
+          //API.resize(target.parentElement);
+          API.resize();
+          API.resize(target);        
+      }
       /*
       setTimeout(function() {
         console.log("RESIZE");

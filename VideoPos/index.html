@@ -17,6 +17,11 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=0cFhIMi5"></script>
+
+  <link rel="stylesheet" href="https://static.nrk.no/core-css/major/1/core-css.min.css">
+
   <script>
 
   </script>
@@ -288,6 +293,14 @@
       width: 100%;
     }
 
+    .fnrk-sr {
+      position: fixed;
+      top: 5px;
+      right: 5px;
+      z-index: 1000;
+      color: white;
+      background: black;
+    }
   </style>
 
 
@@ -295,59 +308,61 @@
 <body>
 
 
-<div class="infobox hidden"></div>
+<div class="infobox hidden" aria-hidden="true"></div>
 
-<div class="videocontainer">
+<div class="nrk-unset videocontainer" aria-label="Click to show controls">
 
-<div class="overlay">
-  <a href="#" id="playbtn">
-    <img class="fullsize" src="playbutton.png" alt="play"/>    
-  </a>
-</div>
+  <div class="nrk-sr screenreadersub" aria-live="assertive"></div>
 
-
-<img class="emotion"></img>
-<div class="markingbox hidden"></div>
-
-<video class="pip hidden">
-</video>
-
-<div class="subtitle hidden"></div>
-<div class="overlay hidden">
-  <div class="name">
-  </div>
-  <div class="title">
-  </div>
-</div>
-
-<div class="controls">
-  <div class="progressbar">
-    <input  type="range" min="0" max="100" value="0" tabindex="0" name="progress">
+  <div class="overlay">
+    <div role="button" class="nrk-unset" href="#" id="playbtn" aria-label="Click to play">
+      <img class="fullsize" src="playbutton.png" alt="Play symbol"/>
+    </div>
   </div>
 
-  <div class="button" id="btntrack" alt="Show tracking box"><i class="material-icons">center_focus_strong</i></div>
-  <div class="button pipctrl" id="btnpip" alt="Sign language"><i class="material-icons">person</i></div>
-  <div class="button pipctrl" id="btnpippos" alt="Sign language flexible positioning"><i class="material-icons  active">person_pin_circle</i></div>
-  <div class="button" id="btnpos" alt="Auto aspect ratio"><i class="material-icons  active">control_camera</i></div>
-  <div class="spacer"></div>
 
-  <div class="button" id="btnstart" alt="Skip to start"><i class="material-icons">skip_previous</i></div>
-  <div class="button" id="btnrev" alt="Skip backwards"><i class="material-icons">fast_rewind</i></div>
-<!--  <div class="button" id="btnrev"><i class="material-icons">replay_15</i></div>-->
-  <div class="button" id="btnplay" alt="Play"><i class="material-icons">play_arrow</i></div>
-  <div class="button" id="btnpause" alt="Pause"><i class="material-icons hidden">pause</i></div>
-  <div class="button" id="btnff" alt="Skip ahead"><i class="material-icons">fast_forward</i></div>
+  <img class="emotion hidden" alt="Emoticon container"></img>
+  <div class="markingbox hidden" aria-hidden="true"></div>
 
-  <div class="spacer"></div>
-  <div class="button" id="btnsound" alt="Toggle sound"><i class="material-icons">volume_up</i></div>
-  <div class="button" id="btnsynstolk" alt="Toggle synstolk"><i class="material-icons">visibility</i></div>
+  <video class="pip hidden">
+  </video>
+
+  <div class="subtitle hidden" aria-hidden="true"></div>
+  <div class="overlay hidden">
+    <div class="name">
+    </div>
+    <div class="title">
+    </div>
+  </div>
+
+  <div class="controls hidden">
+    <div class="progressbar">
+      <input  type="range" min="0" max="100" value="0" tabindex="0" name="progress">
+    </div>
+
+    <button class="nrk-unset button" aria-hidden="true" id="btntrack" title="Show tracking box"><i class="material-icons">center_focus_strong</i></button>
+    <div class="button pipctrl" id="btnpip" aria-hidden="true" title="Sign language"><i class="material-icons">person</i></div>
+    <div class="button pipctrl" id="btnpippos" aria-hidden="true" title="Sign language flexible positioning"><i class="material-icons  active">person_pin_circle</i></div>
+    <button class="nrk-unset button" id="btnpos" aria-hidden="true" title="Auto aspect ratio"><i class="material-icons  active">control_camera</i></button>
+    <div class="spacer"></div>
+
+    <button class="nrk-unset button" id="btnstart" title="Skip to start"><i class="material-icons">skip_previous</i></button>
+    <button class="nrk-unset button" id="btnrev" title="Skip backwards"><i class="material-icons">fast_rewind</i></button>
+  <!--  <button class="nrk-unset button" id="btnrev"><i class="material-icons">replay_15</i></button>-->
+    <button class="nrk-unset button" id="btnplay" title="Play"><i class="material-icons">play_arrow</i></button>
+    <button class="nrk-unset button" id="btnpause" title="Pause"><i class="material-icons hidden">pause</i></button>
+    <button class="nrk-unset button" id="btnff" title="Skip ahead"><i class="material-icons">fast_forward</i></button>
+
+    <div class="spacer"></div>
+    <button class="nrk-unset button" id="btnsound" title="Toggle sound" aria-label="Toggle sound"><i class="material-icons">volume_up</i></button>
+    <button class="nrk-unset button" id="btnsynstolk" title="Toggle synstolk" aria-label="Toggle synstolk"><i class="material-icons">visibility</i></button>
 
 
-  <div class="button" id="btnfs" alt="Toggle fullscreen"><i class="material-icons">fullscreen</i></div>
-  <div class="button pipctrl" id="btn_nrktegnspraak" alt="NRK tegnspraak style"><i class="material-icons">accessibility</i></div>
-  <div class="button pipctrl" id="btn_nrktegnspraak_zoom" alt="Sign language zoom"><i class="material-icons">zoom_in</i></div>
-</div>
-</div>
+    <button class="nrk-unset button" id="btnfs" aria-hidden="true" title="Toggle fullscreen"><i class="material-icons">fullscreen</i></button>
+    <button class="nrk-unset button pipctrl" aria-hidden="true" id="btn_nrktegnspraak" title="NRK tegnspraak style"><i class="material-icons">accessibility</i></button>
+    <button class="nrk-unset button pipctrl" aria-hidden="true" id="btn_nrktegnspraak_zoom" title="Sign language zoom"><i class="material-icons">zoom_in</i></button>
+  </div>
+</div>  <!-- videocontainer -->
 
 <template id="message">
     <div class="advancedsub">
@@ -372,7 +387,8 @@
       pipskew: false,
       mcorp_appid: "4704154345375000225",
       index: false,
-      tts: true
+      tts: true,
+      screenrendersubs: true
   };
 
   if (getParameterByName("simplesubs")) {
@@ -398,24 +414,27 @@
 
   app.load(manifest + "?ts=" + new Date().getTime() , ".videocontainer")
   .then(evt => {
-    document.querySelector(".maincontent").muted = true;
+    if (!app.mediaElement) {
+      throw new Error("App  loaded but no media element (unlikely for this demo)");
+    }
+    app.mediaElement.muted = true;
+
+    app.pbar = document.querySelector(".controls .progressbar input");
+    app.to.on("timeupdate", function() {
+      let percent = 100 * (this.pos / app.mediaElement.duration);
+      app.pbar.value = percent;
+    });
+
+    app.pbar.addEventListener("change", evt => {
+      console.log("SKIP TO", evt.srcElement.value);
+      let pos = app.mediaElement.duration * (evt.srcElement.value / 100.);
+      app.to.update({position: pos});
+    });
 
   });
 
   window.addEventListener("resize", function() {
     setTimeout(app.resize, 0);
-  });
-
-  app.pbar = document.querySelector(".controls .progressbar input");
-  app.to.on("timeupdate", function() {
-    let percent = 100 * (this.pos / app.videoElement.duration);
-    app.pbar.value = percent;
-  });
-
-  app.pbar.addEventListener("change", evt => {
-    console.log("SKIP TO", evt.srcElement.value);
-    let pos = app.videoElement.duration * (evt.srcElement.value / 100.);
-    app.to.update({position: pos});
   });
 
 

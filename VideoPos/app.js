@@ -705,7 +705,7 @@ var rubberDuck = function(target, options) {
                     API.manifest = data;
                     if (mediatarget && API.options.video)
                         API.load_video(data.video, mediatarget);
-                    if (API.options.video == false && data.audio) {
+                    if ((!data.video && data.audio) || (API.options.video == false && data.audio)) {
                         API.load_audio(data.audio, mediatarget);
                     }
 

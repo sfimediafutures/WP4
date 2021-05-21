@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VideoPositioning - markup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+  <script src="https://nlive.no/datacannon-v3.js"></script>
+  <style>
+
+    .iframecontainer {
+        width: 100%;
+    }
+
+    .iframe {
+        display: inline-block;
+        width: 360px;
+        height: 202px;
+        position: relative;
+        padding: 10px;
+        border: 1px solid white;
+    }
+
+    .iframe img {
+        position: absolute;
+        top: 0px;
+        z-index: 1;
+        width: 360px;
+    }
+
+    .iframe .mark {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        width: 20%;
+        height: 60%;
+        border: 1px solid green;
+        transform: translate(-50%, -50%);
+    }
+
+    .iframe .ctrl {
+        position: absolute;
+        bottom: -1px;
+        width: 100%;
+    }
+    .iframe .ctrl button {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .ctrlbuttons {
+        position: fixed;
+        bottom: 5px;
+        right: 5px;
+    }
+
+  </style>
+
+  <body>
+
+    <div class="iframecontainer">
+    </div>
+    <div class="ctrlbuttons">
+        <button id="gotonow">GoTo Now</button>
+        <button id="download">Download</button>
+        <button id="load">Load</button>
+        <button id="save">Save</button>
+    </div>
+
+    <template id="iframe_template">
+        <div class="iframe">
+            <img/>
+            <div class="mark"></div>
+            <div class="ctrl">
+                <button class="btncenter">Center</button>
+                <button class="btndelete">Delete</button>
+                <button class="btngoto">GoTo</button>
+            </div>
+        </div>
+    </template>
+
+    <script>
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+              results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      function downloadObjectAsJson(exportObj, exportName){
+          var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, undefined, 2));
+          var downloadAnchorNode = document.createElement('a');
+          downloadAnchorNode.setAttribute("href",     dataStr);
+          downloadAnchorNode.setAttribute("download", (exportName || "features") + ".json");
+          document.body.appendChild(downloadAnchorNode); // required for firefox
+          downloadAnchorNode.click();
+          downloadAnchorNode.remove();
+        }
+
+
+    let app = MCorp.app("4704154345375000225");
+
+    app.to = new TIMINGSRC.TimingObject();
+    app.to_max = new TIMINGSRC.SkewConverter(app.to, 60);
+    app.sequencer = new TIMINGSRC.Sequencer(app.to, app.to_max);
+    app.pos_sequencer = new TIMINGSRC.Sequencer(app.to, app.to_max);
+    app.dc_sequencer = new TIMINGSRC.Sequencer(app.to, app.to_max);
+
+    if (getParameterByName("dc")) {
+        app.dc = getParameterByName("dc");
+        app.dcannon = new DataCannon("wss://nlive.no/dc", [app.dc_sequencer]);
+        app.dcannon.subscribe(app.dc);
+    }
+
+    app.ready.then(function() {
+        //to.timingsrc = app.motions.private;
+        console.log("Multidevice timing is operational");
+    });
+
+
+
+    let container = document.querySelector(".iframecontainer");
+
+    let last_set = {};
+
+    let add_point = function(iframe, position, shiftkey) {
+        console.log("add_point", iframe, position, shiftkey);
+        let edit_frame = iframe;
+        if (shiftkey) {
+            edit_frame = last_set.iframe || iframe;
+            position = last_set.position || [50, 50];
+        }
+
+        ts = iframe.endts;  // app.sequencer.getCues()[iframe.nr].data.endts;
+        app.pos_sequencer.addCue("iframe" + edit_frame.nr, new TIMINGSRC.Interval(edit_frame.ts, ts), {pos: position, nr: edit_frame.nr, start: edit_frame.ts, end: ts});
+        console.log("Updated frame", edit_frame.nr, [edit_frame.ts, ts]);
+        last_set = {iframe: edit_frame, position: position, startts: edit_frame.ts, endts: ts}
+    };
+
+
+    let _insert_sort = function(container, item) {
+        // Insertion sort
+        let before;
+        let children = [];
+        let last;
+        for (var i in container.children) {
+            if (container.children[i].nodeType == 1) { // get rid of the whitespace text nodes
+                children.push(container.children[i]);
+            }
+        }
+
+        for (let idx=0; idx<children.length; idx++) {
+            if (children[idx].startts >= item.endts) {
+                before = children[idx];
+                break;
+            } else {
+                last = children[idx];
+            }
+        }
+
+        if (before) {
+            container.insertBefore(item, before)
+        } else {
+            container.appendChild(item);
+        }
+    }
+
+
+    let add_iframe = function(iframe) {
+        let template = document.querySelector("template#iframe_template").content.cloneNode(true);
+        let d = template.querySelector(".iframe");
+        d.setAttribute("title", iframe.ts);
+        d.startts = iframe.ts;
+        d.endts = iframe.endts;
+        d.setAttribute("startts", iframe.ts);
+        d.setAttribute("endts", iframe.endts);
+        d.querySelector("img").src = iframe.url;
+        d.setAttribute("id", "iframe" + iframe.nr);
+
+        d.querySelector(".btncenter").addEventListener("click", evt => {
+            add_point(iframe, [50, 50], evt.shiftKey);
+        });
+
+        d.querySelector(".btngoto").addEventListener("click", evt => {
+            app.motions.private.update(iframe.ts);
+        });
+
+        d.querySelector(".btndelete").addEventListener("click", evt => {
+            console.log("DELETE");
+            let found = false;
+            app.pos_sequencer.getCues().forEach(cue => {
+                console.log("cue has", cue.interval.low, cue.interval.high);
+                console.log("iframe", iframe.ts, iframe.endts);
+                if (cue.interval.low < iframe.endts && cue.interval.high > iframe.ts) { 
+                    // This is the one
+                    console.log("Found the one", cue, cue.data.nr);
+                    found = true;
+
+                    if (cue.interval.low < iframe.ts) {
+                        // It spans more than just us, set the end of the cue to our start
+                        app.pos_sequencer.addCue(cue.key, [cue.interval.low, iframe.ts], cue.data);
+                        d.querySelector(".mark").style.display = "none";
+                    } else {
+                        app.pos_sequencer.removeCue("iframe" + cue.data.nr);                        
+                    }
+                };
+            });
+
+            if (!found) {
+                console.log("This one spans the iframe, must go back in time");
+            }
+
+        });
+
+        d.querySelector("img").addEventListener("click", evt => {
+            let w = d.querySelector("img").width;
+            let h = d.querySelector("img").height;
+
+            let pos = [(100 * evt.offsetX / w).toFixed(0), (100 * evt.offsetY / h).toFixed(0)];
+            console.log("Clicked image", evt);
+            add_point(iframe, pos, evt.shiftKey);
+        });
+
+        _insert_sort(container, d);
+        //container.appendChild(d);
+    }
+
+    let load_iframes = function(url) {
+        fetch(url)
+            .then(res => res.json())
+            .then(info => {
+                // We add end times
+                for (let i=0; i<info.iframes.length - 1; i++) {
+                    info.iframes[i].endts = info.iframes[i+1].ts;
+                }
+                console.log(info);
+
+                info.iframes.forEach(iframe => {
+                    app.sequencer.addCue("iframe" + iframe.nr, [iframe.ts, iframe.endts], iframe);
+                    }); 
+                });
+    }
+
+    let source = getParameterByName("url");
+    if (source) load_iframes(source);
+
+    app.sequencer.on("change", evt => {
+        add_iframe(evt.new.data);
+    });
+
+    app.sequencer.on("remove", evt => {
+        let e = document.querySelector("#" + evt.old.key);
+        if (e) {
+            e.parentElement.removeChild(e);
+        }
+    });
+
+    app.pos_sequencer.on("change", evt => {
+        let data = evt.new.data;
+        let start = evt.new.interval.low;
+        let end = evt.new.interval.high;
+
+        // We check all visible items to see if they are within
+        app.sequencer.cues().forEach(cue => {
+            if (cue.interval.low < end && cue.interval.high > start) { 
+                // contained 
+                let itm = document.querySelector("#iframe" + cue.data.nr + " .mark");
+                itm.style.left = data.pos[0] + "%";
+                itm.style.top = data.pos[1] + "%";
+                itm.style.display = "block";        
+            }
+        });
+    });
+
+    app.pos_sequencer.on("remove", evt => {
+        console.log("Removing key", evt.key);
+        let itm = document.querySelector("#" + evt.key + " .mark");
+        itm.style.display = "none";
+    });
+
+    document.querySelector("body").addEventListener("keydown", evt => {
+        if (evt.key == "PageDown") {
+            evt.preventDefault();
+            app.to.update({position: app.to.pos + 50})
+        } else if (evt.key == "PageUp") {
+            evt.preventDefault();
+            app.to.update({position: Math.max(0, app.to.pos - 50)})
+
+        } else if (evt.key == "ArrowLeft") {
+            evt.preventDefault();
+            let new_pos = last_set.position;
+            let new_data = {pos: new_pos, nr: last_set.iframe.nr, start:last_set.startts, end:last_set.endts}
+            new_pos = [parseInt(last_set.position[0]) - 1, parseInt(last_set.position[1])];
+            app.pos_sequencer.addCue("iframe" + last_set.iframe.nr, new TIMINGSRC.Interval(last_set.startts, last_set.endts), new_data);
+            last_set.position = new_pos;
+        } else if (evt.key == "ArrowRight") {
+            evt.preventDefault();
+            let new_pos = last_set.position;
+            let new_data = {pos: new_pos, nr: last_set.iframe.nr, start:last_set.startts, end:last_set.endts}
+            new_pos = [parseInt(last_set.position[0]) + 1, parseInt(last_set.position[1])];
+            app.pos_sequencer.addCue("iframe" + last_set.iframe.nr, new TIMINGSRC.Interval(last_set.startts, last_set.endts), new_data);
+            last_set.position = new_pos;
+        } else if (evt.key == "ArrowDown") {
+            evt.preventDefault();
+            let new_pos = last_set.position;
+            let new_data = {pos: new_pos, nr: last_set.iframe.nr, start:last_set.startts, end:last_set.endts}
+            new_pos = [parseInt(last_set.position[0]), parseInt(last_set.position[1]) + 1];
+            app.pos_sequencer.addCue("iframe" + last_set.iframe.nr, new TIMINGSRC.Interval(last_set.startts, last_set.endts), new_data);
+            last_set.position = new_pos;
+        } else if (evt.key == "ArrowUp") {
+            evt.preventDefault();
+            let new_pos = last_set.position;
+            let new_data = {pos: new_pos, nr: last_set.iframe.nr, start:last_set.startts, end:last_set.endts}
+            new_pos = [parseInt(last_set.position[0]), parseInt(last_set.position[1]) - 1];
+            app.pos_sequencer.addCue("iframe" + last_set.iframe.nr, new TIMINGSRC.Interval(last_set.startts, last_set.endts), new_data);
+            last_set.position = new_pos;
+        } else {
+            console.log("KEY", evt.key);
+        }
+    });
+
+
+    document.querySelector("#download").addEventListener("click", function() {
+        let cues = [];
+        app.pos_sequencer.getCues().forEach(cue => cues.push(cue.data)); 
+
+        cues.forEach(cue => delete(cue.nr));
+
+        downloadObjectAsJson(cues, "marked.json");
+    });
+
+    document.querySelector("#gotonow").addEventListener("click", function() {
+        app.to.update({position: app.motions.private.pos});
+    });
+
+
+
+    document.querySelector("#save").addEventListener("click", function() {
+        if (!app.dcannon) return;
+
+        let cues = [];
+        app.pos_sequencer.getCues().forEach(cue => cues.push(cue)); 
+        cues.forEach(cue => delete(cue.data.nr));
+
+        cues.forEach(cue =>{
+            let posts = 
+                app.dcannon.post(app.dc, {
+                    startts: cue.interval.low, 
+                    endts: cue.interval.high,
+                    name: cue.key,
+                    id: cue.key,
+                    value: cue.data
+                });
+
+            console.log("Posted", {
+                    startts: cue.interval.low, 
+                    endts: cue.interval.high,
+                    name: cue.key,
+                    id: cue.key,
+                    value: cue.data
+                });
+        });
+    });
+
+    document.querySelector("#load").addEventListener("click", function() {
+        if (!app.dcannon) return;
+
+        // Clear sequencer first
+        app.pos_sequencer.clear();
+
+        app.dc_sequencer.getCues().forEach(cue => {
+            app.pos_sequencer.addCue(cue.key, [cue.interval.low, cue.interval.high], cue.data);
+        })
+    });
+
+
+
+    </script>
+
+
+  </body>
+
+

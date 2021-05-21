@@ -375,7 +375,7 @@
         "start": 205.7,
         "end": 207.0,
         "text": "- Hi<br>- Hi",
-        "who": ["leonard", "sheldon"]
+        "who": ["sheldon", "leonard"]
     },
     {
         "start": 208.2,
@@ -1050,10 +1050,7 @@
         "start": 528.5,
         "end": 530.2,
         "text": "we played Klingon Boggle<br>till 1:00 a.m.",
-        "who": [
-            "sheldon",
-            "leonard"
-        ]
+        "who": "sheldon"
     },
     {
         "start": 530.3,
@@ -2121,10 +2118,8 @@
         "start": 1045.1,
         "end": 1047.8,
         "text": "He speaks English.<br>He just can't speak to women.",
-        "who": [
-            "penny",
-            "howard"
-        ]
+        "who": "howard"
+        
     },
     {
         "start": 1048.7,

@@ -2,7 +2,10 @@
   "id": 3158480,
   "poster": "/sfi/res/Valkyrien/poster.jpg",
   "video": {
-    "src": "/sfi/res/Valkyrien_s01e01_crop.mp4"
+    "src": "/sfi/res/Valkyrien/Valkyrien_s01e01.mp4"
+  },
+  "audio": {
+    "src": "/sfi/res/Valkyrien/Valkyrien_s01e01.mp3"
   },
   "subtitles": [
     {"src": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_proc_polished.json"}
@@ -14,7 +17,7 @@
     {"vsrc": "/sfi/res/KMTE40000312AA.vtt"},
     {"fsrc": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_updated.json"}
   ],
-  "index": "../res/Valkyrien_s01e01_crop.idx",
+  "index": "../res/Valkyrien/Valkyrien_s01e01.idx",
   "pip": {
     "src": "../res/Valkyrien/Valkyrien_s01e01_tegnspraak.webm"
   },

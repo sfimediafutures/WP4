@@ -4,6 +4,9 @@
   "video": {
     "src": "/sfi/res/Vikingane/MUHH32000118BA.mp4"
   },
+  "audio": {
+    "src": "/sfi/res/Vikingane/MUHH32000118BA.mp3"
+  },
   "subtitles": [
     {"src": "/sfi/res/Vikingane/vikingane_s03e01_subs_updated.json"}
   ],

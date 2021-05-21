@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Test</title>
+
+      <link rel="stylesheet" href="https://static.nrk.no/core-css/major/1/core-css.min.css">
+
+    <style>
+
+        .container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+        }
+
+        img {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+        }
+
+        .box {
+            position: absolute;
+            /*border: green solid 1px;*/
+        }
+
+        .box .name {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #btnplay {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            z-index: 1000;
+        }
+
+        .screenreader {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            font-size: 2em;
+            z-index: 100;
+            background: black;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container" aria-label="Click to look around">
+    <div class="screenreader fnrk-sr" aria-live="assertive"></div>
+    <!--<img aria-hidden="true" src="/sfi/res/Exit2/test/img293.png"/>-->
+    <img aria-hidden="false" aria-label="Click to see" faria-label="Doubleclick, wait and drag to describe" src="/sfi/res/Exit2/test/img392.png"/>
+</div>
+
+<template id="boxtemplate">
+    <div class="box">
+        <div class="name"></div>
+        <div class="value"></div>
+    </div>
+</template>
+
+<script>
+
+
+let all_items;
+let summary = {};
+
+let load_item = function(item) {
+    if (! summary[item.name]) {
+        summary[item.name] = 1;
+    } else {
+        summary[item.name]++;
+    }
+    // return;
+
+    let template = document.querySelector("template#boxtemplate").content.cloneNode(true);
+    let d = template.querySelector(".box");
+    // d.querySelector(".name").innerHTML = item.name + " (" + (100 * item.value).toFixed(0) + ")";
+    d.style.left = 100 * item.box.left + "%";
+    d.style.width = 100 * (item.box.right - item.box.left) + "%";
+    d.style.top = 100 * item.box.top + "%";
+    d.style.height = 100 * (item.box.bottom - item.box.top) + "%";
+
+    d.addEventListener("fmouseover", evt => {
+        console.log("Clicked", item.name, item.value);
+    });
+
+    document.querySelector(".container").appendChild(d);
+}
+
+let load_items_from_url = function(url) {
+    fetch(url).then(res => res.json()).then(res => {
+        all_items = res.items;
+        res.items.forEach(item => load_item(item))
+    });
+}
+
+let get_items = function(x, y, distance=0) {
+    let hits = []
+    all_items.forEach(item => {
+        let bb = item.box;
+        if (bb.left <= (x + distance) && bb.right >= (x - distance) && bb.top <= (y + distance) && bb.bottom >= (y - distance)) {
+            hits.push(item);
+        }
+    });
+    return hits;
+}
+
+let last_seen = [];
+let queued = "";
+let look_at = function(x, y, distance, mention_all) {
+    let items = get_items(x, y, distance);
+    let things = [];
+
+    // First we sort the items after how *often* they are mentioned in the scene (backwards)
+    // Something that's all over will be mentioned more times anyways
+    items.forEach(item => {if (things.indexOf(item.name) == -1) things.push(item.name)});
+    let txt = ""
+    things.forEach(thing => {if (last_seen.indexOf(thing) == -1) txt += thing + ", "});
+    things = things.sort(function(a,b) {return summary[a] - summary[b]});
+    last_seen = things;
+
+    if (mention_all) txt = things.join(", ");
+
+    if (txt) {
+        document.querySelector(".screenreader").innerHTML = txt;
+    }
+    if (speechSynthesis.speaking) {
+        queued += txt;
+        console.log("Already speaking");
+        return;
+    }
+    var msg = new SpeechSynthesisUtterance();
+    msg.text = queued += txt;
+    queued = "";
+    msg.rate = 1.5;
+    speechSynthesis.speak(msg);
+    /*
+    */    
+}
+
+//document.querySelector("#btnplay").addEventListener("click", evt => {
+let start = function() {
+    // evt.srcElement.style.display = "none";
+    load_items_from_url("output.json")    
+
+    let container = document.querySelector(".container");
+    container.addEventListener("touchmove", evt => {
+        evt.preventDefault();
+        let x = evt.touches[evt.touches.length - 1].clientX;
+        let y = evt.touches[evt.touches.length - 1].clientY;
+        look_at(x/container.clientWidth, y/container.clientHeight, 0)
+    });
+    container.addEventListener("mouseover", evt => {
+        if (!evt.shiftKey) return;
+        look_at(evt.x/container.clientWidth, evt.y/container.clientHeight);
+    });
+    container.addEventListener("click", evt => {
+        look_at(evt.x/container.clientWidth, evt.y/container.clientHeight, 0.1, true);
+    });
+}
+
+start();
+
+
+</script>
+
+
+</body>
+</html>

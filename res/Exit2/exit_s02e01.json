@@ -17,8 +17,8 @@
     "src": "../res/Valkyrien_s01e01_tegnspraak.webm"
   },
   "synstolk": "/sfi/res/Exit2/exit_s02e01_synstolk.mp3",
-  "faux": "/sfi/res/Exit2/exit_s02e01_aux.json",
-  "aux": "/sfi/AI/test2.json",
+  "aux": "/sfi/res/Exit2/exit_s02e01_aux.json",
+  "faux": "/sfi/AI/test2.json",
   "cast": "/sfi/res/Exit2/s02_cast.json",
   "fdc": "SFI-markup-exit_s02e01"
 }

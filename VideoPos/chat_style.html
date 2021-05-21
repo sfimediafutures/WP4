@@ -233,7 +233,7 @@
           <div class="spacer"></div>
           <button class="nrk-unset button hidden" id="btnsound" alt="Toggle sound"><i class="material-icons">volume_up</i></button>
           <button class="nrk-unset button hidden" id="btnsynstolk" alt="Toggle synstolk"><i class="material-icons">visibility</i></button>
-          <button class="nrk-unset button hidden" id="btnwho" alt="Who was that"><i class="material-icons">face</i></button>
+          <button class="nrk-unset button hidden" title="Who was it?" id="btnwho" alt="Who was that"><i class="material-icons">face</i></button>
         </div>
         </div>
 
@@ -439,8 +439,10 @@
             // For advanced subs, we remove all newlines and end hyphens and let 
             // the browser break the text
             text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
+            text = text.replace(/-\W/, "")
+            text = text.replace(/^-/, "")
 
-            if (who == "scene" || who == "info" || app.cast[who] === undefined) {
+            if (who == "scene" || who == "info") {
                 let info = document.createElement("div");
                 info.classList.add("message");
                 info.classList.add("infomessage");
@@ -449,6 +451,10 @@
                 info.innerHTML = text;
                 info.setAttribute("id", data.key);
                 return info;
+            }
+
+            if (app.cast[who] === undefined) {
+                who = "undefined";
             }
 
             let template = document.querySelector("template#message").content.cloneNode(true);
@@ -536,17 +542,18 @@
 
         let msg;
         if (Array.isArray(message.who)) {
-        // The sub has multiple messages within them, assume <br> or "- " is the limiter in the text
-        let lines = message.text.split("<br>");
-        for (let idx=0; idx<message.who.length; idx++) {
-            data.idx = idx;
-            msg = _make_msg(message.who[idx], lines[idx], data);
-            if (msg) _insert_sort(body, msg);
-        }
-    } else {
-       msg = _make_msg(message.who, message.text, data);
-       if(msg) _insert_sort(body, msg);
-   }
+            // The sub has multiple messages within them, assume <br> or "- " is the limiter in the text
+            let lines = message.text.split("<br>");
+            for (let idx=0; idx<message.who.length; idx++) {
+                data.idx = idx;
+                console.log("Nested lines - ", idx, message.who[idx], lines[idx]);
+                msg = _make_msg(message.who[idx], lines[idx], data);
+                if (msg) _insert_sort(body, msg);
+            }
+        } else {
+           msg = _make_msg(message.who, message.text, data);
+           if(msg) _insert_sort(body, msg);
+       }
    if (msg) msg.scrollIntoView();
 };
 
@@ -602,21 +609,17 @@ let manifest = getParameterByName("url") || "bbt_s01e01.json";
 
 app.load(manifest + "?ts=" + new Date().getTime() , ".mediacontainer")
 .then(evt => {
+      app.pbar = document.querySelector(".controls .progressbar input");
+      app.to.on("timeupdate", function() {
+        let percent = 100 * (this.pos / app.app.motions.duration.pos);
+        app.pbar.value = percent;
+      });
 
-    if (app.mediaElement) {
-          app.pbar = document.querySelector(".controls .progressbar input");
-          app.to.on("timeupdate", function() {
-            let percent = 100 * (this.pos / app.mediaElement.duration);
-            app.pbar.value = percent;
-          });
-
-          app.pbar.addEventListener("change", evt => {
-            console.log("SKIP TO", evt.srcElement.value);
-            let pos = app.mediaElement.duration * (evt.srcElement.value / 100.);
-            app.to.update({position: pos});
-          });    
-    }
-
+      app.pbar.addEventListener("change", evt => {
+        console.log("SKIP TO", evt.srcElement.value);
+        let pos = app.app.motions.duration.pos * (evt.srcElement.value / 100.);
+        app.to.update({position: pos});
+      });    
 });
 
 
@@ -679,7 +682,14 @@ fetch(manifest + "?ts=" + new Date().getTime())
         let cue = cues[cues.length-1];
         if (cue) {
             console.log("Who is", cue.data.who);
-            app.speak(cue.data.who, 0, true);
+            if (Array.isArray(cue.data.who)) {
+                let who = "";
+                cue.data.who.forEach(w => who += w + " then ");
+                console.log("Who is now", who);
+                app.speak(who.substr(0, who.length - 5), 0, true);
+            } else {
+                app.speak(cue.data.who, 0, true);                
+            }
         }
     });
 

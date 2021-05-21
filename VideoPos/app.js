@@ -103,7 +103,6 @@ var rubberDuck = function(target, options) {
         if (options.mcorp_appid) {
             // API.app = MCorp.app(options.mcorp_appid);
             API.app.ready.then(function() {
-
                 if (API.mediaElement) {
                     console.log("Video loaded, and mcorp app ready - check entry");
                     let hash = API.manifest.id || 0;
@@ -112,6 +111,12 @@ var rubberDuck = function(target, options) {
                         console.log("Changed content", API.app.motions.entry.pos, hash);
                         API.app.motions.entry.update(hash);
                         API.app.motions.private.update(0,1);
+                    }
+
+                    if (API.app.motions.duration.pos != API.mediaElement.duration && app.mediaElement.duration) {
+                        try {
+                            API.app.motions.duration.update(API.mediaElement.duration);
+                        } catch (err) {}
                     }
                 }
 
@@ -140,7 +145,7 @@ var rubberDuck = function(target, options) {
     let ctrltimeout;
     let showControls = function(visible) {
       if (API.options.hide_controls == false) return;
-      if (!options.control) return;
+      if (!API.options.controls) return;
       clearTimeout(ctrltimeout);
 
         let ctrl = API.targetElement.querySelector(".controls");
@@ -419,7 +424,6 @@ var rubberDuck = function(target, options) {
         let opt = API.options[btn.substr(3)];
         if (opt != false) {
           let b = btn;
-          console.log("Looking for '#" + btn + "' in", API.targetElement);
           if (API.targetElement.querySelector("#" + btn))
               API.targetElement.querySelector("#" + btn).addEventListener("click", evt => {evt.stopPropagation(); btns[b](evt)});
         } else if (!opt) {
@@ -592,15 +596,16 @@ var rubberDuck = function(target, options) {
     }
     // Load a video file into the video target
     API.load_video = function(info) {
-        console.log("loading video", info);
         videotarget = API.targetElement;
         if (!videotarget) return;
         let video = document.createElement("video");
+        video.addEventListener("durationchange", () => {console.log("DURATION CHANGE"); if (app.readyState == "open") app.motions.duration.update(video.duration)});
         video.src = info.src;
         video.addEventListener("loadedmetadata", function() {
-            console.log("RESIZE");
             API.resize();
             API.resize(videotarget);
+            if (app.readystate == "open")
+                app.motions.duration.update(video.duration);
         });
         video.classList.add("auto-resize");
         video.classList.add("maincontent");
@@ -611,7 +616,8 @@ var rubberDuck = function(target, options) {
         API.mediaElement = video;
         API.mediaElement.pos = API.mediaElement.pos || [50, 50];
         videotarget.appendChild(video);
-        API.targetElement.querySelector("#btnsound").style.display = "";
+        if (API.targetElement.querySelector("#btnsound"))
+            API.targetElement.querySelector("#btnsound").style.display = "";
     };
 
     // Load an audio file into the audio target
@@ -671,7 +677,8 @@ var rubberDuck = function(target, options) {
         API.synstolkElement.muted = false;
         API.synstolk_sync.pause(true);
         console.log("Synstolk loaded");
-        API.targetElement.querySelector("#btnsynstolk").style.display = "";
+        if (API.targetElement.querySelector("#btnsynstolk"))
+            API.targetElement.querySelector("#btnsynstolk").style.display = "";
     }
 
     // Load a manifest
@@ -689,7 +696,7 @@ var rubberDuck = function(target, options) {
             }
         }
         API.mediaElement = null;  // document.querySelector(mediatarget);
-        console.log("TargetElement is", API.targetElement);
+        // console.log("TargetElement is", API.targetElement);
 
         if (API.targetElement.querySelector("#btnsound"))
             API.targetElement.querySelector("#btnsound").style.display = "none";
@@ -710,16 +717,12 @@ var rubberDuck = function(target, options) {
                     }
 
                     if (API.manifest.poster) {
-                        console.log("Poster file", API.manifest.poster);
                         document.querySelector(".overlay").style.backgroundImage = "url('" + API.manifest.poster + "')";
                     }
 
                     let s = data.subtitles;
                     if (!API.options.advancedsubs && data.normalsubtitles)
                         s = data.normalsubtitles;
-
-                    if (s)
-                        console.log("Loading subtitles");
 
                     s.forEach(subtitle => {
                         if (subtitle.src.indexOf(".json") > -1) {
@@ -768,9 +771,10 @@ var rubberDuck = function(target, options) {
                             });
                     }
 
+                    console.log("DC", data.dc, data);
                     if (data.dc) {
                         try {
-                            console.log("Using datacannon")
+                            console.log("Using datacannon", data.dc)
                             API.dcannon = new DataCannon("wss://nlive.no/dc", [API.sequencer]);
                             API.dcannon.ready.then(function() {
                                 API.dcannon.subscribe(data.dc)
@@ -1095,6 +1099,8 @@ var rubberDuck = function(target, options) {
             } else if (evt.key.toLowerCase() == "s") {
                 toggle_sound();
             }
+
+
         });
     }
 
@@ -1308,14 +1314,14 @@ var rubberDuck = function(target, options) {
       align(API.set_overlay(itm.overlay), itm.align);
     }
 
-    console.log("itm", itm);
     if (itm.emotion) {
       console.log("Loading emotion", itm, evt.new.key)
       let e = API.targetElement.querySelector(".emotion");
-      e.src = itm.url;
-      e.key = evt.new.key;
-      e.classList.remove("hidden");
-      console.log("e", e.key, e);
+      if (e) {
+          e.src = itm.url;
+          e.key = evt.new.key;
+          e.classList.remove("hidden");
+      }
     }
 
     /*
@@ -1338,7 +1344,7 @@ var rubberDuck = function(target, options) {
     }
     if (itm.emotion) {
       let e = API.targetElement.querySelector(".emotion");
-      if (e.key == evt.old.key) {
+      if (e && e.key == evt.old.key) {
         e.classList.add("hidden");
       }
     }

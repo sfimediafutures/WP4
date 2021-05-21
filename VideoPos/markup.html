@@ -128,10 +128,13 @@
   <button id="pause">Pause</button>
   <button id="play">Play</button>
   <button id="forwardf">ForwardFrame</button>
+  <br>
   <button id="download">Download</button>
   <button id="center">Center</button>
   <button id="prev">Prev cue</button>
   <button id="next">Next cue</button>
+  <!--button id="extend_prev">Extend prev</button>-->
+  <button id="extend_next">Mark scene shift</button>
   <button id="animate">Animate</button>
 </div>
 </div>
@@ -165,8 +168,12 @@
       index: true,
       tts: false,
       advancedsubs: false,
-      controls: false
+      controls: false,
+      keyboard: false
   };
+
+  if (getParameterByName("local")) options.mcorp_appid = undefined;
+
   var app = rubberDuck(document.querySelector(".videocontainer"), options);
 
   //app.dcannon = new DataCannon("wss://nlive.no/dc", [app.sequencer]);
@@ -198,13 +205,14 @@
           }
 
           if (app.manifest.dc) {
-            console.log("Posting", {
+            /*console.log("Posting", {
                 startts: interval.low, 
                 endts: interval.high,
                 name: key,
                 id: key,
                 value: data
             });
+            */
             app.dcannon.post(app.manifest.dc, {
                 startts: interval.low, 
                 endts: interval.high,
@@ -213,21 +221,70 @@
                 value: data
             });
           } else {
-            console.log("Adding directly to sequencer");
+            //console.log("Adding directly to sequencer");
               app.sequencer.addCue(key, interval, data);
           }
         };
+
+
+        let adjust = function(prev, next, ts) {
+          // Just update the times!
+          if (prev.data.start == ts || next.data.end == ts) return;  // Bad one
+          prev.data.end = app.to.pos;
+          next.data.start = app.to.pos;
+          console.log("Adjusting", [prev.data.start, prev.data.end], ts, [next.data.start, next.data.end]); 
+          console.log("Adjusting2", [prev.interval.low, prev.interval.high], ts, [next.interval.low, next.interval.high]); 
+          do_add(prev.key, new TIMINGSRC.Interval(prev.interval.low, app.to.pos), prev.data);
+          do_add(next.key, new TIMINGSRC.Interval(app.to.pos, next.interval.high), next.data);
+        }
+
+        app.extend_prev = function() {
+          let cues = app.sequencer.dataset.cues({order:byStartTime});
+          let idx;
+
+          let active = app.sequencer.cues();
+          // Find the active point
+          for (let i=0; i<cues.length - 1; i++) {
+            if (cues[i].data.pos === undefined) continue;
+            if (active.indexOf(cues[i]) > -1) {
+              console.log("Found the active on", i);
+              console.log(cues[i], cues[i+1]);
+              // Found the active one at index i
+              // We want the *next* item to go to this one, so fix it
+              adjust(cues[i - 1], cues[i], app.to.pos)
+            }
+          }
+        }
+
+        app.extend_next = function() {
+          let cues = app.sequencer.dataset.cues({order:byStartTime});
+          let idx;
+
+          let active = app.sequencer.cues();
+          // Find the active point
+          for (let i=0; i<cues.length - 1; i++) {
+            if (cues[i].data.pos === undefined) continue;
+            if (active.indexOf(cues[i]) > -1) {
+              console.log("Found the active on", i);
+              console.log(cues[i], cues[i+1]);
+              // Found the active one at index i
+              // We want the *next* item to go to this one, so fix it
+              adjust(cues[i], cues[i + 1], app.to.pos)
+            }
+          }
+        }
 
         app.add_point = function(pos, opts) {
             opts = opts || {};
             opts.ts = opts.ts || app.to.pos;
             let data = {"start": opts.ts, "end": opts.ts + 100000, "pos": pos};
             let endtime = 10000000;
+
             let id = "c" + data.start.toFixed(1).replace(".","-");
-            console.log("Start for this point is", data.start, pos);
+            console.log("Start for this point is", data.start, pos, "@", app.to.pos);
 
             // Update the currently active to stop at the correct time
-            let cues = app.sequencer.cues({"order": byStartTime});
+            cues = app.sequencer.cues({"order": byStartTime});
             cues.forEach(cue => {
               // If this cue is THE ONE WE'RE UPDATING, don't do anything here
               if (cue.id == id) return;
@@ -241,9 +298,8 @@
             // with the current one - we don't want overlaps.
             // Also check that there is continuity - don't want holes
             cues = app.sequencer.dataset.cues({order:byStartTime});
-            console.log("CUES", cues);
             for (let i=1; i<cues.length; i++) {
-                console.log("CHECKING", cues[i-1].interval, cues[i].interval);
+                // console.log("CHECKING", cues[i-1].interval, cues[i].interval);
                 if (cues[i-1].interval.high != cues[i].interval.low) {
                     // The last one overlaps, fix it
                     let c = cues[i-1];
@@ -315,18 +371,35 @@
     });},
     "start": function() { app.to.update({position: 0})},
     "back5": function() { app.to.update({position: app.to.pos})},
-    "backf": function() { 
+    "backf": function(e) { 
         let iframe = app.idxsequencer.cues()[0].data;
         let p = iframe.current;
         if (Math.abs(app.to.pos - p) < 0.05)
             p = iframe.prev;
+
+      if (e.shiftKey) {
+        app.to.update({position: p - 2.0});
+      } else {
         app.to.update({position: p + fudge}); // Avoid "edge" of frame
+      }
+
         //app.to.update({position: app.to.pos - 0.033})
     },
     "pause": function() { app.to.update({velocity: 0})},
     "play": function() { app.to.update({velocity: 1})},
-    "forwardf": function() { app.to.update({position: app.idxsequencer.cues()[0].data.next + fudge}); }, //app.to.update({position: app.to.pos + 0.033})},
-    "download": function() { downloadObjectAsJson(app.cues());},
+    "forwardf": function(e) {
+      if (e.shiftKey) {
+        app.to.update({position: app.idxsequencer.cues()[0].data.next - 2.0});        
+      } else {
+        app.to.update({position: app.idxsequencer.cues()[0].data.next + fudge});
+      }
+    },
+    "download": function() { 
+      let data = [];
+      app.sequencer.getCues().forEach(cue => data.push(cue.data)); 
+      data.forEach(d => delete(d.target));
+      downloadObjectAsJson(data);
+    },
     "center": function() { 
         let v = document.querySelector("video");
         let point = [50, 50];  // [50 - (100 * (20. / v.clientWidth)), 50 - (100 * (20. / v.clientHeight))]
@@ -359,6 +432,10 @@
             }
         }
     },
+
+    //"extend_prev": function() {app.extend_prev()},
+    "extend_next": function() {app.extend_next()},
+
     "animate": function() {
         app.sequencer.getActiveCues().forEach(cue => {
             cue.data.animate = true;
@@ -412,13 +489,36 @@
       if (app.to.vel == 0) {
         app.to.update({velocity: 1});
       } else {
-        app.to.update({velocity: 0, position: app.to.pos - 0.2});
+        app.to.update({velocity: 0, position: app.to.pos});
       }
     } else if (evt.keyCode == 37) {
+      evt.preventDefault();
       app.to.update({position: app.to.pos - delta});
     } else if (evt.keyCode == 39) {
+      evt.preventDefault();
+      console.log("FROM", app.to.pos, "to", app.to.pos + delta);
       app.to.update({position: app.to.pos + delta});
+    } else if (evt.key.toLowerCase() == "t") {
+      console.log("TIME", app.to.pos);
+    } else if (evt.key.toLowerCase() == "x") {
+      // Jump to next iframe (the frame after - it will be aligned if we mark it)
+      app.to.update({position: app.idxsequencer.cues()[0].data.next + 0.045});
+    } else if (evt.key.toLowerCase() == "z") {
+      console.log("Skipping to before next cue");
+        app.sequencer.cues().forEach(p => {
+            console.log("p", p);
+            if (p.data.pos) {
+                if (evt.shiftKey) {
+                  if (p.data.end - 4 > app.to.pos)
+                      app.to.update({position: p.data.end - 3})
+                } else {
+                      app.to.update({position: p.data.end - 0.0033, velocity: 0})                    
+                }
+            }
+      });
     }
+
+
   });
 
     window.addEventListener("resize", function() {

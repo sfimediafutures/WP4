@@ -353,7 +353,7 @@ var rubberDuck = function(target, options) {
 
             if (API.options.hiviz) {
                 evt.srcElement.classList.add("active");
-                API.options.subclasses="hiviz";
+                API.options.subclasses="";
                 // Put on any visible subs now
                 API.targetElement.querySelectorAll(".advancedsub .text").forEach(e => e.classList.add(API.options.subclasses));
                 API.targetElement.querySelectorAll(".advancedsub").forEach(e => e.classList.add(API.options.subclasses));

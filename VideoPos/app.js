@@ -26,7 +26,8 @@ var rubberDuck = function(target, options) {
         video: true,
         hide_controls: true,
         responsive_voice: false,
-        screenreadersubs: true
+        screenreadersubs: true,
+        hiviz: undefined
     };
     let __autopaused = false;
     let _is_speaking = false;
@@ -331,7 +332,6 @@ var rubberDuck = function(target, options) {
                 position: API.to.pos + 10
             })
         },
-
         "btnfs": function(evt) {
             evt.preventDefault();
             API.toggle_fullscreen(API.targetElement);
@@ -343,6 +343,27 @@ var rubberDuck = function(target, options) {
         "btnsynstolk": function(evt) {
             evt.preventDefault();
             toggle_synstolk(evt);
+        },
+        "btnhiviz": function(evt) {
+
+            evt.preventDefault();
+            API.options.hiviz = !evt.srcElement.classList.contains("active");
+
+            console.log("hiviz triggered", API.options.hiviz);
+
+            if (API.options.hiviz) {
+                evt.srcElement.classList.add("active");
+                API.options.subclasses="hiviz";
+                // Put on any visible subs now
+                API.targetElement.querySelectorAll(".advancedsub .text").forEach(e => e.classList.add(API.options.subclasses));
+                API.targetElement.querySelectorAll(".advancedsub").forEach(e => e.classList.add(API.options.subclasses));
+            } else {
+                evt.srcElement.classList.remove("active");
+                API.options.subclasses="hiviz";
+                // Remove from any visible subs now
+                API.targetElement.querySelectorAll(".advancedsub .text").forEach(e => e.classList.remove(API.options.subclasses));
+                API.targetElement.querySelectorAll(".advancedsub").forEach(e => e.classList.remove(API.options.subclasses));
+            }
         },
         "btn_nrktegnspraak": function(evt) {
             evt.preventDefault();
@@ -433,6 +454,7 @@ var rubberDuck = function(target, options) {
 
     for (let btn in btns) {
         let opt = API.options[btn.substr(3)];
+        console.log(btn, opt);
         if (opt !== false) {
           let b = btn;
           if (API.targetElement.querySelector("#" + btn))
@@ -1284,6 +1306,11 @@ var rubberDuck = function(target, options) {
             if (data.data.align == "right") {
                 console.log("Right align");
                 msg.classList.add("right");
+            }
+
+            if (API.options.subclasses) {
+                msg.classList.add(API.options.subclasses);
+                msg.querySelector(".text").classList.add(API.options.subclasses);
             }
 
             // TODO? Trick for a double-sub - the second part is a bit later, so delay it?

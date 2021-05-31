@@ -1,7 +1,9 @@
+"""Parse subtitle file (srt, vtt) and convert to JSON."""
 import re
 
 
 class SubParser:
+    """Parse VTT/SRT files."""
 
     def __init__(self):
         self.items = []
@@ -11,14 +13,11 @@ class SubParser:
         ms = t.split(",")[1]
         t = t[:-len(ms) - 1]
         h, m, s = t.split(":")
-        ts = int(h) * 3600 + int(m) * 60 + int(s) + (int(ms)/1000.)
+        ts = int(h) * 3600 + int(m) * 60 + int(s) + (int(ms) / 1000.)
         return ts
 
     def load_srt(self, filename, default_who=None):
         with open(filename, "rb") as f:
-
-            data = f.read()
-            f.seek(0)
 
             start = end = None
             text = ""

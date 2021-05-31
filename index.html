@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MediaFutures WP4 Demoer</title>
+    <title>MediaFutures WP4 / Demo list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -105,7 +105,7 @@
         Demos tested on Chrome.
 
     </div>
-    <img class="mflogo" src="MF_mainlogo.png"/>
+    <a href="https://mediafutures.no"><img class="mflogo" src="MF_mainlogo.png"/ alt="MediaFutures project"></a>
 </div>
 
 <div class="demolist">
@@ -113,7 +113,7 @@
 
 <template id="demotemplate">
     <div class="demo">
-        <img class="poster" src="">
+        <img class="poster" src="" aria-hidden="true">
         <div class="details">
             <div class="title"></div>
             <div class="description"></div>
@@ -197,6 +197,7 @@
             let a = document.createElement("a");
             a.setAttribute("href", link.href);
             a.setAttribute("target", "_blank");
+            a.setAttribute("aria-label", link.group + " " + link.name);
             a.innerHTML = link.name;
             if (!link.group) link.group = "Links";
             let target = linkarea.querySelector("#" + link.group);
@@ -204,7 +205,7 @@
                 temp2 = document.querySelector("template#linkgrouptemplate").content.cloneNode(true);
                 target = temp2.querySelector("div");
                 target.setAttribute("id", link.group);
-                target.setAttribute("title", demo.title + ", " + link.name + ", " + link.group);
+                target.setAttribute("title", demo.title + ", " + link.group);
                 target.querySelector(".linkgroupname").innerHTML = link.group;
                 linkarea.appendChild(target);
 

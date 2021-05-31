@@ -30,6 +30,7 @@ var rubberDuck = function(target, options) {
     };
     let __autopaused = false;
     let _is_speaking = false;
+    let _traditional = false;  // Traditional (fixed) aspect ratio?
     let wakeLock = null;
 
     let get_hash = function(str) {
@@ -278,16 +279,26 @@ var rubberDuck = function(target, options) {
         "btnpos": function(evt) {
             evt.preventDefault();
             API.options.pos = !evt.srcElement.classList.contains("active");
+            console.log("Trigger btnpos");
             //API.options.pipskew = API.options.pos;
             if (API.options.pos) {
                 evt.srcElement.classList.add("active");
+                _traditional = false;
+                API.targetElement.style.width = "100%";
+                API.targetElement.style.height = "100%";
+                API.mediaElement.style.width = "";
+                API.mediaElement.style.height = "";
             } else {
                 evt.srcElement.classList.remove("active");
                 // In case we used pipskew, return the width of the outer container
                 API.mediaElement.style.width = "100%";
-                API.resize();
+                API.mediaElement.style.height = "";
+                _traditional = true;
             }
             API.resize();
+
+            // Need to resize twice to get everything good to go!
+            setTimeout(API.resize, 10);
         },
         "btnstart": function(evt) {
             evt.preventDefault();
@@ -422,11 +433,11 @@ var rubberDuck = function(target, options) {
 
     for (let btn in btns) {
         let opt = API.options[btn.substr(3)];
-        if (opt != false) {
+        if (opt !== false) {
           let b = btn;
           if (API.targetElement.querySelector("#" + btn))
               API.targetElement.querySelector("#" + btn).addEventListener("click", evt => {evt.stopPropagation(); btns[b](evt)});
-        } else if (!opt) {
+        } else if (opt === undefined) {
             if (API.targetElement.querySelector("#" + btn)) API.targetElement.querySelector("#" + btn).style.display = "none";
         }
     }
@@ -448,7 +459,8 @@ var rubberDuck = function(target, options) {
 
     // ***************** Subtitles - either "normal" or "advanced" ***************
     if (API.options.rendersubs || API.options.screenreadersubs) {
-        API.subsequencer.on("change", evt => {
+        API.subsequencer.on("change", evt => {let e = evt; setTimeout(function(e) {
+            console.log("Adding sub?");
             let subs = API.targetElement.querySelector(".subtitle");
 
             if (API.screenreadersub && API.options.screenreadersubs) {
@@ -487,7 +499,7 @@ var rubberDuck = function(target, options) {
             } 
             if(subs)
                 subs.classList.remove("hidden");
-        })
+        }, 0);});
 
         API.subsequencer.on("remove", evt => {
             who = evt.old.data.who;
@@ -504,8 +516,9 @@ var rubberDuck = function(target, options) {
             }
 
             API.targetElement.querySelectorAll(".subtitle #" + evt.key).forEach(i => API.targetElement.querySelector(".subtitle").removeChild(i));
-
             API.targetElement.querySelectorAll(".screenreadersub #txt_" + evt.key).forEach(i => i.parentElement.removeChild(i));
+
+            console.log("Removed subs");
 
         });
     }
@@ -599,6 +612,16 @@ var rubberDuck = function(target, options) {
         videotarget = API.targetElement;
         if (!videotarget) return;
         let video = document.createElement("video");
+
+
+        console.log("Loading video, trad", _traditional, API.options.pos);
+        if (_traditional || API.options.pos !== false) {
+            video.style.width = "100%";
+            video.style.height = "";
+            _traditional = true;
+            console.log("traditional is ON")
+        }
+
         video.addEventListener("durationchange", () => {console.log("DURATION CHANGE"); if (app.readyState == "open") app.motions.duration.update(video.duration)});
         video.src = info.src;
         video.addEventListener("loadedmetadata", function() {
@@ -618,6 +641,7 @@ var rubberDuck = function(target, options) {
         videotarget.appendChild(video);
         if (API.targetElement.querySelector("#btnsound"))
             API.targetElement.querySelector("#btnsound").style.display = "";
+
     };
 
     // Load an audio file into the audio target
@@ -865,7 +889,20 @@ var rubberDuck = function(target, options) {
     }
 
     // Handle resizing things
+    let _resize_timer;
     API.resize = function(what) {
+
+        // If we're using "traditional" mode, just show the whole thing, resize
+        // the videocontainer to the video size
+        if (_traditional) {
+            API.targetElement.style.height = API.mediaElement.clientHeight + "px";
+            API.mediaElement.style.left = "";
+            API.mediaElement.style.top = "";
+            API.mediaElement.classList.remove("landscape");
+            API.mediaElement.classList.remove("portrait");
+            return;
+        }
+
         if (what == document.querySelector("body")) throw new Error("Resize body!");
         if (!what) {
             let ar = API.targetElement.querySelectorAll(".auto-resize");
@@ -912,6 +949,7 @@ var rubberDuck = function(target, options) {
             let ar = w / h;
             let outer_ar = width / height;
             let changed = false;
+            console.log("Outer", width, height, "inner", w, h, "Outer_ar", outer_ar, "ar", ar);
             if (outer_ar < ar) { // 1) { // Portrait
                 if (item.classList.contains("landscape")) changed = true;
                 item.classList.add("portrait");
@@ -923,9 +961,10 @@ var rubberDuck = function(target, options) {
             }
 
             if (changed) {
-                setTimeout(function() {
+                clearTimeout(_resize_timer);
+                _resize_timer = setTimeout(function() {
                     API.resize(what);
-                }, 0);
+                }, 1000);
                 return;
             }
 
@@ -1178,7 +1217,8 @@ var rubberDuck = function(target, options) {
         let _make_msg = function(who, text, data) {
             if (!text) throw new Error("Refusing to make message with no text");
 
-            text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
+            // Text is split for readability, let them stay as they are
+            // text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
 
             console.log("_make_msg", who, text, data, API.cast[who]);
 
@@ -1224,7 +1264,7 @@ var rubberDuck = function(target, options) {
             // If we have an index - we know there are multiple on screen
             if (data.idx != undefined) {
                 console.log("Got index");                
-                if (data.idx % 2 == 1) msg.classList.add("lower")
+                if (data.idx % 2 == 1) msg.classList.add("lower")   
                 else msg.classList.add("higher");
             } else {
               // Detect if there is another one on screen already
@@ -1263,10 +1303,22 @@ var rubberDuck = function(target, options) {
             for (let idx = 0; idx < message.who.length; idx++) {
                 data.idx = idx;
                 let msg = _make_msg(message.who[idx], lines[idx], data);
+                if (msg && msg.classList.contains("lower")) {
+                    msg.style.opacity = 0.01;
+                    setTimeout(() => msg.style.opacity = 1.0, 700);
+                }
+
                 if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);
             }
         } else {
             let msg = _make_msg(message.who, message.text, data);
+
+            if (msg && msg.classList.contains("lower")) {
+                msg.style.opacity = 0.01;
+                setTimeout(() => msg.style.opacity = 1.0, 700);
+                //setTimeout(() => API.targetElement.querySelector(".subtitle").appendChild(msg), 0);
+            }
+
             if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);
         }
     };

@@ -10,6 +10,9 @@
   <script src="https://nlive.no/datacannon-v3.js"></script>
   <style>
 
+    body {
+        margin: 0px;
+    }
     .iframecontainer {
         width: 100%;
     }
@@ -19,7 +22,8 @@
         width: 360px;
         height: 202px;
         position: relative;
-        padding: 10px;
+        padding: 5px;
+        padding-bottom: 20px;
         border: 1px solid white;
     }
 
@@ -66,6 +70,7 @@
     <div class="ctrlbuttons">
         <button id="gotonow">GoTo Now</button>
         <button id="download">Download</button>
+        <button id="loadfile">Load file</button>
         <button id="load">Load</button>
         <button id="save">Save</button>
     </div>
@@ -109,10 +114,18 @@
     app.pos_sequencer = new TIMINGSRC.Sequencer(app.to, app.to_max);
     app.dc_sequencer = new TIMINGSRC.Sequencer(app.to, app.to_max);
 
-    if (getParameterByName("dc")) {
-        app.dc = getParameterByName("dc");
-        app.dcannon = new DataCannon("wss://nlive.no/dc", [app.dc_sequencer]);
-        app.dcannon.subscribe(app.dc);
+    if (getParameterByName("manifest")) {
+        fetch(getParameterByName("manifest"))
+            .then(response => response.json())
+            .then(data => {
+                app.manifest = data;
+
+                if (app.manifest.dc) {
+                    app.dc = app.manifest.dc;
+                    app.dcannon = new DataCannon("wss://nlive.no/dc", [app.dc_sequencer]);
+                    app.dcannon.subscribe(app.dc);
+                }
+            });
     }
 
     app.ready.then(function() {
@@ -185,7 +198,7 @@
         });
 
         d.querySelector(".btngoto").addEventListener("click", evt => {
-            app.motions.private.update(iframe.ts);
+            app.motions.private.update(iframe.ts + 0.015);
         });
 
         d.querySelector(".btndelete").addEventListener("click", evt => {
@@ -276,9 +289,9 @@
     });
 
     app.pos_sequencer.on("remove", evt => {
-        console.log("Removing key", evt.key);
         let itm = document.querySelector("#" + evt.key + " .mark");
-        itm.style.display = "none";
+        if (itm)
+            itm.style.display = "none";
     });
 
     document.querySelector("body").addEventListener("keydown", evt => {
@@ -375,6 +388,23 @@
             app.pos_sequencer.addCue(cue.key, [cue.interval.low, cue.interval.high], cue.data);
         })
     });
+
+    document.querySelector("#loadfile").addEventListener("click", function() {
+        if (!app.manifest || !app.manifest.aux) {
+            return;
+        }
+
+        // Clear sequencer first
+        app.pos_sequencer.clear();
+
+        fetch(app.manifest.aux).then(res => res.json())
+        .then(response => {
+            response.forEach(item => {
+                app.pos_sequencer.addCue("k" + String((Math.random() * 100000).toFixed(0)), new TIMINGSRC.Interval(item.start, item.end), item);
+            });
+        });
+    });
+
 
 
 

@@ -18,7 +18,6 @@ class NRKParser:
         self._offset_sec = offset_sec
 
 
-
     def parse(self):
 
         dialog = open("test_dialog.txt", "wb")

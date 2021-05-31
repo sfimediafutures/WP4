@@ -359,10 +359,10 @@ var rubberDuck = function(target, options) {
                 API.targetElement.querySelectorAll(".advancedsub").forEach(e => e.classList.add(API.options.subclasses));
             } else {
                 evt.srcElement.classList.remove("active");
-                API.options.subclasses="";
                 // Remove from any visible subs now
                 API.targetElement.querySelectorAll(".advancedsub .text").forEach(e => e.classList.remove(API.options.subclasses));
                 API.targetElement.querySelectorAll(".advancedsub").forEach(e => e.classList.remove(API.options.subclasses));
+                API.options.subclasses="";
             }
         },
         "btn_nrktegnspraak": function(evt) {

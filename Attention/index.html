@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Attention experiment</title>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+
+  <script src="https://mcorp.no/lib/mediasync.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+  <script src="https://nlive.no/datacannon-v3.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://static.nrk.no/core-css/major/1/core-css.min.css">
+
+  <style>
+
+  body {
+    font-family:  sans-serif;
+    background:  black;
+    color:  white;
+  }
+
+  .start_container {
+    width:  320px;
+    margin-left:  auto;
+    margin-right:  auto;
+    margin-top:  20%;
+    position:  relative;
+    background:  black;
+    // display: flex;
+    z-index:  1;
+  }
+
+  .start_container button {
+    width:  300px;
+    border:  4px solid green;
+    background:  black;
+    color: red;
+    font-size: 2em;
+    margin: 15px;
+    padding:  15px;
+  }
+
+  .loader {
+    position:  fixed;
+    width:  100%;
+    height:  100%;
+    background:  black;
+    color:  white;
+    font-size:  3em;
+    z-index:  1000;
+  }
+
+  .loader .centerall {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color:  white;
+    left:  50%;
+    top:  50%;
+    z-index:  1001;
+  }
+
+  .mediacontainer {
+    width:  100%;
+    position:  absolute;
+    height:  100%;
+    top: 0px;
+  }
+
+  .mediacontainer video {
+    width:  100%;
+  }
+
+  #debug {
+    position:  fixed;
+    left:  5px;
+    top:  5px;
+    z-index:  100;
+  }
+
+  .feedback_container {
+    position: fixed;
+    bottom: 5px;
+    right:  5px;
+  }
+
+</style>
+
+</head>
+<body>
+
+<div class="loader"><div class="centerall">Loading</div></div>
+
+<div class="start_container">
+    <button class="nrk-unset" id="btn_primaryscreen">Primary screen</button>
+    <button class="nrk-unset" id="btn_secondaryscreen">Secondary screen</button>
+</div>
+
+
+<div class="mediacontainer">
+
+<div id="debug"></div>
+
+<div class="feedback_container">
+    <button class="fnrk-unset" id="btn_tostart">To start</button>
+    <button class="fnrk-unset" id="btn_annoyed">Annoyed</button>
+</div>
+
+<script>
+
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+
+var app = MCorp.app("4704154345375000225", {anon: true});
+app.to = new TIMINGSRC.TimingObject();
+app.correct_to = new TIMINGSRC.TimingObject();
+
+app.ready.then(() => {
+    app.correct_to.timingsrc = app.motions.private;
+    app.to.timingsrc = app.motions.private;
+
+    document.querySelector(".loader").style.display = "none";    
+});
+
+
+  let load_experiment = function(experiment, role) {
+    document.querySelector(".start_container").style.display = "none";
+    app.experiment = experiment;
+    app.role = role;
+
+    if (experiment.media[role]) {
+        console.log("***Loading media", experiment.media[role]);
+        let elem;
+        if ([".mp4", "webm"].indexOf(experiment.media[role].substr(-4)) > -1) {
+            elem = document.createElement("video");
+            elem.muted = true;
+        } else {
+            elem = document.createElement("audio");
+        }
+        elem.src = experiment.media[role];
+        document.querySelector(".mediacontainer").appendChild(elem);
+
+        app.sync = MCorp.mediaSync(elem, app.to);
+    }
+
+
+    // If we're secondary, check timing
+    if (role == "secondary") {
+        // Configure the adjustments
+        app.step = 0;
+        let t = experiment.timing;
+        let change_skew = function(step) {
+
+            // Calculate skew limits
+            let _max = t.start + (t.step) * step;
+            let _min = -_max;
+
+            if (t.direction == "up")
+                _min = Math.max(0, t.start + (t.step) * (step - 1));
+            else if (t.direction == "down") {
+                _max = Math.min(-(t.start + (t.step) * (step - 1)), 0);;
+            }
+
+            // Get random value within 
+            let skew = Math.random() * (_max - _min) + _min;
+
+            // If a media element, just update the sync
+            let dbg = _min.toFixed(3) + " / " + skew.toFixed(3) + " / " + _max.toFixed(3);
+            document.querySelector("#debug").innerHTML = dbg;
+            if (app.sync) {
+                app.sync.setSkew(skew);
+            } else {
+                let sc = new TIMINGSRC.SkewConverter(app.to, skew);
+                app.to.timingsrc = sc;
+            }
+        };
+
+        let ct = setInterval(() => {
+            if (app.step > t.steps) {
+                clearInterval(ct);
+                return;
+            }
+            change_skew(app.step);
+        }, t.shuffle * 1000);
+
+        let st = setInterval(() => {
+            app.step++;
+            if (app.step > t.steps) {
+                clearInterval(st);
+            }
+        }, t.stepTime * 1000);
+    }
+  }
+
+
+
+  let experiment = {
+    media: {
+        primary: "https://mediafutures.norceresearch.no/res/Vikingane/MUHH32000118BA.mp4",
+        secondary: "https://mediafutures.norceresearch.no/res/Vikingane/MUHH32000118BA.m4a",
+        start: 610.0
+    },
+    timing: {
+        start: 0,
+        step: 0.033,
+        direction: "up",
+        steps: 20,
+        shuffle: 2.5,
+        stepTime: 10.0
+    }
+  };
+
+
+  document.querySelector("#btn_primaryscreen").addEventListener("click", () => load_experiment(experiment, "primary"));
+  document.querySelector("#btn_secondaryscreen").addEventListener("click", () => load_experiment(experiment, "secondary"));
+  document.querySelector("#btn_tostart").addEventListener("click", () => app.to.update({position:app.experiment.media.start || 0, velocity: 1}));
+
+
+
+</script>
+
+</body>
+</html>

@@ -740,8 +740,14 @@
  {
   "start": 738.96,
   "end": 743.16,
-  "text": "Skal vi ta et m\u00f8te p\u00e5 det?<br><i>-Jeg samler resten.</i>",
+  "text": "Skal vi ta et m\u00f8te p\u00e5 det?",
   "who": "WILLIAM"
+ },
+ {
+  "start": 738.96999,
+  "end": 743.16,
+  "text": "<i>Jeg samler resten.</i>",
+  "who": "ADAM"
  },
  {
   "start": 743.28,

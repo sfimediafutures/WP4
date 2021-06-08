@@ -12,6 +12,9 @@
 
     body {
         margin: 0px;
+        width:  100%;
+        height:  100%;
+        position:  absolute;
     }
     .iframecontainer {
         width: 100%;
@@ -63,7 +66,57 @@
 
   </style>
 
-  <body>
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drop(ev) {
+    console.log("DROPPED");
+  ev.preventDefault();
+
+
+  let tojson = function(fileitem) {
+    return new Promise(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            try {
+                var data = JSON.parse(this.result);
+                resolve(data);                
+            } catch (err) {
+                reject(err);
+            }
+        };
+        reader.readAsText(fileitem);
+        event.preventDefault();    
+      })
+  };
+
+  if (ev.dataTransfer.items) {
+    // Use DataTransferItemList interface to access the file(s)
+    for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+      // If dropped items aren't files, reject them
+      if (ev.dataTransfer.items[i].kind === 'file') {
+        var file = ev.dataTransfer.items[i].getAsFile();
+        tojson(file).then(data => {
+            console.log("Got data dropped", data);
+            app.open_data(data);
+        })
+      }
+    }
+  } else {
+    // Use DataTransfer interface to access the file(s)
+    for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+        tojson(ev.dataTransfer.files[i]).then(data => {
+            console.log("Got file data dropped", data);
+            app.open_data(data);
+        });
+    }
+  }
+}
+</script>
+
+  <body ondrop="drop(event)" ondragover="allowDrop(event)">
 
     <div class="iframecontainer">
     </div>
@@ -114,19 +167,45 @@
     app.pos_sequencer = new TIMINGSRC.Sequencer(app.to, app.to_max);
     app.dc_sequencer = new TIMINGSRC.Sequencer(app.to, app.to_max);
 
-    if (getParameterByName("manifest")) {
-        fetch(getParameterByName("manifest"))
-            .then(response => response.json())
-            .then(data => {
-                app.manifest = data;
+    var parse_manifest = function(jsondata) {
+        app.manifest = jsondata;
+        if (app.manifest.dc) {
+            app.dc = app.manifest.dc;
+            app.dcannon = new DataCannon("wss://nlive.no/dc", [app.dc_sequencer]);
+            app.dcannon.subscribe(app.dc);
+        }
+    };
 
-                if (app.manifest.dc) {
-                    app.dc = app.manifest.dc;
-                    app.dcannon = new DataCannon("wss://nlive.no/dc", [app.dc_sequencer]);
-                    app.dcannon.subscribe(app.dc);
-                }
-            });
+    var load_manifest = function() {
+        return fetch(getParameterByName("manifest"))
+            .then(response => response.json())
+            .then(data => parse_manifest(data));
+    };
+
+    if (getParameterByName("manifest")) {
+        load_manifest(getParameterByName("manifest"));
     }
+
+    app.open_data = function(data) {
+        if (data.length < 1) {
+            console.log("CANT LOAD NO DATA", data);
+            return;
+        }
+        if (data.id || data.video || data.audio) {
+            // We guess manifest
+            parse_manifest(data);
+        } else if (data.iframes) {
+            // We're guessing iframe list
+            parse_iframes_data(data);            
+        } else {
+            // We guess aux data
+            data.forEach(item => {
+                app.pos_sequencer.addCue("k" + String((Math.random() * 100000).toFixed(0)), new TIMINGSRC.Interval(item.start, item.end), item);
+            });
+        }
+
+      };
+
 
     app.ready.then(function() {
         //to.timingsrc = app.motions.private;
@@ -241,24 +320,30 @@
         //container.appendChild(d);
     }
 
+    let parse_iframes_data = function(info) {
+        // We add end times
+        console.log("IFRAMES DATA", info)
+        for (let i=0; i<info.iframes.length - 1; i++) {
+            info.iframes[i].endts = info.iframes[i+1].ts;
+        }
+        console.log(info);
+
+        info.iframes.forEach(iframe => {
+            app.sequencer.addCue("iframe" + iframe.nr, [iframe.ts, iframe.endts], iframe);
+            }); 
+    };
+
     let load_iframes = function(url) {
         fetch(url)
             .then(res => res.json())
-            .then(info => {
-                // We add end times
-                for (let i=0; i<info.iframes.length - 1; i++) {
-                    info.iframes[i].endts = info.iframes[i+1].ts;
-                }
-                console.log(info);
-
-                info.iframes.forEach(iframe => {
-                    app.sequencer.addCue("iframe" + iframe.nr, [iframe.ts, iframe.endts], iframe);
-                    }); 
-                });
+            .then(info => parse_iframes_data(info));
     }
 
     let source = getParameterByName("url");
     if (source) load_iframes(source);
+
+    // Drag'n'drop too
+
 
     app.sequencer.on("change", evt => {
         add_iframe(evt.new.data);

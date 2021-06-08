@@ -238,10 +238,16 @@ var rubberDuck = function(target, options) {
             options.markingbox = isActive;
             console.log("Markings is now", isActive);
             if (isActive) {
-                API.targetElement.querySelector(".markingbox").classList.remove("hidden");
+                API.sequencer.getActiveCues().forEach(cue => {
+                    if (cue.data.pos) {
+                        API.targetElement.querySelector(".markingbox").classList.remove("hidden");
+                        API.targetElement.querySelectorAll(".markingbox_alt").forEach(e => e.classList.remove("hidden"));
+                    }
+                });
                 evt.srcElement.classList.add("active");
             } else {
                 API.targetElement.querySelector(".markingbox").classList.add("hidden");
+                API.targetElement.querySelectorAll(".markingbox_alt").forEach(e => e.classList.add("hidden"));
                 evt.srcElement.classList.remove("active");
             }
         },
@@ -1039,7 +1045,7 @@ var rubberDuck = function(target, options) {
             }, item.animate ? 250 : 0);
 
             // Markingbox position too
-            if (1 || API.options.markingbox) {
+            if (0 || API.options.markingbox) {
                 let mbox = API.targetElement.querySelector(".markingbox");
                 if (mbox) {
                     // Center point of box relative to visible part
@@ -1353,6 +1359,7 @@ var rubberDuck = function(target, options) {
 
   API.sequencer.on("change", function(evt) {
 
+    console.log("SEQUENCER CHANGE", evt.new.data);
     let align = function(element, align) {
       if (!element) return;
       if (align === "right") {
@@ -1368,14 +1375,39 @@ var rubberDuck = function(target, options) {
       if (!itm.target) itm.target = ".maincontent";
       let target = API.targetElement.querySelector(itm.target);
       if (target) {
-          target.pos = itm.pos;
-          API.targetElement.pos = itm.pos;
-          target.animate = itm.animate;
-          API.targetElement.animate = itm.animate;
-          //console.log("Will resize", target.parentElement, target);
-          //API.resize(target.parentElement);
-          API.resize();
-          API.resize(target);        
+        target.pos = itm.pos;
+        API.targetElement.pos = itm.pos;
+        target.animate = itm.animate;
+        API.targetElement.animate = itm.animate;
+        //console.log("Will resize", target.parentElement, target);
+        //API.resize(target.parentElement);
+        API.resize();
+        API.resize(target);
+
+        // Always update
+        let mbox = API.targetElement.querySelector(".markingbox");
+        mbox.style.left = itm.pos[0] + "%";
+        mbox.style.top = itm.pos[1] + "%";
+
+        console.log("ITEM", itm);
+        if (itm.alt) {
+            // Got alternative face(s) too!
+            itm.alt.forEach(alt => {
+                console.log(alt.posX, alt.posY, "vs", itm.pos);
+                if (alt.posX == itm.pos[0] && alt.posY == itm.pos[1]) return;
+                let i = document.createElement("div");
+                i.classList.add("markingbox_alt");
+                i.classList.add("hidden");
+                i.style.left = alt.posX + "%";
+                i.style.top = alt.posY + "%";
+                API.targetElement.appendChild(i);
+            });
+        }
+
+        if (API.options.markingbox) {
+            API.targetElement.querySelector(".markingbox").classList.remove("hidden");
+            API.targetElement.querySelectorAll(".markingbox_alt").forEach(e => e.classList.remove("hidden"));
+        }
       }
       /*
       setTimeout(function() {
@@ -1402,7 +1434,6 @@ var rubberDuck = function(target, options) {
           e.classList.remove("hidden");
       }
     }
-
     /*
     if (API.options.markingbox) {
       let box = API.targetElement.querySelector(".markingbox");
@@ -1426,6 +1457,10 @@ var rubberDuck = function(target, options) {
       if (e && e.key == evt.old.key) {
         e.classList.add("hidden");
       }
+    }
+    if (itm.pos) {
+        API.targetElement.querySelector(".markingbox").classList.add("hidden");        
+        API.targetElement.querySelectorAll(".markingbox_alt").forEach(e => e.parentElement.removeChild(e));
     }
   });
 

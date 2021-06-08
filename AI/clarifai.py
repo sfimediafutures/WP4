@@ -1,16 +1,13 @@
+"""AI analysis of iframes from a video."""
 import os.path
 import json
-import sys
 import operator
 
-import re
-import json
 from argparse import ArgumentParser
-from operator import attrgetter
 
 from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
 from clarifai_grpc.grpc.api import resources_pb2, service_pb2, service_pb2_grpc
-from clarifai_grpc.grpc.api.status import status_pb2, status_code_pb2
+from clarifai_grpc.grpc.api.status import status_code_pb2
 
 channel = ClarifaiChannel.get_grpc_channel()
 
@@ -25,11 +22,33 @@ metadata = (('authorization', 'Key d5df25707e5a48ed8640a6b7d94947db'),)
 
 models = {
     "general": "9f54c0342741574068ec696ddbebd699",
-    "faces": "f76196b43bbd45c99b4f3cd8e8b40a8a"
+    "faces": "f76196b43bbd45c99b4f3cd8e8b40a8a",
+    "text": "75a5b92a0dec436a891b5ad224ac9170"
 }
 
-def analyze(filelist, model):
 
+def bulk_analyze(filelist, model, batch_size=24):
+    """
+    Analyze any number of files, but process them in batches.
+    """
+    ret = []
+    idx = 0
+    while idx < len(filelist):
+
+        l = filelist[idx:idx + batch_size]
+        idx += len(l)
+
+        r = analyze(l, model)
+        ret.extend(r)
+    return ret
+
+
+def analyze(filelist, model):
+    """
+    Analyze a list of files with the given model.
+
+    Uses Clarifai and requires analysis with video_to_iframe_dir.py.
+    """
     inputs = []
     for filename in filelist:
         # This is how you authenticate.
@@ -39,7 +58,6 @@ def analyze(filelist, model):
 
         ext = os.path.splitext(filename)[1]
         if ext in [".png", ".jpg"]:
-            file_type = "image"
             if filename.startswith("http"):
                 print("HTTP link")
                 data = resources_pb2.Data(image=resources_pb2.Image(url=filename))
@@ -47,7 +65,7 @@ def analyze(filelist, model):
                 data = resources_pb2.Data(image=resources_pb2.Image(base64=data))
             inputs.append(resources_pb2.Input(data=data))
         else:
-            raise Execption("Unknown file format %s" % ext)
+            raise Exception("Unknown file format %s" % ext)
 
     response = stub.PostModelOutputs(
         service_pb2.PostModelOutputsRequest(
@@ -72,7 +90,7 @@ def analyze(filelist, model):
             if model == "faces":
                 name = "face"
             box = region.region_info
-            reply["items"].append({
+            item = {
                 "name": name,
                 "box": {
                     "left": box.bounding_box.left_col,
@@ -81,49 +99,130 @@ def analyze(filelist, model):
                     "bottom": box.bounding_box.bottom_row
                 },
                 "value": region.value
-            })
+            }
+            item["size"] = (item["box"]["right"] - item["box"]["left"]) * \
+                           (item["box"]["bottom"] - item["box"]["top"])
+            item["posX"] = int(100 * (item["box"]["left"] +
+                               (item["box"]["right"] - item["box"]["left"]) / 2))
+            item["posY"] = int(100 * (item["box"]["top"] + (item["box"]["bottom"] -
+                               item["box"]["top"]) / 2))
+            reply["items"].append(item)
+
         print("Adding reply", reply)
         retval.append(reply)
 
     return retval
 
 
-def analyze_image():
-    request = service_pb2.PostModelOutputsRequest(
-        # This is the model ID of a publicly available General model. You may use any other public or custom model ID.
-        model_id=models[model],
-        inputs=[
-          #resources_pb2.Input(data=resources_pb2.Data(image=resources_pb2.Image(url='YOUR_IMAGE_URL')))
-            resources_pb2.Input(data=resources_pb2.Data(image=resources_pb2.Image(url='YOUR_IMAGE_URL')))
-        ])
-    response = stub.PostModelOutputs(request, metadata=metadata)
+def general_positioning(filelist, cached_faces=None):
+    """
+    Try to position all the iframes - this is done by first looking for people
+    in the frames. If people are detected, the largest face is used, the
+    others made available as alternatives. For frames with *no* faces
+    detected, a general analysis is performed, and analyzed for possibly
+    important stuff. Alternatives are highly likely in that case.
+    """
 
-    if response.status.code != status_code_pb2.SUCCESS:
-        raise Exception("Request failed, status code: " + str(response.status.code))
+    if cached_faces:
+        res = cached_faces
+    else:
+        res = analyze(filelist, "faces")
 
-    for concept in response.outputs[0].data.concepts:
-        print('%12s: %.2f' % (concept.name, concept.value))
+    # Go through the results and find frames that have *no* faces
+    reprocess = []
+    missing = 0
+    ok = 0
+    for idx, frame in enumerate(res):
+        if "items" not in frame or frame["items"] == []:
+            reprocess.append(filelist[idx])
+            frame["idx"] = idx
+            frame["missingidx"] = missing
+            missing += 1
+        else:
+            ok += 1
+
+    print("%d ok, %d missing positioning" % (ok, missing))
+
+    tmp_file = "/tmp/tmpanalysis2.json"
+
+    if os.path.exists(tmp_file):
+        generic_analysis = json.loads(open(tmp_file, "r").read())
+    else:
+        generic_analysis = bulk_analyze(reprocess, model="general")
+
+    print(generic_analysis)
+    try:
+        open(tmp_file, "w").write(json.dumps(generic_analysis, indent=" "))
+    except Exception as e:
+        print("Exception writing results", e)
+
+    # We now analyze the indexes
+    for frame in generic_analysis:
+        analyze_generic_frame(frame)
+
+        print("Analyzed to", frame)
+
+    # Merge
+    for idx, frame in enumerate(res):
+        if "missingidx" in frame:
+            print("Merging", frame)
+            res[frame["idx"]] = generic_analysis[frame["missingidx"]]
+
+    return res
 
 
+def analyze_generic_frame(frame):
+    """
+    Amalyse a generic frame
+    """
+
+    items = frame["items"]
+
+    concepts = {}
+    for item in items:
+        if item["name"] not in concepts:
+            concepts[item["name"]] = 0
+        concepts[item["name"]] += 1
+
+    print("FRAME CONCEPTS", concepts)
+
+    # Now we calculate a sort of "importance" metric - if we're unsure, we
+    # will regard things as less important and things that are present
+    # many places is of less interest
+    for item in items:
+        if item["value"] < 0.5:
+            item["importance"] = 0
+            continue
+
+        item["importance"] = (item["value"] * 5 * item["size"] / (
+                              float(concepts[item["name"]])))
+
+    # Sort by importance
+    frame["focus"] = sorted(items, key=operator.itemgetter("importance"), reverse=True)
+
+    # Set the position to the most important one
+    if len(frame["focus"]) > 0:
+        frame["posX"] = frame["focus"][0]["posX"]
+        frame["posY"] = frame["focus"][0]["posY"]
 
 if __name__ == "__main__":
 
     parser = ArgumentParser()
     parser.add_argument("-b", "--base", dest="base", help="BaseURL", default="", required=False)
-    parser.add_argument("-i", "--input", dest="input", help="Input file (timestamps)", required=True)
+    parser.add_argument("-i", "--input", dest="input", help="Input file (timestamps)",
+                        required=True)
     parser.add_argument("-o", "--output", dest="output", help="Output file", required=True)
     parser.add_argument("--start", dest="start", help="Start time", required=False, default=None)
     parser.add_argument("--end", dest="end", help="End time", required=False, default=None)
-    parser.add_argument("--estimate", dest="estimate", help="Only estimate number of pictures", action="store_true", default=False)
+    parser.add_argument("--estimate", dest="estimate", help="Only estimate number of pictures",
+                        action="store_true", default=False)
     parser.add_argument("-m", "--model", dest="model", help="Model for analysis", default="faces")
 
     options = parser.parse_args()
 
-#    analyze("/home/njaal/git/MediaFutures/res/Exit2/test/fragment_02.mp4", "general")
-
-    #analyze("/home/njaal/git/MediaFutures/res/Exit2/test/img392.png", "faces")
+    # analyze("/home/njaal/git/MediaFutures/res/Exit2/test/img392.png", "faces")
     # a = analyze("/home/njaal/git/MediaFutures/res/Exit2/test/img392.png", "general")
-    #open("output.json", "w").write(json.dumps(a, indent=" "))
+    # open("output.json", "w").write(json.dumps(a, indent=" "))
 
     if os.path.exists(options.output):
         raise SystemExit("%s already exists" % options.output)
@@ -164,45 +263,54 @@ if __name__ == "__main__":
         start_idx = 0
 
     print("Analyze", len(files), "files")
+
     cache_file = "%s_temp_%s-%s.json" % (options.model, start_idx, end_idx)
     if options.estimate:
         raise SystemExit()
+
     if os.path.exists(cache_file):
         a = json.loads(open(cache_file, "r").read())
+        a = general_positioning(files, cached_faces=a)
     else:
-        a = analyze(files, options.model)
-        open(cache_file,  "w").write(json.dumps(a, indent=" "))
-
-    print("Written to", cache_file)
+        a = bulk_analyze(files, options.model)
+        open(cache_file, "w").write(json.dumps(a, indent=" "))
+        print("Written to", cache_file)
 
     # Go through results and hook them up
     aux_data = []
     for idx, res in enumerate(a):
         frame = iframes[start_idx + idx]
 
-
-        # If we have multiple results, we're in a bit of a pickle - choose the largets one 
+        # If we have multiple results, we're in a bit of a pickle - choose the largets one
         # and store the alternative positions
         for item in res["items"]:
             item["size"] = (item["box"]["right"] - item["box"]["left"]) * \
                            (item["box"]["bottom"] - item["box"]["top"])
-            item["posX"] = int(100 * (item["box"]["left"] + (item["box"]["right"] - item["box"]["left"]) / 2))
-            item["posY"] = int(100 * (item["box"]["top"] + (item["box"]["bottom"] - item["box"]["top"]) / 2))
+            item["posX"] = int(100 * (item["box"]["left"] +
+                               (item["box"]["right"] - item["box"]["left"]) / 2))
+            item["posY"] = int(100 * (item["box"]["top"] + (item["box"]["bottom"] -
+                               item["box"]["top"]) / 2))
 
-        by_size = sorted(res["items"], key=operator.itemgetter("size"), reverse=True)
         data = {
             "start": frame["ts"],
             "end": frame["endts"]
         }
 
-        if len(by_size) > 0:
-            data["pos"] = [by_size[0]["posX"], by_size[0]["posY"]]
+        if "focus" not in frame:
+            by_size = sorted(res["items"], key=operator.itemgetter("size"), reverse=True)
 
-        if options.model == "faces":
-            if len(by_size) > 1:
-                data["alt"] = by_size
+            if len(by_size) > 0:
+                data["pos"] = [by_size[0]["posX"], by_size[0]["posY"]]
+
+            if options.model == "faces":
+                if len(by_size) > 1:
+                    data["alt"] = by_size
+            else:
+                data["items"] = res["items"]
         else:
-            data["items"] = res["items"]
+            data["pos"] = [frame["posX"], frame["posY"]]
+            if len(frame["focus"]) > 1:
+                data["alt"] = frame["focus"]
 
         aux_data.append(data)
 

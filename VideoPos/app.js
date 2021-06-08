@@ -372,6 +372,20 @@ var rubberDuck = function(target, options) {
                 API.options.subclasses="";
             }
         },
+        "btnrendersubs": function(evt) {
+            evt.preventDefault();
+            API.options.rendersubs = !evt.srcElement.classList.contains("active");
+            if (!API.options.rendersubs) {
+                evt.srcElement.classList.remove("active");
+                // Clear away any subtitles
+                API.targetElement.querySelector(".subtitle span").innerHTML = "";
+                API.targetElement.querySelectorAll(".subtitle .advancedsub").forEach(e => {
+                    e.parentElement.removeChild(e);
+                });
+            } else {
+                evt.srcElement.classList.add("active");
+            }
+        },
         "btnadvancedsubs": function(evt) {
             evt.preventDefault();
             API.options.advancedsubs = !evt.srcElement.classList.contains("active");
@@ -502,7 +516,7 @@ var rubberDuck = function(target, options) {
 
     // ***************** Subtitles - either "normal" or "advanced" ***************
     if (API.options.rendersubs || API.options.screenreadersubs) {
-        API.subsequencer.on("change", evt => {let e = evt; setTimeout(function(e) {
+        API.subsequencer.on("change", evt => {
             let subs = API.targetElement.querySelector(".subtitle");
             let data = evt.new.data;
 
@@ -547,7 +561,7 @@ var rubberDuck = function(target, options) {
             } 
             if(subs)
                 subs.classList.remove("hidden");
-        }, 0);});
+        });
 
         API.subsequencer.on("remove", evt => {
             who = evt.old.data.who;

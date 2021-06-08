@@ -426,6 +426,8 @@
 
   if (getParameterByName("simplesubs")) {
     options.advancedsubs = false;
+    // Must disable fancy subs, we don't have the data loaded
+    document.querySelector("#btnadvancedsubs").style.display = "none";
     console.log("Using normal subtitles");
   }
 

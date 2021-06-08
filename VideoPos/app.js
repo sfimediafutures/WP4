@@ -522,6 +522,7 @@ var rubberDuck = function(target, options) {
 
             if (API.screenreadersub && API.options.screenreadersubs) {
 
+                let text = data;
                 if (typeof(text) != "string")
                     text = data.text;
 
@@ -537,6 +538,7 @@ var rubberDuck = function(target, options) {
                 // API.screenreadersub.innerHTML = text;
             }
             if (!API.options.rendersubs) return;
+
             if (data && typeof(data) == "string") {
                 subs.querySelector("span").innerHTML = data.replace("\n", "<br>");
             } else {

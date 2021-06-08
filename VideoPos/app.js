@@ -27,7 +27,8 @@ var rubberDuck = function(target, options) {
         hide_controls: true,
         responsive_voice: false,
         screenreadersubs: true,
-        hiviz: undefined
+        hiviz: undefined,
+        chat_sub_delay: 1.0
     };
     let __autopaused = false;
     let _is_speaking = false;
@@ -371,6 +372,21 @@ var rubberDuck = function(target, options) {
                 API.options.subclasses="";
             }
         },
+        "btnadvancedsubs": function(evt) {
+            evt.preventDefault();
+            API.options.advancedsubs = !evt.srcElement.classList.contains("active");
+
+            if (API.options.advancedsubs) {
+                evt.srcElement.classList.add("active");
+                // Remove any existing sub, as it will not be removed automatically
+                API.targetElement.querySelector(".subtitle span").innerHTML = "";
+            } else {
+                evt.srcElement.classList.remove("active");         
+                API.targetElement.querySelectorAll(".subtitle .advancedsub").forEach(e => {
+                    e.parentElement.removeChild(e);
+                });
+            }
+        },
         "btn_nrktegnspraak": function(evt) {
             evt.preventDefault();
             let on = !evt.srcElement.classList.contains("active");
@@ -460,7 +476,6 @@ var rubberDuck = function(target, options) {
 
     for (let btn in btns) {
         let opt = API.options[btn.substr(3)];
-        console.log(btn, opt);
         if (opt !== false) {
           let b = btn;
           if (API.targetElement.querySelector("#" + btn))
@@ -488,14 +503,13 @@ var rubberDuck = function(target, options) {
     // ***************** Subtitles - either "normal" or "advanced" ***************
     if (API.options.rendersubs || API.options.screenreadersubs) {
         API.subsequencer.on("change", evt => {let e = evt; setTimeout(function(e) {
-            console.log("Adding sub?");
             let subs = API.targetElement.querySelector(".subtitle");
+            let data = evt.new.data;
 
             if (API.screenreadersub && API.options.screenreadersubs) {
-                let text = evt.new.data;
 
                 if (typeof(text) != "string")
-                    text = evt.new.data.text;
+                    text = data.text;
 
                 // Clean up a bit - if hyphenated concat
                 text = text.replace("<br>", "\n")
@@ -509,13 +523,19 @@ var rubberDuck = function(target, options) {
                 // API.screenreadersub.innerHTML = text;
             }
             if (!API.options.rendersubs) return;
-            if (evt.new.data && typeof(evt.new.data) == "string") {
-                subs.innerHTML = "<span>" + evt.new.data.replace("\n", "<br>") + "</span>";
+            if (data && typeof(data) == "string") {
+                subs.querySelector("span").innerHTML = data.replace("\n", "<br>");
             } else {
                 if (!API.options.rendersubs) return;
     
-                if (!API.options.advancedsubs) {
-                    subs.innerHTML = "<span>" + evt.new.data.text.replace("\n", "<br>") + "</span>";
+                if (!API.options.advancedsubs && data.who != "info" && data.who != "scene") {
+                    let s = subs.querySelector("span");
+                    if (s.innerHTML) {
+                        // Two people, need to fix this
+                        s.innerHTML = "-" + s.innerHTML + "<br>-" + data.text.replace("\n", "<br>");
+                    } else {
+                        s.innerHTML += data.text.replace("\n", "<br>");
+                    }
                 } else {
                     // More advanced subtitle, make it here
                     try {
@@ -538,16 +558,16 @@ var rubberDuck = function(target, options) {
             }
 
             // Simple subs - just remove it
-            if (!API.options.advancedsubs) {
-                API.targetElement.querySelector(".subtitle").classList.add("hidden");
+            if (!API.options.advancedsubs && who != "scene" && who != "info") {
+                try {
+                    API.targetElement.querySelector(".subtitle span").innerHTML = "";
+                } catch (err) {};  // Ignore, it's just cleanup
+                //API.targetElement.querySelector(".subtitle").classList.add("hidden");
                 return;
             }
 
             API.targetElement.querySelectorAll(".subtitle #" + evt.key).forEach(i => API.targetElement.querySelector(".subtitle").removeChild(i));
             API.targetElement.querySelectorAll(".screenreadersub #txt_" + evt.key).forEach(i => i.parentElement.removeChild(i));
-
-            console.log("Removed subs");
-
         });
     }
 
@@ -823,7 +843,6 @@ var rubberDuck = function(target, options) {
                             });
                     }
 
-                    console.log("DC", data.dc, data);
                     if (data.dc) {
                         try {
                             console.log("Using datacannon", data.dc)
@@ -1238,7 +1257,6 @@ var rubberDuck = function(target, options) {
 
     // ************ Render advanced subs - chat style *************
     API._render_advanced_sub = function(data, targetElement) {
-        console.log("RENDER_SUB", data);
         let message = data.data;
         if (!message.text) return;
 
@@ -1248,10 +1266,9 @@ var rubberDuck = function(target, options) {
             // Text is split for readability, let them stay as they are
             // text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
 
-            console.log("_make_msg", who, text, data, API.cast[who]);
+            // console.log("_make_msg", who, text, data, API.cast[who]);
 
             if (who == "info" || who == "scene") {
-              console.log("INFO thing", API.options.tts);
                 if (API.options.tts) {
                   API.speak(text, data.voice || 0);
                 }
@@ -1291,13 +1308,12 @@ var rubberDuck = function(target, options) {
             }
             // If we have an index - we know there are multiple on screen
             if (data.idx != undefined) {
-                console.log("Got index");                
                 if (data.idx % 2 == 1) msg.classList.add("lower")   
                 else msg.classList.add("higher");
             } else {
               // Detect if there is another one on screen already
               if (API.targetElement.querySelectorAll(".advancedsub").length > 0) {
-                console.log("Going hi and lo (auto)", API.targetElement, );
+                // console.log("Going hi and lo (auto)", API.targetElement, );
                 API.targetElement.querySelector(".advancedsub").classList.add("higher");
                 msg.classList.add("lower");
               }
@@ -1310,7 +1326,6 @@ var rubberDuck = function(target, options) {
             msg.querySelector(".text").innerHTML = text || "";
             // If right aligned, fix that
             if (data.data.align == "right") {
-                console.log("Right align");
                 msg.classList.add("right");
             }
 
@@ -1325,7 +1340,7 @@ var rubberDuck = function(target, options) {
                 msg.style.display = "none";
                 setTimeout(function() {
                     msg.style.display = original
-                }, 700 * data.idx);
+                }, API.options.chat_sub_delay * 1000 * data.idx);
             }
             return msg;
         }
@@ -1358,8 +1373,6 @@ var rubberDuck = function(target, options) {
 
 
   API.sequencer.on("change", function(evt) {
-
-    console.log("SEQUENCER CHANGE", evt.new.data);
     let align = function(element, align) {
       if (!element) return;
       if (align === "right") {
@@ -1371,7 +1384,6 @@ var rubberDuck = function(target, options) {
 
     let itm = evt.new.data;
     if (itm.pos) {
-      console.log("Position", itm.pos);
       if (!itm.target) itm.target = ".maincontent";
       let target = API.targetElement.querySelector(itm.target);
       if (target) {
@@ -1389,11 +1401,9 @@ var rubberDuck = function(target, options) {
         mbox.style.left = itm.pos[0] + "%";
         mbox.style.top = itm.pos[1] + "%";
 
-        console.log("ITEM", itm);
         if (itm.alt) {
             // Got alternative face(s) too!
             itm.alt.forEach(alt => {
-                console.log(alt.posX, alt.posY, "vs", itm.pos);
                 if (alt.posX == itm.pos[0] && alt.posY == itm.pos[1]) return;
                 let i = document.createElement("div");
                 i.classList.add("markingbox_alt");

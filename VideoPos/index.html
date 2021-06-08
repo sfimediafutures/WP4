@@ -63,7 +63,7 @@
       bottom: 15%;
       left: 12%;
       z-index: 20;
-      //width: 70%;
+      width: 80%;
       max-width: 80%;
       color: white;
       z-index: 100000;
@@ -356,7 +356,8 @@
   <video class="pip hidden">
   </video>
 
-  <div class="subtitle hidden" aria-hidden="true"></div>
+  <div class="subtitle hidden" aria-hidden="true"><span></span></div>
+
   <div class="overlay hidden">
     <div class="name">
     </div>
@@ -381,14 +382,15 @@
     <button class="nrk-unset button" id="btnplay" title="Play"><i class="material-icons">play_arrow</i></button>
     <button class="nrk-unset button" id="btnpause" title="Pause"><i class="material-icons hidden">pause</i></button>
     <button class="nrk-unset button" id="btnff" title="Skip ahead"><i class="material-icons">fast_forward</i></button>
+    <button class="nrk-unset button" id="btnfs" aria-hidden="true" title="Toggle fullscreen"><i class="material-icons">fullscreen</i></button>
 
     <div class="spacer"></div>
     <button class="nrk-unset button" id="btnsound" title="Toggle sound" aria-label="Toggle sound"><i class="material-icons">volume_up</i></button>
     <button class="nrk-unset button" id="btnsynstolk" title="Toggle synstolk" aria-label="Toggle synstolk"><i class="material-icons">hearing</i></button>
     <button class="nrk-unset button" id="btnhiviz" title="High contrast" aria-label="High contrast"><i class="material-icons">visibility</i></button>
+    <button class="nrk-unset button" id="btnadvancedsubs" title="Subtitles have faces" aria-label="Add faces and colors to subtitles"><i class="material-icons active">face</i></button>
 
 
-    <button class="nrk-unset button" id="btnfs" aria-hidden="true" title="Toggle fullscreen"><i class="material-icons">fullscreen</i></button>
     <button class="nrk-unset button pipctrl" aria-hidden="true" id="btn_nrktegnspraak" title="NRK tegnspraak style"><i class="material-icons">accessibility</i></button>
     <button class="nrk-unset button pipctrl" aria-hidden="true" id="btn_nrktegnspraak_zoom" title="Sign language zoom"><i class="material-icons">zoom_in</i></button>
   </div>

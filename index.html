@@ -3,10 +3,13 @@
 <head>
     <title>MediaFutures WP4 / Demo list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://static.nrk.no/core-css/major/1/core-css.min.css">
 
 <style>
     body {
         font-family: sans-serif;
+        margin: 8px;
     }
 
     .demolist {
@@ -92,7 +95,13 @@
         }
     }
 
+    .collapsed {
+        display: none;
+    }
 
+    .infobox{
+        max-width: 800px;
+    }
 </style>
 
 
@@ -100,15 +109,63 @@
 <body>
 <div class="header">
     <div class="maintitle">WP4 demos</div>
-    <div class="info">
-        On this page you will find some demonstrations. The links will open in a new tab (or hold "shift" while clicking to open in a new window on a PC).<br>
-        Demos tested on Chrome.
-
-    </div>
     <a href="https://mediafutures.no"><img class="mflogo" src="MF_mainlogo.png"/ alt="MediaFutures project"></a>
 </div>
 
+<div class="demoinfo">
+    <h3>About the demos
+        <button id="showinfo" class="nrk-unset" aria-label="Click for info on demos">
+            <span class="material-icons">info</span>
+        </button>
+    </h3>
+    <div class="infobox collapsed collapsable" id="demoinfo">
+        <div class="infotext">
+            <p>
+                On this page you will find some demonstrations. The links will open in a new tab (or hold "shift" while clicking to open in a new window on a PC).
+            </p>
+            <p>
+                Demos tested on Chrome.
+            </p>
+        </div>        
+    </div>
+</div>
+
+</div>
+<div class="playerinfo">
+    <h3>About the player
+        <button id="showinfo" class="nrk-unset" aria-label="Click for info on player">
+            <span class="material-icons">info</span>
+        </button>
+    </h3>
+        <div class="infobox collapsed collapsable" id="playerinfo">
+        <img style="display: inline-block; float:right; max-width: 500px; width:100%" src="player.jpg">
+        <div class="infotext">
+            <p>
+                The player is based on late binding. This means that the player will put together various data just in time for playback, and that data sources are individual. For example, subtitles, video, audio tracks, positioning data (for dynamic aspect ratio) etc, are all separate tracks.
+            </p><p>
+                The player is heavily based on <a href='https://webtiming.github.io/timingsrc/'>timingsrc</a> libraries, and export sequencers and timing objects, and can therefore be controlled or expanded very easily.
+            </p><p>
+                The player can have a number of buttons, the ones mostly used here are shown in the screenshot.
+                <ul>
+                    <li>The left most button (dot in a box) shows where "focus point" of the image is guessed to be (in green) or alternative areas (yellow). These can be either manually or AI generated.</li>
+                    <li>The dot with arrows out from it toggles dynamic aspect ratio. This will fill the video to whatever screen size you have, focusing on the "focus point" if available. Is fully dynamic, so a screen rotate for example is perfectly usable.</li>
+                    <li>The navigation buttons work as normal, both for multi device and single device demos. If multi device, the controls are of course shared between all devices of a single user. Full screen toggles are not shared between multiple devices.</li>
+                    <li>Sound is default off, but can be toggled using the speaker symbol.</li>
+                    <li>Audio descriptions are available as a separate track - in most demos this is a separate complete audio track, replacing the audio track of the video. If none is available, text-to-speech will be used to provide additional information if possible. In this case, the video player will pause if the speech overlaps with dialogue.</li>
+                    <li>Subtitles are default on, but can be toggled with the subtitle button. Notice that they will be turned on and only reappear when the next subtitle is due.</li>
+                    <li>New style subtitles can be toggled by pressing the face. These new subtitles will provide an avatar or image of the person speaking it, and each person has a different background color. They are more chat-style subtitles, and for dialogues they will appear in order (not placed as bubbles on top of the person speaking).</li>
+                    <li>High contrast subtitles (if using new style) will provide very high contrast text for the subtitles.</li>
+                </ul>
+
+            </p><p>
+                The Multi-device synchronization is provided by <a href="https://mcorp.no">The Motion Corporation</a>.
+            </p>
+        </div>
+    </div>
+</div>
+
 <div class="demolist">
+    <h3>List of demos</h3>
 </div>
 
 <template id="demotemplate">
@@ -131,53 +188,60 @@
 
 
 <script>
+    document.querySelectorAll("#showinfo").forEach(e => {
+        e.addEventListener("click", evt => {
+            let item = evt.srcElement.parentElement.parentElement.parentElement.querySelector(".collapsable");
+
+            if (item.classList.contains("collapsed")) {
+                item.classList.remove("collapsed");
+            } else {
+                item.classList.add("collapsed");            
+            }
+
+        });
+    });
+
 
     let demos = [
         {
             title: "Vikingane",
             poster: "./res/Vikingane/poster.jpg",
-            description: "This demonstrates fancy subtitles using Vikingane Series 3, episode 1. All videos also do dynamic aspect ratio adjustments and has a toggle for Synstolk.",
+            description: "MediaFutures edition of <a target='_blank' href='https://tv.nrk.no/serie/vikingane/sesong/3/episode/1/avspiller'>Vikingane Series 3, episode 1</a>. Includes recorded audio descriptions, new subtitles and dynamic aspect ratio. AI Video uses an AI to position the dynamic aspect ratio.",
             links: [
-                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json&simplesubs=true", group: "MultiDevice"},
-                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json", group: "MultiDevice"},
+                {name: "Video", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json", group: "MultiDevice"},
                 {name: "Chat style", href: "VideoPos/chat_style.html?url=../res/Vikingane/vikingane_s03e01.json", group: "MultiDevice"},
 
-                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json&simplesubs=true&single=true", group: "SingleDevice"},
-                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json&single=true", group: "SingleDevice"},
+                {name: "Video", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01.json&single=true", group: "SingleDevice"},
 
-                {name: "AI positioning", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01_ai.json", group: "AIExperiments"}
+                {name: "AI Video", href: "VideoPos/index.html?url=../res/Vikingane/vikingane_s03e01_ai.json", group: "MultiDevice"}
 
             ]
         },
         {
             title: "Valkyrien",
             poster: "./res/Valkyrien/poster.jpg",
-            description: "This demonstrates fancy subtitles using Valkyrien Series 1, episode 1. All videos also do dynamic aspect ratio adjustments and has a toggle for Synstolk.",
+            description: "MediaFutures edition of <a target='_blank' href='https://tv.nrk.no/serie/valkyrien/sesong/1/episode/1/avspiller'>Valkyrien Series 1, episode 1</a>. Includes recorded audio descriptions, new subtitles and dynamic aspect ratio. AI Video uses an AI to position the dynamic aspect ratio.",
             links: [
-                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json&simplesubs=true", group: "MultiDevice"},
-                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json", group: "MultiDevice"},
+                {name: "Video", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json", group: "MultiDevice"},
                 {name: "Chat style", href: "VideoPos/chat_style.html?url=../res/Valkyrien/Valkyrien_s01e01.json", group: "MultiDevice"},
 
-                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json&simplesubs=true&single=true", group: "SingleDevice"},
-                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json&single=true", group: "SingleDevice"},
+                {name: "Video", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01.json&single=true", group: "SingleDevice"},
 
-                {name: "AI positioning", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01_ai.json", group: "AIExperiments"}
+                {name: "AI Video", href: "VideoPos/index.html?url=../res/Valkyrien/Valkyrien_s01e01_ai.json", group: "MultiDevice"}
 
             ]
         },
         {
             title: "Exit2",
             poster: "./res/Exit2/poster.jpg",
-            description: "This demonstrates fancy subtitles using Exit Series 2, episode 1. All videos also do dynamic aspect ratio adjustments and has a toggle for Synstolk.",
+            description: "MediaFutures edition of <a target='_blank' href='https://tv.nrk.no/serie/exit/sesong/2/episode/1/avspiller'>Exit Series 2, episode 1</a>. Includes recorded audio descriptions, new subtitles and dynamic aspect ratio. AI Video uses an AI to position the dynamic aspect ratio.",
             links: [
-                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json&simplesubs=true", group: "MultiDevice"},
-                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json", group: "MultiDevice"},
+                {name: "Video", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json", group: "MultiDevice"},
                 {name: "Chat style", href: "VideoPos/chat_style.html?url=../res/Exit2/exit_s02e01.json", group: "MultiDevice"},
 
-                {name: "Normal subs", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json&simplesubs=true&single=true", group: "SingleDevice"},
-                {name: "Fancy subs", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json&single=true", group: "SingleDevice"},
+                {name: "Video", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01.json&single=true", group: "SingleDevice"},
 
-                {name: "AI positioning", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01_ai.json", group: "AIExperiments"}
+                {name: "AI Video", href: "VideoPos/index.html?url=../res/Exit2/exit_s02e01_ai.json", group: "MultiDevice"}
 
             ]
         },

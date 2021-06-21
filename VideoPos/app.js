@@ -183,13 +183,15 @@ var rubberDuck = function(target, options) {
             if (!soundOn) {
                 if (API.mediaElement) {
                     API.mediaElement.muted = true;
-                    API.mediaElement.sync.pause(true);
+                    if (API.mediaElement.tagName == "AUDIO")
+                        API.mediaElement.sync.pause(true);
                 }
                 snd.classList.remove("active");
                 toggle_synstolk(null, false);
             } else {
                 if (API.mediaElement) {
-                    API.mediaElement.sync.pause(false);
+                    if (API.mediaElement.tagName == "AUDIO")
+                        API.mediaElement.sync.pause(false);
                     API.mediaElement.muted = false;
                 }
                 snd.classList.add("active");

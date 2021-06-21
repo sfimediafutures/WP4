@@ -28,7 +28,8 @@ var rubberDuck = function(target, options) {
         responsive_voice: false,
         screenreadersubs: true,
         hiviz: undefined,
-        chat_sub_delay: 1.0
+        chat_sub_delay: 1.0,
+        show_tracking: false
     };
     let __autopaused = false;
     let _is_speaking = false;
@@ -155,10 +156,12 @@ var rubberDuck = function(target, options) {
         if (visible === undefined) {
             // Auto
             if (ctrl.classList.contains("hidden")) {
-                // Show but set timeout
-                ctrltimeout = setTimeout(function() {
-                    showControls(false);
-                }, 5000);
+                // Show but set timeout if we're playing
+                if (API.to.vel != 0) {
+                    ctrltimeout = setTimeout(function() {
+                        showControls(false);
+                    }, 5000);                    
+                }
                 // Show it
                 ctrl.classList.remove("hidden");
             } else {
@@ -854,7 +857,22 @@ var rubberDuck = function(target, options) {
                             .then(response => response.json())
                             .then(response => {
                                 response.forEach(item => {
+                                    item.type = "aux";
                                     API.sequencer.addCue(String(Math.random()), new TIMINGSRC.Interval(item.start, item.end), item);
+                                });
+                            });
+                    }
+
+                    if (data.tracking) {
+                        console.log("Load tracking data");
+                        fetch(data.tracking)
+                            .then(response => response.json())
+                            .then(response => {
+                                response.forEach(item => {
+                                    item.type = "tracking";
+                                    item.start = item.t - 1.0;
+                                    item.end = item.start + 2.0;
+                                    API.sequencer.addCue("t" + String(Math.random().toString(36).substr(2)), new TIMINGSRC.Interval(item.start, item.end), item);
                                 });
                             });
                     }
@@ -1387,6 +1405,9 @@ var rubberDuck = function(target, options) {
         }
     };
 
+  var tracking_colors = {};
+  var tracking_idx = 0;
+  var tracking_palette  = ["#a3a94877", "#edb92e77", "#f8593177", "#3f4fc577", "#00998977", "#ffaaa677", "#f2567977", "#60184877", "#fde47f77", "#1b676b77", "#f0b49e77"];
 
   API.sequencer.on("change", function(evt) {
     let align = function(element, align) {
@@ -1399,6 +1420,35 @@ var rubberDuck = function(target, options) {
     };
 
     let itm = evt.new.data;
+
+    if (itm.type === "tracking" && API.options.show_tracking) {
+        function getRandomColor() {
+            console.log("Tracking palette", tracking_colors.length, tracking_palette.length);
+            return tracking_palette[Object.keys(tracking_colors).length % tracking_palette.length];
+          var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color + "66";
+        }
+
+        let d = document.createElement("div");
+        d.classList.add("tracking");
+        d.style.left = itm.x + "%";
+        d.style.top = itm.y + "%";
+        d.setAttribute("id", evt.key);
+
+        if (tracking_colors[itm.s] === undefined) {
+            tracking_colors[itm.s] = getRandomColor();
+            console.log("COLORS", tracking_colors);
+        }
+        d.style.background = tracking_colors[itm.s];
+
+        API.targetElement.appendChild(d);
+        return;
+    }
+
     if (itm.pos) {
       if (!itm.target) itm.target = ".maincontent";
       let target = API.targetElement.querySelector(itm.target);
@@ -1472,6 +1522,11 @@ var rubberDuck = function(target, options) {
 
   API.sequencer.on("remove", function(evt) {
     let itm = evt.old.data;
+    if (itm.type === "tracking") {
+        let d = document.querySelector("#" + evt.key);
+        if (d) d.parentElement.removeChild(d);
+        return;
+    }
     if (itm.text) {
       API.set_subtitle("");;
     }

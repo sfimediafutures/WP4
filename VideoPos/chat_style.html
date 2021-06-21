@@ -480,6 +480,7 @@
                         app._post_emotion(message.start, message.end, info.emotion, info.src);
                     });
                     msg.addEventListener("dblclick", e => {
+                        e.preventDefault();
                         app.to.update({position: message.start});
                     });
             } else {

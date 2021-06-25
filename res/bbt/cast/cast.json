@@ -1,0 +1,67 @@
+{
+ "Unknown": {
+  "name": "Unknown",
+  "color": "#BC9ED1A6",
+  "src": "/sfi/res/bbt/cast/Unknown.png"
+ },
+ "Leonard": {
+  "name": "Leonard",
+  "color": "#731EDBA6",
+  "src": "/sfi/res/bbt/cast/Leonard.png"
+ },
+ "Sheldon": {
+  "name": "Sheldon",
+  "color": "#88C139A6",
+  "src": "/sfi/res/bbt/cast/Sheldon.png"
+ },
+ "Scene": {
+  "name": "Scene",
+  "color": "#810C40A6",
+  "src": "/sfi/res/bbt/cast/Scene.png"
+ },
+ "Penny": {
+  "name": "Penny",
+  "color": "#AF0578A6",
+  "src": "/sfi/res/bbt/cast/Penny.png"
+ },
+ "Bernadette": {
+  "name": "Bernadette",
+  "color": "#064012A6",
+  "src": "/sfi/res/bbt/cast/Bernadette.png"
+ },
+ "Raj": {
+  "name": "Raj",
+  "color": "#D1CB88A6",
+  "src": "/sfi/res/bbt/cast/Raj.png"
+ },
+ "Howard": {
+  "name": "Howard",
+  "color": "#36786AA6",
+  "src": "/sfi/res/bbt/cast/Howard.png"
+ },
+ "Amy": {
+  "name": "Amy",
+  "color": "#1898D0A6",
+  "src": "/sfi/res/bbt/cast/Amy.png"
+ },
+ "Girl": {
+  "name": "Girl",
+  "color": "#E1C25FA6",
+  "src": "/sfi/res/bbt/cast/Girl.png"
+ },
+ "Mrs_Davis": {
+  "name": "Mrs_Davis",
+  "color": "#D99366A6",
+  "src": "/sfi/res/bbt/cast/Mrs_Davis.png"
+ },
+ "Waiter": {
+  "name": "Waiter",
+  "color": "#BF66D1A6",
+  "src": "/sfi/res/bbt/cast/Waiter.png"
+ },
+ "Everybody": {
+  "name": "Everybody",
+  "color": "#EEDBE8A6",
+  "src": "/sfi/res/bbt/cast/Everybody.png"
+ }
+}

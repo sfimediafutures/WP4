@@ -20,5 +20,6 @@
   "aux": "/sfi/res/Exit2/exit_s02e01_aux.json",
   "faux": "/sfi/AI/test2.json",
   "cast": "/sfi/res/Exit2/s02_cast.json",
-  "fdc": "SFI-markup-exit_s02e01"
+  "fdc": "SFI-markup-exit_s02e01",
+  "tracking":" /test.json"
 }

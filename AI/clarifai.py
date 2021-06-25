@@ -1,3 +1,5 @@
+#!/bin/env python3
+
 """AI analysis of iframes from a video."""
 import os.path
 import json
@@ -9,6 +11,8 @@ from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
 from clarifai_grpc.grpc.api import resources_pb2, service_pb2, service_pb2_grpc
 from clarifai_grpc.grpc.api.status import status_code_pb2
 
+
+
 channel = ClarifaiChannel.get_grpc_channel()
 
 # Note: You can also use a secure (encrypted) ClarifaiChannel.get_grpc_channel() however
@@ -17,7 +21,11 @@ channel = ClarifaiChannel.get_grpc_channel()
 stub = service_pb2_grpc.V2Stub(channel)
 
 # This will be used by every Clarifai endpoint call.
+# BBT
 metadata = (('authorization', 'Key d5df25707e5a48ed8640a6b7d94947db'),)
+
+# NRK
+# metadata = (('authorization', 'Key 48c95749d90b474db1e4890786be3492'),)
 
 
 models = {
@@ -26,29 +34,49 @@ models = {
     "text": "75a5b92a0dec436a891b5ad224ac9170"
 }
 
+workflows = {
+    "bbt": "bbt_tag_cast",
+    "vikingane": "vikingane_tag_cast"
+}
 
-def bulk_analyze(filelist, model, batch_size=24):
+metadatas = {
+    "bbt": (('authorization', 'Key d5df25707e5a48ed8640a6b7d94947db'),),
+    "vikingane": (('authorization', 'Key 48c95749d90b474db1e4890786be3492'),)
+}
+
+def bulk_analyze(filelist, model=None, workflow=None, batch_size=24):
     """
     Analyze any number of files, but process them in batches.
     """
     ret = []
     idx = 0
     while idx < len(filelist):
-
-        l = filelist[idx:idx + batch_size]
+        l = filelist[idx:idx + int(batch_size)]
         idx += len(l)
 
-        r = analyze(l, model)
+        r = analyze(l, model, workflow)
         ret.extend(r)
     return ret
 
-
-def analyze(filelist, model):
+def analyze(filelist, model=None, workflow=None):
     """
-    Analyze a list of files with the given model.
+    Analyze a list of files with the given model or workflow.
+    Need ONE
 
     Uses Clarifai and requires analysis with video_to_iframe_dir.py.
     """
+    if workflow:
+        metadata = metadatas[workflow]
+    else:
+        metadata = metadatas["bbt"]  # Default
+
+    if model and not model in models:
+        raise Exception("Unknown model '%s', have %s" % (model, models.keys()))
+    if workflow and not workflow in workflows:
+        raise Exception("Unknown workflow '%s', have %s" % (workflow, workflows.keys()))
+    if not model and not workflow:
+        raise Exception("Missing model or workflow")
+
     inputs = []
     for filename in filelist:
         # This is how you authenticate.
@@ -67,23 +95,44 @@ def analyze(filelist, model):
         else:
             raise Exception("Unknown file format %s" % ext)
 
-    response = stub.PostModelOutputs(
-        service_pb2.PostModelOutputsRequest(
-            model_id=models[model],
-            inputs=inputs
-        ),
-        metadata=metadata
-    )
-    retval = []
-    if response.status.code != status_code_pb2.SUCCESS:
-        raise Exception("Post model outputs failed, status: " + response.status.description)
+    if model:
+        response = stub.PostModelOutputs(
+            service_pb2.PostModelOutputsRequest(
+                model_id=models[model],
+                inputs=inputs
+            ),
+            metadata=metadata
+        )
+        if response.status.code != status_code_pb2.SUCCESS:
+            raise Exception("Post model outputs failed, status: " + response.status.description)
+        results = response.outputs
+    else:
+        print("Using workflow", workflow, workflows[workflow])
+        response = stub.PostWorkflowResults(
+            service_pb2.PostWorkflowResultsRequest(
+                workflow_id=workflows[workflow],
+                inputs=inputs
+            ),
+            metadata=metadata
+        )
 
-    for output in response.outputs:
-        reply = {"items": [], "concepts": []}
+        if response.status.code != status_code_pb2.SUCCESS:
+            raise Exception("Workflow failed, status: " + response.status.description)
+
+        results = [r.outputs[1] for r in response.results]
+
+        print("RESPONSE")
+        # print(results[0].outputs[1].data)
+
+    retval = []
+
+    for output in results:
+        reply = {"items": [], "concepts": {}}
         for concept in output.data.concepts:
+            if concept.value < 0.01:
+                continue
             print('%12s: %.2f' % (concept.name, concept.value))
             reply["concepts"][concept.name] = concept.value
-            print(dir(concept))
 
         for region in output.data.regions:
             name = region.data.concepts[0].name
@@ -208,7 +257,7 @@ def analyze_generic_frame(frame):
 if __name__ == "__main__":
 
     parser = ArgumentParser()
-    parser.add_argument("-b", "--base", dest="base", help="BaseURL", default="", required=False)
+    parser.add_argument("-b", "--base", dest="base", help="BaseURL", default="/var/www/html/", required=False)
     parser.add_argument("-i", "--input", dest="input", help="Input file (timestamps)",
                         required=True)
     parser.add_argument("-o", "--output", dest="output", help="Output file", required=True)
@@ -216,9 +265,13 @@ if __name__ == "__main__":
     parser.add_argument("--end", dest="end", help="End time", required=False, default=None)
     parser.add_argument("--estimate", dest="estimate", help="Only estimate number of pictures",
                         action="store_true", default=False)
-    parser.add_argument("-m", "--model", dest="model", help="Model for analysis", default="faces")
+    parser.add_argument("-m", "--model", dest="model", help="Model for analysis", default="full")
+    parser.add_argument("-w", "--workflow", dest="workflow", help="Workflow for analysis", default="")
 
     options = parser.parse_args()
+
+    if options.workflow:
+        options.model = None
 
     # analyze("/home/njaal/git/MediaFutures/res/Exit2/test/img392.png", "faces")
     # a = analyze("/home/njaal/git/MediaFutures/res/Exit2/test/img392.png", "general")
@@ -268,13 +321,22 @@ if __name__ == "__main__":
     if options.estimate:
         raise SystemExit()
 
-    if os.path.exists(cache_file):
-        a = json.loads(open(cache_file, "r").read())
-        a = general_positioning(files, cached_faces=a)
+    if options.model == "full":
+
+        if os.path.exists(cache_file):
+            a = json.loads(open(cache_file, "r").read())
+            a = general_positioning(files, cached_faces=a)
+        else:
+            a = bulk_analyze(files, "faces")
+            open(cache_file, "w").write(json.dumps(a, indent=" "))
+            print("Written to", cache_file)
+
+            # Now we do the general positioning too
+            a = general_positioning(files, cached_faces=a)
+
     else:
-        a = bulk_analyze(files, options.model)
-        open(cache_file, "w").write(json.dumps(a, indent=" "))
-        print("Written to", cache_file)
+        # Just run a single model
+        a = bulk_analyze(files, options.model, options.workflow)
 
     # Go through results and hook them up
     aux_data = []
@@ -306,7 +368,10 @@ if __name__ == "__main__":
                 if len(by_size) > 1:
                     data["alt"] = by_size
             else:
-                data["items"] = res["items"]
+                if "items" in res:
+                    data["items"] = res["items"]
+                if "concepts" in res:
+                    data["contepts"] = res["concepts"]
         else:
             data["pos"] = [frame["posX"], frame["posY"]]
             if len(frame["focus"]) > 1:

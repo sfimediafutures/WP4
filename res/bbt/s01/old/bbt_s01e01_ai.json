@@ -1,0 +1,14 @@
+{
+  "id": "981408820",
+  "poster": "/sfi/res/bbt/poster.jpg",
+  "video": {
+    "src": "/sfi/res/bbt/bbt_s01e01.mp4"
+  },
+  "subtitles": [
+    {"src": "/sfi/res/bbt/s01e01_subs.json", "lang": "en"}
+  ],
+  "aux": "/sfi/res/bbt/bbt_s01e01_aux_ai.json",
+  "cast": "/sfi/res/bbt/cast.json",
+  "index": "/sfi/res/bbt/bbt_s01e01.idx",
+  "fdc": "SFI-markup-bbt_s01e01"
+}

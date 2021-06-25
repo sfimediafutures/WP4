@@ -1,0 +1,13 @@
+{
+  "id": "158285123",
+  "poster": "/sfi/res/bbt/poster.jpg",
+  "video": {
+    "src": "/sfi/res/bbt/s01/bbt_s07e01.mp4"
+  },
+  "subtitles": [
+    {"src": "/sfi/res/bbt/s01/bbt_s07e01_subs.json", "lang": "en"}
+  ],
+  "aux": "/sfi/res/bbt/s01/bbt_s07e01_aux.json",
+  "cast": "/sfi/res/bbt/cast/cast.json",
+  "fdc": "SFI-markup-bbt_s07e01"
+}

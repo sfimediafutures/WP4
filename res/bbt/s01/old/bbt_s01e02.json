@@ -1,0 +1,14 @@
+{
+  "id": "87101477",
+  "poster": "/sfi/res/bbt/poster.jpg",
+  "video": {
+    "src": "/sfi/res/bbt/bbt_s01e02.mp4"
+  },
+  "subtitles": [
+    {"src": "/sfi/res/bbt/s01e02_subs.json", "lang": "en"}
+  ],
+  "aux": "/sfi/res/bbt/s01e02_aux.json",
+  "cast": "/sfi/res/bbt/cast.json",
+  "index": "/sfi/res/bbt/bbt_s01e02.idx",
+  "dc": "SFI-markup-bbt_s01e02"
+}

@@ -1,0 +1,2580 @@
+[
+  {
+    "start": 0,
+    "end": 0.042,
+    "pos": [
+      50,
+      50
+    ]
+  },
+  {
+    "start": 0.042,
+    "end": 12.137,
+    "pos": [
+      60,
+      26
+    ]
+  },
+  {
+    "start": 12.137,
+    "end": 20.63533467925852,
+    "pos": [
+      46,
+      36
+    ]
+  },
+  {
+    "start": 20.63533467925852,
+    "end": 24.066,
+    "pos": [
+      62,
+      41
+    ],
+    "animate": true
+  },
+  {
+    "start": 24.066,
+    "end": 26.193,
+    "pos": [
+      47,
+      41
+    ]
+  },
+  {
+    "start": 26.193,
+    "end": 41.25,
+    "pos": [
+      59,
+      53
+    ]
+  },
+  {
+    "start": 41.25,
+    "end": 65.941,
+    "pos": [
+      44,
+      42
+    ]
+  },
+  {
+    "start": 65.941,
+    "end": 67.442,
+    "pos": [
+      55,
+      51
+    ]
+  },
+  {
+    "start": 67.442,
+    "end": 75.45,
+    "pos": [
+      45,
+      48
+    ]
+  },
+  {
+    "start": 75.45,
+    "end": 87.796,
+    "pos": [
+      56,
+      42
+    ]
+  },
+  {
+    "start": 87.796,
+    "end": 188.814,
+    "pos": [
+      49,
+      42
+    ]
+  },
+  {
+    "start": 188.814,
+    "end": 190.524,
+    "pos": [
+      40,
+      34
+    ]
+  },
+  {
+    "start": 190.524,
+    "end": 194.361,
+    "pos": [
+      46,
+      38
+    ]
+  },
+  {
+    "start": 194.361,
+    "end": 201.66,
+    "pos": [
+      52,
+      37
+    ]
+  },
+  {
+    "start": 201.66,
+    "end": 202.51133087571412,
+    "pos": [
+      38,
+      38
+    ]
+  },
+  {
+    "start": 202.51133087571412,
+    "end": 203.412,
+    "pos": [
+      56,
+      37
+    ],
+    "animate": true
+  },
+  {
+    "start": 203.412,
+    "end": 204.746,
+    "pos": [
+      45,
+      38
+    ]
+  },
+  {
+    "start": 204.746,
+    "end": 207.874,
+    "pos": [
+      53,
+      37
+    ]
+  },
+  {
+    "start": 207.874,
+    "end": 212.713,
+    "pos": [
+      46,
+      37
+    ]
+  },
+  {
+    "start": 212.713,
+    "end": 214.715,
+    "pos": [
+      40,
+      35
+    ]
+  },
+  {
+    "start": 214.715,
+    "end": 223.557,
+    "pos": [
+      56,
+      38
+    ]
+  },
+  {
+    "start": 223.557,
+    "end": 228.52,
+    "pos": [
+      45,
+      35
+    ]
+  },
+  {
+    "start": 228.52,
+    "end": 237.07811158938148,
+    "pos": [
+      51,
+      39
+    ]
+  },
+  {
+    "start": 237.07811158938148,
+    "end": 239.573,
+    "pos": [
+      44,
+      35
+    ],
+    "animate": true
+  },
+  {
+    "start": 239.573,
+    "end": 242.868,
+    "pos": [
+      56,
+      38
+    ]
+  },
+  {
+    "start": 242.868,
+    "end": 243.994,
+    "pos": [
+      46,
+      37
+    ]
+  },
+  {
+    "start": 243.994,
+    "end": 245.829,
+    "pos": [
+      58,
+      37
+    ]
+  },
+  {
+    "start": 245.829,
+    "end": 247.956,
+    "pos": [
+      45,
+      36
+    ]
+  },
+  {
+    "start": 247.956,
+    "end": 261.595,
+    "pos": [
+      51,
+      38
+    ]
+  },
+  {
+    "start": 261.595,
+    "end": 265.932,
+    "pos": [
+      34,
+      36
+    ]
+  },
+  {
+    "start": 265.932,
+    "end": 269.77,
+    "pos": [
+      54,
+      31
+    ]
+  },
+  {
+    "start": 269.77,
+    "end": 272.23,
+    "pos": [
+      32,
+      36
+    ]
+  },
+  {
+    "start": 272.23,
+    "end": 283.575,
+    "pos": [
+      45,
+      34
+    ]
+  },
+  {
+    "start": 283.575,
+    "end": 285.535,
+    "pos": [
+      61,
+      29
+    ]
+  },
+  {
+    "start": 285.535,
+    "end": 292.667,
+    "pos": [
+      39,
+      38
+    ]
+  },
+  {
+    "start": 292.667,
+    "end": 305.305,
+    "pos": [
+      51,
+      34
+    ]
+  },
+  {
+    "start": 305.305,
+    "end": 307.015,
+    "pos": [
+      68,
+      38
+    ]
+  },
+  {
+    "start": 307.015,
+    "end": 308.683,
+    "pos": [
+      35,
+      45
+    ]
+  },
+  {
+    "start": 308.683,
+    "end": 309.81,
+    "pos": [
+      57,
+      47
+    ]
+  },
+  {
+    "start": 309.81,
+    "end": 337.17,
+    "pos": [
+      49,
+      46
+    ]
+  },
+  {
+    "start": 337.17,
+    "end": 342.843,
+    "pos": [
+      63,
+      47
+    ]
+  },
+  {
+    "start": 342.843,
+    "end": 345.178,
+    "pos": [
+      48,
+      41
+    ]
+  },
+  {
+    "start": 345.178,
+    "end": 347.264,
+    "pos": [
+      55,
+      48
+    ]
+  },
+  {
+    "start": 347.264,
+    "end": 360.20029513631755,
+    "pos": [
+      47,
+      38
+    ]
+  },
+  {
+    "start": 360.20029513631755,
+    "end": 385.343,
+    "pos": [
+      50,
+      50
+    ]
+  },
+  {
+    "start": 385.343,
+    "end": 387.4488115785642,
+    "pos": [
+      60,
+      38
+    ]
+  },
+  {
+    "start": 387.4488115785642,
+    "end": 392.2423019553795,
+    "pos": [
+      54,
+      43
+    ],
+    "animate": true
+  },
+  {
+    "start": 392.2423019553795,
+    "end": 400.233,
+    "pos": [
+      44,
+      39
+    ],
+    "animate": true
+  },
+  {
+    "start": 400.233,
+    "end": 411.411,
+    "pos": [
+      57,
+      44
+    ]
+  },
+  {
+    "start": 411.411,
+    "end": 421.254,
+    "pos": [
+      48,
+      34
+    ]
+  },
+  {
+    "start": 421.254,
+    "end": 426.176,
+    "pos": [
+      57,
+      51
+    ]
+  },
+  {
+    "start": 426.176,
+    "end": 427.344,
+    "pos": [
+      48,
+      42
+    ]
+  },
+  {
+    "start": 427.344,
+    "end": 438.98,
+    "pos": [
+      58,
+      43
+    ]
+  },
+  {
+    "start": 438.98,
+    "end": 443.193,
+    "pos": [
+      41,
+      39
+    ]
+  },
+  {
+    "start": 443.193,
+    "end": 445.195,
+    "pos": [
+      60,
+      40
+    ]
+  },
+  {
+    "start": 445.195,
+    "end": 446.122663055848,
+    "pos": [
+      47,
+      37
+    ]
+  },
+  {
+    "start": 446.122663055848,
+    "end": 449.04242393321005,
+    "pos": [
+      57,
+      37
+    ],
+    "animate": true
+  },
+  {
+    "start": 449.04242393321005,
+    "end": 455.747,
+    "pos": [
+      60,
+      61
+    ],
+    "animate": true
+  },
+  {
+    "start": 455.747,
+    "end": 463.171,
+    "pos": [
+      53,
+      43
+    ]
+  },
+  {
+    "start": 463.171,
+    "end": 465.4050007769819,
+    "pos": [
+      47,
+      30
+    ]
+  },
+  {
+    "start": 465.4050007769819,
+    "end": 471.68,
+    "pos": [
+      34,
+      28
+    ],
+    "animate": true
+  },
+  {
+    "start": 471.68,
+    "end": 474.265,
+    "pos": [
+      49,
+      35
+    ]
+  },
+  {
+    "start": 474.265,
+    "end": 480.313,
+    "pos": [
+      42,
+      37
+    ]
+  },
+  {
+    "start": 480.313,
+    "end": 495.704,
+    "pos": [
+      47,
+      34
+    ]
+  },
+  {
+    "start": 495.704,
+    "end": 509.50434072241006,
+    "pos": [
+      34,
+      38
+    ]
+  },
+  {
+    "start": 509.50434072241006,
+    "end": 513.6300006568733,
+    "pos": [
+      63,
+      57
+    ],
+    "animate": true
+  },
+  {
+    "start": 513.6300006568733,
+    "end": 514.264,
+    "pos": [
+      34,
+      55
+    ],
+    "animate": true
+  },
+  {
+    "start": 514.264,
+    "end": 515.306,
+    "pos": [
+      44,
+      55
+    ]
+  },
+  {
+    "start": 515.306,
+    "end": 517.35,
+    "pos": [
+      30,
+      55
+    ]
+  },
+  {
+    "start": 517.35,
+    "end": 519.894,
+    "pos": [
+      44,
+      50
+    ]
+  },
+  {
+    "start": 519.894,
+    "end": 522.564,
+    "pos": [
+      57,
+      46
+    ]
+  },
+  {
+    "start": 522.564,
+    "end": 545.128,
+    "pos": [
+      51,
+      41
+    ]
+  },
+  {
+    "start": 545.128,
+    "end": 546.5869844643275,
+    "pos": [
+      43,
+      36
+    ]
+  },
+  {
+    "start": 546.5869844643275,
+    "end": 557.348,
+    "pos": [
+      53,
+      36
+    ],
+    "animate": true
+  },
+  {
+    "start": 557.348,
+    "end": 568.234,
+    "pos": [
+      47,
+      37
+    ]
+  },
+  {
+    "start": 568.234,
+    "end": 571.529,
+    "pos": [
+      57,
+      36
+    ]
+  },
+  {
+    "start": 571.529,
+    "end": 573.448,
+    "pos": [
+      61,
+      36
+    ]
+  },
+  {
+    "start": 573.448,
+    "end": 620.453,
+    "pos": [
+      49,
+      38
+    ]
+  },
+  {
+    "start": 620.453,
+    "end": 634.634,
+    "pos": [
+      44,
+      28
+    ]
+  },
+  {
+    "start": 634.634,
+    "end": 637.846,
+    "pos": [
+      57,
+      38
+    ]
+  },
+  {
+    "start": 637.846,
+    "end": 654.904,
+    "pos": [
+      52,
+      38
+    ]
+  },
+  {
+    "start": 654.904,
+    "end": 684.851,
+    "pos": [
+      48,
+      39
+    ]
+  },
+  {
+    "start": 684.851,
+    "end": 686.853,
+    "pos": [
+      36,
+      33
+    ]
+  },
+  {
+    "start": 686.853,
+    "end": 687.937,
+    "pos": [
+      51,
+      33
+    ]
+  },
+  {
+    "start": 687.937,
+    "end": 693.4244749132478,
+    "pos": [
+      64,
+      34
+    ]
+  },
+  {
+    "start": 693.4244749132478,
+    "end": 701.576,
+    "pos": [
+      47,
+      34
+    ],
+    "animate": true
+  },
+  {
+    "start": 701.576,
+    "end": 704.078,
+    "pos": [
+      64,
+      34
+    ]
+  },
+  {
+    "start": 704.078,
+    "end": 707.207,
+    "pos": [
+      47,
+      37
+    ]
+  },
+  {
+    "start": 707.207,
+    "end": 714.339,
+    "pos": [
+      44,
+      43
+    ]
+  },
+  {
+    "start": 714.339,
+    "end": 720.136,
+    "pos": [
+      58,
+      40
+    ]
+  },
+  {
+    "start": 720.136,
+    "end": 725.308,
+    "pos": [
+      50,
+      40
+    ]
+  },
+  {
+    "start": 725.308,
+    "end": 729.103,
+    "pos": [
+      29,
+      40
+    ]
+  },
+  {
+    "start": 729.103,
+    "end": 734.025,
+    "pos": [
+      56,
+      41
+    ]
+  },
+  {
+    "start": 734.025,
+    "end": 738.279,
+    "pos": [
+      71,
+      36
+    ]
+  },
+  {
+    "start": 738.279,
+    "end": 743.368,
+    "pos": [
+      33,
+      35
+    ]
+  },
+  {
+    "start": 743.368,
+    "end": 752.627,
+    "pos": [
+      58,
+      57
+    ]
+  },
+  {
+    "start": 752.627,
+    "end": 759.717,
+    "pos": [
+      39,
+      39
+    ]
+  },
+  {
+    "start": 759.717,
+    "end": 765.64,
+    "pos": [
+      53,
+      42
+    ]
+  },
+  {
+    "start": 765.64,
+    "end": 769.31,
+    "pos": [
+      46,
+      29
+    ]
+  },
+  {
+    "start": 769.31,
+    "end": 774.399,
+    "pos": [
+      56,
+      45
+    ]
+  },
+  {
+    "start": 774.399,
+    "end": 777.568,
+    "pos": [
+      39,
+      40
+    ]
+  },
+  {
+    "start": 777.568,
+    "end": 805.68,
+    "pos": [
+      45,
+      36
+    ]
+  },
+  {
+    "start": 805.68,
+    "end": 831.331,
+    "pos": [
+      49,
+      61
+    ]
+  },
+  {
+    "start": 831.331,
+    "end": 844.052,
+    "pos": [
+      38,
+      39
+    ]
+  },
+  {
+    "start": 844.052,
+    "end": 866.407,
+    "pos": [
+      48,
+      41
+    ]
+  },
+  {
+    "start": 866.407,
+    "end": 869.16,
+    "pos": [
+      59,
+      45
+    ]
+  },
+  {
+    "start": 869.16,
+    "end": 872.997,
+    "pos": [
+      55,
+      40
+    ]
+  },
+  {
+    "start": 874.0277381900843,
+    "end": 874.332,
+    "pos": [
+      44,
+      36
+    ],
+    "animate": true
+  },
+  {
+    "start": 874.332,
+    "end": 875.833,
+    "pos": [
+      59,
+      42
+    ]
+  },
+  {
+    "start": 875.833,
+    "end": 876.7738142594119,
+    "pos": [
+      66,
+      45
+    ]
+  },
+  {
+    "start": 876.7738142594119,
+    "end": 882.4308025686506,
+    "pos": [
+      42,
+      40
+    ],
+    "animate": true
+  },
+  {
+    "start": 882.4308025686506,
+    "end": 884.217,
+    "pos": [
+      37,
+      40
+    ],
+    "animate": true
+  },
+  {
+    "start": 884.217,
+    "end": 891.891,
+    "pos": [
+      48,
+      38
+    ]
+  },
+  {
+    "start": 891.891,
+    "end": 895.603,
+    "pos": [
+      53,
+      35
+    ]
+  },
+  {
+    "start": 895.603,
+    "end": 901.192,
+    "pos": [
+      68,
+      36
+    ]
+  },
+  {
+    "start": 901.192,
+    "end": 905.947,
+    "pos": [
+      43,
+      38
+    ]
+  },
+  {
+    "start": 905.947,
+    "end": 909.575,
+    "pos": [
+      53,
+      43
+    ]
+  },
+  {
+    "start": 909.575,
+    "end": 913.371,
+    "pos": [
+      40,
+      38
+    ]
+  },
+  {
+    "start": 913.371,
+    "end": 924.465,
+    "pos": [
+      53,
+      62
+    ]
+  },
+  {
+    "start": 924.465,
+    "end": 926.426,
+    "pos": [
+      35,
+      41
+    ]
+  },
+  {
+    "start": 928.97,
+    "end": 940.648,
+    "pos": [
+      50,
+      44
+    ]
+  },
+  {
+    "start": 926.426,
+    "end": 928.97,
+    "pos": [
+      66,
+      50
+    ]
+  },
+  {
+    "start": 940.648,
+    "end": 952.493,
+    "pos": [
+      34,
+      44
+    ]
+  },
+  {
+    "start": 952.493,
+    "end": 973.3156319879015,
+    "pos": [
+      38,
+      46
+    ]
+  },
+  {
+    "start": 974.416548418873,
+    "end": 976.267,
+    "pos": [
+      44,
+      46
+    ],
+    "animate": true
+  },
+  {
+    "start": 976.267,
+    "end": 983.2207000000001,
+    "pos": [
+      50,
+      46
+    ]
+  },
+  {
+    "start": 983.2207000000001,
+    "end": 984.0451459092454,
+    "pos": [
+      44,
+      41
+    ]
+  },
+  {
+    "start": 984.0451459092454,
+    "end": 986.194,
+    "pos": [
+      55,
+      48
+    ],
+    "animate": true
+  },
+  {
+    "start": 986.194,
+    "end": 989.864,
+    "pos": [
+      49,
+      45
+    ]
+  },
+  {
+    "start": 989.864,
+    "end": 995.745,
+    "pos": [
+      35,
+      45
+    ]
+  },
+  {
+    "start": 995.745,
+    "end": 999.916,
+    "pos": [
+      41,
+      39
+    ]
+  },
+  {
+    "start": 999.916,
+    "end": 1002.376,
+    "pos": [
+      56,
+      42
+    ]
+  },
+  {
+    "start": 1002.376,
+    "end": 1022.647,
+    "pos": [
+      50,
+      41
+    ]
+  },
+  {
+    "start": 1022.647,
+    "end": 1024.968929252321,
+    "pos": [
+      37,
+      39
+    ]
+  },
+  {
+    "start": 1024.968929252321,
+    "end": 1029.5931934936452,
+    "pos": [
+      66,
+      41
+    ],
+    "animate": true
+  },
+  {
+    "start": 1029.5931934936452,
+    "end": 1033.074,
+    "pos": [
+      34,
+      41
+    ],
+    "animate": true
+  },
+  {
+    "start": 1033.074,
+    "end": 1037.161,
+    "pos": [
+      72,
+      43
+    ]
+  },
+  {
+    "start": 1037.161,
+    "end": 1040.998,
+    "pos": [
+      51,
+      32
+    ]
+  },
+  {
+    "start": 1040.998,
+    "end": 1050.633,
+    "pos": [
+      61,
+      34
+    ]
+  },
+  {
+    "start": 1050.633,
+    "end": 1061.352,
+    "pos": [
+      47,
+      33
+    ]
+  },
+  {
+    "start": 1061.352,
+    "end": 1063.938,
+    "pos": [
+      57,
+      44
+    ]
+  },
+  {
+    "start": 1063.938,
+    "end": 1070.027,
+    "pos": [
+      35,
+      50
+    ]
+  },
+  {
+    "start": 1070.027,
+    "end": 1094.51,
+    "pos": [
+      51,
+      50
+    ]
+  },
+  {
+    "start": 1094.51,
+    "end": 1109.233,
+    "pos": [
+      41,
+      51
+    ]
+  },
+  {
+    "start": 1109.233,
+    "end": 1114.8684483874374,
+    "pos": [
+      57,
+      53
+    ]
+  },
+  {
+    "start": 1114.8684483874374,
+    "end": 1117.366,
+    "pos": [
+      33,
+      48
+    ],
+    "animate": true
+  },
+  {
+    "start": 1117.366,
+    "end": 1118.784,
+    "pos": [
+      65,
+      38
+    ]
+  },
+  {
+    "start": 1118.784,
+    "end": 1120.244,
+    "pos": [
+      51,
+      45
+    ]
+  },
+  {
+    "start": 1120.244,
+    "end": 1132.84,
+    "pos": [
+      42,
+      46
+    ]
+  },
+  {
+    "start": 1132.84,
+    "end": 1137.762,
+    "pos": [
+      59,
+      47
+    ]
+  },
+  {
+    "start": 1137.762,
+    "end": 1246.62,
+    "pos": [
+      47,
+      46
+    ]
+  },
+  {
+    "start": 1246.62,
+    "end": 1248.914,
+    "pos": [
+      54,
+      54
+    ]
+  },
+  {
+    "start": 1248.914,
+    "end": 1254.712,
+    "pos": [
+      38,
+      42
+    ]
+  },
+  {
+    "start": 1254.712,
+    "end": 1277.568,
+    "pos": [
+      48,
+      45
+    ]
+  },
+  {
+    "start": 1277.568,
+    "end": 1282.907,
+    "pos": [
+      57,
+      48
+    ]
+  },
+  {
+    "start": 1282.907,
+    "end": 1283.991,
+    "pos": [
+      51,
+      46
+    ]
+  },
+  {
+    "start": 1283.991,
+    "end": 1304.1587740873365,
+    "pos": [
+      56,
+      44
+    ]
+  },
+  {
+    "start": 1304.1587740873365,
+    "end": 1330.5350443669083,
+    "pos": [
+      51,
+      32
+    ],
+    "animate": true
+  },
+  {
+    "start": 1330.5350443669083,
+    "end": 1334.834,
+    "pos": [
+      43,
+      41
+    ],
+    "animate": true
+  },
+  {
+    "start": 1334.834,
+    "end": 1340.548,
+    "pos": [
+      36,
+      43
+    ]
+  },
+  {
+    "start": 1340.548,
+    "end": 1344.218,
+    "pos": [
+      43,
+      30
+    ]
+  },
+  {
+    "start": 1344.218,
+    "end": 1348.639,
+    "pos": [
+      50,
+      37
+    ]
+  },
+  {
+    "start": 1348.639,
+    "end": 1352.101,
+    "pos": [
+      61,
+      30
+    ]
+  },
+  {
+    "start": 1352.101,
+    "end": 1355.550702564834,
+    "pos": [
+      31,
+      59
+    ]
+  },
+  {
+    "start": 1355.550702564834,
+    "end": 101248.914,
+    "pos": [
+      50,
+      50
+    ]
+  },
+  {
+    "start": 872.997,
+    "end": 874.0277381900843,
+    "pos": [
+      43,
+      35
+    ]
+  },
+  {
+    "start": 973.3156319879015,
+    "end": 974.416548418873,
+    "pos": [
+      38,
+      40
+    ],
+    "animate": true
+  },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 0.0,
+        "end": 0.41,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 17.46,
+        "end": 20.96,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 27.35,
+        "end": 28.4,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 45.71,
+        "end": 46.73,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 48.46,
+        "end": 50.73,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 58.82,
+        "end": 60.13,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 61.57,
+        "end": 63.84,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 64.72,
+        "end": 66.13,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 71.41,
+        "end": 72.69,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 74.42,
+        "end": 76.12,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 89.53,
+        "end": 91.65,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 101.81,
+        "end": 104.56,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 109.25,
+        "end": 109.99,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 111.87,
+        "end": 113.29,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 125.03,
+        "end": 125.99,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 136.99,
+        "end": 137.7,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 146.77,
+        "end": 148.25,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 149.41,
+        "end": 154.07,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 156.43,
+        "end": 156.71,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 163.55,
+        "end": 166.12,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 170.69,
+        "end": 171.4,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 175.12,
+        "end": 177.77,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 179.09,
+        "end": 181.76,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 185.59,
+        "end": 189.11,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 191.15,
+        "end": 191.5,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 197.24,
+        "end": 198.95,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 200.35,
+        "end": 204.48,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 206.3,
+        "end": 211.37,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 222.43,
+        "end": 224.18,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 229.72,
+        "end": 232.34,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 241.52,
+        "end": 243.79,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 248.04,
+        "end": 249.3,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 254.53,
+        "end": 256.81,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 258.94,
+        "end": 260.88,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 269.07,
+        "end": 270.88,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 278.87,
+        "end": 286.55,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 295.32,
+        "end": 297.28,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 304.26,
+        "end": 305.17,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 306.02,
+        "end": 308.16,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 309.29,
+        "end": 310.29,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 310.62,
+        "end": 314.22,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 316.84,
+        "end": 318.78,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 329.78,
+        "end": 332.07,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 335.06,
+        "end": 337.14,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 342.02,
+        "end": 343.63,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 355.49,
+        "end": 361.07,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 362.85,
+        "end": 370.86,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 371.43,
+        "end": 373.7,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 374.57,
+        "end": 379.01,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 393.36,
+        "end": 395.14,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 400.57,
+        "end": 402.02,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 406.33,
+        "end": 407.91,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 410.61,
+        "end": 411.78,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 418.0,
+        "end": 419.97,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 423.23,
+        "end": 425.33,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 433.13,
+        "end": 435.69,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 438.37,
+        "end": 440.49,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 442.18,
+        "end": 444.94,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 446.49,
+        "end": 450.32,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 454.55,
+        "end": 455.52,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 456.21,
+        "end": 457.24,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 459.96,
+        "end": 463.22,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 464.41,
+        "end": 466.8,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 482.69,
+        "end": 490.96,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 503.58,
+        "end": 507.68,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 508.17,
+        "end": 512.95,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 513.97,
+        "end": 517.15,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 519.17,
+        "end": 520.51,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 530.72,
+        "end": 532.41,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 533.81,
+        "end": 535.33,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 535.62,
+        "end": 537.38,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 544.25,
+        "end": 546.7,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 548.55,
+        "end": 551.02,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 565.42,
+        "end": 572.27,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 579.62,
+        "end": 580.36,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 585.51,
+        "end": 589.85,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 592.17,
+        "end": 594.73,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 595.57,
+        "end": 596.38,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 598.42,
+        "end": 599.69,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 606.61,
+        "end": 608.6,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 617.3,
+        "end": 619.47,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 621.86,
+        "end": 623.89,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 624.59,
+        "end": 627.11,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 629.09,
+        "end": 629.68,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 650.01,
+        "end": 653.11,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 656.02,
+        "end": 656.54,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 659.85,
+        "end": 665.47,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 666.55,
+        "end": 670.84,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 685.64,
+        "end": 688.35,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 711.24,
+        "end": 713.36,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 722.42,
+        "end": 723.68,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 729.4,
+        "end": 730.71,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 742.82,
+        "end": 744.67,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 751.32,
+        "end": 752.96,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 754.93,
+        "end": 756.21,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 757.97,
+        "end": 759.07,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 763.71,
+        "end": 766.18,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 768.51,
+        "end": 770.49,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 781.92,
+        "end": 783.68,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 790.34,
+        "end": 791.81,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 812.43,
+        "end": 814.08,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 815.55,
+        "end": 817.62,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 822.65,
+        "end": 826.11,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 831.45,
+        "end": 832.05,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 835.11,
+        "end": 838.46,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 838.77,
+        "end": 839.75,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 844.27,
+        "end": 848.28,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 858.86,
+        "end": 861.5,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 864.17,
+        "end": 865.02,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 867.69,
+        "end": 870.42,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 874.82,
+        "end": 877.78,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 878.22,
+        "end": 881.99,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 884.22,
+        "end": 884.86,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 891.37,
+        "end": 893.5,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 894.79,
+        "end": 896.16,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 899.08,
+        "end": 900.29,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 902.06,
+        "end": 905.11,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 906.05,
+        "end": 907.51,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 909.1,
+        "end": 917.73,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 920.87,
+        "end": 930.02,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 932.38,
+        "end": 935.17,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 938.89,
+        "end": 942.13,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 945.72,
+        "end": 948.13,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 985.62,
+        "end": 987.0,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 988.52,
+        "end": 989.66,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 995.7,
+        "end": 996.61,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1008.43,
+        "end": 1009.29,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1033.59,
+        "end": 1034.37,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1039.71,
+        "end": 1043.54,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1048.45,
+        "end": 1049.49,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1052.53,
+        "end": 1053.78,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1055.06,
+        "end": 1059.25,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1059.73,
+        "end": 1060.38,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1069.9,
+        "end": 1071.12,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1073.28,
+        "end": 1076.98,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1078.53,
+        "end": 1078.97,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1081.43,
+        "end": 1083.04,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1101.41,
+        "end": 1106.03,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1108.37,
+        "end": 1110.55,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1117.57,
+        "end": 1118.4,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1120.54,
+        "end": 1123.35,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1132.08,
+        "end": 1133.01,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1139.11,
+        "end": 1139.71,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1143.83,
+        "end": 1146.36,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1150.29,
+        "end": 1151.81,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1154.04,
+        "end": 1157.76,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1157.98,
+        "end": 1159.68,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1161.0,
+        "end": 1166.61,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1166.79,
+        "end": 1168.06,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1170.31,
+        "end": 1175.1,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1183.59,
+        "end": 1185.54,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1194.09,
+        "end": 1195.92,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1197.2,
+        "end": 1198.66,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1213.96,
+        "end": 1215.04,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1218.35,
+        "end": 1219.05,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1223.5,
+        "end": 1224.08,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1227.55,
+        "end": 1229.43,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1239.57,
+        "end": 1241.03,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1241.53,
+        "end": 1242.3,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1243.67,
+        "end": 1245.48,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1247.08,
+        "end": 1248.91,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1253.61,
+        "end": 1255.31,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1256.68,
+        "end": 1257.82,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1259.14,
+        "end": 1259.52,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1264.12,
+        "end": 1265.93,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1269.12,
+        "end": 1271.54,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1272.75,
+        "end": 1274.85,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1287.18,
+        "end": 1288.18,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1291.06,
+        "end": 1294.36,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1295.15,
+        "end": 1299.96,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1331.54,
+        "end": 1333.49,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1336.83,
+        "end": 1338.89,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh",
+        "start": 1341.28,
+        "end": 1342.1,
+        "url": "/sfi/res/emotions/laugh.png"
+    },
+    {
+        "type": "emotion",
+        "emotion": "laugh_hard",
+        "start": 1347.77,
+        "end": 1350.05,
+        "url": "/sfi/res/emotions/laugh_hard.png"
+    }
+  
+]

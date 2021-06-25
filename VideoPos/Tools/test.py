@@ -87,11 +87,16 @@ class LineChecker:
             last_who = None
             for idx in range(len(manuscript)):
 
-                if manuscript[idx].startswith("("):
-                    who = "info"
-                    text = manuscript[idx]
-                else:
-                    who, text = manuscript[idx].split(":", 1)
+                try:
+                    if manuscript[idx].startswith("(") or manuscript[idx].count(":") == 0:
+                        who = "info"
+                        text = manuscript[idx]
+                    else:
+                        who, text = manuscript[idx].split(":", 1)
+                except:
+                    print("Bad line %d: %s" % (idx, manuscript[idx]))
+                    raise SystemExit()
+
                 text = self._cleanup(text.lower())
                 # If the *last* person to speak is the same, merge them
                 if last_who == who:
@@ -317,7 +322,10 @@ class LineChecker:
                     if line["maxtime"] == 0:
                         print("   * Not touched")
                     start = self.manus[idx-1]["maxtime"]
-                    end = self.manus[idx+1]["mintime"]
+                    if idx == len(self.manus) - 1:
+                        end = start + 10
+                    else:
+                        end = self.manus[idx+1]["mintime"]
                     print("   - should be within", start, end)
                     start = max(start, end) - 1.6
                     print(line.keys())

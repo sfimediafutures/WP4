@@ -15,12 +15,14 @@ the role name and the dialogs
 parser = ArgumentParser()
 parser.add_argument("-i", "--input", dest="input", help="Video file to parse", required=True)
 parser.add_argument("-o", "--output", dest="output", help="Output directory", required=True)
-parser.add_argument("-w", "--webroot", dest="webroot", help="URL of images on web",
+parser.add_argument("-w", "--webroot", dest="webroot", help="URL of images on web (not including the output dir)",
                     required=False, default="")
 
 options = parser.parse_args()
 if options.webroot and options.webroot[-1] != "/":
     options.webroot += "/"
+# Add the output dir too
+options.webroot = os.path.join(options.webroot, options.output) + "/"
 
 iframes = []
 iframes.append({
@@ -38,6 +40,7 @@ def extract(options):
                 os.path.join(options.output, "img%03d.png")])
 
     res = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+    open(os.path.join(options.output, "output.txt"), "wb").write(res)
     return res.decode("utf-8").split("\n")
 
 

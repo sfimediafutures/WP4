@@ -225,8 +225,17 @@ function drop(ev) {
             edit_frame = last_set.iframe || iframe;
             position = last_set.position || [50, 50];
         }
-
         ts = iframe.endts;  // app.sequencer.getCues()[iframe.nr].data.endts;
+
+        // Is there already a cue for this point? Remove it if there is
+        app.pos_sequencer.getCues().forEach(cue => {
+            if (Math.abs(cue.data.start - edit_frame.ts) < 0.03 || 
+                Math.abs(cue.data.end - ts) < 0.03) {
+                console.log("Found old cue, removing", cue);
+                app.pos_sequencer.removeCue(cue.key);
+            }
+        });
+
         app.pos_sequencer.addCue("iframe" + edit_frame.nr, new TIMINGSRC.Interval(edit_frame.ts, ts), {pos: position, nr: edit_frame.nr, start: edit_frame.ts, end: ts});
         console.log("Updated frame", edit_frame.nr, [edit_frame.ts, ts]);
         last_set = {iframe: edit_frame, position: position, startts: edit_frame.ts, endts: ts}
@@ -364,6 +373,7 @@ function drop(ev) {
         // We check all visible items to see if they are within
         app.sequencer.cues().forEach(cue => {
             if (cue.interval.low < end && cue.interval.high > start) { 
+                if (!data.pos || data.pos.length != 2) return;
                 // contained 
                 let itm = document.querySelector("#iframe" + cue.data.nr + " .mark");
                 itm.style.left = data.pos[0] + "%";

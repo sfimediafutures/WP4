@@ -97,7 +97,7 @@ class LineChecker:
             last_who = None
             for idx in range(len(manuscript)):
 
-                if manuscript[idx].startswith("("):
+                if manuscript[idx].startswith("(") or manuscript[idx].count(":") == 0:
                     who = "info"
                     text = manuscript[idx]
                 else:

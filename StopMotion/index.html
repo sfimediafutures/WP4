@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+<script src="https://mcorp.no/lib/mcorp-2.0.js"></script>
+
+<script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"> </script>
+
+
+
+<script src=""></script>
+</head>
+<body>
+
+    <button id="playbtn">PLAY</button>
+
+    <script>
+    var app = MCorp.app("4704154345375000225");
+    app.to = new TIMINGSRC.TimingObject();
+    app.sequencer = new TIMINGSRC.Sequencer(app.to);
+
+    let voices = [];
+    let ready = new Promise(function(resolve, reject) {
+        speechSynthesis.onvoiceschanged = function() {
+            let v = speechSynthesis.getVoices();
+            speechSynthesis.getVoices().forEach(voice => {
+                if (voice.lang.startsWith("en-")) {
+                    if (voices.indexOf(voice) == -1)
+                        voices.push(voice);
+                };
+            });    
+            console.log("Loaded", voices.length, "voices");
+            if (voices.length > 0)
+                resolve(voices);
+        }        
+    });
+
+
+    app.sequencer.on("change", evt => {
+        let cue = evt.new.data;
+        console.log("Active cue", cue);
+        if (cue.text) {
+            let utterance = new SpeechSynthesisUtterance(cue.text);
+            utterance.voice = voices[cue.voice];
+            console.log("Speaking", cue.text, "in voice", utterance.voice);
+            speechSynthesis.speak(utterance);
+        }
+    });
+
+
+    app.load = function(url) {
+      return new Promise(function(resolve, reject) {
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            let i = 0;
+            data.cues.forEach(item => {
+              let id = "c" + item.start.toFixed(1).replace(".","-");
+              app.sequencer.addCue(id, new TIMINGSRC.Interval(item.start, item.end || item.start + 5), item);
+              i++;
+            });
+            resolve(data);
+          });
+        });
+    };
+
+    app.analyze = function(url) {
+      return new Promise(function(resolve, reject) {
+        console.log("Analyzing", url);
+
+        function downloadObjectAsJson(exportObj, exportName){
+            var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, undefined, 2));
+            var downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href",     dataStr);
+            downloadAnchorNode.setAttribute("download", (exportName || "features") + ".json");
+            document.body.appendChild(downloadAnchorNode); // required for firefox
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
+
+
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            app.data = data;
+            let i = 0;
+            let last_end = 1;
+
+            let process = function(idx) {
+                let cue = data.cues[idx];                
+                cue.start = last_end;
+
+                let utterance = new SpeechSynthesisUtterance(cue.text);
+                utterance.voice = voices[cue.voice];
+                console.log("Speaking", cue.text, "in voice", cue.voice);
+                let startts = performance.now();
+                speechSynthesis.speak(utterance)
+                utterance.onend = function() {
+                    console.log("DONE");
+                    let t = Math.ceil((performance.now() - startts) / 1000.);
+
+                    let id = "c" + cue.start.toFixed(1).replace(".","-");
+                    cue.end = cue.start + t;
+                    last_end = cue.end + 1;  // 1s between sentences
+                    // app.sequencer.addCue(id, new TIMINGSRC.Interval(cue.start, cue.end), cue);
+                    idx++;
+                    if (!data.cues[idx]) {
+                        resolve(data);
+                        downloadObjectAsJson(data);
+                    } else {
+                        process(idx);
+                    }
+                };
+            }
+            process(0);
+          });
+        });        
+    }
+
+
+    //ready.then(function() { app.analyze("test2.json").then(data => console.log(data)) });
+
+    app.load("test2_done.json");
+
+    document.querySelector("#playbtn").addEventListener("click", function() {app.to.update({velocity:1})});
+
+    </script>
+</body>
+</html>

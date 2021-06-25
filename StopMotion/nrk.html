@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Tilgjengelighet</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+  <script src="lib/responsivevoice_mobile.js"></script>
+
+  <script src="https://mcorp.no/lib/timingsrc-min-v2.js"></script>
+  <script src="https://mcorp.no/lib/mcorp-2.0.js"></script>
+  <script src="https://mcorp.no/lib/mediasync.js"></script>
+  <script src="./lib/ludo_sync.js"></script>
+
+  <script>
+    var XHR = (function() {
+      var api = {};
+
+      api.get = function(url, params, onResult, onError) {
+        var xhr = new XMLHttpRequest();
+        url += "?";
+        for (var i in params) {
+          url += i + "=" + params[i] + "&";
+        }
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            onResult(xhr.response);
+          }
+          // TODO: if error, call onError
+        };
+        xhr.send();
+      }
+      return api;
+    })();
+
+    var load_program_info = function(programid) {
+      return new Promise(function(resolve, reject) {
+        XHR.get("https://psapi-ne.nrk.no/mediaelement/" + programid, {}, function(info) {
+          var info = JSON.parse(info);
+          resolve(info);
+        }, function(error) {
+          reject(error);
+        });
+      });
+    };
+
+    // Load subtitles
+    var load_subs = function(sequencer, url, params) {
+
+      var toTs = function(str) {
+        var parts = str.split(":");
+        return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseFloat(parts[2])
+      };
+
+      return new Promise(function(resolve, reject) {
+        XHR.get(url, params, function(webvtt) {
+          var key;
+          var start;
+          var end;
+          var text = "";
+          var lines = webvtt.split("\n");
+          for (var i=0; i<lines.length; i++) {
+            var line = lines[i].trim();
+            var m = /(\d\d:\d\d:\d\d.\d+)\s?-->\s?(\d\d:\d\d:\d\d.\d+)/.exec(line);
+            if (m) {
+              start = toTs(m[1]);
+              end = toTs(m[2]);
+              continue;
+            }
+            if (line === "") {
+              // STORE IT
+              if (key) {
+                sequencer.addCue(String(key), new TIMINGSRC.Interval(start, end), text);
+                key = undefined;
+                text = "";
+              }
+              continue;
+            }
+
+            // Is this a key?
+            if (/^\d+/.exec(line)) {
+              key = line;
+              continue;
+            }
+
+            if (key) {
+              text += line + "\n";
+              continue;
+            }
+          }
+          resolve();
+        }, function(error) {
+          reject(error);
+        });
+      });
+    };
+
+
+    var app = MCorp.app("172720078118002530", {anon:true});
+    app.to = new TIMINGSRC.TimingObject();
+    app.sync = {};
+    app.subseq = new TIMINGSRC.Sequencer(app.to);
+    app.read_subs = false;
+    app.ready.then(function() {
+      app.to.timingsrc = app.motions.shared;
+    });
+    app.kick = function(e) {
+      e.preventDefault();
+      var a = document.querySelectorAll("audio");
+      for (var i=0; i<a.length; i++) {
+        a[i].play();
+      }
+    };
+
+    var fade_timer;
+    var fade_in = function(element, timeout) {
+      if (element.volume === undefined) {
+        return;
+      }
+      if (timeout > 0) {
+        fade_timer = setTimeout(function()  {
+              fade_in(element, Math.min(timeout, timeout - 250));
+              }, 250);
+        return;
+      }
+      // We're fading
+      if (element.volume < 1) {
+        element.volume = Math.min(1, element.volume + 0.05);
+        fade_timer = setTimeout(function() { fade_in(element, 0); }, 0);
+      }
+    };
+
+    app.subseq.on("change", function(e) {
+      var data = e.data.replace(/<(?:.|)*?>/gm, '');
+      window.player.emit('set-subtitles', data.split("\n"));
+
+      if (app.read_subs) {
+        var txt = e.data.replace(/<(?:.|\n)*?>/gm, ' ');
+        responsiveVoice.speak(txt);
+
+        // Turn down volume of foreground
+        // Cancel fade-ins
+        clearTimeout(fade_timer);
+        document.querySelector("audio#dialog").volume = 0.3;
+      }
+    });
+    app.subseq.on("remove", function(e) {
+      window.player.emit('set-subtitles', "");
+    });
+
+    window.onload = function() {
+      document.querySelector("#kicker").onclick = app.kick;
+
+      var programId = "KMTE40000312"; 
+      load_program_info(programId).then(function(info) {
+        console.log("Program info", info);
+      });
+
+      window.player = ludo(document.querySelector('#ludo'), programId, 
+      {
+          autoplay: false,
+          timingObject: app.to
+      });
+      document.querySelector("video").volume = 0;
+
+      var content = {
+        subtekst: {
+          url: "https://undertekst.nrk.no/prod/KMTE40/00/KMTE40000312AA/TMP/KMTE40000312AA.vtt",
+          type: "subtitle"
+        },
+        contentum: {
+          url: "https://mcorp.no/nrk/resources/Valkyrien ep1 effekter.mp3",
+          type: "audio",
+          skew: 60,
+          enabled: true
+        }, 
+        dialog: {
+          url: "https://mcorp.no/nrk/resources/Valkyrien ep1 dialog.mp3",
+          type: "audio",
+          skew: 60,
+          enabled: true
+        },
+        synstolk: {
+          url: "https://mcorp.no/nrk/resources/Valkyrien 1 bare syn_tidskode.mp3",
+          type: "audio"
+        },
+        tegnspraak: {
+          url: "https://mcorp.no/nrk/resources/Valkyrien_tegnspraak.mp4",
+          type: "video",
+          skew: 3
+        }
+        /*
+        fullaudio: {
+          url: "./resources/fullaudio.mp3",
+          type: "audio"
+        },
+        fullvideo: {
+          url: "./resources/fullvideo.mp4",
+          type: "video"
+        }
+        */
+      };
+
+      for (var key in content) {
+        if (!content.hasOwnProperty(key)) continue;
+
+        if (content[key].url === "") continue;
+
+        if (content[key].type === "subtitle") {
+          load_subs(app.subseq, content[key].url)
+          continue;
+        }
+
+        var a = document.createElement(content[key].type);
+        a.src = content[key].url;
+        a.setAttribute("id", key);
+        a.volume = content[key].enabled ? 1 : 0;
+        a.style.display = "none";
+        var options = {};
+        if (content[key].skew) {
+          options.skew = content[key].skew;
+        }
+        app.sync[key] = MCorp.mediaSync(a, app.to, options);
+        if (!content[key].enabled) {
+          app.sync[key].pause(true);
+        }
+
+        target = document.querySelector("#" + key + "_container") || document.querySelector("body");
+        target.append(a);
+      }
+
+      var toggle = function(key, enable) {
+        document.querySelector("#" + key).play();
+        app.sync[key].pause(!enable);
+        document.querySelector("#" + key).volume = enable ? 1 : 0;
+      };
+
+      document.querySelector("#tekst_on").onclick = function(e) {
+        window.player.set("subtitles", e.srcElement.checked);
+      }
+
+     document.querySelector("#tegnspraak_on").onclick = function(e) {
+        var key = "tegnspraak";
+        toggle(key, e.srcElement.checked);
+        document.querySelector("#" + key).style.display = e.srcElement.checked ? "block" : "none";
+      }
+
+      document.querySelector("#lydtekst_on").onclick = function(e) {
+        responsiveVoice.setDefaultVoice("Norwegian Male");
+        //responsiveVoice.clickEvent(e);
+        if (e.srcElement.checked) {
+          responsiveVoice.speak("Leser tekst");
+          responsiveVoice.fallback_audio.onended = function() {
+            fade_in(document.querySelector("audio#dialog"), 2000);
+          }
+        }
+        app.read_subs = e.srcElement.checked;
+        // For demo purposes: turn down dialog a LOT
+        document.querySelector("audio#dialog").volume = app.read_subs ? 0.2 : 1;
+      }
+
+      document.querySelector("#lesbarhet").onchange = function(e) {
+        var level = e.srcElement.value;
+        var opacity = 0.3;
+        var size = "1em";
+        if (level == 1) {
+          opacity = 1.0
+        } else if (level == 2) {
+          opacity = 1.0;
+          size = "1.4em";
+        }
+
+        var lines = document.querySelectorAll(".ludo-captions__line-inner");
+        for (var i=0; i<lines.length; i++) {
+          lines[i].style.background = "rgba(0,0,0," + opacity +")";
+          lines[i].style.fontSize = size;
+        }
+      }
+
+      document.querySelector("#synstolk_on").onclick = function(e) {
+        toggle("synstolk", e.srcElement.checked);
+      }
+
+      document.querySelector("#lyd_av").onclick = function(e) {
+        toggle("dialog", !e.srcElement.checked);
+        toggle("contentum", !e.srcElement.checked);
+      }
+
+      document.querySelector("#taletydelighet").onchange = function(e) {
+        var level = e.srcElement.value;
+        var bg_volume = 1;
+
+        if (level == 1) {
+          bg_volume = 0.5;
+        } else if (level == 2) {
+          bg_volume = 0.1;
+        }
+        document.querySelector("audio#contentum").volume = bg_volume;
+      }
+    };
+
+  </script>
+
+  <style>
+  button {
+    padding: 25px;
+    height: 50px;
+    width: 150px;
+  }
+  .slider {
+    /* width: 80%; */
+    position: relative;
+    min-height: 50px;
+    /* height: 100px;*/
+  }
+  .slider input {
+    width: 100%;
+  }
+  .slider .left {
+    position: absolute;
+    left: 30px;
+    bottom: 10px;
+  }
+  .slider .center {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .slider .right {
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
+  }
+
+  .indented {
+    margin-left: 25px;
+  }
+
+  .centerx {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .mdl-list {
+     width:200px;
+  }
+  .viewer {
+    position: relative;
+    width: 100%;
+    //min-height: 200px;    
+    //color: white;
+    //background: rgba(0,0 0, 0.5);
+  }
+  .viewer #ludo {
+    z-index:1;
+  }
+  .viewer img {
+    width: 100%;
+  }
+
+  .subtitles {
+    position: absolute;
+    bottom: 0px;
+    padding: 15%;
+    z-index: 10;
+  }
+  .subtitle {
+    background: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 1.5em;
+  }
+  #tegnspraak_container {
+    width: 100%;
+  }
+  #tegnspraak_container video {
+    width: 100%;
+  }
+  </style>
+
+
+</head>
+<body>
+<div class="viewer">
+  <div id="ludo">
+    <img id="poster" src="gfx/nrk.jpg"/>
+  </div>
+  <div class="subtitles" style="display:none">
+    <span class="subtitle" id="subtitle""></span>
+  </div>
+</div>
+<div id="tegnspraak_container"></div>
+  
+  <div class="subcontainer centerx">
+
+    <h3 id="kicker">Undertekster</h3>
+      <ul class="demo-list-control mdl-list">
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            Tekst på
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="tekst_on">
+              <input type="checkbox" id="tekst_on" class="mdl-switch__input" />
+            </label>
+          </span>
+        </li>
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            <span>Les tekstene</span> 
+            <i class="material-icons">hearing</i>
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="lydtekst_on">
+              <input type="checkbox" id="lydtekst_on" class="mdl-switch__input" />
+            </label>
+          </span>
+        </li>
+      </ul>
+
+    <h4>Lesbarhet</h4>
+    <div class="slider">
+      <input class="mdl-slider mdl-js-slider" id="lesbarhet" type="range" min="0" max="2" value="0" tabindex="0">
+      <span class="left">Vanlig</span>
+      <span class="center">Økt</span>
+      <span class="right">Mest</span>
+    </div>
+
+    <h3>Tegnspråk</h3>
+    <ul class="demo-list-control mdl-list">
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          Tegnspråk på
+        </span>
+        <span class="mdl-list__item-secondary-action">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="tegnspraak_on">
+            <input type="checkbox" id="tegnspraak_on" class="mdl-switch__input" />
+          </label>
+        </span>
+      </li>
+    </ul>
+
+    <h3>Taletydelighet</h3>
+    <div class="slider">
+      <input class="mdl-slider mdl-js-slider" id="taletydelighet" type="range" min="0" max="2" value="0" tabindex="0">
+      <span class="left">Vanlig</span>
+      <span class="center">Økt</span>
+      <span class="right">Mest</span>
+    </div>
+
+    <ul class="demo-list-control mdl-list">
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          Synstolk på
+        </span>
+        <span class="mdl-list__item-secondary-action">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="synstolk_on">
+            <input type="checkbox" id="synstolk_on" class="mdl-switch__input" />
+          </label>
+        </span>
+      </li>
+
+      <li class="mdl-list__item" style="display:none">
+        <span class="mdl-list__item-primary-content">
+          Lyd av
+        </span>
+        <span class="mdl-list__item-secondary-action">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="lyd_av">
+            <input type="checkbox" id="lyd_av" class="mdl-switch__input" />
+          </label>
+        </span>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="ctrl" style="display:none">
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+{
+  "cues": [
+    {
+      "voice": 1,
+      "text": "Accessibility is the worst.",
+      "start": 0,
+      "end": 3
+    },
+    {
+      "voice": 2,
+      "text": "What? Why?",
+      "start": 4,
+      "end": 6
+    },
+    {
+      "voice": 1,
+      "text": "The text is too visible and the sign language translator takes like 40% of the screen.",
+      "start": 7,
+      "end": 13
+    },
+    {
+      "voice": 2,
+      "text": "Yeah. You know, it's just because it's not done right...",
+      "start": 14,
+      "end": 18
+    },
+    {
+      "voice": 1,
+      "text": "Really? How so?",
+      "start": 19,
+      "end": 21
+    },
+    {
+      "voice": 2,
+      "text": "Well, people are different, right?",
+      "start": 22,
+      "end": 25
+    },
+    {
+      "voice": 1,
+      "text": "I guess",
+      "start": 26,
+      "end": 28
+    },
+    {
+      "voice": 2,
+      "text": "And it's not just not hearing or seeing!",
+      "start": 29,
+      "end": 32
+    },
+    {
+      "voice": 2,
+      "text": "Some hear most stuff, but some frequencies are difficult",
+      "start": 33,
+      "end": 37
+    },
+    {
+      "voice": 1,
+      "text": "Sure",
+      "start": 38,
+      "end": 39
+    },
+    {
+      "voice": 2,
+      "text": "And not everyone watches TV in a cinema either, right?",
+      "start": 40,
+      "end": 45
+    },
+    {
+      "voice": 1,
+      "text": "Most watch it at home I would guess.",
+      "start": 46,
+      "end": 49
+    },
+    {
+      "voice": 2,
+      "text": "Yeah, and other people might be living there too",
+      "start": 50,
+      "end": 54
+    },
+    {
+      "voice": 1,
+      "text": "So?",
+      "start": 55,
+      "end": 56
+    },
+    {
+      "voice": 2,
+      "text": "So watching an action movie you might have to choose between explosions waking the kids or hearing the dialogue...",
+      "start": 57,
+      "end": 65
+    },
+    {
+      "voice": 1,
+      "text": "Yeah, I know. We use subtitles for that",
+      "start": 66,
+      "end": 70
+    },
+    {
+      "voice": 2,
+      "text": "Many do!",
+      "start": 71,
+      "end": 73
+    },
+    {
+      "voice": 1,
+      "text": "So - what's the solution?",
+      "start": 74,
+      "end": 77
+    },
+    {
+      "voice": 2,
+      "text": "People should be able to adapt the content however they like!",
+      "start": 78,
+      "end": 82
+    },
+    {
+      "voice": 1,
+      "text": "Um. How does that work?",
+      "start": 83,
+      "end": 86
+    },
+    {
+      "voice": 2,
+      "text": "Well, you can turn on subtitles, right?",
+      "start": 87,
+      "end": 90
+    },
+    {
+      "voice": 1,
+      "text": "Some times I can. Some times I can't...",
+      "start": 91,
+      "end": 95
+    },
+    {
+      "voice": 2,
+      "text": "Yeah, it can be surprisingly difficult...",
+      "start": 96,
+      "end": 99
+    },
+    {
+      "voice": 1,
+      "text": "And often the text is SO in the way!",
+      "start": 100,
+      "end": 103
+    },
+    {
+      "voice": 2,
+      "text": "Yes, it can be a bit on the big side",
+      "start": 104,
+      "end": 107
+    },
+    {
+      "voice": 1,
+      "text": "And be like this huge black strip",
+      "start": 108,
+      "end": 111
+    },
+    {
+      "voice": 2,
+      "text": "Some times it's just floating right on the picture, and that can be really difficult too!",
+      "start": 112,
+      "end": 118
+    },
+    {
+      "voice": 1,
+      "text": "Yes, I saw a french film like that",
+      "start": 119,
+      "end": 123
+    },
+    {
+      "voice": 2,
+      "text": "Anyway - you know web pages?",
+      "start": 124,
+      "end": 127
+    },
+    {
+      "voice": 1,
+      "text": "Yes?",
+      "start": 128,
+      "end": 129
+    },
+    {
+      "voice": 2,
+      "text": "They use responsive design. That's why it works both on a tablet, a phone and a computer",
+      "start": 130,
+      "end": 137
+    },
+    {
+      "voice": 1,
+      "text": "Right - when things change to fit the screen?",
+      "start": 138,
+      "end": 142
+    },
+    {
+      "voice": 2,
+      "text": "Yes. And that's not difficult to use, right?",
+      "start": 143,
+      "end": 147
+    },
+    {
+      "voice": 1,
+      "text": "No, that's very easy. I mean - I just rotate my screen if I want it wider",
+      "start": 148,
+      "end": 154
+    },
+    {
+      "voice": 2,
+      "text": "Exactly, and the content reformats itself",
+      "start": 155,
+      "end": 159
+    },
+    {
+      "voice": 1,
+      "text": "Yeah. Mostly I think it works quite well in any direction, so I normally just watch in the most comfortable way",
+      "start": 160,
+      "end": 168
+    },
+    {
+      "voice": 2,
+      "text": "But videos isn't quite like that, right?",
+      "start": 169,
+      "end": 172
+    },
+    {
+      "voice": 1,
+      "text": "No, they just fit in the screen, and then all the rest is black or full of other stuff",
+      "start": 173,
+      "end": 179
+    },
+    {
+      "voice": 2,
+      "text": "Exactly! So why are they so much worse do you think?",
+      "start": 180,
+      "end": 184
+    },
+    {
+      "voice": 1,
+      "text": "I don't know. They are old fashioned?",
+      "start": 185,
+      "end": 188
+    },
+    {
+      "voice": 2,
+      "text": "Sort of... Video is basically like a film roll still, with a player that runs the film strips one frame after the other",
+      "start": 189,
+      "end": 197
+    },
+    {
+      "voice": 1,
+      "text": "They must be a bit more modern?",
+      "start": 198,
+      "end": 201
+    },
+    {
+      "voice": 2,
+      "text": "A bit, but it's the same fundamental idea.",
+      "start": 202,
+      "end": 206
+    },
+    {
+      "voice": 1,
+      "text": "And that works well then, as it's still being used?",
+      "start": 207,
+      "end": 211
+    },
+    {
+      "voice": 2,
+      "text": "Well, web pages can be reformatted because they are not all bound together up front. It's a buch of different bits and some descriptions of how to arrange them",
+      "start": 212,
+      "end": 223
+    },
+    {
+      "voice": 1,
+      "text": "So each picture should be sent separately? That sounds a bit inefficient!",
+      "start": 224,
+      "end": 229
+    },
+    {
+      "voice": 2,
+      "text": "You are right, that wouldn't work. But even if the video is a video, it doesn't mean that everything must be shown",
+      "start": 230,
+      "end": 238
+    },
+    {
+      "voice": 2,
+      "text": "or that everything needs to be in the video",
+      "start": 239,
+      "end": 242
+    },
+    {
+      "voice": 1,
+      "text": "What's everything to you?",
+      "start": 243,
+      "end": 245
+    },
+    {
+      "voice": 2,
+      "text": "Well, it could be the subtitles. Or a sign language translator. Or audio descriptions.",
+      "start": 246,
+      "end": 253
+    },
+    {
+      "voice": 2,
+      "text": "Or it could be more advanced stuff, like a 3D map, animations, information about people... Anything really",
+      "start": 254,
+      "end": 262
+    },
+    {
+      "voice": 1,
+      "text": "But you can't just put all that up on a TV!",
+      "start": 263,
+      "end": 267
+    },
+    {
+      "voice": 2,
+      "text": "No, that's true. But you can show some of it. And people could use their phones and tablets too!",
+      "start": 268,
+      "end": 275
+    },
+    {
+      "voice": 1,
+      "text": "Like second screen stuff? That's just frustratingly difficult to use!",
+      "start": 276,
+      "end": 281
+    },
+    {
+      "voice": 2,
+      "text": "Not if you do it right!",
+      "start": 282,
+      "end": 285
+    },
+    {
+      "voice": 1,
+      "text": "And how is right?",
+      "start": 286,
+      "end": 288
+    },
+    {
+      "voice": 2,
+      "text": "Well - let's say you watch NRK on something",
+      "start": 289,
+      "end": 293
+    },
+    {
+      "voice": 1,
+      "text": "Ok",
+      "start": 294,
+      "end": 295
+    },
+    {
+      "voice": 2,
+      "text": "Then you go to nrk.no and that's it.",
+      "start": 296,
+      "end": 300
+    },
+    {
+      "voice": 1,
+      "text": "Um. That's not how it works.",
+      "start": 301,
+      "end": 304
+    },
+    {
+      "voice": 2,
+      "text": "No it isn't. But that's how it is going to work!",
+      "start": 305,
+      "end": 309
+    },
+    {
+      "voice": 1,
+      "text": "How?",
+      "start": 310,
+      "end": 311
+    },
+    {
+      "voice": 2,
+      "text": "Let me tell you!",
+      "start": 312,
+      "end": 314
+    }
+  ]
+}

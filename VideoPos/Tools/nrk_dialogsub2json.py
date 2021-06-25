@@ -108,7 +108,7 @@ class LineChecker:
             last_who = None
             for idx in range(len(manuscript)):
 
-                if manuscript[idx].startswith("("):
+                if manuscript[idx].startswith("(") or manuscript[idx].count(":") == 0:
                     who = "info"
                     text = manuscript[idx]
                 else:
@@ -469,6 +469,18 @@ class LineChecker:
 
         open(filename, "w").write(json.dumps(checker.subs, indent=" "))
 
+    def _cleanup_who(self, who):
+        """
+        We don't want cast members to have spaces and paranthesis and stuff
+        """
+        if who.find("(") > -1:
+            who = who[:who.find("(")]
+        who = who.replace(" ", "_")
+        if who[-1] == "_":
+            return who[:-1]
+        return who
+
+
     def save_cast(self, filename, cast_url):
 
         def autocolor(idx):
@@ -476,8 +488,9 @@ class LineChecker:
 
         characters = []
         for sub in subs:
-            if sub["who"] not in characters:
-                characters.append(sub["who"])
+            who = self._cleanup_who(sub["who"])
+            if who not in characters:
+                characters.append(who)
 
         cast = {}
         for idx, c in enumerate(characters):

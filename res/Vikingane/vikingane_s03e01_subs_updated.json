@@ -129,7 +129,7 @@
     "start": 98.16,
     "end": 101.08,
     "text": "Ha det fint.",
-    "who": "TORSTEIN HUND"
+    "who": "JARL VARG"
   },
   {
     "start": 163,
@@ -590,7 +590,7 @@
   {
     "start": 731.76,
     "end": 738.12,
-    "text": "Kanskje hun har blitt holdt utenfohele livet, ble ekskludert fra ting, -",
+    "text": "Kanskje hun har blitt holdt utenfor<br>hele livet, ble ekskludert fra ting, -",
     "who": "ORM"
   },
   {
@@ -765,7 +765,7 @@
     "start": 932.4,
     "end": 936.44,
     "text": "-Hva sier vi da?",
-    "who": "FRØYA"
+    "who": "ØRN"
   },
   {
     "start": 936.52,
@@ -879,13 +879,13 @@
     "start": 1128.4,
     "end": 1131.68,
     "text": "(Det knaker i en kvist.)",
-    "who": "FRØYA"
+    "who": "Info"
   },
   {
     "start": 1143.33,
     "end": 1146.6,
     "text": "Hei.",
-    "who": "JARL BJØRN"
+    "who": "Unknown"
   },
   {
     "start": 1143.32,
@@ -1053,7 +1053,7 @@
     "start": 1323.28,
     "end": 1326.64,
     "text": "Men Olav, du må komme.",
-    "who": "REIDUN"
+    "who": "HILDUR"
   },
   {
     "start": 1326.73,
@@ -1340,7 +1340,7 @@
   {
     "start": 1569.28,
     "end": 1576.56,
-    "text": "Jo, nå har det seg sånn abroren min, Orm, har blitt singel, -",
+    "text": "Jo, nå har det seg sånn at<br>broren min, Orm, har blitt singel, -",
     "who": "OLAV"
   },
   {
@@ -1388,7 +1388,7 @@
   {
     "start": 1599.52,
     "end": 1604.28,
-    "text": "Og måtte Odin sørge foat jeg blir knivstukket i magen -",
+    "text": "Og måtte Odin sørge for<br>at jeg blir knivstukket i magen -",
     "who": "OLAV"
   },
   {
@@ -1461,7 +1461,7 @@
     "start": 1649.57,
     "end": 1655.56,
     "text": "Få ham interessert i dette ...",
-    "who": "FRØYA"
+    "who": "HILDUR"
   },
   {
     "start": 1649.56,
@@ -1550,7 +1550,7 @@
   {
     "start": 1704.56,
     "end": 1710.56,
-    "text": "Og tenk på odet å jakte på dyr er optimalt, -",
+    "text": "Og tenk på om<br>det å jakte på dyr er optimalt, -",
     "who": "HILDUR"
   },
   {

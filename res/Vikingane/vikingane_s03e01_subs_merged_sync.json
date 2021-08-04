@@ -795,7 +795,7 @@
   "end": 796.54,
   "text": "Ja, og det kommer til \u00e5 sende<br>sjokkb\u00f8lger gjennom hele Norheim.",
   "who": "DOBANDITTEN",
-  "text_en": "Yes, and it will send shockwaves throughout Norheim."
+  "text_en": "Yes, and it will send shockwaves<br>throughout Norheim."
  },
  {
   "start": 798.63,
@@ -823,7 +823,7 @@
   "end": 822.9494117647058,
   "text": "Hun n\u00f8t \u00e5 v\u00e6re midtpunktet<br>litt for lenge etter min smak.",
   "who": "ORM",
-  "text_en": "She was the center of attention for a little too long for my liking."
+  "text_en": "She was the center of attention<br>for a little too long for my liking."
  },
  {
   "start": 835.53,
@@ -963,7 +963,7 @@
   "end": 962.9064705882353,
   "text": "S\u00e5 det er sikkert<br>en bismak av uvaskete genitalier.",
   "who": "ARNSTEIN",
-  "text_en": "So it is probably a taste of unwashed genitals."
+  "text_en": "So it is probably a<br> taste of unwashed genitals."
  },
  {
   "start": 968.91,
@@ -1313,7 +1313,7 @@
   "end": 1350.8035294117647,
   "text": "-Hva har du \u00e5 si til dette her?",
   "who": "OLAV",
-  "text_en": "What do you have to say about this here?"
+  "text_en": "What do you have to<br>say about this here?"
  },
  {
   "start": 1352.16,
@@ -1362,14 +1362,14 @@
   "end": 1390.9505882352942,
   "text": "Og det reflekterer s\u00e5 d\u00e5rlig p\u00e5 meg<br>som svigerinne. Det er det viktigste.",
   "who": "HILDUR",
-  "text_en": "And it reflects very poorly at me as<br>your sister-in-law. That's the most important thing."
+  "text_en": "And it reflects very poorly at me as your<br>sister-in-law. That's the most important thing."
  },
  {
   "start": 1407.33,
   "end": 1411.4476470588233,
   "text": "Det siste jeg lovte pappa f\u00f8r han<br>d\u00f8de, var \u00e5 gj\u00f8re en mann av deg.",
   "who": "OLAV",
-  "text_en": "The last thing I promised Dad before he died was to make a man out of you."
+  "text_en": "The last thing I promised Dad before<br>he died was to make a man out of you."
  },
  {
   "start": 1412.8,
@@ -1544,7 +1544,7 @@
   "end": 1505.28,
   "text": "Hvem da?",
   "who": "ORM",
-  "text_en": "Who then?"
+  "text_en": "Who?"
  },
  {
   "start": 1533.54,
@@ -1572,7 +1572,7 @@
   "end": 1544.8029411764705,
   "text": "Se her, ja.<br>Er det her du bor, Fr\u00f8ya?",
   "who": "OLAV",
-  "text_en": "Look at this.<br>Is this where you live, Fr \u00f8ya?"
+  "text_en": "Look at this.<br>Is this where you live, Fr\u00f8ya?"
  },
  {
   "start": 1547.37,
@@ -1621,7 +1621,7 @@
   "end": 1572.7023529411765,
   "text": "Jo, n\u00e5 har det seg s\u00e5nn at<br>broren min, Orm, har blitt singel, -",
   "who": "OLAV",
-  "text_en": "Yes, the thing is...<br>my brother, Orm, has become single, -"
+  "text_en": "Yes, the thing is...<br>My brother, Orm, has become single, -"
  },
  {
   "start": 1576.62,
@@ -1642,7 +1642,7 @@
   "end": 1586.159,
   "text": "Tror ikke jeg har truffet ham.",
   "who": "FR\u00d8YA",
-  "text_en": "Don't think I met him."
+  "text_en": "Don't think I've met him."
  },
  {
   "start": 1586.16,
@@ -1670,14 +1670,14 @@
   "end": 1598.3741176470587,
   "text": "Nei, men det blir han.",
   "who": "OLAV",
-  "text_en": "No, but he will br."
+  "text_en": "No, but he will be."
  },
  {
   "start": 1599.42,
   "end": 1602.949411764706,
   "text": "Og m\u00e5tte Odin s\u00f8rge for<br>at jeg blir knivstukket i magen -",
   "who": "OLAV",
-  "text_en": "And should Odin make sure I get stabbed in the stomach -"
+  "text_en": "And should Odin make sure<br>I get stabbed in the stomach -"
  },
  {
   "start": 1604.36,
@@ -1873,7 +1873,7 @@
   "end": 1714.64,
   "text": "- eller om det fins noe bedre<br>\u00e5 holde p\u00e5 med?",
   "who": "HILDUR",
-  "text_en": "- or if there is something better<br>that might be better?"
+  "text_en": "- or if there is something else<br>that might be better?"
  },
  {
   "start": 1718.07,

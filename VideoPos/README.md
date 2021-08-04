@@ -25,4 +25,18 @@ Try to ensure that positions are good based on detecting the cast (if trained AI
 srt+video2subs.py -i <videofile> --sub <subjson> --o <updatedsubfile> -a <updated aux.json> --workflow <workflow name - trained on this cast> --aux <inputauxfile>
 
 
+## Sync subtitles
+
+Detect voice track:
+
+### Create index file of voices first (optional)
+detect_voice.py -i <videofile.mp4/.wav> -o <voiceindex.json>
+
+Index file is added to manifest as "voiceindex"
+
+### Realign json subs (suggest using the chat_view using voiceindex as mentioned above, this will create a quite good result with little effort)
+
+Chat view is loaded using chat_style.html?url=<manifest.json>?edit=true
+
+detect_voice.py -i <videofile.mp4/.wav> --sub <UpdatedSubs.json> -o <sync_subs.json> 
 

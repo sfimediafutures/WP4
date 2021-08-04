@@ -431,7 +431,11 @@
       mcorp_appid: "4704154345375000225",
       index: true,
       tts: true,
-      screenrendersubs: true
+      screenrendersubs: true,
+      adjust_cps: false,
+      min_cps: 16,
+      max_cps: 20,
+      sub_time_factor: 1.0
   };
 
   if (getParameterByName("simplesubs")) {
@@ -444,6 +448,16 @@
   if (getParameterByName("single")) {
     options.mcorp_appid = undefined;
     console.log("Single device - no shared controls");
+  }
+
+  if (getParameterByName("lang")) {
+    options.text_track = "text_" + getParameterByName("lang");
+    console.log("Using text track", options.text_track);
+    // Not native language, slow subs down a bit
+    options.adjust_cps = true;
+    options.max_cps = 19;
+    options.min_cps = 12;
+    options.audioon = true;
   }
 
   if (getParameterByName("traditional")) {

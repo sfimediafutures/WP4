@@ -20,6 +20,9 @@
   <script src="app.js"></script>
 
     <style>
+    .nested {
+        border:  black solid 5px;
+    }
         .emotion_container {
             display: flex;
             flex-direction: column;
@@ -116,10 +119,10 @@
         }
 
         #download  {
-            display: none;
             position: fixed;
             bottom: 5px;
             right: 5px;
+            z-index:  10000000;
         }
 
     .controls {
@@ -285,6 +288,8 @@
       downloadAnchorNode.remove();
     }
 
+  let canedit = getParameterByName("edit") || false;
+
   let options = {
       video: false,
       pip:  false,
@@ -296,7 +301,8 @@
       tts: true,
       controls: true,
       hide_controls: false,
-      rendersubs: false
+      rendersubs: false,
+      voice_index: true
     };
 
     let target = document.querySelector(".message_container");
@@ -381,6 +387,49 @@
         };
     }
 
+    let auto_adjust_msg = function(msg, index) {
+        let max_adjust = 0.6;
+        let min_cps = 5.;
+        let max_cps = 20.;
+        let target_cps = 16.;
+        let now = app.to.pos;
+        // Find something close in the index
+        let min_diff = [1000000, -1];
+        for (let i=0; i<index.length; i++) {
+
+            let delta = Math.abs(index[i]["start"] - now)
+            if (delta < min_diff[0]) {
+                min_diff = [delta, i];
+            }
+        }
+
+        if (min_diff[0] <= max_adjust) {
+            // We use the one we found
+            console.log("Adjusting to", min_diff);
+            msg.data.data.start = index[min_diff[1]]["start"];
+            msg.data.data.end = index[min_diff[1]]["end"];
+        } else {
+            console.log("No index hit, using now - 100ms")
+            msg.data.data.start = now - 0.1;
+            msg.data.data.end = app.to.pos + (msg.data.data.text.length / target_cps);
+        }
+
+        // Ensure that we're within the window in regards to CPS
+        let cps = parseFloat(msg.data.data.text.length) / (msg.data.data.end - msg.data.data.start);
+        if (cps < min_cps) {
+            console.log("Too slow");
+            msg.data.data.end = msg.data.data.start + (msg.data.data.text.length * min_cps);
+        }
+        if (cps > max_cps) {
+            console.log("Too quick");
+            msg.data.data.end = msg.data.data.start + (msg.data.data.text.length * max_cps);
+        }
+
+        cps = parseFloat(msg.data.data.text.length) / (msg.data.data.end - msg.data.data.start);
+        console.log("Adjusted", [msg.data.interval.low, msg.data.interval.high], "->", 
+                    [msg.data.data.start, msg.data.data.end], cps);
+    }
+
     let add_message = function(data, body, canedit=false) {
         canedit = getParameterByName("edit") || false;
 
@@ -435,7 +484,7 @@
 
         let _make_msg = function(who, text, data) {
             if (!text) return;
-
+            who = who.toLowerCase();
             // For advanced subs, we remove all newlines and end hyphens and let 
             // the browser break the text
             text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
@@ -463,8 +512,8 @@
             if (app.cast[who] === undefined) who = "undefined";
            // msg.style.marginLeft = app.indents[who] + "px";
            if (app.cast[who] === undefined) {
-            who = "description";
-            console.log("*** ERROR *** Missing cast", who, text);
+            console.log("*** ERROR *** Missing cast for", who, "text:", text);
+            who = "scene";
            }
            msg.style.background = app.cast[who].color || "lightgray";
            if (app.cast[who].src) {
@@ -491,6 +540,53 @@
 
 
             if (canedit) {
+
+                // Register clicks to the thing - first click will be to
+                // update start position, the second the end position
+                let clk;
+                msg.addEventListener("click", evt => {
+                    if (evt.shiftKey) {
+                        app.to.update({position: msg.data.data.start - 0.3});
+                        return;
+                    }
+                    if (evt.ctrlKey) {
+                        app.to.update({position: msg.data.data.start});
+                        return;
+                    }
+
+                    // Go automatic if we have an index
+                    if (app.voice_index && !evt.altKey) {
+                        auto_adjust_msg(msg, []);  // app.voice_index);
+                        document.querySelector("#download").classList.remove("hidden");
+                        return;
+                    }
+
+                    if (!clk) {
+                        clk = app.to.pos;
+
+                        msg.style.color = "yellow";
+                        console.log("START", msg.data.key, app.to.pos);
+                    } else {
+                        let start = clk;
+                        let end = app.to.pos;
+                        clk = undefined;
+                        msg.style.color = "";
+                        if (start == end) {
+                            console.log("Start and end is the same, ignoring");
+                            return;
+                        }
+
+                        if (evt.shiftKey || evt.ctrlKey || evt.metaKey) return;  // Abort
+
+                        msg.data.data.start = start;
+                        msg.data.data.end = end;
+                        //setTimeout(function() { document.querySelector("#" + msg.data.key).style.display = "none"}, 100);
+                        app.subsequencer.addCue(msg.data.key, [start, end], msg.data.data);
+                        document.querySelector("#download").classList.remove("hidden");
+                    }
+
+                });
+
                 // Could add a mark if we feel uncertain or have good alternatives
                 msg.querySelector("img").addEventListener("click", e => {
                     console.log("Editing message", msg.data.who_alt, e);
@@ -509,6 +605,15 @@
                     } else {
                         people = additional;
                     }
+
+                    // If no people, add full cast
+                    if (people.length == 0) {
+                        for (let key in app.cast) {
+                            if (["scene", "info", "description"].indexOf(key.toLowerCase()) > -1) continue;
+                            people.push([key, 0]);
+                        }
+                    }
+
                     let added = [];
                     console.log("PEOPLE", people);
                     people.forEach(w => {
@@ -528,7 +633,7 @@
                             console.log("Updating to", _w, msg.data.key, msg.data.interval, copy);
                             app.subsequencer.addCue(msg.data.key, msg.data.interval, copy);
                             target.style.display = "none";
-                            document.querySelector("#download").style.display = "block";
+                            document.querySelector("#download").classList.remove("hidden");
                         });
                     });
                     target.style.display = "block";
@@ -549,13 +654,14 @@
                 data.idx = idx;
                 console.log("Nested lines - ", idx, message.who[idx], lines[idx]);
                 msg = _make_msg(message.who[idx], lines[idx], data);
+                msg.classList.add("nested");
                 if (msg) _insert_sort(body, msg);
             }
         } else {
            msg = _make_msg(message.who, message.text, data);
            if(msg) _insert_sort(body, msg);
        }
-   if (msg) msg.scrollIntoView();
+   if (msg && !canedit) msg.scrollIntoView();
 };
 
 app.indents = {};
@@ -567,44 +673,22 @@ app.ready.then(function() {
   app.to.timingsrc = app.motions.private;
 });
 */
+
+// If we're editing, show the subs a bit earlier
+
 let to_low = new TIMINGSRC.SkewConverter(app.to, -60);
 app.rsequencer = app.sequencer.clone(to_low, app.to);
-app.subrsequencer = app.subsequencer.clone(to_low, app.to);
 
-app.subrsequencer.on("change", evt => add_message(evt.new, target));
-app.subrsequencer.on("remove", evt => {
-    document.querySelectorAll("#" + evt.key).forEach(child => target.removeChild(child))
-});
-
-// TODO: ADD REMOVE EMOTION 
-app.rsequencer.on("change", _evt => {
-    let data = _evt.new.data;
-    if (data.type == "emotion") {
-        setTimeout(function() {
-            //console.log("Checking for emotions", document.querySelectorAll(".message").length);
-            // We give it another second end time, as it cuts off too quickly)
-        data.begin -= 0.0;
-        data.end += 0.6;
-        console.log("CHANGE", _evt.new);
-        data.start = data.start || _evt.new.interval.low;
-        data.end = data.end || _evt.new.interval.high;
+if (canedit) {
+    let to_low = new TIMINGSRC.SkewConverter(app.to, -100000);
+    let to_high = new TIMINGSRC.SkewConverter(app.to, +150000);
+    app.subrsequencer = app.subsequencer.clone(to_low, to_high);
+    
+} else {
+    app.subrsequencer = app.subsequencer.clone(to_low, app.to);    
+}
 
 
-        // Check if there are any subs for this time and put on some emojis
-        document.querySelectorAll(".message").forEach(msg => {
-            if ((msg.startts <= data.end && msg.endts >= data.start) ||
-                (data.end <= msg.endts && data.end >= msg.startts) ||
-                    (data.start <= msg.endts && data.start >= msg.startts)
-                        ) {
-                            // console.log("Found one!", msg);
-                            if (msg.classList.contains("infomessage")) return;
-                            app._add_emotion(msg, data);
-                        }
-                    });    
-                    console.log("Should implement removing of emotions too");        
-                }, 100);
-            }
-        });
 
 let manifest = getParameterByName("url") || "bbt_s01e01.json";
 
@@ -612,15 +696,52 @@ app.load(manifest + "?ts=" + new Date().getTime() , ".mediacontainer")
 .then(evt => {
       app.pbar = document.querySelector(".controls .progressbar input");
       app.to.on("timeupdate", function() {
-        let percent = 100 * (this.pos / app.app.motions.duration.pos);
-        app.pbar.value = percent;
-      });
+        try {
+            let percent = 100 * (this.pos / app.app.motions.duration.pos);
+            app.pbar.value = percent;
+        } catch(e) {};
+      });        
 
       app.pbar.addEventListener("change", evt => {
         console.log("SKIP TO", evt.srcElement.value);
         let pos = app.app.motions.duration.pos * (evt.srcElement.value / 100.);
         app.to.update({position: pos});
       });    
+
+    app.subrsequencer.on("change", evt => add_message(evt.new, target));
+    app.subrsequencer.on("remove", evt => {
+        document.querySelectorAll("#" + evt.key).forEach(child => target.removeChild(child))
+    });
+
+    // TODO: ADD REMOVE EMOTION 
+    app.rsequencer.on("change", _evt => {
+        let data = _evt.new.data;
+        if (data.type == "emotion") {
+            setTimeout(function() {
+                //console.log("Checking for emotions", document.querySelectorAll(".message").length);
+                // We give it another second end time, as it cuts off too quickly)
+            data.begin -= 0.0;
+            data.end += 0.6;
+            console.log("CHANGE", _evt.new);
+            data.start = data.start || _evt.new.interval.low;
+            data.end = data.end || _evt.new.interval.high;
+
+
+            // Check if there are any subs for this time and put on some emojis
+            document.querySelectorAll(".message").forEach(msg => {
+                if ((msg.startts <= data.end && msg.endts >= data.start) ||
+                    (data.end <= msg.endts && data.end >= msg.startts) ||
+                        (data.start <= msg.endts && data.start >= msg.startts)
+                            ) {
+                                // console.log("Found one!", msg);
+                                if (msg.classList.contains("infomessage")) return;
+                                app._add_emotion(msg, data);
+                            }
+                        });    
+                        console.log("Should implement removing of emotions too");        
+                    }, 100);
+                }
+            });
 });
 
 
@@ -675,7 +796,7 @@ fetch(manifest + "?ts=" + new Date().getTime())
 
         texts.forEach(text => delete(text.who_alt));
 
-        downloadObjectAsJson(texts, "UpdatedSubs.json");
+        downloadObjectAsJson(texts, "UpdatedSubs");
     });
 
     document.querySelector("#btnwho").addEventListener("click", function() {

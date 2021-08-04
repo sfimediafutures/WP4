@@ -1,6 +1,8 @@
 var rubberDuck = function(target, options) {
 
     let API = {};
+    API.read_speed = 16;
+
     if (typeof(target) == "string")
       API.targetElement = document.querySelector(target);
     else
@@ -29,7 +31,14 @@ var rubberDuck = function(target, options) {
         screenreadersubs: true,
         hiviz: undefined,
         chat_sub_delay: 1.0,
-        show_tracking: false
+        show_tracking: false,
+        voice_index: false,
+        adjust_cps: false,
+        min_cps: 12,
+        max_cps: 18,
+        min_sub_time: 1.2,
+        sub_time_factor: 1.0,
+        text_track: "text"
     };
     let __autopaused = false;
     let _is_speaking = false;
@@ -525,11 +534,20 @@ var rubberDuck = function(target, options) {
             let subs = API.targetElement.querySelector(".subtitle");
             let data = evt.new.data;
 
-            if (API.screenreadersub && API.options.screenreadersubs) {
+            console.log("Change", data);
 
-                let text = data;
-                if (typeof(text) != "string")
-                    text = data.text;
+
+            let text = data;
+            if (typeof(text) != "string") {
+                text = data[API.options.text_track];
+            }
+
+            if (!text) {
+                console.log("Missing text for '" + API.options.text_track + "':", data);
+                return;
+            }
+
+            if (API.screenreadersub && API.options.screenreadersubs) {
 
                 // Clean up a bit - if hyphenated concat
                 text = text.replace("<br>", "\n")
@@ -544,6 +562,37 @@ var rubberDuck = function(target, options) {
             }
             if (!API.options.rendersubs) return;
 
+            // If we are to adjust the speed of the subtitle, check that now
+            if (API.options.adjust_cps) {
+                // Calculate CPS
+                let cps = text.length / parseFloat(data.end - data.start);
+                let new_end;
+                console.log("CPS is", cps, data.start, data.end);
+                if (cps < parseFloat(API.options.min_cps)) {
+                    new_end = data.start + Math.max(API.options.min_sub_time, text.length / parseFloat(API.options.min_cps));
+                    console.log("Sub is too slow", text);
+                } else if (cps > parseFloat(API.options.max_cps)) {
+                    new_end = data.start + Math.max(API.options.min_sub_time, text.length / parseFloat(API.options.max_cps));
+                    console.log("Sub is too quick", text);
+                }
+                if (new_end && new_end != data.end) {
+                    cps = text.length / (data.end - data.start);
+                    console.log("Adjusting sub, end moved from", data.end, "to", new_end, (new_end - data.start).toFixed(2), "s, cps", cps);
+                    data.end = new_end;
+                    API.subsequencer.addCue(evt.new.key, [data.start, new_end], data);
+                    return;
+                }
+            } else if (API.options.sub_time_factor != 1.0 && !data.adjusted) {
+                let new_end = data.start + ((data.end - data.start) * API.options.sub_time_factor);
+                let cps = text.length / (new_end - data.start);
+                console.log("Adjusting sub factor", API.options.sub_time_factor, "end moved from", data.end, "to", new_end, (new_end - data.start).toFixed(2), "s, cps", cps);
+                data.end = new_end;
+                data.adjusted = true;
+                API.subsequencer.addCue(evt.new.key, [data.start, new_end], data);
+                return;
+            }
+
+
             if (data && typeof(data) == "string") {
                 subs.querySelector("span").innerHTML = data.replace("\n", "<br>");
             } else {
@@ -553,9 +602,9 @@ var rubberDuck = function(target, options) {
                     let s = subs.querySelector("span");
                     if (s.innerHTML) {
                         // Two people, need to fix this
-                        s.innerHTML = "-" + s.innerHTML + "<br>-" + data.text.replace("\n", "<br>");
+                        s.innerHTML = "-" + s.innerHTML + "<br>-" + text.replace("\n", "<br>");
                     } else {
-                        s.innerHTML += data.text.replace("\n", "<br>");
+                        s.innerHTML += text.replace("\n", "<br>");
                     }
                 } else {
                     // More advanced subtitle, make it here
@@ -565,7 +614,8 @@ var rubberDuck = function(target, options) {
                         console.log("Advanced render failed", e);
                     }
                 }
-            } 
+            }
+
             if(subs)
                 subs.classList.remove("hidden");
         });
@@ -761,6 +811,18 @@ var rubberDuck = function(target, options) {
 
     }
 
+    // Load iframe index
+    API.load_voice_index = function(url) {
+        return new Promise(function(resolve, reject) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    API.voice_index = data;
+                    resolve(data);
+                });
+        });
+    }
+
     API.load_synstolk = function(url) {
         if (!API.synstolkElement) {
             API.synstolkElement = document.createElement("audio");
@@ -799,114 +861,129 @@ var rubberDuck = function(target, options) {
 
         options = options || {};
         return new Promise(function(resolve, reject) {
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    API.manifest = data;
-                    if (mediatarget && API.options.video)
-                        API.load_video(data.video, mediatarget);
-                    if ((!data.video && data.audio) || (API.options.video == false && data.audio)) {
-                        API.load_audio(data.audio, mediatarget);
-                    }
 
-                    if (API.manifest.poster) {
-                        document.querySelector(".overlay").style.backgroundImage = "url('" + API.manifest.poster + "')";
-                    }
+            let promises = [];
 
-                    let s = data.subtitles;
-                    if (!API.options.advancedsubs && data.normalsubtitles)
-                        s = data.normalsubtitles;
+            let p = fetch(url);
+            promises.push(p);
+            p.then(response => response.json())
+            .then(data => {
+                API.manifest = data;
+                if (mediatarget && API.options.video)
+                    API.load_video(data.video, mediatarget);
+                if ((!data.video && data.audio) || (API.options.video == false && data.audio)) {
+                    API.load_audio(data.audio, mediatarget);
+                }
 
-                    s.forEach(subtitle => {
-                        if (subtitle.src.indexOf(".json") > -1) {
-                            API.load_json_subs(API.subsequencer, subtitle.src, subtitle);
-                        } else {
-                            API.load_subs(API.subsequencer, subtitle.src);
-                        }
-                    });
+                if (API.manifest.poster) {
+                    document.querySelector(".overlay").style.backgroundImage = "url('" + API.manifest.poster + "')";
+                }
 
-                    if (data.pip && API.options.pip) {
-                        API.targetElement.querySelector(".pip").src = data.pip.src;
-                        API.targetElement.querySelectorAll(".pipctrl").forEach(p => p.style.display = "inline-block");
+                let s = data.subtitles;
+                if (!API.options.advancedsubs && data.normalsubtitles)
+                    s = data.normalsubtitles;
+
+                s.forEach(subtitle => {
+                    if (subtitle.src.indexOf(".json") > -1) {
+                        promises.push(API.load_json_subs(API.subsequencer, subtitle.src, subtitle));
                     } else {
-                      // Disable pip stuff
-                      API.targetElement.querySelectorAll(".pipctrl").forEach(p => p.style.display = "none");
+                        promises.push(API.load_subs(API.subsequencer, subtitle.src));
                     }
-
-                    if (data.cast) {
-                        fetch(data.cast)
-                            .then(response => response.json())
-                            .then(response => API.cast = response);
-                    } else {
-                        API.cast = {};
-                    }
-
-                    // Do we also have synstolk audio?
-                    if (data.synstolk) {
-                        API.load_synstolk(data.synstolk);
-                    } else {
-                        // Disable button
-                        if (API.targetElement.querySelector("#btnsynstolk"))
-                            API.targetElement.querySelector("#btnsynstolk").classList.add("hidden");
-                    }
-
-                    if (data.index && API.options.index) {
-                        API.load_index(data.index);
-                    }
-
-                    if (data.aux) {
-                        fetch(data.aux)
-                            .then(response => response.json())
-                            .then(response => {
-                                response.forEach(item => {
-                                    item.type = "aux";
-                                    API.sequencer.addCue(String(Math.random()), new TIMINGSRC.Interval(item.start, item.end), item);
-                                });
-                            });
-                    }
-
-                    if (data.tracking) {
-                        console.log("Load tracking data");
-                        fetch(data.tracking)
-                            .then(response => response.json())
-                            .then(response => {
-                                response.forEach(item => {
-                                    item.type = "tracking";
-                                    item.start = item.t - 1.0;
-                                    item.end = item.start + 2.0;
-                                    API.sequencer.addCue("t" + String(Math.random().toString(36).substr(2)), new TIMINGSRC.Interval(item.start, item.end), item);
-                                });
-                            });
-                    }
-
-                    if (data.dc) {
-                        try {
-                            console.log("Using datacannon", data.dc)
-                            API.dcannon = new DataCannon("wss://nlive.no/dc", [API.sequencer]);
-                            API.dcannon.ready.then(function() {
-                                API.dcannon.subscribe(data.dc)
-                            });
-                        } catch (e) {
-                            console.log("DC suggested but can't be used");
-                        }
-                    } else {
-                        // We load this into a sequencer lickety split
-                        data.cues = data.cues || [];
-                        let i = 0;
-                        data.cues.forEach(item => {
-                            if (!options.dataonly)
-                                item.target = mediatarget;
-                            if (!item.end) {
-                                console.log("MISSING ITEM STOP");
-                            }
-                            let id = "c" + item.start.toFixed(1).replace(".", "-");
-                            API.sequencer.addCue(id, new TIMINGSRC.Interval(item.start, item.end || item.start), item);
-                            i++;
-                        });
-                    }
-
-                    resolve(data);
                 });
+
+                if (data.pip && API.options.pip) {
+                    API.targetElement.querySelector(".pip").src = data.pip.src;
+                    API.targetElement.querySelectorAll(".pipctrl").forEach(p => p.style.display = "inline-block");
+                } else {
+                  // Disable pip stuff
+                  API.targetElement.querySelectorAll(".pipctrl").forEach(p => p.style.display = "none");
+                }
+
+                if (data.cast) {
+                    let p2 = fetch(data.cast);
+                    p2.then(response => response.json())
+                    .then(response => {
+                        API.cast = {};
+                        for (var k in response) API.cast[k.toLowerCase()] = response[k];
+                    });
+                    promises.push(p2);
+                } else {
+                    API.cast = {};
+                }
+
+                // Do we also have synstolk audio?
+                if (data.synstolk) {
+                    API.load_synstolk(data.synstolk);
+                } else {
+                    // Disable button
+                    if (API.targetElement.querySelector("#btnsynstolk"))
+                        API.targetElement.querySelector("#btnsynstolk").classList.add("hidden");
+                }
+
+                if (data.index && API.options.index) {
+                    promises.push(API.load_index(data.index));
+                }
+
+                if (data.voiceindex && API.options.voice_index) {
+                    console.log("Loading voice index");
+                    promises.push(API.load_voice_index(data.voiceindex));
+                }
+
+                if (data.aux) {
+                    let p2 = fetch(data.aux);
+                    p2.then(response => response.json())
+                    .then(response => {
+                        response.forEach(item => {
+                            item.type = "aux";
+                            API.sequencer.addCue(String(Math.random()), new TIMINGSRC.Interval(item.start, item.end), item);
+                        });
+                    });
+                    promises.push(p2);
+                }
+
+                if (data.tracking) {
+                    console.log("Load tracking data");
+                    let p2 = fetch(data.tracking);
+                    p2.then(response => response.json())
+                    .then(response => {
+                        response.forEach(item => {
+                            item.type = "tracking";
+                            item.start = item.t - 1.0;
+                            item.end = item.start + 2.0;
+                            API.sequencer.addCue("t" + String(Math.random().toString(36).substr(2)), new TIMINGSRC.Interval(item.start, item.end), item);
+                        });
+                    });
+                    promises.push(p2);
+                }
+
+                if (data.dc) {
+                    try {
+                        console.log("Using datacannon", data.dc)
+                        API.dcannon = new DataCannon("wss://nlive.no/dc", [API.sequencer]);
+                        API.dcannon.ready.then(function() {
+                            API.dcannon.subscribe(data.dc)
+                        });
+                    } catch (e) {
+                        console.log("DC suggested but can't be used");
+                    }
+                } else {
+                    // We load this into a sequencer lickety split
+                    data.cues = data.cues || [];
+                    let i = 0;
+                    data.cues.forEach(item => {
+                        if (!options.dataonly)
+                            item.target = mediatarget;
+                        if (!item.end) {
+                            console.log("MISSING ITEM STOP");
+                        }
+                        let id = "c" + item.start.toFixed(1).replace(".", "-");
+                        API.sequencer.addCue(id, new TIMINGSRC.Interval(item.start, item.end || item.start), item);
+                        i++;
+                    });
+                }
+
+                Promise.all(promises).then(() => resolve(data));
+            });
         });
     };
 
@@ -1223,6 +1300,29 @@ var rubberDuck = function(target, options) {
             }
 
 
+            // We can also learn reading speeds by pressing "enter" - it will
+            // use the current time - start position of the visible
+            // subtitle, and average that into a reading speed
+            if (evt.keyCode == 13) {
+                let s = API.subsequencer.getActiveCues();
+                try {
+                    if (s) {
+                        let delta_t = API.to.pos - s[0].data.start;
+                        let chars = 0;
+                        s.forEach(d => chars += d.data.text.length);
+                        let speed = chars / delta_t;
+                        console.log("Reading speed", speed, "cps");
+                        if (Math.abs(API.read_speed - speed) > API.read_speed) {
+                            console.log("Ignoring");
+                        } else {
+                            API.read_speed = API.read_speed * 0.8 + speed * 0.2;
+                            console.log("API.read_speed", API.read_speed);
+                        }
+                    }
+
+                } catch (e) {  // Ignore - sub likely not showing any more
+                }
+            }
         });
     }
 
@@ -1280,8 +1380,8 @@ var rubberDuck = function(target, options) {
     // Load json subtitles (start, end, text) + any other data
     API.load_json_subs = function(sequencer, url, params) {
         let idx = 0;
-        fetch(url)
-            .then(response => response.json())
+        let p = fetch(url);
+        p.then(response => response.json())
             .then(data => {
                 data.forEach(sub => {
                     let id = "sub" + idx;
@@ -1289,14 +1389,16 @@ var rubberDuck = function(target, options) {
                     API.subsequencer.addCue(id, [sub.start, sub.end], sub);
                 });
             });
+        return p;
     };
 
     // ************ Render advanced subs - chat style *************
     API._render_advanced_sub = function(data, targetElement) {
         let message = data.data;
-        if (!message.text) return;
+        if (!message[API.options.text_track]) return;
 
         let _make_msg = function(who, text, data) {
+            who = who.toLowerCase();
             if (!text) throw new Error("Refusing to make message with no text");
 
             // Text is split for readability, let them stay as they are
@@ -1387,7 +1489,7 @@ var rubberDuck = function(target, options) {
             for (let idx = 0; idx < message.who.length; idx++) {
                 data.idx = idx;
                 let msg = _make_msg(message.who[idx], lines[idx], data);
-                if (msg && msg.classList.contains("lower")) {
+                if (0 && msg && msg.classList.contains("lower")) {
                     msg.style.opacity = 0.01;
                     setTimeout(() => msg.style.opacity = 1.0, 700);
                 }
@@ -1395,12 +1497,11 @@ var rubberDuck = function(target, options) {
                 if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);
             }
         } else {
-            let msg = _make_msg(message.who, message.text, data);
+            let msg = _make_msg(message.who, message[API.options.text_track], data);
 
-            if (msg && msg.classList.contains("lower")) {
+            if (0 && msg && msg.classList.contains("lower")) {
                 msg.style.opacity = 0.01;
                 setTimeout(() => msg.style.opacity = 1.0, 700);
-                //setTimeout(() => API.targetElement.querySelector(".subtitle").appendChild(msg), 0);
             }
 
             if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);

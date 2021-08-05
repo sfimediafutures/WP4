@@ -1432,7 +1432,11 @@ var rubberDuck = function(target, options) {
             let template = document.querySelector("template#message").content.cloneNode(true);
             let msg = template.querySelector("div");
             msg.setAttribute("id", data.key);
-            if (API.cast[who] === undefined) who = "undefined";
+            msg.setAttribute("who", who.replace(" ", "_"))
+            if (API.cast[who] === undefined) {
+                who = "undefined";
+                msg.style.background = "darkgray";
+            }
             if (text) {
                 if (API.cast[who]) {
                     msg.style.background = API.cast[who].color || "lightgray";
@@ -1493,6 +1497,9 @@ var rubberDuck = function(target, options) {
                     msg.style.opacity = 0.01;
                     setTimeout(() => msg.style.opacity = 1.0, 700);
                 }
+    
+                API.targetElement.querySelectorAll(".subtitle .advancedsub[who='" + message.who[idx].toLowerCase().replace(" ", "_") + "']")
+                    .forEach(s => API.targetElement.querySelector(".subtitle").removeChild(s));
 
                 if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);
             }
@@ -1503,6 +1510,10 @@ var rubberDuck = function(target, options) {
                 msg.style.opacity = 0.01;
                 setTimeout(() => msg.style.opacity = 1.0, 700);
             }
+
+            // Check if we already have a visible sub for this person, if so, remove it
+            API.targetElement.querySelectorAll(".subtitle .advancedsub[who='" + message.who.toLowerCase().replace(" ", "_") + "']")
+                .forEach(s => API.targetElement.querySelector(".subtitle").removeChild(s));
 
             if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);
         }

@@ -578,7 +578,9 @@ var rubberDuck = function(target, options) {
                 if (new_end && new_end != data.end) {
                     cps = text.length / (data.end - data.start);
                     console.log("Adjusting sub, end moved from", data.end, "to", new_end, (new_end - data.start).toFixed(2), "s, cps", cps);
+                    data.original_end = data.end;
                     data.end = new_end;
+                    data.adjusted = true;
                     API.subsequencer.addCue(evt.new.key, [data.start, new_end], data);
                     return;
                 }
@@ -586,6 +588,7 @@ var rubberDuck = function(target, options) {
                 let new_end = data.start + ((data.end - data.start) * API.options.sub_time_factor);
                 let cps = text.length / (new_end - data.start);
                 console.log("Adjusting sub factor", API.options.sub_time_factor, "end moved from", data.end, "to", new_end, (new_end - data.start).toFixed(2), "s, cps", cps);
+                data.original_end = data.end;
                 data.end = new_end;
                 data.adjusted = true;
                 API.subsequencer.addCue(evt.new.key, [data.start, new_end], data);
@@ -1487,6 +1490,24 @@ var rubberDuck = function(target, options) {
             return msg;
         }
 
+        let check_sub = function(who, data) {
+
+            // Check if the given person already has a visible sub
+            API.targetElement.querySelectorAll(".subtitle .advancedsub[who='" + who.toLowerCase().replace(" ", "_") + "']")
+                .forEach(s => API.targetElement.querySelector(".subtitle").removeChild(s));
+
+            // Check if there are any subs that were auto-extended beyond the start of this one
+            API.targetElement.querySelectorAll(".subtitle .advancedsub").forEach(s => {
+                console.log("Checking", s.getAttribute("id"));
+                let cue = API.subsequencer.getCue(s.getAttribute("id"));
+                console.log("CHECKING", cue, cue.data.adjusted, cue.data.original_end, data);
+                if (cue && cue.data.adjusted && (cue.data.original_end < data.start)) {
+                    API.targetElement.querySelector(".subtitle").removeChild(s)
+                }
+            });
+
+        }
+
         if (Array.isArray(message.who)) {
             // The sub has multiple messages within them, assume <br> or "- " is the limiter in the text
             let lines = message.text.split("<br>");
@@ -1498,8 +1519,7 @@ var rubberDuck = function(target, options) {
                     setTimeout(() => msg.style.opacity = 1.0, 700);
                 }
     
-                API.targetElement.querySelectorAll(".subtitle .advancedsub[who='" + message.who[idx].toLowerCase().replace(" ", "_") + "']")
-                    .forEach(s => API.targetElement.querySelector(".subtitle").removeChild(s));
+                check_sub(message.who[idx], data.data);
 
                 if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);
             }
@@ -1511,9 +1531,7 @@ var rubberDuck = function(target, options) {
                 setTimeout(() => msg.style.opacity = 1.0, 700);
             }
 
-            // Check if we already have a visible sub for this person, if so, remove it
-            API.targetElement.querySelectorAll(".subtitle .advancedsub[who='" + message.who.toLowerCase().replace(" ", "_") + "']")
-                .forEach(s => API.targetElement.querySelector(".subtitle").removeChild(s));
+            check_sub(message.who, data.data);
 
             if (msg) API.targetElement.querySelector(".subtitle").appendChild(msg);
         }

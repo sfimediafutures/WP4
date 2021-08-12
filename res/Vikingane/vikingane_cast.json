@@ -2,12 +2,14 @@
  "JARL VARG": {
   "name": "JARL VARG",
   "color": "#740841A6",
-  "src": "/sfi/res/Vikingane/cast/JARL_VARG.png"
+  "src": "/sfi/res/Vikingane/cast/JARL_VARG.png",
+  "description": "Høvding av Vargnes. Tapet av hans tykke manke driver Jarl Varg til vanvidd."
  },
  "TORSTEIN HUND": {
   "name": "TORSTEIN HUND",
   "color": "#222330A6",
-  "src": "/sfi/res/Vikingane/cast/TORSTEIN_HUND.png"
+  "src": "/sfi/res/Vikingane/cast/TORSTEIN_HUND.png",
+  "description": "Jarl Vargs høyre hånd"
  },
  "Unknown": {
   "name": "Unknown",
@@ -22,17 +24,20 @@
  "REIDUN": {
   "name": "REIDUN",
   "color": "#5ABA9BA6",
-  "src": "/sfi/res/Vikingane/cast/REIDUN.png"
+  "src": "/sfi/res/Vikingane/cast/REIDUN.png",
+  "description": "Gift med Jarl Varg"
  },
  "OLAV": {
   "name": "OLAV",
   "color": "#F86DA8A6",
-  "src": "/sfi/res/Vikingane/cast/OLAV.png"
+  "src": "/sfi/res/Vikingane/cast/OLAV.png",
+  "description": "Høvding i Norheim"
  },
  "ARNSTEIN": {
   "name": "ARNSTEIN",
   "color": "#048D4EA6",
-  "src": "/sfi/res/Vikingane/cast/ARNSTEIN.png"
+  "src": "/sfi/res/Vikingane/cast/ARNSTEIN.png",
+  "description": "Trell i Norheim"
  },
  "ODDVAR GAMLING": {
   "name": "ODDVAR GAMLING",
@@ -42,17 +47,8 @@
  "ORM": {
   "name": "ORM",
   "color": "#5B4258A6",
-  "src": "/sfi/res/Vikingane/cast/ORM.png"
- },
- "ODDVAR GAMLING ORM": {
-  "name": "ODDVAR GAMLING ORM",
-  "color": "#18A332A6",
-  "src": "/sfi/res/Vikingane/cast/ODDVAR_GAMLING_ORM.png"
- },
- "OLAV ORM": {
-  "name": "OLAV ORM",
-  "color": "#DAAF1AA6",
-  "src": "/sfi/res/Vikingane/cast/OLAV_ORM.png"
+  "src": "/sfi/res/Vikingane/cast/ORM.png",
+  "description": "Bror av høvding Olav. Foretrekker kunst og kultur over skjending, og har en velutviklet seksuell usikkerhet."
  },
  "DOBANDITTEN": {
   "name": "DOBANDITTEN",
@@ -60,33 +56,39 @@
   "src": "/sfi/res/Vikingane/cast/DOBANDITTEN.png"
  },
  "\u00d8RN": {
-  "name": "\u00d8RN",
+  "name": "ØRN",
   "color": "#E469E6A6",
-  "src": "/sfi/res/Vikingane/cast/\u00d8RN.png"
+  "src": "/sfi/res/Vikingane/cast/\u00d8RN.png",
+  "description": "Viking i Norheim"
  },
  "LIV": {
   "name": "LIV",
   "color": "#65768BA6",
-  "src": "/sfi/res/Vikingane/cast/LIV.png"
+  "src": "/sfi/res/Vikingane/cast/LIV.png",
+  "description": "Trell, gift med Arnstein"
  },
  "FR\u00d8YA": {
   "name": "FR\u00d8YA",
   "color": "#B20E3AA6",
-  "src": "/sfi/res/Vikingane/cast/FR\u00d8YA.png"
+  "src": "/sfi/res/Vikingane/cast/FR\u00d8YA.png",
+  "description": "Ensom og røff, Frøya er tøffere enn de fleste menn i Norheim"
  },
  "HILDUR": {
   "name": "HILDUR",
   "color": "#6DDF8EA6",
-  "src": "/sfi/res/Vikingane/cast/HILDUR.png"
+  "src": "/sfi/res/Vikingane/cast/HILDUR.png",
+  "description": "Førstedame, gift med Høvding Olav"
  },
  "KARK": {
   "name": "KARK",
   "color": "#7601A0A6",
-  "src": "/sfi/res/Vikingane/cast/KARK.png"
+  "src": "/sfi/res/Vikingane/cast/KARK.png",
+  "description": "Trell i Norheim og trives med det. Kark ble sluppet fri, men savnet livet som trell. Stiller seg alltid positiv til nye utfordringer."
  },
  "ARVID": {
   "name": "ARVID",
   "color": "#3D0D73A6",
-  "src": "/sfi/res/Vikingane/cast/ARVID.png"
+  "src": "/sfi/res/Vikingane/cast/ARVID.png",
+  "description": "Høvdig Olavs nestkommanderende. Arvid elsker å dra på tokt, men er også hjemmekjær."
  }
 }

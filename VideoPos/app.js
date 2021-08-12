@@ -26,6 +26,7 @@ var rubberDuck = function(target, options) {
         audioon: false,
         wakelock: false,
         video: true,
+        audio: true,
         hide_controls: true,
         responsive_voice: false,
         screenreadersubs: true,
@@ -146,6 +147,9 @@ var rubberDuck = function(target, options) {
           let snd = API.targetElement.querySelector("#btnsound");
           let soundOn = snd.classList.contains("active");
           if (!soundOn) snd.click();
+        } else {
+            if (API.mediaElement)
+                API.mediaElement.muted = true;
         }
 
     }
@@ -214,7 +218,7 @@ var rubberDuck = function(target, options) {
 
         let btn = API.targetElement.querySelector("#btnsynstolk");
         let isOn = !btn.classList.contains("active");
-        console.log("synstolkOn:", isOn);
+        console.log("synstolkOn:", isOn, force);
         if (!isOn || force == false) {
             // Check if sound is on
             let snd = API.targetElement.querySelector("#btnsound");
@@ -875,7 +879,8 @@ var rubberDuck = function(target, options) {
                 if (mediatarget && API.options.video)
                     API.load_video(data.video, mediatarget);
                 if ((!data.video && data.audio) || (API.options.video == false && data.audio)) {
-                    API.load_audio(data.audio, mediatarget);
+                    if (API.options.audio)
+                        API.load_audio(data.audio, mediatarget);
                 }
 
                 if (API.manifest.poster) {
@@ -915,7 +920,7 @@ var rubberDuck = function(target, options) {
                 }
 
                 // Do we also have synstolk audio?
-                if (data.synstolk) {
+                if (data.synstolk && API.options.synstolk) {
                     API.load_synstolk(data.synstolk);
                 } else {
                     // Disable button
@@ -1672,8 +1677,11 @@ var rubberDuck = function(target, options) {
       }
     }
     if (itm.pos) {
-        API.targetElement.querySelector(".markingbox").classList.add("hidden");        
-        API.targetElement.querySelectorAll(".markingbox_alt").forEach(e => e.parentElement.removeChild(e));
+        let m = API.targetElement.querySelector(".markingbox");
+        if (m) m.classList.add("hidden");
+
+        m = API.targetElement.querySelectorAll(".markingbox_alt");
+        if (m) m.forEach(e => e.parentElement.removeChild(e));
     }
   });
 

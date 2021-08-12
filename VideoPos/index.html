@@ -202,12 +202,12 @@
     }
     .advancedsub.higher {
       margin-bottom: 20px;
-      max-width: 45%;
+      /*max-width: 45%;*/
     }
     .advancedsub.lower {
       margin-top: 20px;
       margin-left:  40px;
-      max-width: 45%;
+      /*max-width: 45%; */
     }
 
     .advancedsub.right {
@@ -435,7 +435,7 @@
       adjust_cps: false,
       min_cps: 16,
       max_cps: 20,
-      sub_time_factor: 2.0
+      sub_time_factor: 1.2
   };
 
   if (getParameterByName("simplesubs")) {
@@ -458,6 +458,7 @@
     options.max_cps = 16;
     options.min_cps = 12;
     options.audioon = true;
+    options.sub_time_factor = 1.2;
   }
 
   if (getParameterByName("traditional")) {

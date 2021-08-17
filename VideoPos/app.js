@@ -39,7 +39,10 @@ var rubberDuck = function(target, options) {
         max_cps: 18,
         min_sub_time: 1.2,
         sub_time_factor: 1.0,
-        text_track: "text"
+        text_track: "text",
+        auto_animate: false,
+        animate_limit: [10, 100],
+        animate_ignore: [2, 10]
     };
     let __autopaused = false;
     let _is_speaking = false;
@@ -891,13 +894,14 @@ var rubberDuck = function(target, options) {
                 if (!API.options.advancedsubs && data.normalsubtitles)
                     s = data.normalsubtitles;
 
-                s.forEach(subtitle => {
-                    if (subtitle.src.indexOf(".json") > -1) {
-                        promises.push(API.load_json_subs(API.subsequencer, subtitle.src, subtitle));
-                    } else {
-                        promises.push(API.load_subs(API.subsequencer, subtitle.src));
-                    }
-                });
+                if (s)
+                    s.forEach(subtitle => {
+                        if (subtitle.src.indexOf(".json") > -1) {
+                            promises.push(API.load_json_subs(API.subsequencer, subtitle.src, subtitle));
+                        } else {
+                            promises.push(API.load_subs(API.subsequencer, subtitle.src));
+                        }
+                    });
 
                 if (data.pip && API.options.pip) {
                     API.targetElement.querySelector(".pip").src = data.pip.src;
@@ -1140,8 +1144,36 @@ var rubberDuck = function(target, options) {
             if (!API.options.pos) return;
 
             if (!API.targetElement) return;  //  || !API.targetElement.pos) return;
+
             item.pos = API.targetElement.pos || [50, 50];
             item.animate = API.targetElement.animate;
+            console.log("Current", API.targetElement.lastPos, "new", item.pos);
+            let ignore = false;
+
+            // Auto-aniumate? Check the last position we had - if we're close,
+            // animate, if not, jump. This could also have used the index if
+            // available, but that is only good if the index has good scene
+            // detection
+            if (API.options.auto_animate) {
+                if (!API.targetElement.lastPos) {
+                    API.targetElement.lastPos = item.pos;
+                } else {
+                    let p = [API.targetElement.lastPos[0] - item.pos[0], API.targetElement.lastPos[1] - item.pos[1]];
+                    console.log(API.to.pos, "Pos change", p);
+                    if (Math.abs(p[0]) <= API.options.animate_ignore[0] && Math.abs(p[1]) <= API.options.animate_ignore[1]) {
+                        console.log("Ignoring too small change");
+                        // Ignore - too small change
+                        ignore = true;
+                    } else {
+                        if (Math.abs(p[0]) <= API.options.animate_limit[0] && Math.abs(p[0]) <= API.options.animate_limit[1]) {
+                            item.animate = true;
+                            console.log("Animating");
+                            API.targetElement.lastPos = item.pos;
+                        }                        
+                    }
+                }
+            } 
+
 
             // Which quadrant and halfs of the screen is this in - flag it
             let pos = API.targetElement.pos || [50, 50];
@@ -1179,13 +1211,16 @@ var rubberDuck = function(target, options) {
             // maximum adjustment of the overflow, or we'll go outside
             let offset_x = -Math.max(0, Math.min(overflow_x, Sx));
             let offset_y = -Math.max(0, Math.min(overflow_y, Sy));
-            move(item, {
-                left: Math.floor(offset_x) + "px",
-                top: Math.floor(offset_y) + "px"
-            }, item.animate ? 250 : 0);
+            if (!ignore) {
+                move(item, {
+                    left: Math.floor(offset_x) + "px",
+                    top: Math.floor(offset_y) + "px"
+                }, item.animate ? 250 : 0);
+                API.targetElement.lastPos = item.pos;
+            }
 
             // Markingbox position too
-            if (0 || API.options.markingbox) {
+            if (0 && API.options.markingbox) {
                 let mbox = API.targetElement.querySelector(".markingbox");
                 if (mbox) {
                     // Center point of box relative to visible part

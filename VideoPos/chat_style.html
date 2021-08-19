@@ -23,6 +23,12 @@
     .nested {
         border:  black solid 5px;
     }
+
+    .edit_container {
+        position:  fixed;
+        top: 5px;
+        right: 5px;
+    }
         .emotion_container {
             display: flex;
             flex-direction: column;
@@ -202,6 +208,7 @@
       background-size: contain;
     }
 
+
     .hidden {
       display: none;
     }
@@ -210,7 +217,6 @@
 
 </head>
 <body>
-
 
     <ul class="altwho" aria-hide="true"></ul>
 
@@ -246,8 +252,15 @@
     </div>
 
     <div class="mediacontainer">
-        
     </div>
+
+    <div class="edit_container hidden">
+        <div>Who: <input id="newsubwho" type="text"/></div>
+        <div>Text: <textarea id="newsub" cols=50 height=2></textarea></div>
+        <button id="clearsub">Clear</button>
+        <button id="addsub">Add</button>
+    </div>
+
 
   <button id="download" class="hidden">Download</button>
 
@@ -262,10 +275,7 @@
 
     <script>
 
-
-
     document.querySelector("body").addEventListener("keydown", evt => {
-        console.log("Key pressed", evt);
         if (evt.key == "Escape") {
             document.querySelector(".altwho").style.display = "none";
         }
@@ -300,6 +310,7 @@
       index: false,
       tts: true,
       controls: true,
+      keyboard: !canedit,
       hide_controls: false,
       rendersubs: false,
       voice_index: true
@@ -464,7 +475,7 @@
                 if (last.classList.contains("right"))
                     msg.classList.add("right");
 
-                if (!canedit && msg.startts - last.endts < 1.0) {
+                if (!canedit && msg.startts - last.endts < 2.0) {
                     last.style.marginBottom = "0px";
                     msg.classList.add("bunched");
                 }
@@ -683,7 +694,63 @@ if (canedit) {
     let to_low = new TIMINGSRC.SkewConverter(app.to, -100000);
     let to_high = new TIMINGSRC.SkewConverter(app.to, +150000);
     app.subrsequencer = app.subsequencer.clone(to_low, to_high);
-    
+    // We also allow new subs to be created
+    document.querySelector(".edit_container").classList.remove("hidden");
+    let start_ts;
+    document.querySelector(".edit_container #newsub").addEventListener("change", () => {
+        if (!start_ts) start_ts = app.to.pos;
+    });
+
+    document.querySelector(".edit_container #newsubwho").addEventListener("change", () => {
+        // Search for this person
+        let subwho = document.querySelector(".edit_container #newsubwho");
+        for (let cast in app.cast) {
+            if (cast.indexOf(subwho.value) > -1) {
+                subwho.value = cast;
+            }
+        }
+    });
+    document.querySelector(".edit_container #clearsub").addEventListener("click", () => {
+        document.querySelector(".edit_container #newsub").value = "";
+        document.querySelector(".edit_container #newsubwho").value = "";
+        start_ts = undefined;
+    });
+
+    document.querySelector(".edit_container #newsub").addEventListener("keydown", (evt) => {
+        if (evt.ctrlKey && evt.code == "Enter") {
+            document.querySelector(".edit_container #addsub").click();
+        }
+    });
+    document.addEventListener("keydown", (evt) => {
+        if (evt.ctrlKey && evt.code == "Space") {
+            evt.preventDefault();
+            start_ts = app.to.pos;
+            document.querySelector(".edit_container #newsubwho").focus();
+        }
+    });
+
+    document.querySelector(".edit_container #addsub").addEventListener("click", () => {
+        let text = document.querySelector(".edit_container #newsub").value.replace("\n", "<br>");
+        let who = document.querySelector(".edit_container #newsubwho").value;
+
+        let end_ts = Math.max(app.options.min_sub_time, start_ts + (text.length) / (app.options.min_cps + app.options.max_cps) / 2.);
+
+        if (text && who) {
+            let data = {
+                who: who,
+                text: text,
+                start: start_ts,
+                end: end_ts
+            }
+            console.log("Adding sub", who, text, start_ts, end_ts);  // Add at average cps
+            app.subsequencer.addCue("sub" + app.subsequencer.getCues().length + 1, [start_ts, end_ts], data);
+        }
+
+        document.querySelector(".edit_container #newsub").value = "";
+        document.querySelector(".edit_container #newsubwho").value = "";
+        start_ts = undefined;
+    });
+
 } else {
     app.subrsequencer = app.subsequencer.clone(to_low, app.to);    
 }

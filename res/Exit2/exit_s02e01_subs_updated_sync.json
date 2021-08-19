@@ -2,9 +2,9 @@
  {
   "start": 0.174,
   "end": 12.593,
-  "text": "\ufeff1<br>Tekst: Denne serien er basert p\u00e5 historier fra fire menn som<br>jobber i Oslos finansmilj\u00f8 i dag, samt oppf\u00f8lgende samtaler<br>med kvinner i milj\u00f8et, finansakt\u00f8rer, eksperter og \u00f8kokrim.",
+  "text": "Denne serien er basert p\u00e5 historier fra fire menn som<br>jobber i Oslos finansmilj\u00f8 i dag, samt oppf\u00f8lgende samtaler<br>med kvinner i milj\u00f8et, finansakt\u00f8rer, eksperter og \u00f8kokrim.",
   "who": "info",
-  "text_en": "\\ufeff1 <br> Text: This series is based on stories from four men who work in Oslo's financial environment today, as well as follow-up conversations <br> with women in the environment , financial actors, experts and criminals. "
+  "text_en": "This series is based on stories from four men who work in Oslo's financial environment today, as well as follow-up conversations <br> with women in the environment , financial actors, experts and criminals. "
  },
  {
   "start": 13.249,
@@ -37,9 +37,9 @@
  {
   "start": 41.865,
   "end": 45.374,
-  "text": "Tekst: \"Mozambique, Afrika. 2 dager tidligere\".",
+  "text": "\"Mozambique, Afrika. 2 dager tidligere\".",
   "who": "info",
-  "text_en": "Text: \" Mozambique, Africa. 2 days earlier \"."
+  "text_en": "\" Mozambique, Africa. 2 days earlier \"."
  },
  {
   "start": 46,
@@ -221,7 +221,7 @@
   "end": 180.54,
   "text": "Det stopper ikke p\u00e5 160. Jeg f\u00e5r den<br>opp i 220 f\u00f8r noen skj\u00f8nner b\u00e6ret.",
   "who": "ADAM",
-  "text_en": "It does not stop at 160. I'll bring it up to 220 before anyone understands anything."
+  "text_en": "It does not stop at 160. I'll bring<br>it up to 220 before anyone understands anything."
  },
  {
   "start": 180.96,
@@ -319,7 +319,7 @@
   "end": 223.497,
   "text": "Tekst: Balanse. Norsk VIP-rehap, Portugal.",
   "who": "info",
-  "text_en": "Text: Balance. Norwegian VIP-rehap, Portugal."
+  "text_en": "Balance. Norwegian VIP-rehap, Portugal."
  },
  {
   "start": 224.26,
@@ -410,7 +410,7 @@
   "end": 268.43470588235294,
   "text": "Det motsatte av avhengighet er ikke<br>\u00e5 v\u00e6re nykter, det er tilknytning til noe.",
   "who": "REHAB LEGE",
-  "text_en": "The opposite of addiction is not sobriety,<br>, the opposite of addiction is connection."
+  "text_en": "The opposite of addiction is not sobriety,<br>the opposite of addiction is connection."
  },
  {
   "start": 270.81,
@@ -431,7 +431,7 @@
   "end": 283.72235294117644,
   "text": "Men hvis du ikke klarer det<br>fordi du er isolert eller tynget, -",
   "who": "REHAB LEGE",
-  "text_en": "But if you can not do it <br> because you are isolated or beaten down by life, -"
+  "text_en": "But if you can not do it because <br>you are isolated or beaten down by life, -"
  },
  {
   "start": 285.33,
@@ -942,7 +942,7 @@
   "end": 599.0629043478945,
   "text": "Du pleier det.<br>Du er kjempegod p\u00e5 \u00e5 bruke dong.",
   "who": "JEPPE",
-  "text_en": "You usually do. <br> You'm very good at using condoms."
+  "text_en": "You usually do. <br> You're very good at using condoms."
  },
  {
   "start": 599.49,
@@ -1425,7 +1425,7 @@
   "end": 869.145294117647,
   "text": "Alle har noe p\u00e5 noen, jeg noe p\u00e5 alle.",
   "who": "ADAM",
-  "text_en": "Everyone has something on someone, I something on everyone."
+  "text_en": "Everyone has something on someone,<br> I something on everyone."
  },
  {
   "start": 870.57,

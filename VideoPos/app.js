@@ -40,7 +40,7 @@ var rubberDuck = function(target, options) {
         min_sub_time: 1.2,
         sub_time_factor: 1.0,
         text_track: "text",
-        auto_animate: false,
+        auto_animate: true,
         animate_limit: [10, 100],
         animate_ignore: [2, 10]
     };

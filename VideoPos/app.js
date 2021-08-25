@@ -1315,7 +1315,7 @@ var rubberDuck = function(target, options) {
             return;
         }
         target.requestFullScreen = target.requestFullScreen || target.mozRequestFullScreen || target.webkitRequestFullScreen;
-        document.cancelFullscreen = document.cancelFullscreen || document.moCancelFullScreen || document.webkitCancelFullScreen;
+        document.cancelFullscreen = document.cancelFullscreen || document.mozCancelFullScreen || document.webkitCancelFullScreen;
         target.requestFullScreen();
         if (document.fullscreenEnabled || document.mozFullscreenEnabled || document.webkitIsFullScreen) {
             console.log("Cancelling fullscreen");

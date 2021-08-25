@@ -63,7 +63,6 @@ var rubberDuck = function(target, options) {
         return hash;
     }
 
-
     API.options = options;
     for (let d in default_options) {
         if (API.options[d] === undefined)
@@ -879,6 +878,20 @@ var rubberDuck = function(target, options) {
             p.then(response => response.json())
             .then(data => {
                 API.manifest = data;
+
+                if (data.options) {
+                    for (let k in API.options) {
+                        if (data.options[k] !== undefined) {
+                            console.log("Checking option", k, API.options[k], default_options[k])
+                            if (API.options[k] != default_options[k])
+                                continue;  // Overridden by the player
+
+                            console.log("Option from manifest:", k, data.options[k]);
+                            API.options[k] = data.options[k];
+                        }
+                    }
+                }
+
                 if (mediatarget && API.options.video)
                     API.load_video(data.video, mediatarget);
                 if ((!data.video && data.audio) || (API.options.video == false && data.audio)) {

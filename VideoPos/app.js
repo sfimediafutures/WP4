@@ -40,9 +40,9 @@ var rubberDuck = function(target, options) {
         min_sub_time: 1.2,
         sub_time_factor: 1.0,
         text_track: "text",
-        auto_animate: true,
-        animate_limit: [10, 100],
-        animate_ignore: [2, 10]
+        auto_animate: false,
+        animate_limit: [20, 100],
+        animate_ignore: [3, 10]
     };
     let __autopaused = false;
     let _is_speaking = false;
@@ -139,7 +139,7 @@ var rubberDuck = function(target, options) {
 
                 console.log("Online sync ready");
                 API.to.timingsrc = API.app.motions.private;
-                API.resize();
+                API.resize(null, true);
             });
         } else {
             API.to.update({position: 0, velocity:1});
@@ -289,7 +289,7 @@ var rubberDuck = function(target, options) {
             } else {
                 if (pip) pip.classList.add("hidden");
             }
-            API.resize();
+            API.resize(null, true);
         },
         "btnpippos": function(evt) {
             evt.preventDefault();
@@ -303,7 +303,7 @@ var rubberDuck = function(target, options) {
                 API.targetElement.querySelector(".pip").classList.add("pipfixed");
                 API.targetElement.querySelector(".pip").classList.remove("pipleft"); // in case it's on the left
             }
-            API.resize();
+            API.resize(null, true);
         },
         "btnpos": function(evt) {
             evt.preventDefault();
@@ -324,7 +324,7 @@ var rubberDuck = function(target, options) {
                 API.mediaElement.style.height = "";
                 _traditional = true;
             }
-            API.resize();
+            API.resize(null, true);
 
             // Need to resize twice to get everything good to go!
             setTimeout(API.resize, 10);
@@ -1002,7 +1002,19 @@ var rubberDuck = function(target, options) {
 
     let moveid = 1; // We need to handle multiple moves before they stop
     let move = function(element, targets, time, scene_change) {
-        if (time == 0) {
+
+        element.style.transition = "";
+        if (time) {
+            let t = "";
+            for (let target in targets) {
+                console.log("Adding target", target);
+                t += target + " " + time/1000. + "s,";
+            }
+            element.style.transition = "all " + time/1000. + "s ease";
+            console.log("Transision is", t, element.style.transition);            
+        }
+
+        if (time == 0 || 1) {
             for (let target in targets) {
                 element.style[target] = targets[target];
             }
@@ -1026,6 +1038,9 @@ var rubberDuck = function(target, options) {
             state[target].diff = state[target].tval - state[target].sval;
         };
         let endtime = performance.now() + time; // API.to.pos + (time / 1000.);
+
+
+
 
         let theid = moveid;
         let update = function() {
@@ -1062,7 +1077,9 @@ var rubberDuck = function(target, options) {
 
     // Handle resizing things
     let _resize_timer;
-    API.resize = function(what) {
+    API.resize = function(what, force) {
+
+        if (force === undefined) force = true;
 
         // If we're using "traditional" mode, just show the whole thing, resize
         // the videocontainer to the video size
@@ -1078,7 +1095,7 @@ var rubberDuck = function(target, options) {
         if (what == document.querySelector("body")) throw new Error("Resize body!");
         if (!what) {
             let ar = API.targetElement.querySelectorAll(".auto-resize");
-            ar.forEach(a => API.resize(a.parentElement));
+            ar.forEach(a => API.resize(a.parentElement, force));
             return;
         }
 
@@ -1135,7 +1152,7 @@ var rubberDuck = function(target, options) {
             if (changed) {
                 clearTimeout(_resize_timer);
                 _resize_timer = setTimeout(function() {
-                    API.resize(what);
+                    API.resize(what, force);
                 }, 1000);
                 return;
             }
@@ -1157,7 +1174,7 @@ var rubberDuck = function(target, options) {
             if (API.options.auto_animate) {
                 if (!API.targetElement.lastPos) {
                     API.targetElement.lastPos = item.pos;
-                } else {
+                } else if (!force) {
                     let p = [API.targetElement.lastPos[0] - item.pos[0], API.targetElement.lastPos[1] - item.pos[1]];
                     console.log(API.to.pos, "Pos change", p);
                     if (Math.abs(p[0]) <= API.options.animate_ignore[0] && Math.abs(p[1]) <= API.options.animate_ignore[1]) {
@@ -1169,7 +1186,7 @@ var rubberDuck = function(target, options) {
                             item.animate = true;
                             console.log("Animating");
                             API.targetElement.lastPos = item.pos;
-                        }                        
+                        }
                     }
                 }
             } 
@@ -1211,11 +1228,11 @@ var rubberDuck = function(target, options) {
             // maximum adjustment of the overflow, or we'll go outside
             let offset_x = -Math.max(0, Math.min(overflow_x, Sx));
             let offset_y = -Math.max(0, Math.min(overflow_y, Sy));
-            if (!ignore) {
+            if (!ignore || force) {
                 move(item, {
                     left: Math.floor(offset_x) + "px",
                     top: Math.floor(offset_y) + "px"
-                }, item.animate ? 250 : 0);
+                }, item.animate ? 1000 : 0);
                 API.targetElement.lastPos = item.pos;
             }
 
@@ -1260,7 +1277,7 @@ var rubberDuck = function(target, options) {
     }
 
     window.addEventListener("resize", function() {
-        setTimeout(app.resize, 0);
+        setTimeout(() => app.resize(null, true), 0);
     });
 
 
@@ -1631,8 +1648,8 @@ var rubberDuck = function(target, options) {
         API.targetElement.animate = itm.animate;
         //console.log("Will resize", target.parentElement, target);
         //API.resize(target.parentElement);
-        API.resize();
-        API.resize(target);
+        API.resize(null, false);
+        API.resize(target, false);
 
         // Always update
         let mbox = API.targetElement.querySelector(".markingbox");

@@ -479,6 +479,12 @@
     console.log("Showing tracking");
   }
 
+  if (getParameterByName("fakehearing")) {
+    options.fake_hearing_issues = true;
+    console.log("Faking hearing issues");
+  }
+
+
   console.log("Options", options);
   var app = rubberDuck(document.querySelector(".videocontainer"), options);
 

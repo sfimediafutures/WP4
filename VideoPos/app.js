@@ -42,7 +42,8 @@ var rubberDuck = function(target, options) {
         text_track: "text",
         auto_animate: false,
         animate_limit: [20, 100],
-        animate_ignore: [3, 10]
+        animate_ignore: [3, 10],
+        fake_hearing_issues: false
     };
     let __autopaused = false;
     let _is_speaking = false;
@@ -542,6 +543,18 @@ var rubberDuck = function(target, options) {
 
             console.log("Change", data);
 
+            if (API.options.fake_hearing_issues) {
+                // We dampen the sound randomly during the subtitle
+                if (Math.random() > 0.2) {
+                    let sub_duration = data.end - data.start;
+                    let len = Math.random() * sub_duration;
+                    let offset = Math.random() * (sub_duration - len);
+                    console.log("Will mute between", offset, "and", offset + len);
+                    setTimeout(() => API.mediaElement.volume = 0.1, 1000 * offset); 
+                    setTimeout(() => API.mediaElement.volume = 1.0, 1000 * (offset + len)); 
+                }
+            }
+
 
             let text = data;
             if (typeof(text) != "string") {
@@ -1024,7 +1037,7 @@ var rubberDuck = function(target, options) {
                 t += target + " " + time/1000. + "s,";
             }
             element.style.transition = "all " + time/1000. + "s ease";
-            console.log("Transision is", t, element.style.transition);            
+            console.log("Transision is", t, element.style.transition);
         }
 
         if (time == 0 || 1) {
@@ -1177,7 +1190,7 @@ var rubberDuck = function(target, options) {
 
             item.pos = API.targetElement.pos || [50, 50];
             item.animate = API.targetElement.animate;
-            console.log("Current", API.targetElement.lastPos, "new", item.pos);
+            console.log("Current", API.targetElement.lastPos, "new", item.pos, "force", force, "auto_animate", API.options.auto_animate);
             let ignore = false;
 
             // Auto-aniumate? Check the last position we had - if we're close,

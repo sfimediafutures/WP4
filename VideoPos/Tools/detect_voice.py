@@ -10,22 +10,6 @@ import tempfile
 import os
 
 
-def read_wave(path):
-    """Reads a .wav file.
-
-    Takes the path, and returns (PCM audio data, sample rate).
-    """
-    with contextlib.closing(wave.open(path, 'rb')) as wf:
-        num_channels = wf.getnchannels()
-        assert num_channels == 1
-        sample_width = wf.getsampwidth()
-        assert sample_width == 2
-        sample_rate = wf.getframerate()
-        assert sample_rate in (8000, 16000, 32000, 48000)
-        pcm_data = wf.readframes(wf.getnframes())
-        return pcm_data, sample_rate
-
-
 class Frame(object):
     """Represents a "frame" of audio data."""
     def __init__(self, bytes, timestamp, duration):
@@ -34,68 +18,138 @@ class Frame(object):
         self.duration = duration
 
 
-def frame_generator(frame_duration_ms, audio, sample_rate):
-    """Generates audio frames from PCM audio data.
 
-    Takes the desired frame duration in milliseconds, the PCM data, and
-    the sample rate.
+class VoiceDetector:
 
-    Yields Frames of the requested duration.
-    """
-    n = int(sample_rate * (frame_duration_ms / 1000.0) * 2)
-    offset = 0
-    timestamp = 0.0
-    duration = (float(n) / sample_rate) / 2.0
-    while offset + n < len(audio):
-        yield Frame(audio[offset:offset + n], timestamp, duration)
-        timestamp += duration
-        offset += n
+    def __init__(self, sourcefile, output_dir=None):
 
+        self.is_tmp = False
+        self.output_dir = output_dir
 
-def vad_collector(sample_rate, frame_duration_ms,
-                  padding_frames, vad, frames):
-    triggered = False
-    segments = []
-    voiced_frames = []
-    frames_speech = 0
-    frames_audio = 0
-    padding = start = end = 0
-    for idx, frame in enumerate(frames):
-        is_speech = vad.is_speech(frame.bytes, sample_rate)
-        if is_speech:
-            frames_speech += 1
+        if not sourcefile.endswith(".wav"):
+            self.is_tmp = True
+            self.sourcefile = self.convert(sourcefile)
         else:
-            frames_audio += 1
+            self.sourcefile = sourcefile
 
-        if not triggered and is_speech:
-            triggered = True
-            start = idx * frame_duration_ms
-        elif triggered and not is_speech:
-            if padding < padding_frames:
-                padding += 1
-                continue
-            triggered = False
-            end = idx * frame_duration_ms
-            segments.append({"type": "voice", "start": start / 1000., "end": end / 1000.})
-            start = end = padding = 0
-        elif triggered and is_speech:
-            padding = 0
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir)
 
-    return segments
 
-def convert(mp3file):
+    def __del__(self):
+        if self.is_tmp:
+            os.remove(self.sourcefile)
 
-    import subprocess
-    fd, tmpfile = tempfile.mkstemp(suffix=".wav")
-    print("Extracting audio to", tmpfile)
-    cmd = ["ffmpeg", "-i", mp3file, "-vn", "-ac", "1", "-y", tmpfile]
-    print(" ".join(cmd))
-    s = subprocess.Popen(cmd, stderr=subprocess.PIPE)
-    s.wait()
-    print(s.poll())
+    def analyze(self, aggressive=2, max_segment_length=60):
+        audio, sample_rate = self.read_wave(self.sourcefile)
+        vad = webrtcvad.Vad(int(aggressive))
+        frames = self.frame_generator(30, audio, sample_rate)
+        frames = list(frames)
+        segments = self.vad_collector(sample_rate, 30, 3, vad, frames,
+                                      output_dir=self.output_dir,
+                                      max_segment_length=max_segment_length)
 
-    print("Analyzing")
-    return tmpfile
+        return segments
+
+    def read_wave(self, path):
+        """Reads a .wav file.
+
+        Takes the path, and returns (PCM audio data, sample rate).
+        """
+        with contextlib.closing(wave.open(path, 'rb')) as wf:
+            num_channels = wf.getnchannels()
+            assert num_channels == 1
+            sample_width = wf.getsampwidth()
+            assert sample_width == 2
+            sample_rate = wf.getframerate()
+            assert sample_rate in (8000, 16000, 32000, 48000)
+            pcm_data = wf.readframes(wf.getnframes())
+            return pcm_data, sample_rate
+
+    def frame_generator(self, frame_duration_ms, audio, sample_rate):
+        """Generates audio frames from PCM audio data.
+
+        Takes the desired frame duration in milliseconds, the PCM data, and
+        the sample rate.
+
+        Yields Frames of the requested duration.
+        """
+        n = int(sample_rate * (frame_duration_ms / 1000.0) * 2)
+        offset = 0
+        timestamp = 0.0
+        duration = (float(n) / sample_rate) / 2.0
+        while offset + n < len(audio):
+            yield Frame(audio[offset:offset + n], timestamp, duration)
+            timestamp += duration
+            offset += n
+
+
+    def vad_collector(self, sample_rate, frame_duration_ms,
+                      padding_frames, vad, frames,
+                      output_dir=None, max_segment_length=None):
+        """
+        If output dir is given, speech audio segments are saved there
+        """
+        triggered = False
+        segments = []
+        voiced_frames = []
+        frames_speech = 0
+        frames_audio = 0
+        padding = start = end = 0
+        for idx, frame in enumerate(frames):
+            is_speech = vad.is_speech(frame.bytes, sample_rate)
+            if is_speech:
+                frames_speech += 1
+            else:
+                frames_audio += 1
+
+            if not triggered and is_speech:
+                triggered = True
+                start = idx * frame_duration_ms
+                segment_data = [frame]
+
+            elif triggered and (not is_speech or \
+                  (idx * frame_duration_ms) - start > max_segment_length * 1000):
+                if padding < padding_frames:
+                    padding += 1
+                    continue
+                triggered = False
+                end = idx * frame_duration_ms
+
+                s = {"type": "voice", "start": start / 1000., "end": end / 1000.}
+
+                # Save the audio segment if requested
+                if output_dir:
+                    target = os.path.join(output_dir, "segment_%d.wav" % idx)
+                    with wave.open(target, "w") as target_f:
+                        target_f.setnchannels(1)
+                        target_f.setsampwidth(2)
+                        target_f.setframerate(sample_rate)
+                        for d in segment_data:
+                            target_f.writeframes(d.bytes)
+                    s["file"] = target
+
+                segments.append(s)
+                start = end = padding = 0
+            elif triggered and is_speech:
+                padding = 0
+                segment_data.append(frame)
+
+        return segments
+
+    def convert(self, mp3file):
+
+        import subprocess
+        fd, tmpfile = tempfile.mkstemp(suffix=".wav")
+        print("Extracting audio to", tmpfile)
+        cmd = ["ffmpeg", "-i", mp3file, "-vn", "-ac", "1", "-y", tmpfile]
+        print(" ".join(cmd))
+        s = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+        s.wait()
+        print(s.poll())
+
+        print("Analyzing")
+        return tmpfile
 
 
 if __name__ == '__main__':
@@ -103,9 +157,10 @@ if __name__ == '__main__':
 
     parser = ArgumentParser()
     parser.add_argument("-i", "--input", dest="src", help="Source audio/video file", required=True)
-    parser.add_argument("-a", "--aggressive", dest="aggressive", help="How aggressive (0-3, 3 is most agressive)", default=2)
+    parser.add_argument("-a", "--aggressive", dest="aggressive", help="How aggressive (0-3, 3 is most aggressive)", default=2)
     parser.add_argument("-s", "--sub", dest="sub", help="Subtitle file (json), if given it will be realigned and written to output file", required=False)
     parser.add_argument("-o", "--output", dest="dst", help="Output file", required=False)
+    parser.add_argument("--output_dir", dest="output_dir", help="Output directory for segments (if not given, not saved)", default=None)
 
     parser.add_argument("--min_cps", dest="min_cps", help="Minimum CPS", default=12)
     parser.add_argument("--max_cps", dest="max_cps", help="Maximum CPS", default=18)
@@ -120,16 +175,26 @@ if __name__ == '__main__':
     options.max_adjust = float(options.max_adjust)
     options.min_time = float(options.min_time)
 
-    is_tmp = False
-    if not options.src.endswith(".wav"):
-        is_tmp = True
-        options.src = convert(options.src)
 
-    audio, sample_rate = read_wave(options.src)
-    vad = webrtcvad.Vad(int(options.aggressive))
-    frames = frame_generator(30, audio, sample_rate)
-    frames = list(frames)
-    segments = vad_collector(sample_rate, 30, 3, vad, frames)
+    if 0:
+
+        is_tmp = False
+        if not options.src.endswith(".wav"):
+            is_tmp = True
+            options.src = convert(options.src)
+
+        if options.output_dir and not os.path.exists(options.output_dir):
+            os.makedirs(options.output_dir)
+
+
+        audio, sample_rate = read_wave(options.src)
+        vad = webrtcvad.Vad(int(options.aggressive))
+        frames = frame_generator(30, audio, sample_rate)
+        frames = list(frames)
+        segments = vad_collector(sample_rate, 30, 3, vad, frames, output_dir=options.output_dir)
+
+    detector = VoiceDetector(options.src, output_dir=options.output_dir)
+    segments = detector.analyze(aggressive=options.aggressive)
 
     updated = kept = 0    
 
@@ -205,5 +270,6 @@ if __name__ == '__main__':
 
         print("Updated", updated, "kept", kept)
 
-    if is_tmp:
-        os.remove(options.src)
+    if 0:
+        if is_tmp:
+            os.remove(options.src)

@@ -39,7 +39,6 @@ from datetime import datetime
 import os
 
 
-
 def extract_features(files):
     
     # Sets the name to be the path to where the file is in my computer

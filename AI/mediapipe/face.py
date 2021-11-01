@@ -50,7 +50,7 @@ class FaceAnalyzer():
 
 
   # For static images:
-  def analyze_images(options):
+  def analyze_images(self, options):
     ret = []
     IMAGE_FILES = options.images
     with mp_face_detection.FaceDetection(

@@ -8,14 +8,13 @@
     "src": "/sfi/res/Vikingane/vikingane_s03e01.m4a"
   },
   "subtitles": [
-    {"src": "/sfi/res/Vikingane/vikingane_s03e01_subs_merged_sync.json"}
+    {"src": "/sfi/res/Vikingane/vikingane_s03e01_subs.json"}
   ],
   "normalsubtitles": [
     {"src": "/sfi/res/Vikingane/ORIGINALS/MUHH32000118.vtt"}
   ],
   "index": "/sfi/res/Vikingane/vikingane_s03e01.idx",
   "synstolk": "/sfi/res/Vikingane/vikingane_s03e01_synstolk.mp3",
-  "faux": "/sfi/res/Vikingane/aiauxtest.json",
   "aux": "/sfi/res/Vikingane/vikingane_s03e01_aux_ai.json",
   "cast": "/sfi/res/Vikingane/vikingane_cast.json",
   "fdc": "SFI-markup-vikingane_s03e01",

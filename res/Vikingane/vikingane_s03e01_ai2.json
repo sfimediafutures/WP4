@@ -1,0 +1,26 @@
+{
+  "id": 13769444,
+  "poster": "/sfi/res/Vikingane/poster.jpg",
+  "video": {
+    "src": "/sfi/res/Vikingane/vikingane_s03e01.mp4"
+  },
+  "audio": {
+    "src": "/sfi/res/Vikingane/vikingane_s03e01.m4a"
+  },
+  "subtitles": [
+    {"src": "/sfi/res/Vikingane/vikingane_s03e01_subs.json"}
+  ],
+  "normalsubtitles": [
+    {"src": "/sfi/res/Vikingane/ORIGINALS/MUHH32000118.vtt"}
+  ],
+  "index": "/sfi/res/Vikingane/vikingane_s03e01.idx",
+  "synstolk": "/sfi/res/Vikingane/vikingane_s03e01_synstolk.mp3",
+  "cast": "/sfi/res/Vikingane/vikingane_cast.json",
+  "fdc": "SFI-markup-vikingane_s03e01",
+  "voiceindex": "/sfi/res/Vikingane/vikingane_s03e01_voice_index.json",
+  "aux": "/sfi/res/Vikingane/vikingane_s03e01_aux_mediapipe2.json",
+  "options": {
+    "auto_animate": true,
+    "animate_ignore": [10, 10]
+  }
+}

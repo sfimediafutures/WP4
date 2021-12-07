@@ -2,24 +2,17 @@
   "id": 5048397,
   "poster": "/sfi/res/Exit2/poster.jpg",
   "video": {
-    "oldersrc": "/sfi/res/Exit2/MDRE30001620CA.mp4",
-    "fsrc": "/sfi/res/Exit2/test/out.mp4",
     "src": "/sfi/res/Exit2/exit_s02e01_crop.mp4"
   },
   "subtitles": [
-    {"src": "/sfi/res/Exit2/exit_s02e01_subs_updated.json"}
+    {"src": "/sfi/res/Exit2/exit_s02e01_subs.json"}
   ],
   "normalsubtitles": [
     {"src": "/sfi/res/Exit2/MDRE30001620.vtt"}
   ],
   "index": "/sfi/res/Exit2/MDRE30001620CA.idx",
-  "fpip": {
-    "src": "../res/Valkyrien_s01e01_tegnspraak.webm"
-  },
   "synstolk": "/sfi/res/Exit2/exit_s02e01_synstolk.mp3",
   "aux": "/sfi/res/Exit2/exit_s02e01_aux.json",
-  "faux": "/sfi/AI/test2.json",
   "cast": "/sfi/res/Exit2/s02_cast.json",
-  "fdc": "SFI-markup-exit_s02e01",
-  "tracking":" /test.json"
+  "fdc": "SFI-markup-exit_s02e01"
 }

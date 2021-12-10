@@ -50,9 +50,9 @@ class Extractor:
         return s
 
 
-    def extract_faces(self):
+    def extract_faces(self, save_dir):
         """
-        Uses mediapipes to extract faces directly from the video
+        Use face_detector
         """
 
         cap = cv2.VideoCapture(self.src)
@@ -72,7 +72,7 @@ class Extractor:
             if ts > self.segments[segment_idx]["end"]:
                 # We're at the end of this segment
                 segment_idx += 1
-                print(" - SEGMENT", segment_idx, "of", len(self.segments))
+                print(" - SEGMENT", segment_idx, "of", len(self.segments), " %.2f" % self.segments[segment_idx-1]["start"])
 
             if segment_idx > len(self.segments) - 1:
                 print("Done with all segments")
@@ -90,18 +90,31 @@ class Extractor:
                 facepath = os.path.join(self.dst, "img_%.02f.jpg" % ts)
                 cv2.imwrite(facepath, image)
                 last_ts = ts
-                continue
 
+            image_path = self.clusterer.add_image(ts, image, save_dir=save_dir, tunnel=segment_idx)
+            if image_path:
+                    if "faceimg" not in self.segments[segment_idx]:
+                        self.segments[segment_idx]["faceimg"] = []
+                    self.segments[segment_idx]["faceimg"].append(image_path)
 
-            image_file = self.clusterer.add_image(ts, image, save_dir=save_dir)
-            if image_file:
-                if "faceimg" not in self.segments[segment_idx]:
-                    self.segments[segment_idx]["faceimg"] = []
-                self.segments[segment_idx]["faceimg"].append(image_path)
+        if 0:
+            # Wait for processing to end
 
+            print("Waiting for jobs to complete")
+            self.clusterer.join()
+
+            print("Clustering done, rebuilding return values")
+            for segment_idx, image_path in self.clusterer.added_images:
+                if image_path:
+                    if "faceimg" not in self.segments[segment_idx]:
+                        self.segments[segment_idx]["faceimg"] = []
+                    self.segments[segment_idx]["faceimg"].append(image_path)
 
 
     def old_extract_faces(self, crop=True):
+        """
+        Uses mediapipes to extract faces directly from the video        
+        """
         self.options.selfie = False
         self.options.tile = False
         self.options.show = False
@@ -251,6 +264,7 @@ class Extractor:
                 # Remove the files too
                 for filename in segment["faceimg"]:
                     cleaned += 1
+                    print("Should remove filename", filename)
                     os.remove(filename)
                 continue
 
@@ -271,24 +285,41 @@ class Extractor:
             face_id = None
             if "faceimg" in segment:
                 for f in segment["faceimg"]:
+                    if f not in idx:
+                        print(" *** Woops, segment image is not in index???", f)
+                        print(" --- Segment was:", segment)
+                        face_id = None
+                        break
+
                     if face_id is None:
                         face_id = idx[f]
                     elif face_id != idx[f]:
                         print(" *** Different faces in this segment, we should ignore it", segment)
                         self.segments.remove(segment)
+                        face_id = None
                         break
+
+            if face_id is not None:
+                segment["castid"] = int(face_id)
 
     def _define_cast(self, cast_dir, clusters, detected_faces):
         if not os.path.exists(cast_dir):
-            os.path.makedirs(cast_dir)
+            os.makedirs(cast_dir)
 
         # Pick some faces for each cast memeber
         for cluster in clusters:
             # For now we pick a few random face images
 
-            person_dir = os.path.join(cast_dir, cluster)
+            person_dir = os.path.join(cast_dir, str(cluster))
 
-            for idx, f in enumerate(random.sample(clusters[cluster], 10)):
+            if not os.path.exists(person_dir):
+                os.makedirs(person_dir)
+
+
+            all_faces = clusters[cluster]
+
+            # print("Checking cluster", cluster, "with", len(all_faces), "faces")
+            for idx, f in enumerate(random.sample(all_faces, min(10, len(all_faces)))):
                 if f not in detected_faces:
                     raise Exception("Missing face detection for image '%s'" % f)
                 box = detected_faces[f][0]
@@ -297,22 +328,23 @@ class Extractor:
                 # twice the size to be useful
                 miny,maxx, maxy,minx = box
 
-                width = maxy - miny
-                height = maxx - minx
+                height = maxy - miny
+                width = maxx - minx
 
-                # Target is twice
-                miny -= math.floor(width/2.)
-                maxy += math.floor(width/2.)
-                minx -= math.floor(height/2.)
-                maxx += math.floor(height/2.)
+                # Target is bigger than just the faces
+                image = cv2.imread(f)
+                orig_height, orig_width, _ = image.shape
+                miny = max(0, miny - math.floor(height/2.))
+                maxy = min(orig_height, maxy + math.floor(height/2.))
+                minx = max(0, minx - math.floor(width/2.))
+                maxx = min(orig_width, maxx + math.floor(width/2.))
 
                 # Open the image and crop it
-                image = cv2.imread(f)
                 subimg = image[int(miny):int(maxy), int(minx):int(maxx)]
 
                 # Resize?
                 faceimg = cv2.resize(subimg, (196, 196))
-                cv2.imwrite(os.path.join(person_dir, "%s_%d.jpg" % (cluster, idx)))
+                cv2.imwrite(os.path.join(person_dir, "%s_%d.jpg" % (cluster, idx)), faceimg)
 
 
     def run(self):
@@ -321,20 +353,46 @@ class Extractor:
 
         print("Got audio %d segments and files" % len(self.segments))
 
-        self.extract_faces(crop=False)
+        self.extract_faces(self.options.dst)
 
         # self.extract_images()
 
-        self._clean_segments()
+        # We don't clean now, let the process run first
+        # self._clean_segments()
 
         # We should now cluster the images
         clusters = self.clusterer.cluster_images()
+        print("CLUSTERS", json.dumps(clusters, indent=" "))
 
+
+        input("Press enter to continue")
         # Update segments with the clustered images
         self._update_segments(clusters)
 
         # Select some faces for each person?
         self._define_cast(os.path.join(self.options.dst, "cast"), clusters, self.clusterer.detected_faces)
+
+        print("CLUSTERS", json.dumps(clusters, indent=" "))
+
+
+    def get_stats(self):
+        """
+        Provide stats to check if there is enough data
+        """
+
+        cast = {"unclassified": 0}
+
+        for segment in self.segments:
+            if "castid" in segment:
+                if segment["castid"] not in cast:
+                    cast[segment["castid"]] = 0
+                cast[segment["castid"]] += segment["end"] - segment["start"]
+            else:
+                cast["unclassified"] += segment["end"] - segment["start"]
+
+        return cast
+
+
 
     def save_json(self, destination):
 
@@ -362,3 +420,6 @@ if __name__ == "__main__":
 
     extractor.save_json(os.path.join(options.dst, "segments.json"))
 
+    cast = extractor.get_stats()
+    print("CAST")
+    print(json.dumps(cast, indent=" "))

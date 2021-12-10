@@ -8,14 +8,10 @@
     "src": "/sfi/res/Valkyrien/Valkyrien_s01e01.mp3"
   },
   "subtitles": [
-    {"src": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_proc_polished.json"}
+    {"src": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs.json"}
   ],
   "fsubtitles": [
-    {"src": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_proc.json"},
-
-
-    {"vsrc": "/sfi/res/KMTE40000312AA.vtt"},
-    {"fsrc": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_updated.json"}
+    {"src": "/sfi/res/KMTE40000312AA.vtt"}
   ],
   "index": "../res/Valkyrien/Valkyrien_s01e01.idx",
   "pip": {

@@ -13,7 +13,7 @@
     "start": 7,
     "end": 12,
     "text": "",
-    "who": 0
+    "who": "0"
   },
   {
     "start": 18,
@@ -37,7 +37,7 @@
     "start": 41.835150718688965,
     "end": 46.835150718688965,
     "text": "Jeg kjenner at lufta blir d\u00e5rligere n\u00e5r vi n\u00e6rmer oss",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 45.209725856781006,
@@ -49,7 +49,7 @@
     "start": 50,
     "end": 54,
     "text": "Hva er det for noe? Metan gass?",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 53,
@@ -67,13 +67,13 @@
     "start": 67,
     "end": 71,
     "text": "Det er er m\u00f8rkt, kaldt og trangt innerst i Gruve 7 ",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 71.47592759132385,
     "end": 76.47592759132385,
     "text": "Her er det et ventilasjonshull inn til et gammelt omr\u00e5de",
-    "who": 3
+    "who": "3"
   },
   {
     "start": 76.74588999999148,
@@ -85,7 +85,7 @@
     "start": 78.5,
     "end": 83,
     "text": "Vi klargj\u00f8r til et nytt omr\u00e5de, oppover her",
-    "who": 3
+    "who": "3"
   },
   {
     "start": 85.99897999999158,
@@ -121,7 +121,7 @@
     "start": 99,
     "end": 103,
     "text": "Den er fjernstyrt",
-    "who": 3
+    "who": "3"
   },
   {
     "start": 103,
@@ -151,31 +151,31 @@
     "start": 114.5,
     "end": 119,
     "text": "Fra vegg itl vegg er det bare 6 meter",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 118,
     "end": 121,
     "text": "og fra gulv til gak bare 1.3 meter",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 120,
     "end": 124,
     "text": "Det eneste lyset kommer fra v\u00e5re hjelmer",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 123,
     "end": 126,
     "text": "og de ulike gruvemaskinene",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 125,
     "end": 130,
     "text": "og vi m\u00e5 passe oss for de s\u00e5 vi ikke blir most",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 128,
@@ -194,7 +194,7 @@
     "start": 131,
     "end": 134,
     "text": "de ser ikke mye",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 134.03128499998874,
@@ -212,7 +212,7 @@
     "start": 142,
     "end": 148,
     "text": "Og hvis du skal g\u00e5 der m\u00e5 du passere p\u00e5 f\u00f8rersiden",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 148,
@@ -230,19 +230,19 @@
     "start": 154.29397702217102,
     "end": 160.29397702217102,
     "text": "Dette er alts\u00e5 kontoret til Jim Cato og Svein Jonny",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 158,
     "end": 164,
     "text": "Fire kilometer inni fjellet med kraftig luftkondisjonering",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 161,
     "end": 165,
     "text": "i minusgrader og uten mulighet til \u00e5 st\u00e5 oppreist",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 164.9481270313263,
@@ -273,7 +273,7 @@
     "start": 184,
     "end": 188,
     "text": "Kutt, frakte og sikre. Repeat.",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 188,
@@ -285,19 +285,19 @@
     "start": 193,
     "end": 197,
     "text": "F\u00f8r man starter \u00e5 grave",
-    "who": 3
+    "who": "3"
   },
   {
     "start": 196.10880851745605,
     "end": 201.10880851745605,
     "text": "gj\u00f8r man s\u00e5kaldt avdekking for \u00e5 se kullagrene",
-    "who": 3
+    "who": "3"
   },
   {
     "start": 200,
     "end": 205,
     "text": "og ta pr\u00f8ver for \u00e5 sjekke kvaliteten",
-    "who": 3
+    "who": "3"
   },
   {
     "start": 205.3775599999884,
@@ -309,7 +309,7 @@
     "start": 206.39205980300903,
     "end": 209.39205980300903,
     "text": "S\u00e5 dere vet s\u00e5nn cirka hvor dere havner?",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 209.7166949999881,
@@ -321,7 +321,7 @@
     "start": 210.40280838012694,
     "end": 211.20280838012695,
     "text": "Ja",
-    "who": 3
+    "who": "3"
   },
   {
     "start": 211.5,
@@ -351,19 +351,19 @@
     "start": 222,
     "end": 227,
     "text": "Hadde det ikke v\u00e6rt for gruvedriften",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 225,
     "end": 230,
     "text": "som startet for omtrent hundre \u00e5r siden",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 227,
     "end": 232,
     "text": "hadde det ikke v\u00e6re noe samfunn p\u00e5 Svalbard",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 231,
@@ -375,13 +375,13 @@
     "start": 235,
     "end": 240,
     "text": "fordelt p\u00e5 Longyearbyen, Barentsburg og Ny\u00e5lesund",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 238.72271966934204,
     "end": 243.72271966934204,
     "text": "2600 mennesker bor her",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 240,
@@ -400,55 +400,55 @@
     "start": 246,
     "end": 251.92871975898743,
     "text": "Det er s\u00e5 mange ting man m\u00e5 legge fra seg n\u00e5r man kommer hit",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 250,
     "end": 256,
     "text": "som venner og kompiser og s\u00e5nt, du f\u00e5r ikke v\u00e6rt med de",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 255,
     "end": 260.5249910354614,
     "text": "Her kan du ikke ta en lang kj\u00f8retur blant annet",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 257,
     "end": 265.5249910354614,
     "text": "Jeg har kj\u00f8rt store deler av Norge alt",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 263,
     "end": 265.3,
     "text": "Jeg har grisekj\u00f8rt og r\u00e5na en del",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 265,
     "end": 269,
     "text": "ganske mye egentlig",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 268,
     "end": 271,
     "text": "Savner du det?",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 270,
     "end": 273,
     "text": "Ja, det er jo bare noen f\u00e5 kilometer med asfalt her",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 274.117267370224,
     "end": 279.117267370224,
     "text": "Det er litt forandring",
-    "who": 1
+    "who": "1"
   },
   {
     "start": 279.9354565143585,
@@ -460,7 +460,7 @@
     "start": 283,
     "end": 287,
     "text": "Om hvorfor folk egentlig havner p\u00e5 denne arktiske utposten",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 285,
@@ -479,25 +479,25 @@
     "start": 291,
     "end": 300.4609966278076,
     "text": "Og den kaldeste og mest forbl\u00e5ste delen av Kongeriket Norge",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 295.4609966278076,
     "end": 300.4609966278076,
     "text": "og som ligger n\u00e6rmere Nordpolen enn Oslo",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 298.80725741386414,
     "end": 304.80725741386414,
     "text": "Siden det er November, og m\u00f8rketiden har startet",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 301,
     "end": 304.80725741386414,
     "text": "er det virkelig sant at m\u00f8rket i Nordnorge bare er",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 305,
@@ -521,13 +521,13 @@
     "start": 319,
     "end": 325.82125759124756,
     "text": "Det er Onsdag kveld og ungdomsklubben i Longyearbyen er \u00e5pen",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 323,
     "end": 327,
     "text": "I lokalet henger omtrent 20 ungdommer",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 327.8888249999867,
@@ -551,7 +551,7 @@
     "start": 341,
     "end": 344,
     "text": "Og s\u00e5 er det to lag som er med p\u00e5 kveldens quiz",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 344,
@@ -581,7 +581,7 @@
     "start": 354.3788106441498,
     "end": 359.3788106441498,
     "text": "Sogn og Fjordane, der regner det jo veldig mye. Her regner det nesten aldri",
-    "who": 4
+    "who": "4"
   },
   {
     "start": 359.400654999988,
@@ -593,13 +593,13 @@
     "start": 362.6175014972687,
     "end": 367.6175014972687,
     "text": "Det er ingen kj\u00f8pesenter, s\u00e5 vi m\u00e5 handle p\u00e5 nettet",
-    "who": 4
+    "who": "4"
   },
   {
     "start": 368,
     "end": 371,
     "text": "Det savner jeg litt, det \u00e5 handle i butikker og s\u00e5nn",
-    "who": 4
+    "who": "4"
   },
   {
     "start": 371.5,
@@ -635,7 +635,7 @@
     "start": 387.2956123352051,
     "end": 392.2956123352051,
     "text": "Det er vel lett \u00e5 forst\u00e5 at en liten polarby ikke er \"The shit\" n\u00e5r du er 14 \u00e5r gammel",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 392.5,
@@ -647,7 +647,7 @@
     "start": 396.67046427726746,
     "end": 401.67046427726746,
     "text": "Som s\u00e5 mange andre ungdommer her flyttet de hit med sine foreldre",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 402,
@@ -665,43 +665,43 @@
     "start": 405.9012243747711,
     "end": 410.9012243747711,
     "text": "Ingen ser ut til \u00e5 ha planer om \u00e5 v\u00e6re her mer enn noen f\u00e5 \u00e5r",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 409.84823632240295,
     "end": 414.84823632240295,
     "text": "Jeg har ingen anelse om hva jeg vil gj\u00f8re n\u00e5r jeg blir stor",
-    "who": 4
+    "who": "4"
   },
   {
     "start": 414,
     "end": 419,
     "text": "men jeg vet at jeg ikke har lyst til \u00e5 studere her oppe",
-    "who": 4
+    "who": "4"
   },
   {
     "start": 418,
     "end": 423,
     "text": "Jeg vil bo nede og studere",
-    "who": 3
+    "who": "3"
   },
   {
     "start": 422,
     "end": 426,
     "text": "Men hva jeg skal studere det vet jeg ikke",
-    "who": 4
+    "who": "4"
   },
   {
     "start": 423.7872302532196,
     "end": 428.7872302532196,
     "text": "Men blir du her p\u00e5 videreg\u00e5ende tror du?",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 427.39784026145935,
     "end": 432.39784026145935,
     "text": "Det kommer an p\u00e5 hvilken linje jeg skal ta, det er ikke s\u00e5 mye valg her oppe",
-    "who": 4
+    "who": "4"
   },
   {
     "start": 433,
@@ -713,13 +713,13 @@
     "start": 436.39959239959717,
     "end": 441.39959239959717,
     "text": "Nei, jeg tror ikke det. Tror egentlig ikke at noen i familien blir boende her s\u00e5 lenge",
-    "who": 5
+    "who": "5"
   },
   {
     "start": 444.3777515888214,
     "end": 449.3777515888214,
     "text": "Jeg vet ikke, vi skulle egentlig bare v\u00e6re her ett \u00e5r, og s\u00e5 ble det ett \u00e5r til",
-    "who": 5
+    "who": "5"
   },
   {
     "start": 449.41214999999045,
@@ -757,7 +757,7 @@
     "start": 463.92675161361694,
     "end": 468.92675161361694,
     "text": "Det begynte med disse \"company towns\" som det kaltes, gruveselskapenes egne byer ",
-    "who": 6
+    "who": "6"
   },
   {
     "start": 471.5,
@@ -811,13 +811,13 @@
     "start": 523.5,
     "end": 536,
     "text": "men for mennesker har ikke dette v\u00e6rt noe varig bosted",
-    "who": 6
+    "who": "6"
   },
   {
     "start": 530.3936631679535,
     "end": 535.3936631679535,
     "text": "Man f\u00f8ler seg ganske liten her n\u00e5r man spankulerer under de gule gatelysene",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 537.4272811412811,
@@ -895,7 +895,7 @@
     "start": 607.7480459213257,
     "end": 612.7480459213257,
     "text": "Og dere m\u00e5 h\u00e5ndtere ulykker p\u00e5 ekspedisjoner?",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 613.1542449999968,
@@ -1003,7 +1003,7 @@
     "start": 680.3956587314606,
     "end": 685.3956587314606,
     "text": "Studenhverdagen her er ganske anderledes enn p\u00e5 fastlandet",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 685.5,
@@ -1135,7 +1135,7 @@
     "start": 753.9418969154358,
     "end": 758.9418969154358,
     "text": "Da kjente jeg hjertet banke, og det var like f\u00f8r jeg ladet rifla",
-    "who": 7
+    "who": "7"
   },
   {
     "start": 758.2217719554901,
@@ -1153,7 +1153,7 @@
     "start": 768,
     "end": 770,
     "text": "Jeg ropte p\u00e5 de andre, og de kom springende",
-    "who": 8
+    "who": "8"
   },
   {
     "start": 770.5,
@@ -1207,13 +1207,13 @@
     "start": 800.3650279045105,
     "end": 805.3650279045105,
     "text": "Ja, da flirte vi godt. Men da fikk vi litt av den opplevelsen da.",
-    "who": 8
+    "who": "8"
   },
   {
     "start": 806,
     "end": 807.5,
     "text": "Hjertet banket ganske bra da kanskje?",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 808,
@@ -1225,7 +1225,7 @@
     "start": 809.9870278835297,
     "end": 814.9870278835297,
     "text": "Alle p\u00e5 universitetet m\u00e5 ta et sikkerhetskurs der man f\u00e5r oppl\u00e6ring",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 815.2870278835296,
@@ -1363,7 +1363,7 @@
     "start": 894.998562335968,
     "end": 899.998562335968,
     "text": "Helst ikke p\u00e5 isbj\u00f8rnen da f\u00f8rst og fremst.",
-    "who": 8
+    "who": "8"
   },
   {
     "start": 899.661155462265,
@@ -1429,7 +1429,7 @@
     "start": 933.5911197662354,
     "end": 938.5911197662354,
     "text": "Vi er i barnehagen for \u00e5 hentelille Richard som har hatt sin f\u00f8rste dag uten mamma Ida Marie",
-    "who": 2
+    "who": "2"
   },
   {
     "start": 938.7280178835415,

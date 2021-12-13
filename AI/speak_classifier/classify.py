@@ -92,7 +92,7 @@ class SpeechTrainer:
                 self.speaker_list.append(speaker)
                 self.voice_files.append(item["file"])
 
-        json.dump(list(mapping.keys()), open(self._voice_id_file, "w"))
+        # json.dump(list(mapping.keys()), open(self._voice_id_file, "w"))
 
 
     def _build_filelist(self, dir):

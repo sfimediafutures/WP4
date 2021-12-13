@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/usr/bin/env python3
 import os
 import math
 import subprocess
@@ -347,11 +347,14 @@ class Extractor:
                 cv2.imwrite(os.path.join(person_dir, "%s_%d.jpg" % (cluster, idx)), faceimg)
 
 
-    def run(self):
+    def run(self, options):
 
         self.segments = self.extract_audio()
 
         print("Got audio %d segments and files" % len(self.segments))
+
+        if options.audioonly:
+            return
 
         self.extract_faces(self.options.dst)
 
@@ -408,6 +411,8 @@ if __name__ == "__main__":
 
     parser.add_argument("-a", "--aggressive", dest="aggressive", help="How aggressive (0-3, 3 is most aggressive)", default=2)
 
+    parser.add_argument("--audio-only", dest="audioonly", action="store_true", help="Only extract audio", default=False)
+
 
     options = parser.parse_args()
 
@@ -416,7 +421,7 @@ if __name__ == "__main__":
 
     extractor = Extractor(options.src, options.dst, options)
 
-    extractor.run()
+    extractor.run(options)
 
     extractor.save_json(os.path.join(options.dst, "segments.json"))
 

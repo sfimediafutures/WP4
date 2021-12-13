@@ -225,7 +225,7 @@ class SpeechTrainer:
         # Split
         train = math.floor(X.shape[0] * self.frac_train)
         val = train + math.floor(X.shape[0] * self.frac_validate)
-        print("TOTAL", Y.shape[0])
+        print("TOTAL samples", Y.shape[0], "classes", num_classes)
         print("Training on", train, "validating on", Y.shape[0] - val, "saved for testing", Y.shape[0] - val)
 
         X_train = X[:train]

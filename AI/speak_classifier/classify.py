@@ -88,9 +88,9 @@ class SpeechTrainer:
             mapping = json.load(f)
 
         for speaker in mapping:
-            if len(mapping[speaker]) < 25:
+            if len(mapping[speaker]) < 50:
                 continue
-                
+
             for item in mapping[speaker]:
                 self.speaker_list.append(speaker)
                 self.voice_files.append(item["file"])

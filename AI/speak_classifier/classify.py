@@ -85,7 +85,7 @@ class SpeechTrainer:
         for speaker in mapping:
             for item in mapping[speaker]:
                 self.speaker_list.append(speaker)
-                self.voice_files.append(info["path"])
+                self.voice_files.append(item["path"])
 
 
         json.dump(mapping.keys(), open(self._voice_id_file, "w"))

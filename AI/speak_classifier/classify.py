@@ -56,6 +56,15 @@ class SpeechTrainer:
         self.frac_validate = 0.20
         self.frac_test = 0.10
 
+        if os.path.isfile(dir):
+            self._build_filelist_from_json(dir)
+
+            dir = os.path.split(dir)[0]
+
+        else:
+            self._build_filelist(self.dir)
+
+
         self._voice_id_file = os.path.join(dir, "voices.json")
         if os.path.exists(self._voice_id_file):
             self.voice_ids = json.load(open(self._voice_id_file, "r"))
@@ -63,10 +72,6 @@ class SpeechTrainer:
             self.voice_ids = {}
 
 
-        if os.path.isfile(dir):
-            self._build_filelist_from_json(dir)
-        else:
-            self._build_filelist(self.dir)
         print("Loaded", len(self.voice_files), "voices")
 
     def _build_filelist_from_json(self, jsonfile):
@@ -85,8 +90,7 @@ class SpeechTrainer:
         for speaker in mapping:
             for item in mapping[speaker]:
                 self.speaker_list.append(speaker)
-                self.voice_files.append(item["path"])
-
+                self.voice_files.append(item["file"])
 
         json.dump(mapping.keys(), open(self._voice_id_file, "w"))
 

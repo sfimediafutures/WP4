@@ -17,7 +17,7 @@
 \affiliation{NORCE}
 
 
-\keywords{Dynamic aspect ratio, Late binding, Focus track, Multi-device,
+\keywords{Dynamic aspect ratio, Focus track, Multi-device,
  client side}
 
 \begin{document}
@@ -31,11 +31,15 @@ This work is financed by the
  
 \begin{abstract}
 
+%% Just say that there are many aspect ratios in use today.
+
 Media is to a large extent consumed on devices that have non-standard aspect
-ratios, both physically or while rendering content. For example, social media
-platforms often favour 1:1 ratios, TVs 16:9, iPad tablets 4:3 or 3:4, most
-Androids 16:9 or 9:16, PCs 16:9 or 16:10 and web pages tend to use responsive
-design and can therefore have almost any aspect ratio
+ratios, both physically or while rendering content. 
+
+For example, social media platforms often favour 1:1 ratios, TVs 16:9, iPad
+tablets 4:3 or 3:4, most Androids 16:9 or 9:16, PCs 16:9 or 16:10 and web
+pages tend to use responsive design and can therefore have almost any aspect
+ratio
 
 In order to ensure good experiences, it is often therefore necessary to create
 multiple versions of content, where the content is cropped to a more suitable
@@ -83,18 +87,19 @@ At the same time, a large amount of video is watched on mobile phones.
 According to \cite{hootsuite}, 70\% of YouTube traffic is on mobile devices,
 which translates to a staggering 700 million hours of video each day being
 watched on mobile devices on YouTube alone (Jan 2021). Being able to provide
-better, more immersive services on mobiles will continue to of high
-importance.
+better, more immersive services on mobiles will continue to be of high
+importance. Dynamically adapting to any display ratio can provide substatial
+added value.
 
-In addition to varying available ratios of display surfaces, there is also a
-case to be made from a cognitive angle. A production for large screens might
-easily include a lot of scenery to provide ambience for a scene. For smaller
-displays, this means that very little space is used to actually present the
-driving parts of the content. Recognizing facial expressions on a face that
-is less than a centimeter squared puts a substantial demand on eye sight and
-concentration. In such scenarios, watching a cropped video in portrait mode
-will allow faces to become much larger and therefore easier to understand as
-can be observed in figure \ref{croppings}.
+In addition there is also a case to be made from a cognitive angle. A
+production for large screens might easily include a lot of scenery to provide
+ambience for a scene. For smaller displays, this means that very little space
+is used to actually present the driving parts of the content. Recognizing
+facial expressions on a face that is less than a centimeter squared puts a
+substantial demand on eye sight and concentration. In such scenarios,
+watching a cropped video in portrait mode will allow faces to become much
+larger and therefore easier to understand as can be observed in figure \ref
+{croppings}.
 
 \begin{figure*}
   \begin{center}
@@ -108,29 +113,29 @@ can be observed in figure \ref{croppings}.
 
 In this paper we discuss using a dynamic client side cropping of video content
 based on a focus track providing the focus point of the experience. This is
-done by using late binding by which the different data is transferred to the
-client, possibly individually, and then synthesized into the final
-presentation by the client itself. We also present our work on automatic
-production of focus tracks for a few different types of production, as well
-as prelimiary findings on the final output.
+done the different data is transferred to the client, possibly individually,
+and then synthesized into the final presentation by the client itself. We
+also present our work on automatic production of focus tracks for a few
+different types of production, as well as prelimiary findings on the final
+output.
 
-
-\section{Background}
-%%\section{Related work}
+%%\section{Background}
+\section{Related work}
 
 Altering aspect ratios is not a new concept and was prevalent in adapting
 films to 4:3 TV sets. There are three fundamental ways to transform the
 aspect ratio. The first is to pad the content with black areas, trading
 screen real estate for an accurate representation of all video pixels
-(letter-boxing). The second is to do a static crop (typically the middle).
-This can lead to very unpleasing visuals, as images composition is often
-placed either according to the golden ratio or the "rule of thirds", avoiding
-center focus. A center crop will thus often cut the item in focus. The third
-option is to create positioning data for the focus point for each frame or
-scene, which in this paper will be referred to as a "focus track". A crop is
-then created using this focus track, in effect, cutting away the least
-imporant bits of the content. Trivial approaches like streching or
-compressing the content are not discussed in this paper.
+(letter-boxing). The second is to do a fixed crop for the whole asset
+(typically the center). This can lead to very unpleasing visuals, as images
+composition is often placed either according to the golden ratio or the "rule
+of thirds", avoiding center focus. A center crop will thus often cut the item
+in focus. The third option is to create positioning data for the focus point
+or area for each frame or scene, which in this paper will be referred to as
+a "focus track". A crop is then created using this focus track, in effect,
+cutting away the least imporant bits of the content. Approaches like
+streching or compressing the content are not discussed in this paper as they
+distort the image.
 
 Focus tracks can be made manually, the process can be automated or a hybrid
 process combining automated with manual quality control can be used. Most
@@ -204,10 +209,10 @@ customizability, ensuring that also the video data can be adapted and placed
 correctly as well as ensuring that graphics are not overlaid important
 areas.
 
-Another example of client side synthesizing (late binding) can be found
-in \cite{JIT_video}. Live production of object based media has been shown
-possible, with a focus on controlling and customizing overlay graphics while
-also allowing users to select video feed for additional angles\cite
+Another example of client side synthesizing can be found in \cite
+{JIT_video}. Live production of object based media has been shown possible,
+with a focus on controlling and customizing overlay graphics while also
+allowing users to select video feed for additional angles\cite
 {10.1145/3209280.3209528}. These solutions do however not provide
 adaptability of the video itself, and would as such benefit by adding dynamic
 aspect ratio to the descriptive timeline. It would then be possible to
@@ -234,6 +239,14 @@ been shown that having both text and the video content visible improves
 understanding \cite{eyetracking}. Allowing text or other accessibility
 features to be combined with a zoomed in video could provide users with
 particular needs increased understanding of the content.
+
+
+%% Hva er egentlig problemstillinga? Hva prøver vi å løse?
+%% Identifisert focus tracks som viktig, 
+%% Goal?
+%% Late binding stuff?
+%% Present a plan for the implementation, the motivation, etc. 
+%% Demonstrate feasibility of client side cropping, benefits of regarding the focus track as an independent resource as opposed to re-encoding, validate with both manual and automatically generated focus tracks.
 
 \section{Implementation}
 
@@ -407,13 +420,13 @@ occational flickering.
 \section{Results}
 
 In order to validate the quality of the automated process, the AI based
-positioning was compared to a manual selection. A "hit" was defined as the AI
-focus point being within the screen of a the AI based crop, and a "miss" as
-focus points outside of the crop. This means that the narrower the screen the
-higher the possibility of missing. A comparison with a "fixed" crop around
-the center of the screen was also performed in order to visualize the benefit
-of a dynamic crop. The drama series using our hybrid face and generic AI
-performed very well, as illustrated in figure \ref
+positioning was compared to a manual selection where a focus point was
+determined. A "hit" was defined as the crop containing the focus point, and
+a "miss" as the crop not containting the focus point. This means that the
+narrower the screen the higher the possibility of missing. A comparison with
+a fixed crop around the center of the screen was also performed in order to
+visualize the benefit of a dynamic crop. The drama series using our hybrid
+face and generic AI performed very well, as illustrated in figure \ref
 {generic_ai_comparison}. "Vikingane" scored worse than the other two items,
 largely due to a number of scenes with a large number of people. In these
 cases, the AI would often pick the wrong face. While the center crop scores
@@ -533,9 +546,7 @@ as scene changes.
 \end{center}
 \end{figure*}
 
-%% TODO: The finished content were then tested by a test panel provided by
-   <someone>, a questionnare was filled in and some panelists were
-   interviewed. Based on the results we see <something>.
+%% TODO: The finished content were then tested by a test panel provided by <someone>, a questionnare was filled in and some panelists were interviewed. Based on the results we see <something>.
 
 
 \section{Conclusions}

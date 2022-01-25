@@ -1,4 +1,4 @@
-\documentclass[sigconf, review=false]{acmart}
+\documentclass[sigconf, review=true]{acmart}
 
 \usepackage{graphicx}
 \usepackage{wrapfig}
@@ -8,13 +8,13 @@
 \title{Dynamic aspect ratio}
 \acmConference{MMSYS}{2022}{Ireland}
 
-\author{Njål Borch}
-\email{njbo@norceresearch.no}
-\affiliation{NORCE}
+%%\author{Njål Borch}
+%%\email{njbo@norceresearch.no}
+%%\affiliation{NORCE}
 
-\author{Ingar Arntzen}
-\email{inar@norceresearch.no}
-\affiliation{NORCE}
+%%\author{Ingar Arntzen}
+%%\email{inar@norceresearch.no}
+%%\affiliation{NORCE}
 
 
 \keywords{Dynamic aspect ratio, Focus track, Multi-device,
@@ -22,11 +22,10 @@
 
 \begin{document}
 
-\begin{acks}
-This work is financed by the
-\grantsponsor{mediafutures}{MediaFutures research center in Bergen, Norway}{mediafutures.no}
-
-\end{acks}
+%%\begin{acks}
+%%This work is financed by the
+%%\grantsponsor{mediafutures}{MediaFutures research center in Bergen, Norway}{mediafutures.no}
+%%\end{acks}
 
  
 \begin{abstract}
@@ -52,10 +51,10 @@ solution, present work on implementation and experimentation, and finally
 provide some insights into how such a system could be implemented and
 provided in real world systems. Our solution was tested on a few different
 pieces of content from NRK, both drama series and typical TV debates.
+
 \end{abstract}
 
 \maketitle
-\shortauthors
 
 \section{Introduction}\label{introduction}
 
@@ -240,6 +239,39 @@ understanding \cite{eyetracking}. Allowing text or other accessibility
 features to be combined with a zoomed in video could provide users with
 particular needs increased understanding of the content.
 
+
+\section{Approach}
+
+We see a number of different solutions to create focus tracks, even if they
+are implicit and not persisted. Combining the wish for multiple aspect ratios
+with adaptive streaming solutions means a substantial growth in the number of
+files to distribute, and switching between aspect ratios is not easy.
+
+To provide a more flexible, cheap and extendible solution, we suggest creating
+explicit focus tracks that can be transferred to the client as a separate
+data track. The client can then ensure that the video is cropped according to
+the device capabilities and user preferences. By moving this responsibility
+to the client, it is possible to use existing video assets for any aspect
+ratio. Better placement of graphics also becomes possible, as clients will
+know where the focus of the viewer is likely to be. As aspect ratio becomes
+dynamic, relative placement (e.g. "lower right") might be in a very different
+place from the video asset point of view (like "bottom center"), making it
+more likely to be in conflict with other visuals. 
+
+Our goal is to demonstrate that client side video cropping is feasible in
+typical web browsers, producing a pleasing user experience. This means that
+cropping needs to be frame accurate to avoid flickering effects, and that
+changing aspect ratios (e.g. rotating devices) is smooth and natural.
+Secondly, we want to demonstrate that such an approach does not require
+changes to video formats or production flows, but can be added as a separate
+process and data track. This would allow client side dynamic aspect ratio to
+be added to existing systems without changes to the existing work flows, data
+formats or distribution mechanisms.
+
+In the next section, we describe our implementation of a video player than can
+process a separately delivered focus track, allowing any aspect ratio. We
+will then test the player with both manual and automated focus tracks to gain
+experience with this approach.
 
 %% Hva er egentlig problemstillinga? Hva prøver vi å løse?
 %% Identifisert focus tracks som viktig, 

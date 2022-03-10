@@ -238,19 +238,27 @@ document.querySelector(".scroller").addEventListener("touchmove", onTouchMove);
 
 let wheeltimeout;
 let lastwheelupdate = 0;
+let wheelupdatepos = 0;
 document.querySelector(".scroller").addEventListener("wheel", (e) => {
 
     // Disconnect from the timingsrc while we're interactive
     clearTimeout(wheeltimeout);
     wheeltimeout = setTimeout(() => app.to.timingsrc = app.motions.private, 100);
-    app.to.timingsrc = undefined;
+
+    if (app.to.timingsrc) {
+        app.to.timingsrc = undefined;
+        wheelupdatepos = app.to.pos;        
+    }
+
+    let diff = 15;
+    if (e.deltaY < 0) diff = -diff;
 
     // Don't update too quickly for visual purposes
+    wheelupdatepos += diff;
+
     if (performance.now() - lastwheelupdate < 250) return;
     lastwheelupdate = performance.now();
-    let diff = 5;
-    if (e.deltaY < 0) diff = -diff;
-    downsample_skip(Math.min(Math.max(0, app.to.pos + diff), app.motions.duration.pos));
+    downsample_skip(Math.min(Math.max(0, wheelupdatepos), app.motions.duration.pos));
 });
 
 

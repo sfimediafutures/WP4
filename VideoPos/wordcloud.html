@@ -114,7 +114,6 @@ let subCloud = function(dst, url, sequencer, options, chart_options) {
             if (redraw_timer) {
                 clearTimeout(redraw_timer);
                 redraw_timer = undefined;
-                return;
             }
 
             redraw_timer = setTimeout(() => {

@@ -28,8 +28,8 @@ def extract(filename, directory):
         " -f image2 -vf \"select='eq(pict_type,PICT_TYPE_I)'\" -vsync vfr " + \
         directory + "i%03d.png"
 
-    # res = subprocess.getoutput(EXTRACT)
-    res = open("/tmp/testoutput", "r").read()
+    res = subprocess.getoutput(EXTRACT)
+    # res = open("/tmp/testoutput", "r").read()
     print("Wrote images to", directory)
     print(res)
     # open("/tmp/testoutput", "w").write(res)

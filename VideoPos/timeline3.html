@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+  <title>Timeline</title>
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+
+  <script src="utils.js#"></script>
+  <script src="wordcloud.js"></script>
+
+
+  <style type="text/css">
+
+    .container {
+      width:  100%;
+      height:  100%;
+    }
+
+
+    .scene {
+      width:  100%;
+    }
+
+    .scene .heads {
+      position: relative;
+      width:  100%;
+      background:  black;
+    }
+
+    .scene .heads .title {
+      height:  100%;
+      width: 150px;
+      position:  absolute;
+      text-align: right;
+      right: 10px;
+      top: 10px;
+      color:  white;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    .scene .heads img {
+      width: 15%;
+    }
+
+    .scene .wordcloud {
+        width: 96%;
+        /* max-width:  500px;*/ 
+        height: 500px;
+        padding: 2%;
+    }
+
+  </style>
+</head>
+<body>
+
+<template id="scenetemplate">
+  <div class="scene">
+    <div class="heads"><div class="title"></div></div>
+    <div class="wordcloud"></div>
+    <hr width="80%"/>
+  </div>
+</template>
+
+<template id="casttemplate">
+  <img class="cast"/>
+</template>
+
+
+<div class="container">
+  
+</div>
+
+
+<script type="text/javascript">
+  let url = utils.getParameterByName("url");
+
+  let load_manifest = function(url) {
+    return fetch(url).then(e => e.json());
+  }
+
+  let build_dataset = function(items, cast, cutoff=20) {
+    let people = {};
+    let dataset = [];
+    let groups = [{id: "cast", content: ""}];
+
+    // We will have both a start and an end, if people speak within n
+    // seconds, they are allowed to "stay open"
+
+    items.forEach(cue => {
+
+      let data = cue.data;
+
+      if (data.who == "info" || data.who == "scene") return;
+
+      if (people[data.who] && (data.end < people[data.who].end + cutoff)) {
+        // We update the data rather than finish it off
+        people[data.who].end = Math.max(people[data.who].end, data.end);
+        return;
+      }
+
+      // Either it's too old or we don't have the person
+      data.group = "cast";
+      if (cast[data.who]) {
+        data.style = "background-color: " + cast[data.who].color;
+        data.className = "smallface";
+        data.content = "<img src='" + cast[data.who].src + "'/><span>" + data.who;
+      }
+
+      // Ensure that the length is at least some seconds
+      if (data.end - data.start < 20) data.end = data.start + 20;
+      console.log("Item has length", data.end - data.start);
+
+
+      people[data.who] = data;
+      dataset.push(data);
+    });
+
+    // Detect scenes
+    let scenes = [];  // List of [start, end] for scenes
+    let current_start = 0;
+    let current_end;
+    // Need to sort dataset on start times?
+    let scenepeople = [];
+
+    dataset.forEach(item => {
+      if (!current_end) { 
+        current_end = item.end;
+        current_start = item.start;
+        scenepeople.push(item.who);
+        return;
+      }
+
+      // If the beginning of this overlaps with the end of the current one, we
+      // extend the current scene.
+      if (item.start < current_end + 1.0) {
+        current_end = Math.max(current_end, item.end);
+        if (scenepeople.indexOf(item.who) == -1) scenepeople.push(item.who);
+      } else {
+        // There is a gap, we store this scene and reset
+
+        let p = [];
+        scenepeople.forEach(who => { if (cast[who]) p.push(cast[who]);});
+
+        scenes.push({start: current_start, end: current_end, id: "s" + current_start.toFixed(0), cast: p});
+        current_start = item.start;
+        current_end = item.end;
+        scenepeople = [item.who];
+      }
+
+    });
+
+    console.log("Data ok");
+    return {dataset: dataset, groups: groups, scenes: scenes};
+  };
+
+  let app = MCorp.app("4704154345375000225");
+
+  let to = new TIMINGSRC.TimingObject();
+  let sequencer = new TIMINGSRC.Sequencer(to);
+  let subcloud;
+
+  load_manifest(url)
+  .then(manifest => {
+    console.log("Manifest loaded, loading cast");
+
+    fetch(manifest.cast)
+     .then(e => e.json())
+     .then(cast => {
+
+      console.log("Cast loaded, loading subtitles", cast);
+      utils.loadJsonSubs(sequencer, manifest.subtitles[0].src)
+        .then(() => {
+
+          console.log("Loaded cast, building dataset", cast);
+          let d = build_dataset(sequencer.getCues(), cast);
+
+          // We now also load the subcloud to enable us to render those!
+          // Build subclouds for each detected scene
+          console.log("Detected scenes", d.scenes);
+
+          subCloud(null, null, sequencer)
+          .then(subcloud => {
+            console.log("Subcloud is", subcloud);
+            console.log("Scenes", d.scenes);
+            window.subcloud = subcloud;
+            d.scenes.forEach(scene => {
+
+              let template = document.querySelector("template#scenetemplate").content.cloneNode(true);
+              let elem = template.querySelector(".scene");
+              elem.setAttribute("id", scene.id);
+              // Add cast
+              scene.cast.forEach(member => {
+                if (member.name.toLowerCase() == "unknown") return;
+                let m = document.createElement("img");
+                m.src = member.src;
+                m.title = member.name;
+                elem.querySelector(".heads").appendChild(m);
+              });
+              elem.querySelector(".heads").addEventListener("dblclick", (e) => {
+                e.preventDefault();
+                console.log("Doubleclick", scene.start);
+                app.motions.private.update(scene.start);
+              });
+
+              elem.querySelector(".heads .title").innerHTML = utils.secondsToString(scene.start) + "<br>" + utils.secondsToString(scene.end);
+
+              setTimeout(() => {
+                let t = scene.start + " - " +  scene.end;
+                subcloud.plot_chart_by_times(elem.querySelector(".wordcloud"), scene.start, scene.end, {maxWords: 30, cutoff:1, title: t});
+              }, 0);
+
+              document.querySelector(".container").appendChild(elem);
+            });
+          });
+
+        });
+     })
+
+
+  });
+
+  /*
+
+  New idea:
+  Vertical timeline with scenes. Faces of participants on top, wordcloud below, air to next
+
+  */
+</script>
+</body>
+</html>

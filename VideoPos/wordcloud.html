@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v2.js"></script>
+  <script src="utils.js#"></script>
+<!--  <script src="lib/wordcloud2.js#"></script>-->
+
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+
+  <style>
+    .wordcloud {
+        width: 96%;
+        height: 500px;
+        padding: 2%;
+    }
+
+    .scroller {
+        z-index: 1;
+        width: 100%;
+        height: 90%;
+        top: 5px;
+        position: fixed;
+        left: 0px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="scroller"></div>
+<div class="wordcloud"></div>
+
+<script>
+
+let subCloud = function(dst, url, sequencer, options, chart_options) {
+
+    return new Promise(function(resolve, reject) {
+
+        let API = {sequencer: sequencer};
+
+        options = options || {};
+        options.maxWords = options.maxWords || 50;
+        options.cutoff = options.cutoff | 0;
+        chart_options = chart_options || {};
+
+        let redraw_timer;
+        let chart;
+
+
+        let get_words = function(dataset, options) {
+
+            let list = [];
+            let count = {};
+            dataset.forEach(itm => {
+                let text = itm.data.text || itm.data;
+                // Should use stoplist
+                text.replace(/[.,\/#!$%\^&\*;:\?{}=\-_`~()]/g,"", "").replaceAll("\n", " ").split(" ").forEach(word => {
+
+                    if (word.trim().length <= 2) return;
+
+                    if (API.stoplist.indexOf(word.toLowerCase()) > -1) return;
+
+                    if (!count[word]) {
+                        count[word] = 1;
+                    } else {
+                        count[word]++;
+                    }
+                });
+            });
+
+
+            for (let k in count) {
+                if (options.cutoff && count[k] < options.cutoff) continue;
+                list.push({name: k, weight: count[k]});
+            }
+
+            list.sort((el1, el2) => el2.weight - el1.weight);
+            list = list.slice(0, options.maxWords);
+            return list;
+        }
+
+        API.plot_chart = function(dst, dataset, _options) {
+            let o = options;
+            for (let key in _options) {
+                o[key] = _options[key];
+            }
+
+            let list = get_words(dataset, o);
+            return create_chart(dst, list, o);
+        }
+
+
+        let create_chart = function(dst, list, options) {
+            console.log("OPTIONS", options);
+            let o = options;
+            o.series = [{
+                type: 'wordcloud',
+                data: list
+              }];
+
+            if (chart_options.rotation) o.series[0].rotation = chart_options.rotation;
+            chart = Highcharts.chart(dst, o);
+            return chart;
+        }
+
+        API.redraw = function(full_set, _full_options) {
+            //
+            if (redraw_timer) {
+                clearTimeout(redraw_timer);
+                redraw_timer = undefined;
+                return;
+            }
+
+            redraw_timer = setTimeout(() => {
+                console.log("Creating wordlist");
+                let set;
+                if (full_set) {
+                    set = API.sequencer.getCues();
+                    options = _full_options || options;
+                } else {
+                    set = API.sequencer.getActiveCues();
+                }
+                let list = get_words(set, options);
+                if (list.length > -1) {
+                    console.log("Drawing to", dst, list.length, "words");
+
+                    if (!chart) {
+                        chart = create_chart(dst, list, options);
+                    } else {
+                        console.log("Updating", dst, list);
+                        chart.series[0].setData(list);
+                        chart.redraw();
+                    }
+
+                    // API.wordcloud = WordCloud(dst, {list: list, fconfig:config});
+                }
+                redraw_timer = undefined;
+            }, 10);
+
+        }
+
+        API.sequencer.on("change", function(evt) {
+            return API.redraw();
+        });
+
+        API.sequencer.on("remove", function(evt) {
+            return API.redraw();
+        });
+
+        fetch("lib/stoplist_combined.json").then(e => e.json()).then(data => API.stoplist = data);
+
+        if (!url) {
+            resolve(API);
+            return;
+        }
+
+        fetch(url)
+        .then(e => e.json())
+        .then(manifest => {
+            if (manifest.normalsubtitles || manifest.subtitles) {
+                let suburl;
+                if (manifest.subtitles) {
+                    suburl = manifest.subtitles[0].src;
+                } else if (manifest.normalsubtitles) {
+                    suburl = manifest.normalsubtitles[0].src;
+                }
+                if (!suburl) {
+                    console.log("Manifest", manifest);
+                    throw new Error("Missing subtitles");
+                }
+                console.log("Loading subtitles from", suburl);
+                if (suburl.endsWith(".json")) {
+                    utils.loadJsonSubs(API.sequencer, suburl);
+                } else if (suburl.endsWith(".vtt")) {
+                    utils.loadVtt(API.sequencer, suburl);
+                }
+            }
+
+            resolve(API);
+
+        });
+    });
+ }
+
+
+let app = MCorp.app("4704154345375000225");
+app.to = new TIMINGSRC.TimingObject();
+app.to_min = new TIMINGSRC.SkewConverter(app.to, -50);  // n seconds into the past
+app.to_max = new TIMINGSRC.SkewConverter(app.to, 10);  // n seconds into the future
+let sequencer = new TIMINGSRC.Sequencer(app.to_min, app.to_max);
+
+app.ready.then(() => app.to.timingsrc = app.motions.private);
+
+let url = utils.getParameterByName("url");
+let sc;
+subCloud(document.querySelector(".wordcloud"), url, sequencer, {title: "WordCloud demo", maxWords:10, cutoff:1}, {rotation:{from:0, to:0}}).then(
+    s => sc = s);
+
+// We experiment with scrolling for skipping
+let cur_pos;
+function onTouchStart(e) {
+    app.to.timingsrc = undefined;
+    e.preventDefault();
+    e.stopPropagation();
+    cur_pos = e.touches[0].screenY;
+}
+function onTouchEnd(e) {
+    app.to.timingsrc = app.motions.private;
+    cur_pos = undefined;
+}
+
+let last_skip = 0;
+function downsample_skip(target) {
+    app.to.update({position: target});
+    if (performance.now() - last_skip < 250) return;
+    last_skip = performance.now();
+    app.motions.private.update(target);
+}
+
+function onTouchMove(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    let diff = -2 * (e.touches[0].screenY - cur_pos);
+    cur_pos = e.touches[0].screenY;
+    console.log("diff", diff);
+    downsample_skip(Math.min(Math.max(0, app.to.pos + diff), app.motions.duration.pos));
+}
+
+
+document.querySelector(".scroller").addEventListener("touchstart", onTouchStart);
+document.querySelector(".scroller").addEventListener("touchend", onTouchEnd);
+document.querySelector(".scroller").addEventListener("touchmove", onTouchMove);
+
+
+</script>
+</body>
+</html>

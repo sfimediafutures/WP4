@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+  <script src="utils.js"></script>
+
+<style>
+
+.cast_block {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    /* padding-bottom: 10px;*/
+}
+
+.cast_face {
+    /*max-height: 100%;
+    max-width: 24%;
+    height: 100%;
+    */
+    height: 125px;
+    width: 125px;
+    z-index: 0;
+}
+.cast_text_img {
+    max-height: 100%;
+    max-width: calc(100% - 130px);
+}
+
+.cast_text {
+    display: inline-block;
+    margin-left: 25px;
+    max-height: 100%;
+    max-width: 74%;
+    font-size: 1.3em;
+}
+
+.cast_name {
+    display: none;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    z-index: 1;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.poster {
+    width:  100%;
+}
+
+</style>
+
+
+</head>
+<body style="background:black;color:white">
+
+<template id="cast">
+    <div class="cast_block">
+        <img class="cast_face">
+        <img class="cast_text_img">
+        <span class="cast_text hidden"></span>
+        <div class="cast_name"></div>
+    </div>
+</template>
+
+<div class="cast_container" style="width:100%">
+    <img class="poster"/>
+</div>
+
+<script>
+
+let castRenderer = function(dst, url, sequencer) {
+
+    return new Promise(function(resolve, reject) {
+
+        let API = {sequencer: sequencer};
+
+        let render_person = function(dst, person) {
+
+            let template = document.querySelector("template#cast").content.cloneNode(true);
+            let cast = template.querySelector("div");
+            cast.setAttribute("id", person.id);
+            cast.querySelector(".cast_face").src = person.closeup;
+
+            if (person.text) {
+                cast.querySelector(".cast_text_img").src = person.text;
+            } else {
+                cast.querySelector(".cast_text_img").classList.add("hidden");
+                cast.querySelector(".cast_text").classList.remove("hidden");
+                cast.querySelector(".cast_text").innerHTML = person.name + "<br>" + person.description || "";
+            }
+
+            cast.querySelector(".cast_name").innerHTML = person.name;
+            dst.appendChild(cast);
+        }
+
+        API.sequencer.on("change", function(evt) {
+            console.log("CNAGE", evt.new.data);
+            render_person(dst, evt.new.data);
+        });
+
+        API.sequencer.on("remove", function(evt) {
+            console.log("Removing #" + evt.key);
+            let d = dst.querySelector("#" + evt.key);
+            if (d) {
+                d.parentElement.removeChild(d);
+            }
+        });
+
+        fetch(url)
+        .then(e => e.json())
+        .then(manifest => {
+            if (!manifest.cast) {
+                console.log("No castlist in manifest", manifest);
+                alert("No castlist available for this asset");
+                return;
+            }
+
+            document.querySelector(".poster").src = manifest.poster;
+
+            fetch(manifest.cast)
+             .then(e => e.json())
+             .then(data => {
+                let u = url.substr(0, url.lastIndexOf("/") + 1);
+                for (let name in data) {
+                    let person = data[name];
+                    console.log("Loading person", person);                    
+                    // URLs are relative, add the url to them
+                    person.closeup = person.src || u + person.closeup;
+                    if (person.text)
+                        person.text = u + person.text;
+                    person.id = "c_" + person.name.replaceAll(" ", "");
+                    person.ts = person.ts || 0;
+                    sequencer.addCue(person.id, [person.ts, person.ts + 10000000], person);
+                };
+             });
+
+        })
+    });
+ }
+
+
+let app = MCorp.app("4704154345375000225");
+app.to = new TIMINGSRC.TimingObject();
+let sequencer = new TIMINGSRC.Sequencer(app.to);
+
+app.ready.then(() => app.to.timingsrc = app.motions.private);
+
+let url = utils.getParameterByName("url");
+castRenderer(document.querySelector(".cast_container"), url, sequencer);
+
+
+utils.addWakeLock(app.to);
+
+
+
+</script>
+</body>
+</html>

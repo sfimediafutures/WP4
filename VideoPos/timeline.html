@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+  <script src="utils.js#"></script>
+<!--  <script src="lib/wordcloud2.js#"></script>-->
+
+
+  <style>
+    .wordcloud {
+        width: 96%;
+        height: 500px;
+        padding: 2%;
+    }
+
+    .scroller {
+        z-index: 1;
+        width: 100%;
+        height: 90%;
+        top: 5px;
+        position: fixed;
+        left: 0px;
+    }
+
+    .keywords {
+        padding-bottom: 20px;
+    }
+
+    .keyword {
+        display: inline;
+        padding: 2px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="scroller"></div>
+<div class="wordcloud"></div>
+
+<template id="keywordtemplate">
+    <div class="keywords"></div>
+</template>
+
+
+<script>
+
+let timeline = function(dst, url, sequencer, options, chart_options) {
+
+    return new Promise(function(resolve, reject) {
+
+        let API = {sequencer: sequencer};
+
+        options = options || {};
+        options.maxWords = options.maxWords || 50;
+
+        let get_words = function(data) {
+            let list = [];
+            let count = {};
+
+            let text = data.text || data;
+            // Should use stoplist
+            text.replace(/[.,\/#!$%\^&\*;:\?{}=\-_`~()]/g,"", "").replaceAll("\n", " ").split(" ").forEach(word => {
+
+                if (word.trim().length <= 2) return;
+
+                if (API.stoplist.indexOf(word.toLowerCase()) > -1) return;
+
+                if (!count[word]) {
+                    count[word] = 1;
+                } else {
+                    count[word]++;
+                }
+            });
+
+
+            for (let k in count) {
+                if (options.cutoff && count[k] < options.cutoff) continue;
+                list.push({name: k, weight: count[k]});
+            }
+
+            list.sort((el1, el2) => el2.weight - el1.weight);
+
+            list = list.slice(0, options.maxWords);
+            console.log(list.length, "words in wordlist");
+            console.log(list);
+
+            return list;
+        }
+
+        API.sequencer.on("change", function(evt) {
+
+            console.log("Change", evt);
+
+            let words = get_words(evt.new.data);
+            let id = "kwd" + evt.key;
+
+            let template = document.querySelector("template#keywordtemplate").content.cloneNode(true);
+            let elem = template.querySelector("div");
+            elem.setAttribute("id", id);
+
+            // Render the keywords
+            let html = "";
+            words.forEach(word => {
+                let f = 1 + 2 * (word.weight/10.);
+                html += "<div class='keyword' style='font-size:" + f + "em'>" + word.name + "</div>";
+            });
+            elem.innerHTML = html;
+            dst.appendChild(elem);
+        });
+
+        API.sequencer.on("remove", function(evt) {
+            let elem = document.querySelector("#kwd" + evt.key);
+            if (elem) {
+                elem.parentElement.removeChild(elem)
+            } else {
+                console.log("Missing #kwd", evt.key);
+            }
+        });
+
+        fetch("lib/stoplist_combined.json").then(e => e.json()).then(data => API.stoplist = data);
+
+        fetch(url)
+        .then(e => e.json())
+        .then(manifest => {
+            if (manifest.subtitles) {
+                // We load in a temporary sequencer, we'll group these later
+                let tmpseq = new TIMINGSRC.Sequencer(API.sequencer._toA);
+
+                let suburl = manifest.subtitles[0].src;
+                console.log("Loading subtitles from", suburl);
+                let p;
+                if (suburl.endsWith(".json")) {
+                    p = utils.loadJsonSubs(tmpseq, suburl);
+                } else if (suburl.endsWith(".vtt")) {
+                    p = utils.loadVtt(tmpseq, suburl);
+                }
+
+                p.then(() => {
+                    console.log("Bundling stuff", tmpseq.getCues());
+                    // We now go through the cues and group them
+                    let ts = 0;
+                    let group_by = options.groupBy || 60;  // seconds to group
+                    let text = "";
+                    tmpseq.getCues().forEach(cue => {
+                        console.log("Checking", cue)
+                        if (cue.interval.low < (ts + group_by)) {
+                            // Still within 
+                            text += " " + (cue.data.text || cue.data);
+                        } else {
+                            if (text) {
+                                sequencer.addCue("cue" + parseInt(ts), [ts, ts + group_by], text);
+                            }
+                            text = "";
+                            ts = ts + group_by;
+                        }
+                    });                    
+                });
+            }
+
+            resolve(API);
+
+        });
+    });
+ }
+
+
+let app = MCorp.app("4704154345375000225");
+app.to = new TIMINGSRC.TimingObject();
+app.to_min = new TIMINGSRC.SkewConverter(app.to, -100000);  // n seconds into the past
+app.to_max = new TIMINGSRC.SkewConverter(app.to, 1000000);  // n seconds into the future
+let sequencer = new TIMINGSRC.Sequencer(app.to_min, app.to_max);
+
+app.ready.then(() => app.to.timingsrc = app.motions.private);
+
+let url = utils.getParameterByName("url");
+let tl;
+timeline(document.querySelector(".wordcloud"), url, sequencer, {title: "WordCloud demo", maxWords:10, cutoff:1, groupBy:60}, {rotation:{from:0, to:0}}).then(
+    s => tl = s);
+
+// We experiment with scrolling for skipping
+let cur_pos;
+function onTouchStart(e) {
+    app.to.timingsrc = undefined;
+    e.preventDefault();
+    e.stopPropagation();
+    cur_pos = e.touches[0].screenY;
+}
+function onTouchEnd(e) {
+    app.to.timingsrc = app.motions.private;
+    cur_pos = undefined;
+}
+
+let last_skip = 0;
+function downsample_skip(target) {
+    app.to.update({position: target});
+    if (performance.now() - last_skip < 250) return;
+    last_skip = performance.now();
+    // app.motions.private.update(target);
+}
+
+function onTouchMove(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    let diff = -2 * (e.touches[0].screenY - cur_pos);
+    cur_pos = e.touches[0].screenY;
+    console.log("diff", diff);
+    downsample_skip(Math.min(Math.max(0, app.to.pos + diff), app.motions.duration.pos));
+}
+
+
+document.querySelector(".scroller").addEventListener("touchstart", onTouchStart);
+document.querySelector(".scroller").addEventListener("touchend", onTouchEnd);
+document.querySelector(".scroller").addEventListener("touchmove", onTouchMove);
+
+
+</script>
+</body>
+</html>

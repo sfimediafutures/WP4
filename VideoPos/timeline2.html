@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+  <title>Timeline</title>
+  <script type="text/javascript" src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+
+  <script src="utils.js#"></script>
+  <script src="wordcloud.js#"></script>
+
+
+  <style type="text/css">
+    #visualization {
+      width: 100%;
+      height: 400px;
+      border: 1px solid lightgray;
+    }
+
+    #visualization img {
+      width: 25px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .subcloud {
+      position: absolute;
+      height: 500px;
+      width:  500px;
+      background: white;
+      padding: 10px;
+      z-index: 10;
+      bottom: 15px;
+      left: 15px;
+    }
+
+
+  </style>
+</head>
+<body>
+<div class="subcloud hidden"></div>
+
+<div id="visualization"></div>
+<script type="text/javascript">
+  let url = utils.getParameterByName("url");
+
+  let load_manifest = function(url) {
+    return fetch(url).then(e => e.json());
+  }
+
+  let build_dataset = function(items, cast, cutoff=20) {
+    let people = {};
+    let dataset = [];
+    let groups = [{id: "cast", content: ""}];
+
+    // We will have both a start and an end, if people speak within n
+    // seconds, they are allowed to "stay open"
+
+    items.forEach(cue => {
+
+      let data = cue.data;
+
+      if (data.who == "info") return;
+
+      if (people[data.who] && (data.end < people[data.who].end + cutoff)) {
+        // We update the data rather than finish it off
+        people[data.who].end = Math.max(people[data.who].end, data.end);
+        return;
+      }
+
+      // Either it's too old or we don't have the person
+      data.group = "cast";
+      if (cast[data.who]) {
+        data.style = "background-color: " + cast[data.who].color;
+        data.className = "smallface";
+        data.content = "<img src='" + cast[data.who].src + "'/><span>" + data.who;
+      }
+
+      // Ensure that the length is at least some seconds
+      if (data.end - data.start < 20) data.end = data.start + 20;
+      console.log("Item has length", data.end - data.start);
+
+
+      people[data.who] = data;
+      dataset.push(data);
+    });
+
+    // Detect scenes
+    let scenes = [];  // List of [start, end] for scenes
+    let current_start = 0;
+    let current_end;
+
+    // Need to sort dataset on start times?
+
+    dataset.forEach(item => {
+      if (!current_end) { 
+        current_end = item.end;
+        current_start = item.start;
+        return;
+      }
+
+      // If the beginning of this overlaps with the end of the current one, we
+      // extend the current scene.
+      if (item.start < current_end + 1.0) {
+        current_end = Math.max(current_end, item.end);
+      } else {
+        // There is a gap, we store this scene and reset
+        scenes.push({start: current_start, end: current_end, id: current_start.toFixed(0)});
+        current_start = item.start;
+        current_end = item.end;
+      }
+
+    });
+
+    console.log("Data ok");
+    return {dataset: dataset, groups: groups, scenes: scenes};
+  };
+
+
+  let to = new TIMINGSRC.TimingObject();
+  let sequencer = new TIMINGSRC.Sequencer(to);
+  let subcloud;
+
+  load_manifest(url)
+  .then(manifest => {
+    console.log("Manifest loaded, loading cast");
+
+    fetch(manifest.cast)
+     .then(e => e.json())
+     .then(cast => {
+
+      console.log("Cast loaded, loading subtitles", cast);
+      utils.loadJsonSubs(sequencer, manifest.subtitles[0].src)
+        .then(() => {
+
+          console.log("Loaded cast, building dataset", cast);
+          let d = build_dataset(sequencer.getCues(), cast);
+          let dataset = new vis.DataSet(d.dataset);
+          let groups = new vis.DataSet(d.groups);
+          let options = {};
+
+          // We now also load the subcloud to enable us to render those!
+          // Build subclouds for each detected scene
+          console.log("Detected scenes", d.scenes);
+          groups.add({id: "subcloud", content: ""});
+
+          subCloud(null, null, sequencer)
+          .then(subcloud => {
+            console.log("SUBCLOUD", subcloud);
+            window.subcloud = subcloud;
+            let scene_lookup = {};
+            d.scenes.forEach(scene => {
+              let data = {start: scene.start, end: scene.end, group: "subcloud", id: "sc" + scene.id};
+              scene_lookup["sc" + scene.id] = scene;
+              let words = subcloud.get_words_by_times(scene.start, scene.end, {maxWords: 6});
+              data.className = data.id + " subcloud";
+              data.content = "";
+              /*words.forEach(w => {
+                data.content += w.name + " ";
+              });
+              */
+              console.log("SCENE", scene);
+              data.ftype = "background";
+              data.style = "height:50px;background:orange";
+              dataset.add(data);
+            });
+            console.log("Groups", groups);
+            // Draw the timeline
+            var container = document.getElementById('visualization');
+            let timeline = new vis.Timeline(container, dataset, groups, options);
+
+            let showSubCloud = function(event) {
+              console.log("Cloud for", event);
+              let info = scene_lookup[event.item];
+              console.log("Show cloud for", info);
+
+              let wc = document.querySelector(".subcloud");
+              console.log("Plotting to", wc);
+              subcloud.plot_chart_by_times(wc, info.start, info.end, {maxWords: 50, cutoff:1, title: ""});
+              // wc.style.left = event.event.clientX + "px";
+              // wc.style.top = 50 + event.event.clientY + "px";
+              wc.classList.remove("hidden");
+
+            }
+
+            let hideSubCloud = function(event) {
+              document.querySelector(".subcloud").classList.add("hidden");              
+            }
+
+            timeline.on("select", showSubCloud);
+            timeline.on("itemover", showSubCloud);
+            timeline.on("itemout", hideSubCloud);
+
+          });
+        });
+     })
+
+
+  });
+
+  /*
+
+  New idea:
+  Vertical timeline with scenes. Faces of participants on top, wordcloud below, air to next
+
+  */
+</script>
+</body>
+</html>

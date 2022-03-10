@@ -9,7 +9,7 @@ var rubberDuck = function(target, options) {
       API.targetElement = target;
 
     let default_options = {
-        track: true,
+        track: true,  // Deprecacted?
         markingbox: false,
         pip: false,
         pos: true,
@@ -22,7 +22,7 @@ var rubberDuck = function(target, options) {
         tts_lang: "nb",
         tts_autopause: true,
         controls: true,
-        synstolk: true,
+        audiodescription: true,
         audioon: false,
         wakelock: false,
         video: true,
@@ -32,7 +32,7 @@ var rubberDuck = function(target, options) {
         screenreadersubs: true,
         hiviz: undefined,
         chat_sub_delay: 1.0,
-        show_tracking: false,
+        show_tracking: false,  // Deprecated?
         voice_index: false,
         adjust_cps: false,
         min_cps: 12,
@@ -41,10 +41,12 @@ var rubberDuck = function(target, options) {
         sub_time_factor: 1.0,
         text_track: "text",
         auto_animate: false,
-        animate_limit: [20, 100],
-        animate_ignore: [3, 10],
+        animate_limit: [15, 60],
+        animate_ignore: [10, 10],
         fake_hearing_issues: false
     };
+
+
     let __autopaused = false;
     let _is_speaking = false;
     let _traditional = false;  // Traditional (fixed) aspect ratio?
@@ -69,9 +71,12 @@ var rubberDuck = function(target, options) {
         if (API.options[d] === undefined)
             API.options[d] = default_options[d]
     }
-    if (API.options.tts_lang == "nb")
-        console.log("USING RESPONSIVE VOICE");
-        API.options.responsive_voice = true;
+    if (API.options.tts_lang == "nb") {
+        if (!API.options.responsive_voice) {
+            console.log("Norwegian text-to-speech but no responsive voice - might be very bad");
+           //API.options.responsive_voice = true;
+        }
+    }
 
     API.to = new TIMINGSRC.TimingObject();
 
@@ -203,7 +208,7 @@ var rubberDuck = function(target, options) {
                         API.mediaElement.sync.pause(true);
                 }
                 snd.classList.remove("active");
-                toggle_synstolk(null, false);
+                toggle_audiodescription(null, false);
             } else {
                 if (API.mediaElement) {
                     if (API.mediaElement.tagName == "AUDIO")
@@ -211,25 +216,25 @@ var rubberDuck = function(target, options) {
                     API.mediaElement.muted = false;
                 }
                 snd.classList.add("active");
-                toggle_synstolk(null, false);
+                toggle_audiodescription(null, false);
             }
     };
 
 
-    let toggle_synstolk = function(evt, force) {
-        if (!API.synstolkElement && force !== undefined) return;
+    let toggle_audiodescription = function(evt, force) {
+        if (!API.audiodescriptionElement && force !== undefined) return;
 
-        let btn = API.targetElement.querySelector("#btnsynstolk");
+        let btn = API.targetElement.querySelector("#btnaudiodescription");
         let isOn = !btn.classList.contains("active");
-        console.log("synstolkOn:", isOn, force);
+        console.log("audiodescriptionOn:", isOn, force);
         if (!isOn || force == false) {
             // Check if sound is on
             let snd = API.targetElement.querySelector("#btnsound");
             let soundOn = snd.classList.contains("active");
-            if (API.synstolkElement) {
-                API.synstolk_sync.pause()
-                API.synstolkElement.muted = true;
-                API.synstolkElement.pause();
+            if (API.audiodescriptionElement) {
+                API.audiodescription_sync.pause()
+                API.audiodescriptionElement.muted = true;
+                API.audiodescriptionElement.pause();
                 if (API.mediaElement)
                     API.mediaElement.muted = !soundOn;
             } else {
@@ -239,12 +244,12 @@ var rubberDuck = function(target, options) {
 
             btn.classList.remove("active");
         } else {
-            // Syns tolk is on - mute video and get the synstolk going
-            if (API.synstolkElement) {
+            // Syns tolk is on - mute video and get the audiodescription going
+            if (API.audiodescriptionElement) {
                 if (API.mediaElement)
                     API.mediaElement.muted = true;
-                API.synstolk_sync.pause(false);
-                API.synstolkElement.muted = false;                
+                API.audiodescription_sync.pause(false);
+                API.audiodescriptionElement.muted = false;                
             } else {
                 API.tts = false;
             }
@@ -368,9 +373,9 @@ var rubberDuck = function(target, options) {
             evt.preventDefault();
             toggle_sound(evt);
         },
-        "btnsynstolk": function(evt) {
+        "btnaudiodescription": function(evt) {
             evt.preventDefault();
-            toggle_synstolk(evt);
+            toggle_audiodescription(evt);
         },
         "btnhiviz": function(evt) {
 
@@ -667,7 +672,7 @@ var rubberDuck = function(target, options) {
     // ***************************** TTS engine ****************
     if (API.options.tts) {
         API.speak = function(text, voice, force) {
-            if (!force && (API.synstolkElement || !API.targetElement.querySelector("#btnsynstolk").classList.contains("active")))
+            if (!force && (API.audiodescriptionElement || !API.targetElement.querySelector("#btnaudiodescription").classList.contains("active")))
                 return;
 
             if (API.options.responsive_voice) {
@@ -845,17 +850,17 @@ var rubberDuck = function(target, options) {
         });
     }
 
-    API.load_synstolk = function(url) {
-        if (!API.synstolkElement) {
-            API.synstolkElement = document.createElement("audio");
-            API.synstolk_sync = MCorp.mediaSync(API.synstolkElement, API.to);
+    API.load_audiodescription = function(url) {
+        if (!API.audiodescriptionElement) {
+            API.audiodescriptionElement = document.createElement("audio");
+            API.audiodescription_sync = MCorp.mediaSync(API.audiodescriptionElement, API.to);
         }
-        API.synstolkElement.src = url;
-        API.synstolkElement.muted = false;
-        API.synstolk_sync.pause(true);
-        console.log("Synstolk loaded");
-        if (API.targetElement.querySelector("#btnsynstolk"))
-            API.targetElement.querySelector("#btnsynstolk").style.display = "";
+        API.audiodescriptionElement.src = url;
+        API.audiodescriptionElement.muted = false;
+        API.audiodescription_sync.pause(true);
+        console.log("audiodescription loaded");
+        if (API.targetElement.querySelector("#btnaudiodescription"))
+            API.targetElement.querySelector("#btnaudiodescription").style.display = "";
     }
 
     // Load a manifest
@@ -877,8 +882,8 @@ var rubberDuck = function(target, options) {
 
         if (API.targetElement.querySelector("#btnsound"))
             API.targetElement.querySelector("#btnsound").style.display = "none";
-        if (API.targetElement.querySelector("#btnsynstolk"))
-            API.targetElement.querySelector("#btnsynstolk").style.display = "none";
+        if (API.targetElement.querySelector("#btnaudiodescription"))
+            API.targetElement.querySelector("#btnaudiodescription").style.display = "none";
 
 
         options = options || {};
@@ -890,6 +895,8 @@ var rubberDuck = function(target, options) {
             promises.push(p);
             p.then(response => response.json())
             .then(data => {
+                if (data.synstolk) data.audiodescription = data.synstolk;  // Backwards compatibility
+
                 API.manifest = data;
 
                 if (data.options) {
@@ -949,13 +956,13 @@ var rubberDuck = function(target, options) {
                     API.cast = {};
                 }
 
-                // Do we also have synstolk audio?
-                if (data.synstolk && API.options.synstolk) {
-                    API.load_synstolk(data.synstolk);
+                // Do we also have audiodescription audio?
+                if (data.audiodescription && API.options.audiodescription) {
+                    API.load_audiodescription(data.audiodescription);
                 } else {
                     // Disable button
-                    if (API.targetElement.querySelector("#btnsynstolk"))
-                        API.targetElement.querySelector("#btnsynstolk").classList.add("hidden");
+                    if (API.targetElement.querySelector("#btnaudiodescription"))
+                        API.targetElement.querySelector("#btnaudiodescription").classList.add("hidden");
                 }
 
                 if (data.index && API.options.index) {
@@ -1164,7 +1171,7 @@ var rubberDuck = function(target, options) {
             let ar = w / h;
             let outer_ar = width / height;
             let changed = false;
-            console.log("Outer", width, height, "inner", w, h, "Outer_ar", outer_ar, "ar", ar);
+            // console.log("Outer", width, height, "inner", w, h, "Outer_ar", outer_ar, "ar", ar);
             if (outer_ar < ar) { // 1) { // Portrait
                 if (item.classList.contains("landscape")) changed = true;
                 item.classList.add("portrait");
@@ -1190,27 +1197,27 @@ var rubberDuck = function(target, options) {
 
             item.pos = API.targetElement.pos || [50, 50];
             item.animate = API.targetElement.animate;
-            console.log("Current", API.targetElement.lastPos, "new", item.pos, "force", force, "auto_animate", API.options.auto_animate);
+            //console.log("Current", API.targetElement.lastPos, "new", item.pos, "force", force, "auto_animate", API.options.auto_animate);
             let ignore = false;
 
             // Auto-aniumate? Check the last position we had - if we're close,
             // animate, if not, jump. This could also have used the index if
             // available, but that is only good if the index has good scene
             // detection
-            if (API.options.auto_animate) {
+            if (API.options.auto_animate || item.animate) {
                 if (!API.targetElement.lastPos) {
                     API.targetElement.lastPos = item.pos;
                 } else if (!force) {
                     let p = [API.targetElement.lastPos[0] - item.pos[0], API.targetElement.lastPos[1] - item.pos[1]];
-                    console.log(API.to.pos, "Pos change", p);
+                    // console.log(API.to.pos, "Pos change", p);
                     if (Math.abs(p[0]) <= API.options.animate_ignore[0] && Math.abs(p[1]) <= API.options.animate_ignore[1]) {
-                        console.log("Ignoring too small change");
+                       // console.log("Ignoring too small change");
                         // Ignore - too small change
                         ignore = true;
                     } else {
                         if (Math.abs(p[0]) <= API.options.animate_limit[0] && Math.abs(p[0]) <= API.options.animate_limit[1]) {
                             item.animate = true;
-                            console.log("Animating");
+                            //console.log("Animating");
                             API.targetElement.lastPos = item.pos;
                         }
                     }
@@ -1273,7 +1280,7 @@ var rubberDuck = function(target, options) {
                   console.log("***Missing markingbox");
                 }
             } else {
-                console.log("Markingbox not enabled");
+                // console.log("Markingbox not enabled");
             }
 
             if (!API.options.pippos) return;
@@ -1472,6 +1479,7 @@ var rubberDuck = function(target, options) {
                 data.forEach(sub => {
                     let id = "sub" + idx;
                     idx++;
+                    if (sub.who) sub.who = String(sub.who)
                     API.subsequencer.addCue(id, [sub.start, sub.end], sub);
                 });
             });

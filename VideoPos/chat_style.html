@@ -597,6 +597,7 @@
                         msg.data.data.start = start;
                         msg.data.data.end = end;
                         //setTimeout(function() { document.querySelector("#" + msg.data.key).style.display = "none"}, 100);
+                        if (end < start) end = start + 2;
                         app.subsequencer.addCue(msg.data.key, [start, end], msg.data.data);
                         document.querySelector("#download").classList.remove("hidden");
                     }
@@ -747,6 +748,7 @@ if (canedit) {
                 start: start_ts,
                 end: end_ts
             }
+            if (data.end < data.start) data.end = data.start + 2;
             console.log("Adding sub", who, text, start_ts, end_ts);  // Add at average cps
             app.subsequencer.addCue("sub" + app.subsequencer.getCues().length + 1, [start_ts, end_ts], data);
         }

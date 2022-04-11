@@ -63,7 +63,8 @@ class SubParser:
                     start, end = m.groups()
                     continue
 
-                if text and line[-1] != "-":
+                print("TEXT", text, "LINE", line)
+                if text and text[-1] != "-":
                     text += "<br>"
                     text += line
                 else:

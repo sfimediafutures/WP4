@@ -1,26 +1,40 @@
-\documentclass[sigconf, review=true]{acmart}
+%%\documentclass[sigconf, review=true]{acmart}
+\documentclass{aircc}
 
 \usepackage{graphicx}
 \usepackage{wrapfig}
-%%\usepackage{authblk}
+
 
 
 \title{Dynamic aspect ratio}
-\acmConference{MMSYS}{2022}{Ireland}
+%% \acmConference{MMSYS}{2022}{Ireland}
 
-%%\author{Njål Borch}
-%%\email{njbo@norceresearch.no}
-%%\affiliation{NORCE}
+\author{Njål Borch $^1$ and Ingar Arntzen $^2$}
+\affiliation{NORCE Norwegian Research Institute \\ $^1$\email{njbo@norceresearch.no} \\ $^2$\email{inar@norceresearch.no}}
+
+\bibliographystyle{plain}
+
 
 %%\author{Ingar Arntzen}
-%%\email{inar@norceresearch.no}
-%%\affiliation{NORCE}
+%%\affiliation{NORCE \\ \email{inar@norceresearch.no}}
+
+% header and footer (this would be nicer to put into cls file)
+\fancyhf{}
+%%\chead{\xsmall{SPPR 2022}}
+\rfoot{\xsmall{\thepage}}
 
 
-\keywords{Dynamic aspect ratio, Focus track, Multi-device,
- client side}
 
 \begin{document}
+\maketitle
+\pagestyle{fancy}
+
+
+
+\begin{keywords}
+Dynamic aspect ratio, Focus track, Multi-device, client side, AI analysis
+\end{keywords}
+
 
 %%\begin{acks}
 %%This work is financed by the
@@ -54,7 +68,6 @@ pieces of content from NRK, both drama series and typical TV debates.
 
 \end{abstract}
 
-\maketitle
 
 \section{Introduction}\label{introduction}
 
@@ -73,12 +86,12 @@ mode, the content is still only 31 percent of the available screen estate.
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.9\columnwidth]
+    \includegraphics[width=0.7\columnwidth]
      {device-orientation-by-diagonal-size-video-sites-v2.png}
   \end{center}
-  \caption{Orientation on video sites, ScientiaMobile 2019}
-  \Description{Most video content is consumed in portait mode on devices with
-   a screen size smaller than 9 inches.}
+  \caption{Orientation on video sites, ScientiaMobile 2019.}
+  %%\Description{Most video content is consumed in portait mode on devices with
+  %% a screen size smaller than 9 inches.}
   \label{scientiamobile}
 \end{figure}
 
@@ -102,12 +115,12 @@ larger and therefore easier to understand as can be observed in figure \ref
 
 \begin{figure*}
   \begin{center}
-    \includegraphics[width=0.8\textwidth]{DAR_vs_letterbox.png}
+    \includegraphics[width=0.9\textwidth]{DAR_vs_letterbox.png}
   \end{center}
-  \caption{16:9 landscape, 9:16 dynamic crop and 9:16 letterboxed}
+  \caption{16:9 landscape, 9:16 dynamic crop and 9:16 letterboxed, same size screen.}
   \label{croppings}
-  \Description{Different renderings of a video on the same size device,
-   dynamic crop shows face very clearly.}
+  %%\Description{Different renderings of a video on the same size device,
+  %% dynamic crop shows face very clearly.}
 \end{figure*}
 
 In this paper we discuss using a dynamic client side cropping of video content
@@ -330,10 +343,10 @@ full-screen flickering that detracts substantially from the user experience.
 \begin{figure}
 \begin{center}
 \includegraphics[width=1.0\columnwidth]{iframe_editor.png}
-\caption{Editor for focus tracks}
+\caption{Editor for focus tracks with AI suggestions.}
 \label{iframe_editor}
-\Description{Focus track editor with 6 I-frames shown as tiles and boxes
- around the selected focus point.}
+%%\Description{Focus track editor with 6 I-frames shown as tiles and boxes
+%% around the selected focus point.}
 \end{center}
 \end{figure}
 
@@ -382,8 +395,8 @@ the scope of this paper.
 \includegraphics[width=1.0\columnwidth]{track_face.png}
 \caption{AI based face tracking, the nose is selected as focus center.}
 \label{fig_face_tracking}
-\Description{A face is visible in the foreground, a blurred group in the
- background. A box on the nose of the face shows selected focus point.}
+%%\Description{A face is visible in the foreground, a blurred group in the
+%% background. A box on the nose of the face shows selected focus point.}
 \end{center}
 \end{figure}
 
@@ -396,15 +409,15 @@ with a lot of trees in it will disregard "tree".
 \begin{figure}
 \begin{center}
 \includegraphics[width=1.0\columnwidth]{track_stuff.png}
-\caption{AI detected concepts, repeated concepts are ignored. The building is
+\caption{AI detected concepts. Repeated concepts are ignored. The building is
  selected as it's largest and there is just one.}
 \label{fig_stuff_tracking}
-\Description{Image of a house surrounded by trees and two cars in front.
- Yellow boxes show detected concepts, a green box is centered on the
- building.}
+%%\Description{Image of a house surrounded by trees and two cars in front.
+%% Yellow boxes show detected concepts, a green box is centered on the
+%% building.}
 \end{center}
 \end{figure}
-
+  
 In order to test the automated process, we used three different video assets
 from NRK. The first is "Valkyrien", which is an action series with a number
 of fast paced scene changes, action filled scenes like car chases as well as
@@ -474,12 +487,11 @@ screen.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.9\columnwidth]{generic_ai_comparison.png}
-\caption{Analysis of performance on drama series compared to fixed center
- cropping.}
+\includegraphics[width=0.7\columnwidth]{generic_ai_comparison.png}
+\caption{Percentage of frames containing the focus point in drama series for DAR compared to fixed center cropping.}
 \label{generic_ai_comparison}
-\Description{Plot showing how the hit rate of the presented video is improved
- using our method over a static centered crop.}
+%% \Description{Plot showing how the hit rate of the presented video is improved
+%% using our method over a static centered crop.}
 \end{center}
 \end{figure}
 
@@ -493,12 +505,10 @@ new position.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=1\columnwidth]{CoverageOfEyeTracking.png}
-\caption{Percentage of cropped frames that contain eye coverage focus point
- for a centered or dynamic cut. While very similar, the dynamic crop is often
- more estetically pleasing.}s
+\includegraphics[width=0.7\columnwidth]{CoverageOfEyeTracking.png}
+\caption{Percentage of frames containing the focus point in a debate for DAR compared to fixed center cropping.}
 \label{debatten_plot}
-\Description{Plot showing no real gain over a centered crop for Debatten.}
+%%\Description{Plot showing no real gain over a centered crop for Debatten.}
  \end{center}
 \end{figure}
 
@@ -527,11 +537,10 @@ figure \ref{nose_center}.
 \begin{center}
 \includegraphics[width=0.8\columnwidth]{both_wrong.png}
 \caption{Left crop by AI, right static center. Both are deemed "misses" as the
- eye tracker reports a different area. The AI produces a much more pleasing
- crop.}
+ eye tracker reports a different area.}
 \label{debatten_both_wrong} 
-\Description{Left crop is centered on a human, right crop has a hand sticking
- in from the left but is otherwise just backgroud.}
+%%\Description{Left crop is centered on a human, right crop has a hand sticking
+%% in from the left but is otherwise just backgroud.}
 \end{center}
 \end{figure}
 
@@ -542,8 +551,8 @@ figure \ref{nose_center}.
  according to the eye tracking data. The AI again produces as much better
  result.}
 \label{debatten_both_right} 
-\Description{Left crop is centered on a person, the right crop has the person
- half way outside the image.}
+%%\Description{Left crop is centered on a person, the right crop has the person
+%% half way outside the image.}
 \end{center}
 \end{figure}
 
@@ -567,14 +576,14 @@ as scene changes.
 
 \begin{figure*}
 \begin{center}
-\includegraphics[width=0.7\textwidth]{nose_center.png}
+\includegraphics[width=0.9\textwidth]{nose_center.png}
 \caption{Centering on the nose ensures that participants are placed naturally
  in the picture.}
 \label{nose_center}
-\Description{Three images of people. One person looks to the right and is
- placed slightly on the left, one person is centered and looking straight
- into the camera, the last is placed on the right and looks left. Their noses
- are in the middle of the crop.}
+%%\Description{Three images of people. One person looks to the right and is
+%% placed slightly on the left, one person is centered and looking straight
+%% into the camera, the last is placed on the right and looks left. Their noses
+%% are in the middle of the crop.}
 \end{center}
 \end{figure*}
 
@@ -624,8 +633,7 @@ include for a more generic solution. Including a professional producer would
 also be highly beneficial in order to incorporate more knowledge of cutting,
 transitions etc.
 
-\balance
 
-\bibliographystyle{plain}
+%% \bibliographystyle{plain}
 \bibliography{references}
 \end{document}

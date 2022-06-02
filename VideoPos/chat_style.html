@@ -318,8 +318,21 @@
       keyboard: !canedit,
       hide_controls: false,
       rendersubs: false,
-      voice_index: true
+      voice_index: true,
+      text_track: "text"
     };
+
+  if (getParameterByName("lang")) {
+    options.text_track = "text_" + getParameterByName("lang");
+    // Not native language, slow subs down a bit
+    /*
+    options.adjust_cps = true;
+    options.max_cps = 16;
+    options.min_cps = 12;
+    options.audioon = true;
+    options.sub_time_factor = 1.2;
+    */
+  }
 
     let target = document.querySelector(".message_container");
     var app = rubberDuck(target, options);
@@ -427,21 +440,21 @@
         } else {
             console.log("No index hit, using now - 100ms")
             msg.data.data.start = now - 0.1;
-            msg.data.data.end = app.to.pos + (msg.data.data.text.length / target_cps);
+            msg.data.data.end = app.to.pos + (msg.data.data[options["text_track"]].length / target_cps);
         }
 
         // Ensure that we're within the window in regards to CPS
-        let cps = parseFloat(msg.data.data.text.length) / (msg.data.data.end - msg.data.data.start);
+        let cps = parseFloat(msg.data.data[options["text_track"]].length) / (msg.data.data.end - msg.data.data.start);
         if (cps < min_cps) {
             console.log("Too slow");
-            msg.data.data.end = msg.data.data.start + (msg.data.data.text.length * min_cps);
+            msg.data.data.end = msg.data.data.start + (msg.data.data[options["text_track"]].length * min_cps);
         }
         if (cps > max_cps) {
             console.log("Too quick");
-            msg.data.data.end = msg.data.data.start + (msg.data.data.text.length * max_cps);
+            msg.data.data.end = msg.data.data.start + (msg.data.data[options["text_track"]].length * max_cps);
         }
 
-        cps = parseFloat(msg.data.data.text.length) / (msg.data.data.end - msg.data.data.start);
+        cps = parseFloat(msg.data.data[options["text_track"]].length) / (msg.data.data.end - msg.data.data.start);
         console.log("Adjusted", [msg.data.interval.low, msg.data.interval.high], "->", 
                     [msg.data.data.start, msg.data.data.end], cps);
     }
@@ -450,7 +463,7 @@
         canedit = getParameterByName("edit") || false;
 
         let message = data.data;
-        if (!message.text) return;
+        if (!message[options["text_track"]]) return;
 
         let old = document.querySelector("#" + data.key);
         if (old) {
@@ -666,7 +679,7 @@
         let msg;
         if (Array.isArray(message.who)) {
             // The sub has multiple messages within them, assume <br> or "- " is the limiter in the text
-            let lines = message.text.split("<br>");
+            let lines = message[options["text_track"]].split("<br>");
             for (let idx=0; idx<message.who.length; idx++) {
                 data.idx = idx;
                 console.log("Nested lines - ", idx, message.who[idx], lines[idx]);
@@ -675,7 +688,7 @@
                 if (msg) _insert_sort(body, msg);
             }
         } else {
-           msg = _make_msg(message.who, message.text, data);
+           msg = _make_msg(message.who, message[options["text_track"]], data);
            if(msg) _insert_sort(body, msg);
        }
    if (msg && !canedit) msg.scrollIntoView();
@@ -749,7 +762,6 @@ if (canedit) {
                 end: end_ts
             }
             if (data.end < data.start) data.end = data.start + 2;
-            console.log("Adding sub", who, text, start_ts, end_ts);  // Add at average cps
             app.subsequencer.addCue("sub" + app.subsequencer.getCues().length + 1, [start_ts, end_ts], data);
         }
 
@@ -777,7 +789,6 @@ app.load(manifest + "?ts=" + new Date().getTime() , ".mediacontainer")
       });        
 
       app.pbar.addEventListener("change", evt => {
-        console.log("SKIP TO", evt.srcElement.value);
         let pos = app.app.motions.duration.pos * (evt.srcElement.value / 100.);
         app.to.update({position: pos});
       });    
@@ -796,7 +807,6 @@ app.load(manifest + "?ts=" + new Date().getTime() , ".mediacontainer")
                 // We give it another second end time, as it cuts off too quickly)
             data.begin -= 0.0;
             data.end += 0.6;
-            console.log("CHANGE", _evt.new);
             data.start = data.start || _evt.new.interval.low;
             data.end = data.end || _evt.new.interval.high;
 
@@ -877,11 +887,9 @@ fetch(manifest + "?ts=" + new Date().getTime())
         let cues = app.subrsequencer.getActiveCues();
         let cue = cues[cues.length-1];
         if (cue) {
-            console.log("Who is", cue.data.who);
             if (Array.isArray(cue.data.who)) {
                 let who = "";
                 cue.data.who.forEach(w => who += w + " then ");
-                console.log("Who is now", who);
                 app.speak(who.substr(0, who.length - 5), 0, true);
             } else {
                 app.speak(cue.data.who, 0, true);                

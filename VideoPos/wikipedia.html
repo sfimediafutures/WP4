@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+  <script src="utils.js"></script>
+
+  <style>
+    iframe {
+        width:  96%;
+        height: 500px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container"></div>
+
+<script>
+
+let stopwords = [];
+
+let f = fetch("/sfi/res/stoplist_combined.json").then(e => e.json()).then(data => stopwords = data);
+
+
+function load_vtt(url, sequencer) {
+
+    var toTs = function(str) {
+        var parts = str.split(":");
+        return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseFloat(parts[2])
+    };
+
+    return new Promise(function(resolve, reject) {
+        let k = 0;
+        fetch(url)
+            .then(response => response.text())
+            .then(webvtt => {
+                var start;
+                var end;
+                var lines = webvtt.split("\n");
+                for (var i = 0; i < lines.length; i++) {
+                    var line = lines[i].trim();
+                    var m = /(\d\d:\d\d:\d\d.\d+)\s?-->\s?(\d\d:\d\d:\d\d.\d+)/.exec(line);
+                    if (m) {
+                        start = toTs(m[1]);
+                        end = toTs(m[2]);
+                        continue;
+                    }
+                    if (line != "") {
+                        // Look for keywords
+                        let keywords = analyze_keywords(line);
+
+                        // STORE IT
+                        if (keywords.length > 0) {
+                            console.log("Storing", start, end, keywords);
+                            sequencer.addCue("kw" + k++, new TIMINGSRC.Interval(start, end), {keywords: keywords});
+                        }
+                        continue;
+                    }
+                }
+                setTimeout(resolve, 1);
+            }).catch(err => reject(err));
+        });
+}
+
+
+function analyze_keywords(s) {
+
+    let interesting = [];
+
+    let first = true;
+    s.split(" ").forEach(word => {
+        if (first) {first=false; return};
+
+        if (!word || word.length < 3 || /^\d+/.test(word)) return;
+
+        // If word is not letters...
+        if (/\W+/.test(word)) return;
+
+        // Check stopwords?
+
+        if (stopwords.indexOf(word.toLowerCase()) > -1) return;
+
+        if (word[0] == word[0].toUpperCase()) {
+            interesting.push(word);
+        }
+    });
+    return interesting;
+}
+
+
+function load_keywords(manifest_url, sequencer) {
+    console.log("Loading manifest");
+    return new Promise(function(resolve, reject) {
+        fetch(manifest_url)
+        .then(e => e.json())
+        .then(manifest => {
+            console.log("Manifest:", manifest);
+            let i = 0;
+
+            if (manifest.keywords) {
+                console.log("Loading keywords");
+                fetch(manifest.keywords)
+                .then(e => e.json())
+                .then(keywords => {
+                    keywords.forEach(kw => {
+                        sequencer.addCue("k" + i++, [kw["start"], kw["end"]], kw);
+                    });
+                });
+                return;
+            }
+
+            if (manifest.subtitles) {
+                console.log("Loading subtitles");
+                if (manifest.subtitles.endsWith(".json"))
+                    return load_json(manifest.subtitles[0].src, sequencer);
+                return load_vtt(manifest.subtitles[0].src, sequencer);
+            }
+
+            if (manifest.normalsubtitles) {
+                console.log("Loading normal-subtitles");
+                return load_vtt(manifest.normalsubtitles[0].src, sequencer);
+            }
+
+            resolve();
+        });
+    });
+}
+
+
+let app = MCorp.app("4704154345375000225");
+app.to = new TIMINGSRC.TimingObject();
+app.to_min = new TIMINGSRC.SkewConverter(app.to, -45);  // n seconds into the past
+app.to_max = new TIMINGSRC.SkewConverter(app.to, 0);  // n seconds into the future
+let sequencer = new TIMINGSRC.Sequencer(app.to_min, app.to_max);
+
+app.ready.then(() => app.to.timingsrc = app.motions.private);
+
+let url = utils.getParameterByName("url");
+if (url.endsWith("json")) {
+    load_keywords(url, sequencer)
+} else {
+    load_vtt(url, sequencer);
+}
+
+
+let loaded = [];
+let known_urls = [];
+
+function look_for(keywords, lst, partial=true) {
+    // Look for a list of keywords in the given list of lists [[kwds, item], [kews2, item2]]
+
+    let found;
+    lst.forEach(l => {
+        if (found) return;
+        keywords.forEach(kw => {
+            if (found) return;
+            l[0].forEach(w => {
+                if (kw.startsWith(w) || w.startsWith(kw)) found = l[1];
+                return;
+            });
+        });
+    });
+    return found;
+}
+
+sequencer.on("change", evt => {
+    console.log("Wikipedia lookup", evt.new.data);
+    let s = evt.new.data.keywords.join(" ");
+    let i;
+
+    if (!evt.new.data.url) return;
+
+    //i = look_for(evt.new.data.keywords, loaded);
+    let src = evt.new.data.url.url;
+
+    if (!src) return;
+    // If this is old google maps thing we alter it (to avoid reprocessing :))
+
+    let key = "AIzaSyAFI-Pk-PzIfjPGqmNO6qGQw_m0Cr3NV3I";
+    if (src.indexOf("/maps/") > -1) {
+        console.log("Rewriting maps url", src);
+        let i = src.indexOf("query=");
+        let kw = src.substr(i + 6);
+        src = "https://www.google.com/maps/embed/v1/place?key=" + key + "&q=" + kw;
+        console.log("to:", src);
+    }
+
+    i = look_for([src], loaded);
+    if (i) {
+        console.log("recycle", i);
+        // Re-cycle
+        i.setAttribute("id", evt.key);
+    } else {    
+        i = document.createElement("iframe");
+        i.setAttribute("id", evt.key);
+
+        // src = evt.new.data.url.url;
+
+        // Did we look this up before?
+        if (!src)
+            src = look_for(evt.new.data.keywords, known_urls);
+
+        if (src) {
+            console.log("Known url", src);
+            i.src = src;
+        } else {
+            console.log("New card");
+            i.src = "https://no.wikipedia.org/w/index.php?search=" + s + "&title=Spesial%3AS%C3%B8k&go=G%C3%A5&ns0=1";
+            known_urls.push([evt.new.data.keywords, i.src]);
+        }
+        //loaded.push([evt.new.data.keywords, i]);
+        loaded.push([[src], i]);
+        document.querySelector(".container").appendChild(i);
+    }
+});
+
+sequencer.on("remove", evt => {
+    let itm = document.querySelector("#" + evt.key);
+    if (itm) {
+        console.log("Removing", evt.key);
+        itm.parentElement.removeChild(itm);
+        let idx = -1;
+        for (let i=0; i<loaded.length; i++) {
+            if (loaded[i][1] == itm) {
+                idx = i;
+                break;
+            }
+        }
+        loaded.splice(idx, 1);
+    }
+});
+</script>
+</body>
+</html>

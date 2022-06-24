@@ -489,6 +489,8 @@
                 }
             }
 
+            console.log("TIME SINCE", last.endts - msg.startts, last, msg);
+
             if (last && last.style.background == msg.style.background) {
                 if (last.classList.contains("right"))
                     msg.classList.add("right");
@@ -547,23 +549,26 @@
            msg.style.background = app.cast[who].color || "lightgray";
            if (app.cast[who].src) {
                msg.querySelector(".icon").src = app.cast[who].src;
-                   msg.startts = message.start;
-                   msg.endts = message.end;
-                   msg.data = data;
-                   msg.addEventListener("dragover", e => e.preventDefault());
-                       msg.addEventListener("drop", e => {
-                        console.log(e);
-                        let info = JSON.parse(e.dataTransfer.getData("text"));
-                        console.log("GOT DATA", info);
-                        app._post_emotion(message.start, message.end, info.emotion, info.src);
-                    });
-                    msg.addEventListener("dblclick", e => {
-                        e.preventDefault();
-                        app.to.update({position: message.start});
-                    });
             } else {
-                msg.querySelector(".icon").src = "undefined.png";
-            }
+                // msg.querySelector(".icon").src = "undefined.png";
+                msg.querySelector(".icon").style.display = "none";
+                msg.querySelector(".text").style.marginLeft = "25px";
+           }
+
+           msg.startts = message.start;
+           msg.endts = message.end;
+           msg.data = data;
+           msg.addEventListener("dragover", e => e.preventDefault());
+               msg.addEventListener("drop", e => {
+                console.log(e);
+                let info = JSON.parse(e.dataTransfer.getData("text"));
+                console.log("GOT DATA", info);
+                app._post_emotion(message.start, message.end, info.emotion, info.src);
+            });
+            msg.addEventListener("dblclick", e => {
+                e.preventDefault();
+                app.to.update({position: message.start});
+            });
             if (data.idx % 2 == 1) msg.classList.add("right");
             msg.querySelector(".text").innerHTML = text || "";
 

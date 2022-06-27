@@ -519,6 +519,9 @@
             // For advanced subs, we remove all newlines and end hyphens and let 
             // the browser break the text
             text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
+
+            // Try to keep the texts formatted
+            // text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
             text = text.replace(/-\W/, "")
             text = text.replace(/^-/, "")
 
@@ -696,7 +699,7 @@
            msg = _make_msg(message.who, message[options["text_track"]], data);
            if(msg) _insert_sort(body, msg);
        }
-   if (msg && !canedit) msg.scrollIntoView();
+   if (msg && !canedit) msg.scrollIntoView({behavior: "smooth"});
 };
 
 app.indents = {};

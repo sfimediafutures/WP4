@@ -129,14 +129,17 @@ class VoiceDetector:
                 if max_pause and len(segments) > 0:
                     if s["start"] - segments[-1]["end"] < max_pause and \
                         s["end"] - segments[-1]["start"] < max_segment_length:
-                        merged = True
-                        # MERGE
-                        print("MERGING", segments[-1]["end"], s["start"], segments[-1]["idx"])
-                        segments[-1]["end"] = s["end"]
-                        # We should overwrite the last file if output_dir is given!
-                        target = segments[-1]["file"]
-                        s = segments[-1]
-                        segment_data = s["data"] + segment_data
+
+                        # Only merge if the last segment is too short
+                        if segments[-1]["end"] - segments[-1]["start"] < 2.0:
+                            merged = True
+                            # MERGE
+                            print("MERGING", segments[-1]["end"], s["start"], segments[-1]["idx"])
+                            segments[-1]["end"] = s["end"]
+                            # We should overwrite the last file if output_dir is given!
+                            target = segments[-1]["file"]
+                            s = segments[-1]
+                            segment_data = s["data"] + segment_data
 
                 # Save the audio segment if requested
                 if output_dir:

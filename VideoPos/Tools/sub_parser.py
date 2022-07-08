@@ -63,10 +63,7 @@ class SubParser:
                     start, end = m.groups()
                     continue
 
-<<<<<<< Updated upstream
-                print("TEXT", text, "LINE", line)
-=======
->>>>>>> Stashed changes
+                # print("TEXT", text, "LINE", line)
                 if text and text[-1] != "-":
                     text += "<br>"
                     text += line

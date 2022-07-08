@@ -40,14 +40,15 @@ class VoiceDetector:
         if self.is_tmp:
             os.remove(self.sourcefile)
 
-    def analyze(self, aggressive=2, max_segment_length=60):
+    def analyze(self, aggressive=2, max_segment_length=8, max_pause=0):
         audio, sample_rate = self.read_wave(self.sourcefile)
         vad = webrtcvad.Vad(int(aggressive))
         frames = self.frame_generator(30, audio, sample_rate)
         frames = list(frames)
         segments = self.vad_collector(sample_rate, 30, 3, vad, frames,
                                       output_dir=self.output_dir,
-                                      max_segment_length=max_segment_length)
+                                      max_segment_length=max_segment_length,
+                                      max_pause=max_pause)
 
         return segments
 
@@ -86,13 +87,14 @@ class VoiceDetector:
 
     def vad_collector(self, sample_rate, frame_duration_ms,
                       padding_frames, vad, frames,
-                      output_dir=None, max_segment_length=None):
+                      output_dir=None, max_segment_length=None, max_pause=0):
         """
         If output dir is given, speech audio segments are saved there
         """
         triggered = False
         segments = []
         voiced_frames = []
+        segment_data = []
         frames_speech = 0
         frames_audio = 0
         padding = start = end = 0
@@ -106,7 +108,10 @@ class VoiceDetector:
             if not triggered and is_speech:
                 triggered = True
                 start = idx * frame_duration_ms
-                segment_data = [frame]
+                segment_data.append(frame)
+                # segment_data = [frame]
+                # if start == 0:
+                #    raise SystemExit("What, starts with voice (%d)?" % idx)
 
             elif triggered and (not is_speech or \
                   (idx * frame_duration_ms) - start > max_segment_length * 1000):
@@ -116,11 +121,26 @@ class VoiceDetector:
                 triggered = False
                 end = idx * frame_duration_ms
 
-                s = {"type": "voice", "start": start / 1000., "end": end / 1000.}
+                s = {"type": "voice", "start": start / 1000., "end": end / 1000., "idx": idx}
+
+                target = os.path.join(output_dir, "segment_%08d.wav" % idx)
+
+                merged = False
+                if max_pause and len(segments) > 0:
+                    if s["start"] - segments[-1]["end"] < max_pause and \
+                        s["end"] - segments[-1]["start"] < max_segment_length:
+                        merged = True
+                        # MERGE
+                        print("MERGING", segments[-1]["end"], s["start"], segments[-1]["idx"])
+                        segments[-1]["end"] = s["end"]
+                        # We should overwrite the last file if output_dir is given!
+                        target = segments[-1]["file"]
+                        s = segments[-1]
+                        segment_data = s["data"] + segment_data
 
                 # Save the audio segment if requested
                 if output_dir:
-                    target = os.path.join(output_dir, "segment_%d.wav" % idx)
+                    # target = os.path.join(output_dir, "segment_%08d.wav" % idx)
                     with wave.open(target, "w") as target_f:
                         target_f.setnchannels(1)
                         target_f.setsampwidth(2)
@@ -128,13 +148,18 @@ class VoiceDetector:
                         for d in segment_data:
                             target_f.writeframes(d.bytes)
                     s["file"] = target
+                    s["data"] = segment_data
 
-                segments.append(s)
+                if not merged:
+                    segments.append(s)
                 start = end = padding = 0
+                segment_data = []
             elif triggered and is_speech:
                 padding = 0
                 segment_data.append(frame)
 
+        for s in segments:
+            del s["data"]
         return segments
 
     def convert(self, mp3file):
@@ -166,7 +191,8 @@ if __name__ == '__main__':
     parser.add_argument("--max_cps", dest="max_cps", help="Maximum CPS", default=18)
     parser.add_argument("--max_adjust", dest="max_adjust", help="Maximum adjustment (s)", default=0.7)
     parser.add_argument("--min_time", dest="min_time", help="Minimium time for a sub (s)", default=1.2)
-
+    parser.add_argument("--max_pause", dest="max_pause", help="Merge if closer than this (if >0s)", default=0)
+    parser.add_argument("--max_segment_length", dest="max_segment_length", help="Max segment length", default=30)
 
     options = parser.parse_args()
 
@@ -191,10 +217,12 @@ if __name__ == '__main__':
         vad = webrtcvad.Vad(int(options.aggressive))
         frames = frame_generator(30, audio, sample_rate)
         frames = list(frames)
-        segments = vad_collector(sample_rate, 30, 3, vad, frames, output_dir=options.output_dir)
+        segments = vad_collector(sample_rate, 30, 3, vad, frames, output_dir=options.output_dir, max_pause=float(options.max_pause))
 
     detector = VoiceDetector(options.src, output_dir=options.output_dir)
-    segments = detector.analyze(aggressive=options.aggressive)
+    segments = detector.analyze(aggressive=options.aggressive,
+                                max_pause=float(options.max_pause),
+                                max_segment_length=float(options.max_segment_length))
 
     updated = kept = 0    
 

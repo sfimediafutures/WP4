@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 from argparse import ArgumentParser
 import json
 import pickle
@@ -10,6 +11,7 @@ import librosa
 import glob 
 import librosa.display
 import random
+import wave
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -45,6 +47,10 @@ import os
 
 
 class SpeechTrainer:
+
+    _max_sample_sec = 2
+    _limit_speakers = [] # ["ODDVAR GAMLING", "OLAV", "HILDUR"]
+
     def __init__(self, dir):
         """
         Requires a directory with one subdirectory for each voice containing
@@ -84,16 +90,59 @@ class SpeechTrainer:
         self.speaker_list = []
         self.features = []
 
+        self.datalen = {}
+        self.distinct_speakers = []
+
         with open(jsonfile, "r") as f:
             mapping = json.load(f)
 
         for speaker in mapping:
-            if len(mapping[speaker]) < 50:
+            self.datalen[speaker] = 0
+            for item in mapping[speaker]:
+                wf = wave.open(item["file"])
+                l = wf.getnframes() / wf.getframerate()
+                self.datalen[speaker] += l
+
+        for speaker in mapping:
+
+            if self._limit_speakers and speaker not in self._limit_speakers:
+                continue
+            
+            if not self._limit_speakers and self.datalen[speaker] < 60:
+                print("Not enough data for", speaker)
                 continue
 
+            self.distinct_speakers.append(speaker)
+            # if len(mapping[speaker]) < 0.35:
+            #    continue
+
             for item in mapping[speaker]:
+
+
+                # If the file is big enough, split it
+                wf = wave.open(item["file"])
+                l = wf.getnframes() / wf.getframerate()
+
+
+                # Don't split
                 self.speaker_list.append(speaker)
                 self.voice_files.append(item["file"])
+
+                if l > 1.5 * self._max_sample_sec:
+                    # Split!
+                    num_samples = math.floor(self._max_sample_sec * wf.getframerate())
+                    for x in range(math.floor(l / self._max_sample_sec)):
+                        r, ext = os.path.splitext(item["file"])
+                        subfile = "%s-%d%s" % (r, x, ext)
+                        sf = wave.open(subfile, "w")
+                        sf.setframerate(wf.getframerate())
+                        sf.setnchannels(wf.getnchannels())
+                        sf.setsampwidth(wf.getsampwidth())
+                        sf.writeframes(wf.readframes(num_samples))
+                        sf.close()
+
+                        self.speaker_list.append(speaker)
+                        self.voice_files.append(subfile)
 
         # json.dump(list(mapping.keys()), open(self._voice_id_file, "w"))
 
@@ -149,7 +198,6 @@ class SpeechTrainer:
         # Loads the audio file as a floating point time series and assigns the default sample rate
         # Sample rate is set to 22050 by default, librosa will resample automatically
         X, sample_rate = librosa.load(file_name, res_type='kaiser_fast') 
-        print("Sample rate", sample_rate)
 
         # Generate Mel-frequency cepstral coefficients (MFCCs) from a time series 
         mfccs = np.mean(librosa.feature.mfcc(y=X, sr=sample_rate, n_mfcc=40).T,axis=0)
@@ -170,7 +218,6 @@ class SpeechTrainer:
         tonnetz = np.mean(librosa.feature.tonnetz(y=librosa.effects.harmonic(X),
         sr=sample_rate).T,axis=0)
             
-        
         with open(cache_file, "wb") as f:
             pickle.dump((mfccs, chroma, mel, contrast, tonnetz), f)
 
@@ -183,7 +230,7 @@ class SpeechTrainer:
             r = self._extract_features_from_file(soundfile)
             mfccs, chroma, mel, contrast, tonnetz = r
 
-            self.features.append(np.concatenate((mfccs, chroma, mel, contrast, tonnetz), axis=0))
+            self.features.append(np.concatenate((mfccs[4:], chroma, mel[4:50], contrast, tonnetz), axis=0))
 
     def get_dataframe(self):
         """
@@ -250,7 +297,10 @@ class SpeechTrainer:
 
         model = Sequential()
 
-        model.add(Dense(193, input_shape=(193,), activation = 'relu'))
+        # inputs = 193
+        inputs = X.shape[1]
+
+        model.add(Dense(inputs, input_shape=(inputs,), activation = 'relu'))
         model.add(Dropout(0.1))
 
         model.add(Dense(128, activation = 'relu'))
@@ -291,5 +341,7 @@ if __name__ == "__main__":
         trainer.train()
 
         print("Done")
+
+        print("Speaker list", {x:trainer.datalen[x] for x in trainer.distinct_speakers})
 
 

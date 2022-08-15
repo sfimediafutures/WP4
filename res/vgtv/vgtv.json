@@ -4,5 +4,10 @@
   "video": {
     "src": "/sfi/res/vgtv/vgtv.mp4"
   },
-  "aux": "/sfi/res/vgtv/vgtv2_aux.json"
+  "faux": "/sfi/res/vgtv/vgtv2_aux.json",
+  "aux": "/sfi/res/vgtv/vgtv_aux_mediapipe.json",
+  "options": {
+    "auto_animate": true,
+    "animate_ignore": [10, 10]
+  }
 }

@@ -10,8 +10,10 @@ from argparse import ArgumentParser
 
 from VideoPos.Tools.detect_voice import VoiceDetector
 # from AI.mediapipe import analyze
-from AI.speak_classifier.cluster_faces import FaceClusterer
-
+try:
+    from AI.speak_classifier.cluster_faces import FaceClusterer
+except:
+    print(" *** CANT IMPORT FACE CLUSTERER")
 
 
 class Extractor:
@@ -23,7 +25,10 @@ class Extractor:
         self.segments = []
         self.options = options
 
-        self.clusterer = FaceClusterer()
+        try:
+            self.clusterer = FaceClusterer()
+        except:
+            print("*** No face clusterer")
 
     def extract_audio(self):
         detector = VoiceDetector(self.src, output_dir=self.dst)

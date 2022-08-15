@@ -111,9 +111,9 @@ class FaceAnalyzer:
           "orientation": [dst_eyes, dst_ears],
           "box": {
             "left": round((bbox.xmin) * 100),
-            "bottom": round((bbox.ymin) * 100),
+            "top": round((bbox.ymin) * 100),
             "right": round((bbox.xmin + bbox.width) * 100),
-            "top": round((bbox.ymin + bbox.height) * 100),
+            "bottom": round((bbox.ymin + bbox.height) * 100),
           },
           "size": (bbox.width * bbox.height) * 100,
           "posX": round(pos.x * 100),

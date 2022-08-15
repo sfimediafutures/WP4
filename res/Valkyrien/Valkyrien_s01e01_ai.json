@@ -12,6 +12,8 @@
   ],
   "fsubtitles": [
     {"src": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_proc.json"},
+
+
     {"vsrc": "/sfi/res/KMTE40000312AA.vtt"},
     {"fsrc": "/sfi/res/Valkyrien/Valkyrien_s01e01_subs_updated.json"}
   ],

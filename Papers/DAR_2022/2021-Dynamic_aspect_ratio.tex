@@ -1,26 +1,40 @@
-\documentclass[sigconf, review=true]{acmart}
+%%\documentclass[sigconf, review=true]{acmart}
+\documentclass{aircc}
 
 \usepackage{graphicx}
 \usepackage{wrapfig}
-%%\usepackage{authblk}
+
 
 
 \title{Dynamic aspect ratio}
-\acmConference{MMSYS}{2022}{Ireland}
+%% \acmConference{MMSYS}{2022}{Ireland}
 
-%%\author{Njål Borch}
-%%\email{njbo@norceresearch.no}
-%%\affiliation{NORCE}
+\author{Njål Borch $^1$ and Ingar Arntzen $^2$}
+\affiliation{NORCE Norwegian Research Institute \\ $^1$\email{njbo@norceresearch.no} \\ $^2$\email{inar@norceresearch.no}}
+
+\bibliographystyle{plain}
+
 
 %%\author{Ingar Arntzen}
-%%\email{inar@norceresearch.no}
-%%\affiliation{NORCE}
+%%\affiliation{NORCE \\ \email{inar@norceresearch.no}}
+
+% header and footer (this would be nicer to put into cls file)
+\fancyhf{}
+%%\chead{\xsmall{SPPR 2022}}
+\rfoot{\xsmall{\thepage}}
 
 
-\keywords{Dynamic aspect ratio, Focus track, Multi-device,
- client side}
 
 \begin{document}
+\maketitle
+\pagestyle{fancy}
+
+
+
+\begin{keywords}
+Dynamic aspect ratio, Focus track, Multi-device, client side, AI analysis
+\end{keywords}
+
 
 %%\begin{acks}
 %%This work is financed by the
@@ -40,21 +54,20 @@ tablets 4:3 or 3:4, most Androids 16:9 or 9:16, PCs 16:9 or 16:10 and web
 pages tend to use responsive design and can therefore have almost any aspect
 ratio
 
-In order to ensure good experiences it is often therefore necessary to create
+In order to ensure good experiences, it is often therefore necessary to create
 multiple versions of content, where the content is cropped to a more suitable
 format. Creating multiple encoded version of the content is a static solution
 though, and there are good reasons for solving this dynamically on the client
 side. 
 
 In this paper we make the case for a client side dynamic aspect ratio
-solution, present work on implementation and experimentation and finally
+solution, present work on implementation and experimentation, and finally
 provide some insights into how such a system could be implemented and
 provided in real world systems. Our solution was tested on a few different
 pieces of content from NRK, both drama series and typical TV debates.
 
 \end{abstract}
 
-\maketitle
 
 \section{Introduction}\label{introduction}
 
@@ -69,30 +82,30 @@ on a small 9:16 screen. In extreme cases, horizontal videos, typically user
 provided content, is re-created as 16:9 content by a video streaming service,
 then presented to the user on a 9:16 screen. This makes the actual content
 only 10 percent of the natural display size. Even if watched in landscape
-mode the content is still only 31 percent of the available screen estate. 
+mode, the content is still only 31 percent of the available screen estate. 
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.9\columnwidth]
+    \includegraphics[width=0.7\columnwidth]
      {device-orientation-by-diagonal-size-video-sites-v2.png}
   \end{center}
-  \caption{Orientation on video sites, ScientiaMobile 2019}
-  \Description{Most video content is consumed in portait mode on devices with
-   a screen size smaller than 9 inches.}
+  \caption{Orientation on video sites, ScientiaMobile 2019.}
+  %%\Description{Most video content is consumed in portait mode on devices with
+  %% a screen size smaller than 9 inches.}
   \label{scientiamobile}
 \end{figure}
 
-At the same time a large amount of video is watched on mobile phones.
-According to \cite{hootsuite} 70\% of YouTube traffic is on mobile devices,
+At the same time, a large amount of video is watched on mobile phones.
+According to \cite{hootsuite}, 70\% of YouTube traffic is on mobile devices,
 which translates to a staggering 700 million hours of video each day being
 watched on mobile devices on YouTube alone (Jan 2021). Being able to provide
-better more immersive services on mobiles will continue to be of high
+better, more immersive services on mobiles will continue to be of high
 importance. Dynamically adapting to any display ratio can provide substatial
 added value.
 
 In addition there is also a case to be made from a cognitive angle. A
 production for large screens might easily include a lot of scenery to provide
-ambience for a scene. For smaller displays this means that very little space
+ambience for a scene. For smaller displays, this means that very little space
 is used to actually present the driving parts of the content. Recognizing
 facial expressions on a face that is less than a centimeter squared puts a
 substantial demand on eye sight and concentration. In such scenarios,
@@ -102,21 +115,21 @@ larger and therefore easier to understand as can be observed in figure \ref
 
 \begin{figure*}
   \begin{center}
-    \includegraphics[width=0.8\textwidth]{DAR_vs_letterbox.png}
+    \includegraphics[width=0.9\textwidth]{DAR_vs_letterbox.png}
   \end{center}
-  \caption{16:9 landscape, 9:16 dynamic crop and 9:16 letterboxed}
+  \caption{16:9 landscape, 9:16 dynamic crop and 9:16 letterboxed, same size screen.}
   \label{croppings}
-  \Description{Different renderings of a video on the same size device,
-   dynamic crop shows face very clearly.}
+  %%\Description{Different renderings of a video on the same size device,
+  %% dynamic crop shows face very clearly.}
 \end{figure*}
 
 In this paper we discuss using a dynamic client side cropping of video content
-based on a focus track providing the focus point of the experience. The focus
-track is kept separate from the video data, ensuring compatibility with
-existing systems. The client will synchronize the focus track to the video
-and present a dynamic cut of the video according to the focus track. We also
-present our work on automatic production of focus tracks for a few different
-types of production, as well as prelimiary findings on the final output.
+based on a focus track providing the focus point of the experience. This is
+done the different data is transferred to the client, possibly individually,
+and then synthesized into the final presentation by the client itself. We
+also present our work on automatic production of focus tracks for a few
+different types of production, as well as prelimiary findings on the final
+output.
 
 %%\section{Background}
 \section{Related work}
@@ -131,7 +144,7 @@ composition is often placed either according to the golden ratio or the "rule
 of thirds", avoiding center focus. A center crop will thus often cut the item
 in focus. The third option is to create positioning data for the focus point
 or area for each frame or scene, which in this paper will be referred to as
-a "focus track". A crop is then created using this focus track, in effect
+a "focus track". A crop is then created using this focus track, in effect,
 cutting away the least imporant bits of the content. Approaches like
 streching or compressing the content are not discussed in this paper as they
 distort the image.
@@ -152,10 +165,10 @@ process of cropping video to a number of aspect ratios \cite
 {adobe_premiere,mediapipe,kamua}. The MediaPipe\cite{mediapipe} project from
 Google provides a service called "AutoFlip", which uses OpenCV to convert one
 video into a number of predefined aspect ratios, using various object and
-other detections to understand the video frames. In our experiments we have
+other detections to understand the video frames. In our experiments, we have
 indeed used the MediaPipe library as one method of generating focus tracks.
 
-Common to these existing solutions the focus track is internal and is used to
+Common to these existing solutions, the focus track is internal and is used to
 apply cropping as a part of the postproduction phase. This leads to multiple
 video encodings being stored and distributed at different aspect ratios as
 separate assets. As multi-bitrate videos like MPEG DASH or HLS are highly
@@ -174,7 +187,7 @@ entire play field. An AI specially trained for a particular sport will then
 determine the area of interest at any given time, and an output video is then
 cropped from the main, high resolution input. The end result can be quite
 similar to basic coverage using a single camera point with a human operator.
-In such cases, a focus track is created by the AI and is directly used to
+In such cases, a focus track is created by the AI, and is directly used to
 crop the video. If the focus track was further exported, the client side
 playback could further crop the video to a suitable aspect ratio while
 retaining the full power of the specially trained AI. Providing focus tracks
@@ -199,7 +212,7 @@ model for media, where media can both be regarded as layers and as content
 segments. A dependency graph between objects allows for dynamically altering
 the length of a piece of content while retaining the narrative, and layering
 allows cusomized rendering for particular clients. Adoption of OBM has been
-limited by a more complex production phase and work is being done to address
+limited by a more complex production phase, and work is being done to address
 this \cite{8352916}. OBM does however not provide focus tracks as such,
 making it necessary for multiple assets to be provided in order to for
 example alter the aspect ratio of video without risking loosing important
@@ -213,7 +226,7 @@ Another example of client side synthesizing can be found in \cite
 with a focus on controlling and customizing overlay graphics while also
 allowing users to select video feed for additional angles\cite
 {10.1145/3209280.3209528}. These solutions do however not provide
-adaptability of the video itself and would as such benefit by adding dynamic
+adaptability of the video itself, and would as such benefit by adding dynamic
 aspect ratio to the descriptive timeline. It would then be possible to
 exploit the available screen realestate even better, pairing it with
 graphics, ensuring that graphics are not overlaid important parts of the
@@ -231,9 +244,9 @@ screen to be used for the main content while ensuring all important aspects
 are visible.
 
 Similarly, a portrait mode display including a sign language interpreter or
-subtitles will ensure that the most important area of the screen is visible
+subtitles, will ensure that the most important area of the screen is visible
 in the immediate vicinity of the user's eyes. This will limit necessary eye
-movements and at the same time limit the amount of distractions. It has also
+movements, and at the same time limit the amount of distractions. It has also
 been shown that having both text and the video content visible improves
 understanding \cite{eyetracking}. Allowing text or other accessibility
 features to be combined with a zoomed in video could provide users with
@@ -251,7 +264,7 @@ To provide a more flexible, cheap and extendible solution, we suggest creating
 explicit focus tracks that can be transferred to the client as a separate
 data track. The client can then ensure that the video is cropped according to
 the device capabilities and user preferences. By moving this responsibility
-to the client it is possible to use existing video assets for any aspect
+to the client, it is possible to use existing video assets for any aspect
 ratio. Better placement of graphics also becomes possible, as clients will
 know where the focus of the viewer is likely to be. As aspect ratio becomes
 dynamic, relative placement (e.g. "lower right") might be in a very different
@@ -260,7 +273,7 @@ more likely to be in conflict with other visuals.
 
 Our goal is to demonstrate that client side video cropping is feasible in
 typical web browsers, producing a pleasing user experience. This means that
-cropping needs to be frame accurate to avoid flickering effects and that
+cropping needs to be frame accurate to avoid flickering effects, and that
 changing aspect ratios (e.g. rotating devices) is smooth and natural.
 Secondly, we want to demonstrate that such an approach does not require
 changes to video formats or production flows, but can be added as a separate
@@ -268,7 +281,7 @@ process and data track. This would allow client side dynamic aspect ratio to
 be added to existing systems without changes to the existing work flows, data
 formats or distribution mechanisms.
 
-In the next section we describe our implementation of a video player than can
+In the next section, we describe our implementation of a video player than can
 process a separately delivered focus track, allowing any aspect ratio. We
 will then test the player with both manual and automated focus tracks to gain
 experience with this approach.
@@ -304,7 +317,7 @@ player can also "auto-animate" the transitions. It does this by ignoring very
 small changes, allowing frame-by-frame analysis to produce somewhat noisy
 focus tracks while still producing a calm and steady output. Larger panning
 movements that will look hasty will be done immediately, giving an experience
-similar to changing camera angle.
+closer to changing camera angle.
 
 As well as the dynamic aspect ratio using focus tracks, the player can also
 overlay an alpha channel video of a sign language interpreter. This is kept
@@ -320,7 +333,7 @@ to existing solutions without altering work flows or media handling.
 
 Timing Objects \cite{Arntzen2018,timingobject} are used in combination with
 sequencers \cite{sequencer} to ensure that the positioning data is tightly
-sychronized with video playback. This is very important as re-positioning
+sychronized with video playback. This is very important, as re-positioning
 the video on the wrong frame on scene shifts is highly detectable and creates
 full-screen flickering that detracts substantially from the user experience.
 
@@ -330,10 +343,10 @@ full-screen flickering that detracts substantially from the user experience.
 \begin{figure}
 \begin{center}
 \includegraphics[width=1.0\columnwidth]{iframe_editor.png}
-\caption{Editor for focus tracks}
+\caption{Editor for focus tracks with AI suggestions.}
 \label{iframe_editor}
-\Description{Focus track editor with 6 I-frames shown as tiles and boxes
- around the selected focus point.}
+%%\Description{Focus track editor with 6 I-frames shown as tiles and boxes
+%% around the selected focus point.}
 \end{center}
 \end{figure}
 
@@ -349,7 +362,7 @@ particularly effective for that case. The I-frames are then presented in a
 grid view, allowing easy marking of important areas for each scene change.
 The editor can load a previous focus track, making it easy to perform quality
 assurance on partially automated focus tracks. Another tool is a video
-player where the imporant area can be marked and in real-time be displayed
+player, where the imporant area can be marked and in real-time be displayed
 on a number of other devices. This allows an easy way to validate how the
 positioning data is rendered on a number of screens and devices
 simultaneously, again easing the process. Shared multi-device time navigation
@@ -361,11 +374,11 @@ an automated process would be of great use for large amounts of content. Both
 live content, such as news or sports coverage, as well as archived content
 would benefit vastly from good, automated processes.
 
-In order to do an automated process we have done some basic trials with AI
+In order to do an automated process, we have done some basic trials with AI
 based services from Clarifai \cite{clarifai}, who very helpfully provided us
 with processing resources for this research. In the first stage, a face
 detector was run on I-frames, identifying areas of the video containing
-faces. If any faces were detected the larger one is selected. Alone, this
+faces. If any faces were detected, the larger one is selected. Alone, this
 works very well for typical scenes where two people converse, where the
 camera switches "side" to provide a face-on view. It is also highly accurate
 if only one person is in the picture, or if a group is present in a larger
@@ -382,8 +395,8 @@ the scope of this paper.
 \includegraphics[width=1.0\columnwidth]{track_face.png}
 \caption{AI based face tracking, the nose is selected as focus center.}
 \label{fig_face_tracking}
-\Description{A face is visible in the foreground, a blurred group in the
- background. A box on the nose of the face shows selected focus point.}
+%%\Description{A face is visible in the foreground, a blurred group in the
+%% background. A box on the nose of the face shows selected focus point.}
 \end{center}
 \end{figure}
 
@@ -396,34 +409,34 @@ with a lot of trees in it will disregard "tree".
 \begin{figure}
 \begin{center}
 \includegraphics[width=1.0\columnwidth]{track_stuff.png}
-\caption{AI detected concepts, repeated concepts are ignored. The building is
+\caption{AI detected concepts. Repeated concepts are ignored. The building is
  selected as it's largest and there is just one.}
 \label{fig_stuff_tracking}
-\Description{Image of a house surrounded by trees and two cars in front.
- Yellow boxes show detected concepts, a green box is centered on the
- building.}
+%%\Description{Image of a house surrounded by trees and two cars in front.
+%% Yellow boxes show detected concepts, a green box is centered on the
+%% building.}
 \end{center}
 \end{figure}
-
+  
 In order to test the automated process, we used three different video assets
 from NRK. The first is "Valkyrien", which is an action series with a number
 of fast paced scene changes, action filled scenes like car chases as well as
 scenes with many people (e.g. a funeral). The second is "Vikingane"
 (also available on Netflix as "Norsemen"), which is a comedy series set in
 the viking era. This content has quite a few scenes with many people, where
-the main characters are not prominently placed and there are quite a few very
-dark scenes. The final asset is "Exit", a "mafia" style action drama, shot
-with very artistic angles. Both a manual and an automatic focus track was
-created for each of the three assets. The manual tracks took a few hours to
-create for each asset, as the show was watched (and parts replayed) to ensure
-a good crop. The automated process was performed at approximately real-time,
-but no speed optimizations were done as a part of this work.
+the main characters are not prominently placed and quite a few dark scenes.
+The final asset is "Exit", a "mafia" style action drama, shot with very
+artistic angles. Both a manual and an automatic focus track was created for
+each of the three assets. The manual tracks took a few hours to create for
+each asset, as the show was watched (and parts replayed) to ensure a good
+crop. The automated process was performed at approximately real-time, but no
+speed optimizations were done as a part of this work.
 
 As an alternative focus track generation method, the MediaPipe library\cite
 {mediapipe} was used to provide face detections. As this returns a grid
 describing features of a face, we also determine wether the face is looking
 into the camera, is askew or if it's a side view. This can allow us to select
-people facing the camera, or switching to a different angle for a period to
+people facing the camera, or switching to a different face for a period to
 simulate a more traditional multi-camera production. Using mediapipe we also
 analyze every frame, which also allows us to estimate the movement of a face.
 Observing debate programmes for example, the person talking is often more
@@ -432,18 +445,18 @@ active speaker. In this experiment, faces were sorted by their angle in
 relation to the camera, then size. The more direcly people look into the
 camera, the higher the rating. MediaPipe is available both in a light version
 capable of running without GPU support, and a full version running on GPUs.
-In this test we used the light version for simplicity. Using the full models
+In this test, we used the light version for simplicity. Using the full models
 on GPUs would likely provide even better results.
 
-To test the MediaPipe approach we used "Debatten" from NRK, which is a debate
+To test the MediaPipe approach, we used "Debatten" from NRK, which is a debate
 program with a number of people, often in full figure. We created a program
 that automatically downloads, analyzes and creates all necessary files
 including a focus track. The process is as such fully automated given the URL
 of the video. An episode of "Debatten" is about 35-45 minutes, and the
-process takes about 10-15 minutes on a mid-end Intel i7 computer, including a
-low resolution transcode to allow ffmpeg to detect scene shifts for more
-plesant transitions on camera angle changes. Transcoding is done as I-frames
-are periodic, as the video files have been optimized for streaming. If no
+process takes about 10-15 minutes on a Lenovo laptop, including a low
+resolution transcode to allow ffmpeg to detect scene shifts for more plesant
+transitions on camera angle changes. Transcoding is done as I-frames are
+periodic, as the video files have been optimized for streaming. If no
 transcoding is possible for scene detections, other methods could be used to
 detect scene changes, or these changes can be ignored and traded for the
 occational flickering. 
@@ -462,7 +475,7 @@ face and generic AI performed very well, as illustrated in figure \ref
 {generic_ai_comparison}. "Vikingane" scored worse than the other two items,
 largely due to a number of scenes with a large number of people. In these
 cases, the AI would often pick the wrong face. While the center crop scores
-similarly as our AI on a 3:4 aspect ratio (iPad portrait), the experience is
+similarly as our AI on a 3:4 aspect ratio(iPad portrait), the experience is
 still markedly worse as people are often placed at the edges of the screen,
 making it very visible that some parts of the picture is missing.
 
@@ -474,12 +487,11 @@ screen.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.9\columnwidth]{generic_ai_comparison.png}
-\caption{Analysis of performance on drama series compared to fixed center
- cropping.}
+\includegraphics[width=0.7\columnwidth]{generic_ai_comparison.png}
+\caption{Percentage of frames containing the focus point in drama series for DAR compared to fixed center cropping.}
 \label{generic_ai_comparison}
-\Description{Plot showing how the hit rate of the presented video is improved
- using our method over a static centered crop.}
+%% \Description{Plot showing how the hit rate of the presented video is improved
+%% using our method over a static centered crop.}
 \end{center}
 \end{figure}
 
@@ -493,20 +505,17 @@ new position.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=1\columnwidth]{CoverageOfEyeTracking.png}
-\caption{Percentage of cropped frames that contain eye coverage focus point
- for a centered or dynamic cut. While very similar, the dynamic crop is often
- more aesthetically pleasing for example ensuring that the image contains a
- person.}
+\includegraphics[width=0.7\columnwidth]{CoverageOfEyeTracking.png}
+\caption{Percentage of frames containing the focus point in a debate for DAR compared to fixed center cropping.}
 \label{debatten_plot}
-\Description{Plot showing no real gain over a centered crop for Debatten.}
+%%\Description{Plot showing no real gain over a centered crop for Debatten.}
  \end{center}
 \end{figure}
 
 It is also important to point out that in such a debate, a number of scenes
 have many people visible, making it very difficult to determine which
 position is the most important. Some "misses" are therefore not really
-observable by the user if the full image is not shown. For this kind of
+observable by the user, if the full image is not shown. For this kind of
 content, the audio is also the most important part of the experience, so
 imperfections of camera angle is less critical than visually driven
 experiences. Reaction shots are also often used, where the camera might
@@ -517,23 +526,21 @@ the eye tracking is shown.
 The AI clearly has some room for improvement, as it only scores equal to a
 fixed center crop. However, as illustrated in figures \ref
 {debatten_both_wrong} and \ref{debatten_both_right}, the AI often provides a
-more pleasing crop, ensuring that people are framed and not cut down the
-middle. The AI crop is also dynamic, and will pan automatically to hold a
-person in the frame, which is particularly imporant for 9:16 crops where a
-person fills most of the width. If people are looking sideways, it is more
-natural to have more space in front of their face than around the back. Our
-solution centers on the nose, ensuring a fairly natural crop, as shown in
+more pleasing crop. The AI crop is also dynamic, and will pan automatically
+to hold a person in the frame, which is particularly imporant for 9:16 crops
+where a person fills most of the width. If people are looking sideways, it is
+more natural to have more space in front of their face than around the back.
+Our solution centers on the nose, ensuring a fairly natural crop, as shown in
 figure \ref{nose_center}.
 
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.8\columnwidth]{both_wrong.png}
 \caption{Left crop by AI, right static center. Both are deemed "misses" as the
- eye tracker reports a different area. The AI produces a much more pleasing
- crop.}
+ eye tracker reports a different area.}
 \label{debatten_both_wrong} 
-\Description{Left crop is centered on a human, right crop has a hand sticking
- in from the left but is otherwise just backgroud.}
+%%\Description{Left crop is centered on a human, right crop has a hand sticking
+%% in from the left but is otherwise just backgroud.}
 \end{center}
 \end{figure}
 
@@ -544,8 +551,8 @@ figure \ref{nose_center}.
  according to the eye tracking data. The AI again produces as much better
  result.}
 \label{debatten_both_right} 
-\Description{Left crop is centered on a person, the right crop has the person
- half way outside the image.}
+%%\Description{Left crop is centered on a person, the right crop has the person
+%% half way outside the image.}
 \end{center}
 \end{figure}
 
@@ -569,14 +576,14 @@ as scene changes.
 
 \begin{figure*}
 \begin{center}
-\includegraphics[width=0.7\textwidth]{nose_center.png}
+\includegraphics[width=0.9\textwidth]{nose_center.png}
 \caption{Centering on the nose ensures that participants are placed naturally
  in the picture.}
 \label{nose_center}
-\Description{Three images of people. One person looks to the right and is
- placed slightly on the left, one person is centered and looking straight
- into the camera, the last is placed on the right and looks left. Their noses
- are in the middle of the crop.}
+%%\Description{Three images of people. One person looks to the right and is
+%% placed slightly on the left, one person is centered and looking straight
+%% into the camera, the last is placed on the right and looks left. Their noses
+%% are in the middle of the crop.}
 \end{center}
 \end{figure*}
 
@@ -626,8 +633,7 @@ include for a more generic solution. Including a professional producer would
 also be highly beneficial in order to incorporate more knowledge of cutting,
 transitions etc.
 
-\balance
 
-\bibliographystyle{plain}
+%% \bibliographystyle{plain}
 \bibliography{references}
 \end{document}

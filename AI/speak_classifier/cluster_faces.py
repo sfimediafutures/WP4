@@ -167,7 +167,7 @@ class FaceClusterer(queue.Queue):
         # Try to cluster stuff
         print("Clustering %d images" % len(self.data))
 
-        clt = DBSCAN(metric="euclidean", n_jobs=self.jobs)
+        clt = DBSCAN(metric="euclidean", n_jobs=self.jobs, min_samples=6)
         clt.fit(encodings)
 
         labelIDs = np.unique(clt.labels_)

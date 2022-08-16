@@ -10,6 +10,7 @@ import time
 import sys
 
 from argparse import ArgumentParser
+from VideoPos.Tools.detect_voice import VoiceDetector
 
 
 """
@@ -27,7 +28,7 @@ https://psapi.nrk.no/playback/metadata/program/PRHO04004903?eea-portability=true
 """
 
 
-class NRKSucker():
+class NRKExtractor():
     def resolve_urls(self, url_or_id):
         """
         Resolve NRK urls based on a url or an ID
@@ -84,7 +85,12 @@ class NRKSucker():
         res["m3u8"] = os.path.split(purl)[0] + "/" + spec
 
         # We need the subtitles too
-        res["vtt"] = res["manifest"]["playable"]["subtitles"][0]["webVtt"]
+        if not res["manifest"]["playable"]["subtitles"]:
+            # raise Exception("Missing subtitles")
+            print("Missing subtitles for", id)
+            res["vtt"] = None
+        else:
+            res["vtt"] = res["manifest"]["playable"]["subtitles"][0]["webVtt"]
 
         return res
 
@@ -98,7 +104,8 @@ class NRKSucker():
             print("No playlist in info", info)
             raise Exception("Missing HLS playlist for '%s'" % target)
 
-        cmd = ["ffmpeg", "-y", "-i", info["m3u8"], "-vn", "-c:a", "copy", target]
+        url = info["m3u8"].replace("no_audio_only", "audio_only")
+        cmd = ["ffmpeg", "-y", "-i", url, "-vn", "-c:a", "copy", target]
 
         print("  Extracting audio to %s" % target)
         p = subprocess.run(cmd,
@@ -132,18 +139,22 @@ class NRKSucker():
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
 
-        target_audio = os.path.join(target_dir, "%s.m4a" % id)
+        target_audio = os.path.join(target_dir, "%s.mp4" % id)
         target_vtt = os.path.join(target_dir, "%s.vtt" % id)
 
         self.extract_audio(info, target_audio)
         self.extract_vtt(info, target_vtt)
 
         elapsed = time.time() - start_time
-        print("  OK in ", NRKSucker.time_to_string(elapsed))
+        print("  OK in ", NRKExtractor.time_to_string(elapsed))
 
         info["audio"] = target_audio
         info["subtitles"] = target_vtt
         info["elapsed"] = elapsed
+
+        print("Audio file", info["audio"])
+        print("Subtitle file", info["subtitles"])
+
         return info
 
     @staticmethod
@@ -186,15 +197,11 @@ class NRKSucker():
 
         return ("%d days " % days + ret).strip()
 
-    def find_good_areas(self, subtitle):
-
-        from VideoPos.Tools.sub_parser import SubParser
-        p = SubParser()
-        p.load_srt(subtitle)
+    def find_good_areas(self, subtitles):
 
         bad = 0
         playtime = 0
-        for sub in p.items:
+        for sub in subtitles.items:
             # If sub is two lines and BOTH start with "-" it's two different
             # people and hence the timing is shit
             lines = sub["text"].split("<br>")
@@ -207,8 +214,41 @@ class NRKSucker():
 
             playtime += sub["end"] - sub["start"]
 
-        print("  -- %d subtitles, %d are bad" % (len(p.items), bad))
-        print("  Playtime: %s" % NRKSucker.time_to_string(playtime))
+        print("  -- %d subtitles, %d are bad" % (len(subtitles.items), bad))
+        print("  Playtime: %s" % NRKExtractor.time_to_string(playtime))
+
+    def load_subtitles(self, subtitlefile):
+        from VideoPos.Tools.sub_parser import SubParser
+        subs = SubParser()
+        subs.load_srt(subtitlefile)
+        return subs
+
+    def resync(self, audiofile, subtitles, options):
+
+        detector = VoiceDetector(audiofile)
+        segments = detector.analyze(aggressive=options.aggressive,
+                                    max_pause=float(options.max_pause),
+                                    max_segment_length=float(options.max_segment_length))
+
+        subtitles.items = detector.realign_subs(segments, subtitles.items, options)
+
+        return subtitles
+
+    def save_jsonlines(self, subtitles, info):
+
+        destination = os.path.splitext(info["audio"])[0] + ".jsonlines"
+
+        with open(destination, "w") as f:
+            # Write a single line pr entry that's good
+            for idx, item in enumerate(subtitles.items):
+                entry = {
+                    "sentence_id": idx,
+                    "start_time": item["start"],
+                    "end_time": item["end"],
+                    "sentence_text": item["text"].replace("<br>", "\n"),
+                    "audio": {"path": info["audio"]}
+                }
+                f.write(json.dumps(entry) + "\n")
 
 
 if __name__ == "__main__":
@@ -227,6 +267,15 @@ if __name__ == "__main__":
                         help="If given, how many next episodes to download (if available)",
                         default=1)
 
+    parser.add_argument("-a", "--aggressive", dest="aggressive", help="How aggressive (0-3, 3 is most aggressive), default 2", default=2)
+    parser.add_argument("--min_cps", dest="min_cps", help="Minimum CPS", default=0)
+    parser.add_argument("--max_cps", dest="max_cps", help="Maximum CPS", default=0)
+    parser.add_argument("--max_pause", dest="max_pause", help="Merge if closer than this (if >0s)", default=0)
+    parser.add_argument("--max_segment_length", dest="max_segment_length", help="Max segment length", default=30)
+    parser.add_argument("--max_adjust", dest="max_adjust", help="Maximum adjustment (s)", default=0.7)
+    parser.add_argument("--min_time", dest="min_time", help="Minimium time for a sub (s)", default=1.2)
+    parser.add_argument("--update_end", dest="update_end", action="store_true", default=False, help="Update end too")
+
     try:
         import argcomplete
         argcomplete.autocomplete(parser)
@@ -235,20 +284,25 @@ if __name__ == "__main__":
 
     options = parser.parse_args()
 
-    sucker = NRKSucker()
+    extractor = NRKExtractor()
 
     if options.infoonly:
-        info = sucker.resolve_urls(options.src)
+        info = extractor.resolve_urls(options.src)
 
         print(json.dumps(info, indent=" "))
         raise SystemExit(0)
 
-    info = sucker.dump_at(options.src, options.dst)
-
-    sucker.find_good_areas(info["subtitles"])
+    info = extractor.dump_at(options.src, options.dst)
+    subtitles = extractor.load_subtitles(info["subtitles"])
+    subtitles = extractor.resync(info["audio"], subtitles,  options)
+    extractor.find_good_areas(subtitles)
+    extractor.save_jsonlines(subtitles, info)
 
     next_id = info["info"]["_embedded"]["next"]["id"]
     for i in range(1, int(options.num_episodes)):
-        info = sucker.dump_at(next_id, options.dst)
-        sucker.find_good_areas(info["subtitles"])
+        info = extractor.dump_at(next_id, options.dst)
+        subtitles = extractor.load_subtitles(info["subtitles"])
+        subtitles = extractor.resync(info["audio"], subtitles, options)
+        extractor.find_good_areas(subtitles)
+        extractor.save_jsonlines(subtitles, info)
         next_id = info["info"]["_embedded"]["next"]["id"]

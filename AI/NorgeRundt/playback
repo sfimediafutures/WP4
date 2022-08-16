@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+
+import vlc
+import json
+import time
+import threading
+
+
+class Player:
+
+    def __init__(self, segment_file):
+
+        self.segments = []
+        self.idx = 0
+        self.player = vlc.MediaPlayer()
+        self._loaded_file = None
+        self._playing = threading.Condition()
+
+        def onplay(event):
+            with self._playing:
+                self._playing.notify()
+
+        events = self.player.event_manager()
+        events.event_attach(vlc.EventType.MediaPlayerPlaying, onplay)
+
+        with open(segment_file, "r") as f:
+            for line in f.readlines():
+                self.segments.append(json.loads(line))
+
+            print("Loaded", len(self.segments), "segments from", segment_file)
+
+    def play_next(self, idx=None):
+        if idx is not None:
+            self.idx = idx
+
+        if self.idx < len(self.segments):
+
+            segment = self.segments[self.idx]
+            self.idx += 1
+
+            self.play(segment)
+
+    def play(self, segment):
+
+        fn = segment["audio"]["path"]
+        if fn != self._loaded_file:
+            self.player.set_mrl(fn)
+            self._loaded_file = fn
+
+        # Skip
+        print("%.2f --> %.2f: %s" % (segment["start_time"], segment["end_time"], segment["sentence_text"]))
+        self.player.play()
+        self.player.set_time(int(segment["start_time"] * 1000))
+
+        with self._playing:
+            self._playing.wait(5)
+
+        time.sleep(segment["end_time"] - segment["start_time"])
+        self.player.pause()
+
+
+if __name__ == "__main__":
+    from argparse import ArgumentParser
+
+    parser = ArgumentParser()
+    parser.add_argument('sources', nargs='+', help='File to play')
+
+    options = parser.parse_args()
+
+    for source in options.sources:
+        player = Player(source)
+
+        while True:
+            player.play_next()
+            # print(">", end="")
+            i = input().strip()
+            if i.lower() == "q":
+                raise SystemExit(0)
+

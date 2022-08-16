@@ -1,9 +1,16 @@
+#!/usr/bin/env python3
+# PYTHON_ARGCOMPLETE_OK
+
 import requests
 import json
 import re
 import os
 import subprocess
 import time
+import sys
+
+from argparse import ArgumentParser
+
 
 """
 META: https://psapi.nrk.no/programs/PRHO04004903
@@ -204,56 +211,44 @@ class NRKSucker():
         print("  Playtime: %s" % NRKSucker.time_to_string(playtime))
 
 
-def fetch_programme_info(id):
+if __name__ == "__main__":
 
-    url = "https://psapi.nrk.no/playback/metadata/program/%s?eea-portability=true" % id
+    parser = ArgumentParser()
+    parser.add_argument("-s", "--source", dest="src", help="Source url or NRK program ID", required=True)
 
-    r = requests.get(url)
-    if r.status_code != 200:
-        print("Woops, status code", r.status_code)
-        raise Exception("Bad shit went down getting '%s': %s" % (url, r.status_code))
+    parser.add_argument("-d", "--destination", dest="dst",
+                        help="Destination folder (new subfolder will be made)",
+                        default="/data/nrk/")
 
-    return json.loads(r.text)
+    parser.add_argument("-i", "--info", dest="infoonly", help="Only show info",
+                        action="store_true", default=False)
 
+    parser.add_argument("-r", "--multi", dest="num_episodes",
+                        help="If given, how many next episodes to download (if available)",
+                        default=1)
 
-def find_media_url(id):
-    url = "https://psapi.nrk.no/playback/manifest/program/%s" % id
+    try:
+        import argcomplete
+        argcomplete.autocomplete(parser)
+    except Exception:
+        pass  # Ignore
 
-    r = requests.get(url)
-    if r.status_code != 200:
-        print("Woops, status code", r.status_code)
-        raise Exception("Bad shit went down getting '%s': %s" % (url, r.status_code))
+    options = parser.parse_args()
 
-    return json.loads(r.text)
+    sucker = NRKSucker()
 
+    if options.infoonly:
+        info = sucker.resolve_urls(options.src)
 
-sucker = NRKSucker()
+        print(json.dumps(info, indent=" "))
+        raise SystemExit(0)
 
+    info = sucker.dump_at(options.src, options.dst)
 
-info = sucker.dump_at("PRHO04004903", "/tmp/norgerundt/")
-sucker.find_good_areas(info["subtitles"])
-
-next_id = info["info"]["_embedded"]["next"]["id"]
-for i in range(2):
-    info = sucker.dump_at(next_id, "/tmp/norgerundt/")
     sucker.find_good_areas(info["subtitles"])
+
     next_id = info["info"]["_embedded"]["next"]["id"]
-
-
-#info = resolve_urls("PRHO04004903")
-# print(json.dumps(info, indent=" "))
-
-raise SystemExit()
-
-info = fetch_programme_info("PRHO04004903")
-
-print("INFO", json.dumps(info, indent=" "))
-
-print("Next", info["_embedded"]["next"]["id"])
-
-
-manifest = find_media_url("PRHO04004903")
-
-print("media", json.dumps(manifest, indent=" "))
-
-
+    for i in range(1, int(options.num_episodes)):
+        info = sucker.dump_at(next_id, options.dst)
+        sucker.find_good_areas(info["subtitles"])
+        next_id = info["info"]["_embedded"]["next"]["id"]

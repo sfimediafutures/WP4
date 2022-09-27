@@ -3,12 +3,10 @@
 import sys
 import json
 from operator import itemgetter
-
+import os
 
 from sub_parser import SubParser
 
-if len(sys.argv) < 3:
-    raise SystemExit("Need source and target")
 
 
 def balance(lines):
@@ -136,15 +134,27 @@ def reformat(items):
     return new_subs
 
 
-parser = SubParser()
-parser.load_srt(sys.argv[1])
-items = parser.items
+if __name__ == "__main__":
+    from argparse import ArgumentParser
+    parser = ArgumentParser()
+    parser.add_argument('sources', nargs="+", help='input file (s)')
 
-items = reformat(items)
+    options = parser.parse_args()
 
-target = sys.argv[2]
-if target.endswith(".json"):
-    with open(target, "w") as f:
-        json.dump(items, f, indent=" ")
-else:
-    parser.write_vtt(target, items)
+    for source in options.sources:
+
+        p, e = os.path.splitext(source)
+        target = "%s_r%s" % (p, e)
+        print("Reformatting %s -> %s" % (source, target))
+
+        parser = SubParser()
+        parser.load_srt(source)
+        items = parser.items
+
+        items = reformat(items)
+
+        if target.endswith(".json"):
+            with open(target, "w") as f:
+                json.dump(items, f, indent=" ")
+        else:
+            parser.write_vtt(target, items)

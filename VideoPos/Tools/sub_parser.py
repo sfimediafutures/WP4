@@ -1,5 +1,13 @@
-"""Parse subtitle file (srt, vtt) and convert to JSON."""
+"""
+Parse subtitle file (srt, vtt) and convert to JSON
+
+NORCE Research Institute 2022, Njaal Borch <njbo@norceresearch.no>
+Licensed under GPL v3
+
+"""
+
 import re
+import json
 
 
 class SubParser:
@@ -12,7 +20,11 @@ class SubParser:
     def time2sec(t):
         ms = t.split(",")[1]
         t = t[:-len(ms) - 1]
-        h, m, s = t.split(":")
+        if t.count(":") == 2:
+            h, m, s = t.split(":")
+        else:
+            h = 0
+            m, s = t.split(":")
         ts = int(h) * 3600 + int(m) * 60 + int(s) + (int(ms) / 1000.)
         return ts
 
@@ -58,10 +70,16 @@ class SubParser:
                     # Just the index, we don't care
                     continue
 
-                m = re.match("(\d+:\d+:\d+,\d+) --> (\d+:\d+:\d+,\d+)", line.replace(".", ","))
+                m = re.match("(\d+:\d+:\d+[\.,]\d+) --> (\d+:\d+:\d+[\.,]\d+)", line.replace(".", ","))
                 if m:
                     start, end = m.groups()
                     continue
+                else:  # No hour - whisper makes these
+                    m = re.match("(\d+:\d+[\.,]\d+) --> (\d+:\d+[\.,]\d+)", line.replace(".", ","))
+                    if m:
+                        start, end = m.groups()
+                        continue
+
 
                 # print("TEXT", text, "LINE", line)
                 if text and text[-1] != "-":
@@ -76,4 +94,7 @@ if __name__ == "__main__":
     import sys
     parser = SubParser()
     parser.load_srt(sys.argv[1])
+    if len(sys.argv) > 2:
+        with open(sys.argv[2], "w") as f:
+            json.dump(parser.items, f, indent=" ")
     print(parser.items)

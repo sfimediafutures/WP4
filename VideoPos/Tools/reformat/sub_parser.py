@@ -25,10 +25,10 @@ class SubParser:
         t = int(t)
 
         s = t % 60
-        t = (t - s) % 60
+        t = (t - s) / 60.
 
         m = t % 60
-        h = (t - m % 60)
+        h = (t - m) / 60.
         return "%02d:%02d:%02d.%03d" % (h, m, s, ms)
 
     def write_vtt(self, filename, entries, header="FILE"):

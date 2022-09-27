@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+
+"""
+
+NORCE Research Institute 2022, Njaal Borch <njbo@norceresearch.no>
+Licensed under GPL v3
+
+"""
+
+
 import contextlib
 import sys
 import wave
@@ -133,7 +142,7 @@ class VoiceDetector:
                         if segments[-1]["end"] - segments[-1]["start"] < 4.0:
                             merged = True
                             # MERGE
-                            print("MERGING", segments[-1]["end"], s["start"], segments[-1]["idx"])
+                            # print("MERGING", segments[-1]["end"], s["start"], segments[-1]["idx"])
                             segments[-1]["end"] = s["end"]
                             # We should overwrite the last file if output_dir is given!
                             if output_dir:
@@ -178,6 +187,68 @@ class VoiceDetector:
 
         print("Analyzing")
         return tmpfile
+
+    def realign_subs(self, segments, subs, options):
+
+        updated = kept = 0    
+        subs = sorted(subs, key=operator.itemgetter("start"))
+
+        for sub in subs:
+            found = False
+            # Find a start in the segments that is very close, and if found, re-align
+            for segment in segments:
+                if abs(segment["start"] - sub["start"]) < options.max_adjust:
+
+                    if not found:
+                        # Calculate cps
+                        orig = (sub["start"], sub["end"])
+
+                        sub["start"] = segment["start"]
+
+                        found = True
+                        updated += 1
+                    else:
+                        # Found start, find end too
+                        if abs(segment["end"] - sub["end"]) < options.max_adjust:
+                            sub["end"] = max(sub["start"] + options.min_time, segment["end"])
+                            break
+
+                    # print("ADJUST", orig, "->", (sub["start"], sub["end"]), cps, newcps, sub["text"])
+                    # break
+            if not found:
+                # print("Keeping", (sub["start"], sub["end"]), sub["text"])
+                kept += 1
+
+            cps = len(sub["text"]) / (sub["end"] - sub["start"])
+            if options.max_cps and cps > options.max_cps:
+                # print("** Too fast")
+                sub["end"] = sub["start"] + len(sub["text"]) / float(options.max_cps)
+            if options.min_cps and cps < options.min_cps:
+                # print("** Too slow", (sub["start"], sub["end"]), (len(sub["text"]) / float(options.min_cps)))
+                sub["end"] = sub["start"] + max(options.min_time,  (len(sub["text"]) / float(options.min_cps)))
+            newcps = len(sub["text"]) / (sub["end"] - sub["start"])
+
+
+        # Do some additional checking - if two subs close very close to each other, bundle them
+        threshold = 0.4
+        # If some overlap with a tiny bit, shorten down the first
+        for idx, sub in enumerate(subs):
+            if idx > 0:
+                if abs(sub["end"] - subs[idx-1]["end"]) < threshold:
+                    # print("Aligning ends", subs[idx-1], sub)
+                    subs[idx-1]["end"] = sub["end"]
+                if subs[idx-1]["end"] - sub["start"]  < threshold * 2 and subs[idx-1]["end"] - sub["start"] > 0:
+                    # print("Overlapping\n", subs[idx-1],"\n", sub)
+                    subs[idx-1]["end"] = sub["start"] - 0.001
+
+        # Sanity
+        for sub in subs:
+            if sub["end"] < sub["start"]:
+                raise SystemExit("Super-wrong, end is before start", sub)
+
+        print("Updated", updated, "kept", kept)
+
+        return subs
 
 
 if __name__ == '__main__':
@@ -227,8 +298,6 @@ if __name__ == '__main__':
                                 max_pause=float(options.max_pause),
                                 max_segment_length=float(options.max_segment_length))
 
-    updated = kept = 0    
-
     if not options.sub:
         if options.dst:
             with open(options.dst, "w") as f:
@@ -242,54 +311,7 @@ if __name__ == '__main__':
         with open(options.sub, "r") as f:
             subs = json.load(f)
 
-            subs = sorted(subs, key=operator.itemgetter("start"))
-
-        for sub in subs:
-            found = False
-            # Find a start in the segments that is very close, and if found, re-align
-            for segment in segments:
-                if abs(segment["start"] - sub["start"]) < options.max_adjust:
-
-                    # Calculate cps
-                    orig = (sub["start"], sub["end"])
-
-                    sub["start"] = segment["start"]
-                    sub["end"] = max(sub["start"] + options.min_time, segment["end"])
-
-                    found = True
-                    updated += 1
-                    # print("ADJUST", orig, "->", (sub["start"], sub["end"]), cps, newcps, sub["text"])
-                    break
-            if not found:
-                # print("Keeping", (sub["start"], sub["end"]), sub["text"])
-                kept += 1
-
-            cps = len(sub["text"]) / (sub["end"] - sub["start"])
-            if options.max_cps and cps > options.max_cps:
-                # print("** Too fast")
-                sub["end"] = sub["start"] + len(sub["text"]) / float(options.max_cps)
-            if options.min_cps and cps < options.min_cps:
-                # print("** Too slow", (sub["start"], sub["end"]), (len(sub["text"]) / float(options.min_cps)))
-                sub["end"] = sub["start"] + max(options.min_time,  (len(sub["text"]) / float(options.min_cps)))
-            newcps = len(sub["text"]) / (sub["end"] - sub["start"])
-
-
-        # Do some additional checking - if two subs close very close to each other, bundle them
-        threshold = 0.4
-        # If some overlap with a tiny bit, shorten down the first
-        for idx, sub in enumerate(subs):
-            if idx > 0:
-                if abs(sub["end"] - subs[idx-1]["end"]) < threshold:
-                    print("Aligning ends", subs[idx-1], sub)
-                    subs[idx-1]["end"] = sub["end"]
-                if subs[idx-1]["end"] - sub["start"]  < threshold * 2 and subs[idx-1]["end"] - sub["start"] > 0:
-                    print("Overlapping\n", subs[idx-1],"\n", sub)
-                    subs[idx-1]["end"] = sub["start"] - 0.001
-
-        # Sanity
-        for sub in subs:
-            if sub["end"] < sub["start"]:
-                raise SystemExit("Super-wrong, end is before start", sub)
+            subs = detector.realign_subs(segments, subs, options)
 
         if options.dst:
             print("Saving to", options.dst)
@@ -297,9 +319,6 @@ if __name__ == '__main__':
                 json.dump(subs, f, indent=" ")
         else:
             print("Not saving updated file")
-
-
-        print("Updated", updated, "kept", kept)
 
     if 0:
         if is_tmp:

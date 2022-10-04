@@ -469,6 +469,7 @@
         canedit = getParameterByName("edit") || false;
 
         let message = data.data;
+        console.log("Adding message", message);
         if (!message[options["text_track"]]) return;
 
         let old = document.querySelector("#" + data.key);
@@ -521,7 +522,7 @@
 
         let _make_msg = function(who, text, data) {
             if (!text) return;
-            who = who.toLowerCase();
+            who = String(who).toLowerCase();
             // For advanced subs, we remove all newlines and end hyphens and let 
             // the browser break the text
             text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
@@ -542,6 +543,10 @@
                 return info;
             }
 
+            if (!app.cast[who]) {
+                console.log("Generating random");
+                app.cast[who] = {name: who, color: "#" + Math.floor(Math.random()*16777215)}
+            }
             if (app.cast[who] === undefined) {
                 who = "undefined";
             }
@@ -549,13 +554,13 @@
             let template = document.querySelector("template#message").content.cloneNode(true);
             let msg = template.querySelector("div");
             msg.setAttribute("id", data.key);
-            if (app.cast[who] === undefined) who = "undefined";
+            //if (app.cast[who] === undefined) who = "undefined";
            // msg.style.marginLeft = app.indents[who] + "px";
            if (app.cast[who] === undefined) {
             console.log("*** ERROR *** Missing cast for", who, "text:", text);
             who = "scene";
            }
-           msg.style.background = app.cast[who].color || "lightgray";
+           msg.style.background = app.cast[who].color || "darkgray";
            if (app.cast[who].src) {
                msg.querySelector(".icon").src = app.cast[who].src;
             } else {

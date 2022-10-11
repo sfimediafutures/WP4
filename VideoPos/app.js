@@ -949,7 +949,7 @@ var rubberDuck = function(target, options) {
                     p2.then(response => response.json())
                     .then(response => {
                         API.cast = {};
-                        for (var k in response) API.cast[k.toLowerCase()] = response[k];
+                        for (var k in response) API.cast[String(k).toLowerCase()] = response[k];
                     });
                     promises.push(p2);
                 } else {
@@ -1492,7 +1492,7 @@ var rubberDuck = function(target, options) {
         if (!message[API.options.text_track]) return;
 
         let _make_msg = function(who, text, data) {
-            who = who.toLowerCase();
+            who = String(who).toLowerCase();
             if (!text) throw new Error("Refusing to make message with no text");
 
             // Text is split for readability, let them stay as they are
@@ -1584,7 +1584,7 @@ var rubberDuck = function(target, options) {
         let check_sub = function(who, data) {
 
             // Check if the given person already has a visible sub
-            API.targetElement.querySelectorAll(".subtitle .advancedsub[who='" + who.toLowerCase().replace(" ", "_") + "']")
+            API.targetElement.querySelectorAll(".subtitle .advancedsub[who='" + String(who).toLowerCase().replace(" ", "_") + "']")
                 .forEach(s => API.targetElement.querySelector(".subtitle").removeChild(s));
 
             // Check if there are any subs that were auto-extended beyond the start of this one

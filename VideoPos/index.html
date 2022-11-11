@@ -451,7 +451,7 @@
       pipskew: false,
       mcorp_appid: "4704154345375000225",
       index: true,
-      tts: true,
+      tts: false,
       screenrendersubs: true,
       adjust_cps: false,
       min_cps: 16,
@@ -497,6 +497,16 @@
     console.log("Faking hearing issues");
   }
 
+  if (getParameterByName("tts")) {
+    options.tts = true;
+    options.audioon = true;
+    options.tts_autopause = true;
+    options.tts_lang =  getParameterByName("tts");
+    if (options.tts_lang == "no" || options.tts_lang == "nb")
+        options.responsive_voice = true;
+
+    console.log("TTS used, language:", options.tts_lang);
+  }
 
   console.log("Options", options);
   var app = rubberDuck(document.querySelector(".videocontainer"), options);

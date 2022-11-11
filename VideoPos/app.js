@@ -546,7 +546,7 @@ var rubberDuck = function(target, options) {
             let subs = API.targetElement.querySelector(".subtitle");
             let data = evt.new.data;
 
-            console.log("Change", data);
+            // console.log("Change", data);
 
             if (API.options.fake_hearing_issues) {
                 // We dampen the sound randomly during the subtitle
@@ -584,47 +584,46 @@ var rubberDuck = function(target, options) {
                 API.screenreadersub.appendChild(t);
                 // API.screenreadersub.innerHTML = text;
             }
-            if (!API.options.rendersubs) return;
+            if (!API.options.rendersubs && !API.options.tts) return;
 
-            // If we are to adjust the speed of the subtitle, check that now
-            if (API.options.adjust_cps) {
-                // Calculate CPS
-                let cps = text.length / parseFloat(data.end - data.start);
-                let new_end;
-                console.log("CPS is", cps, data.start, data.end);
-                if (cps < parseFloat(API.options.min_cps)) {
-                    new_end = data.start + Math.max(API.options.min_sub_time, text.length / parseFloat(API.options.min_cps));
-                    console.log("Sub is too slow", text);
-                } else if (cps > parseFloat(API.options.max_cps)) {
-                    new_end = data.start + Math.max(API.options.min_sub_time, text.length / parseFloat(API.options.max_cps));
-                    console.log("Sub is too quick", text);
-                }
-                if (new_end && new_end != data.end) {
-                    cps = text.length / (data.end - data.start);
-                    console.log("Adjusting sub, end moved from", data.end, "to", new_end, (new_end - data.start).toFixed(2), "s, cps", cps);
+            if (API.options.rendersubs) {
+                // If we are to adjust the speed of the subtitle, check that now
+                if (API.options.adjust_cps) {
+                    // Calculate CPS
+                    let cps = text.length / parseFloat(data.end - data.start);
+                    let new_end;
+                    console.log("CPS is", cps, data.start, data.end);
+                    if (cps < parseFloat(API.options.min_cps)) {
+                        new_end = data.start + Math.max(API.options.min_sub_time, text.length / parseFloat(API.options.min_cps));
+                        console.log("Sub is too slow", text);
+                    } else if (cps > parseFloat(API.options.max_cps)) {
+                        new_end = data.start + Math.max(API.options.min_sub_time, text.length / parseFloat(API.options.max_cps));
+                        console.log("Sub is too quick", text);
+                    }
+                    if (new_end && new_end != data.end) {
+                        cps = text.length / (data.end - data.start);
+                        console.log("Adjusting sub, end moved from", data.end, "to", new_end, (new_end - data.start).toFixed(2), "s, cps", cps);
+                        data.original_end = data.end;
+                        data.end = new_end;
+                        data.adjusted = true;
+                        API.subsequencer.addCue(evt.new.key, [data.start, new_end], data);
+                        return;
+                    }
+                } else if (API.options.sub_time_factor != 1.0 && !data.adjusted) {
+                    let new_end = data.start + ((data.end - data.start) * API.options.sub_time_factor);
+                    let cps = text.length / (new_end - data.start);
+                    console.log("Adjusting sub factor", API.options.sub_time_factor, "end moved from", data.end, "to", new_end, (new_end - data.start).toFixed(2), "s, cps", cps);
                     data.original_end = data.end;
                     data.end = new_end;
                     data.adjusted = true;
                     API.subsequencer.addCue(evt.new.key, [data.start, new_end], data);
                     return;
                 }
-            } else if (API.options.sub_time_factor != 1.0 && !data.adjusted) {
-                let new_end = data.start + ((data.end - data.start) * API.options.sub_time_factor);
-                let cps = text.length / (new_end - data.start);
-                console.log("Adjusting sub factor", API.options.sub_time_factor, "end moved from", data.end, "to", new_end, (new_end - data.start).toFixed(2), "s, cps", cps);
-                data.original_end = data.end;
-                data.end = new_end;
-                data.adjusted = true;
-                API.subsequencer.addCue(evt.new.key, [data.start, new_end], data);
-                return;
             }
-
 
             if (data && typeof(data) == "string") {
                 subs.querySelector("span").innerHTML = data.replace("\n", "<br>");
             } else {
-                if (!API.options.rendersubs) return;
-    
                 if (!API.options.advancedsubs && data.who != "info" && data.who != "scene") {
                     let s = subs.querySelector("span");
                     if (s.innerHTML) {
@@ -633,7 +632,7 @@ var rubberDuck = function(target, options) {
                     } else {
                         s.innerHTML += text.replace("\n", "<br>");
                     }
-                } else {
+                } else if (API.options.rendersubs) {
                     // More advanced subtitle, make it here
                     try {
                         API._render_advanced_sub(evt.new, subs);
@@ -672,24 +671,33 @@ var rubberDuck = function(target, options) {
     // ***************************** TTS engine ****************
     if (API.options.tts) {
         API.speak = function(text, voice, force) {
+            force = true;  // The button isn't enabled for this
             if (!force && (API.audiodescriptionElement || !API.targetElement.querySelector("#btnaudiodescription").classList.contains("active")))
                 return;
 
             if (API.options.responsive_voice) {
-                _is_speaking++;
-                responsiveVoice.speak(text);
-                responsiveVoice.fallback_audio.onended = function() {
-                  _is_speaking--;
+                if (_is_speaking) {
+                    // Should queue for speaking!
+                    console.log("TODO: Must queue for speaking if already speaking!");
+                }
+                _is_speaking = 1;
+                API.mediaElement.volume = 0.7;
+                console.log("Speaking", text);
 
+                let onended = function() {
+                  _is_speaking = 0;
+                  API.mediaElement.volume = 1.0;
                   if (API.options.tts_autopause && __autopaused) {
                     __autopaused = false;
                     app.to.update({velocity: 1});
+                    console.log("Autopause resumed", _is_speaking );
                   }
-                    console.log("Speech OK");
+                console.log("Speech Completed", _is_speaking);
                 };
+
+                responsiveVoice.speak(text, responsiveVoice.default_rv.name, {onend: onended});
                 return;
             }
-
 
             console.log("SPEAK", text);
             return new Promise(function(resolve, reject) {
@@ -718,7 +726,7 @@ var rubberDuck = function(target, options) {
             if (API.options.responsive_voice) {
                 // TODO: More languages
                 try {
-                    responsiveVoice.setDefaultVoice("Norwegian Male");                    
+                    responsiveVoice.setDefaultVoice("Norwegian Male");
                 } catch (err) {
                     API.options.responsive_voice = false;
                     console.log("Responsive voice failed", err);
@@ -1479,7 +1487,11 @@ var rubberDuck = function(target, options) {
                 data.forEach(sub => {
                     let id = "sub" + idx;
                     idx++;
-                    if (sub.who) sub.who = String(sub.who)
+                    if (sub.start > sub.end) {
+                        console.log("ERROR - SUB ENDS BEFORE START", sub);
+                        return;
+                    }
+                    if (sub.who) sub.who = String(sub.who);
                     API.subsequencer.addCue(id, [sub.start, sub.end], sub);
                 });
             });
@@ -1498,11 +1510,13 @@ var rubberDuck = function(target, options) {
             // Text is split for readability, let them stay as they are
             // text = text.replaceAll("-<br>", " ").replaceAll("<br>", " ");
 
-            // console.log("_make_msg", who, text, data, API.cast[who]);
+            //console.log("_make_msg", who, text, data, API.cast[who]);
 
             if (who == "info" || who == "scene") {
                 if (API.options.tts) {
                   API.speak(text, data.voice || 0);
+                } else {
+                    console.log("Not speaking");
                 }
                 return;
             }
@@ -1520,6 +1534,7 @@ var rubberDuck = function(target, options) {
                 app.to.update({
                     velocity: 0
                 });
+                console.log("AUTOPAUSED, speaking:", _is_speaking);
                 __autopaused = true;
             }
 

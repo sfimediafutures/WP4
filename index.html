@@ -3,6 +3,7 @@
 <head>
     <title>MediaFutures WP4 / Demo list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://static.nrk.no/core-css/major/1/core-css.min.css">
 
@@ -15,12 +16,15 @@
     .demolist {
         width: 100%;
         background white;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .demo {
-        clear: both;
+        margin: 5px;
+        padding: 5px;
+        background: rgba(0,0,0,0.1);
         position: relative;
-        height: 250px;
     }
 
     .demo .poster {
@@ -31,9 +35,7 @@
     }
 
     .demo .details {
-        float: right;
         min-width: 300px;
-        width: calc(100% - 320px);
     }
 
     .demo .title {
@@ -165,7 +167,6 @@
 </div>
 
 <div class="demolist">
-    <h3>List of demos</h3>
 </div>
 
 <template id="demotemplate">
@@ -203,6 +204,62 @@
 
 
     let demos = [
+        {
+            title: "Debatten",
+            poster: "https://gfx.nrk.no/H79QL0kbEX4WLjatQXa3ag5VqpnRACa4kqUIcwq6iNkg",
+            description: "MediaFutures edition of <a target='_blank' href='https://tv.nrk.no/serie/debatten/202211/NNFA51110122/avspiller'>Debatten, 1. November 2022</a><br> Includes dynamic aspect ratio (MediaPipes AI), Fancy Subs (Automated, Whisper++).",
+            links: [
+                {name: "Video", href: "VideoPos/index.html?url=../res/NNFA51110122/NNFA51110122.json", group: "MultiDevice"},
+                {name: "Chat style", href: "/hack/viewer/?url=/sfi/res/NNFA51110122/NNFA51110122.json&info=false", group: "MultiDevice"},
+                {name: "Chat info", href: "/hack/viewer/?url=/sfi/res/NNFA51110122/NNFA51110122.json", group: "MultiDevice"},
+                {name: "Official subs", href: "VideoPos/index.html?url=../res/NNFA51110122/NNFA51110122.json&simplesubs=true", group: "MultiDevice"},
+
+                {name: "Video", href: "VideoPos/index.html?url=../res/NNFA51110122/NNFA51110122.json&single=true", group: "SingleDevice"},
+                {name: "Chat style", href: "/hack/viewer/?url=/sfi/res/NNFA51110122/NNFA51110122.json?single=true&info=false", group: "SingleDevice"}
+            ]
+        }, 
+        {
+            title: "History Extra Podcast",
+            poster: "https://thumborcdn.acast.com/SWXv3trmVVCerPMckGWixylA3_4=/1000x1000/https%3A%2F%2Fassets.pippa.io%2Fshows%2F61b9ff061a8cbe34583cf079%2F08a0de92-3367-4858-ba13-3a474b2e7101.jpg",
+            description: "MediaFutures edition of <a target='_blank' href='https://www.historyextra.com/podcast/'>History Extra</a>. <br>Fully automatic using Whisper (large) and nvidia/speakerverification titanet (large) for transcribing and speaker identification. Info links are based on a Norwegian trained network for annotation combined with simple Wikipedia searches.",
+            links: [
+                {name: "Without info", href: "/hack/viewer/?url=/hack/datasets/podcast//history_extra.json&info=false", group: "MultiDevice"},
+                {name: "With info", href: "/hack/viewer/?url=/hack/datasets/podcast//history_extra.json", group: "MultiDevice"},
+                {name: "Without info", href: "/hack/viewer/?url=/hack/datasets/podcast//history_extra.json&info=false&single=true", group: "SingleDevice"},
+                {name: "With info", href: "/hack/viewer/?url=/hack/datasets/podcast//history_extra.json&single=true", group: "SingleDevice"}
+            ]
+        }, 
+        {
+            title: "Ballspark",
+            poster: "https://imbo.vgtv.no/users/bt_/images/0fa50df921e3b9c44d31d00c9f9d98ad.jpg?t%5B%5D=1440q80",
+            description: "MediaFutures edition of <a target='_blank' href='https://www.bt.no/podkast/bt/program/100123'>Ballspark</a>. Soccer discussion (in Norwegian), quite heavy Bergen dialect. <br>Fully automatic using Whisper (large) and nvidia/speakerverification titanet (large) for transcribing and speaker identification. Info links are based on a Norwegian trained network for annotation combined with simple Wikipedia searches.",
+            links: [
+                {name: "Without info", href: "/hack/viewer/?url=/hack/datasets/bt//20221003-ballspark.json&info=false", group: "MultiDevice"},
+                {name: "With info", href: "/hack/viewer/?url=/hack/datasets/bt//20221003-ballspark.json", group: "MultiDevice"},
+                {name: "Without info", href: "/hack/viewer/?url=/hack/datasets/bt//20221003-ballspark.json&info=false&single=true", group: "SingleDevice"},
+                {name: "With info", href: "/hack/viewer/?url=/hack/datasets/bt//20221003-ballspark.json&single=true", group: "SingleDevice"}
+            ]
+        }, 
+        {
+            title: "News in English",
+            poster: "https://main.elevkanalen.no/remote.jpg.ashx?w=360&dpi=72&format=jpg&quality=75&urlb64=aHR0cHM6Ly9tYWluLmVsZXZrYW5hbGVuLm5vL21lZGlhYmlibGlvdGVrL2ZvcnNpZGUvbmV3cy9OeWhldGVyX1RodW1iX1Jlc3N1cnNfTmV3cy1pbi1FbmdsaXNoMS5qcGc&hmac=BpeLY_dJj-g",
+            description: "MediaFutures edition of <a target='_blank' href='https://app.elevkanalen.no/nyheter/1559'>News in English</a>. Created for Norwegian school pupulils. Added some relevant articles manually, otherwise automated. <br>Texts created fully automatic using Whisper (large) and nvidia/speakerverification titanet (large) for transcribing and speaker identification. Info links are based on a Norwegian trained network for annotation combined with simple Wikipedia searches.",
+            links: [
+                {name: "Video", href: "VideoPos/index.html?url=/hack/datasets/tv2skole//News_in_english_44_2022.json", group: "MultiDevice"},
+                {name: "TextCast", href: "/hack/viewer/?url=/hack/datasets/tv2skole//News_in_english_44_2022.json", group: "MultiDevice"},
+                {name: "Video", href: "VideoPos/index.html?url=/hack/datasets/tv2skole//News_in_english_44_2022.json&single=true", group: "SingleDevice"},
+                {name: "TextCast", href: "/hack/viewer/?url=/hack/datasets/tv2skole//News_in_english_44_2022.json?single=true", group: "SingleDevice"}
+            ]
+        },
+        {
+            title: "Lørdagsrådet",
+            poster: "https://gfx.nrk.no/Kpn7Nz2VMIdbn0fVllF8CQ4gIvAN3ijgbXim2qMWTFig",
+            description: "MediaFutures edition of <a target='_blank' href='https://radio.nrk.no/serie/loerdagsraadet/MYNR05004122'>Lørdagsrådet</a>. A discussion show with four panelists in a humourous, fast paced problem solving debate. <br>Fully automatic using Whisper (large) and nvidia/speakerverification titanet (large) for transcribing and speaker identification. Info links are based on a Norwegian trained network for annotation combined with simple Wikipedia searches.",
+            links: [
+                {name: "TextCast", href: "/hack/viewer/?url=/hack/datasets/nrk//lordagsraadet_20221008.json&info=false", group: "MultiDevice"},
+                {name: "TextCast", href: "/hack/viewer/?url=/hack/datasets/nrk//lordagsraadet_20221008.json&info=false&single=true", group: "SingleDevice"}
+            ]
+        },
         {
             title: "Vikingane",
             poster: "./res/Vikingane/poster.jpg",

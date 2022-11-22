@@ -987,7 +987,7 @@ var rubberDuck = function(target, options) {
                     p2.then(response => response.json())
                     .then(response => {
                         response.forEach(item => {
-                            item.type = "aux";
+                            item.type = item.type || "aux";
                             API.sequencer.addCue(String(Math.random()), new TIMINGSRC.Interval(item.start, item.end), item);
                         });
                     });
@@ -1647,6 +1647,31 @@ var rubberDuck = function(target, options) {
   var tracking_idx = 0;
   var tracking_palette  = ["#a3a94877", "#edb92e77", "#f8593177", "#3f4fc577", "#00998977", "#ffaaa677", "#f2567977", "#60184877", "#fde47f77", "#1b676b77", "#f0b49e77"];
 
+
+  API.playInfoCues = function(cue) {
+    let playit = function(cue) {
+        // If text, dissolve it at the given position
+        if (cue.text) {
+            let t = 2 + Math.ceil(cue.text / 15.);
+            API.dissolve(cue.text, cue.pos, t);            
+        } else if (cue.mention) {
+            console.log("MENTION", cue.mention);
+            // A person was mentioned, show their avatar in the cornder
+            let person = app.cast[cue.mention.toLowerCase()];
+            document.querySelector(".mention img").src = person.src;
+            document.querySelector(".mention").style.background = person.color;
+            //document.querySelector(".mention .name").innerHTML = person.name;
+            document.querySelector(".mention").classList.remove("hidden");
+            setTimeout(() => document.querySelector(".mention").classList.add("hidden"), 2000);
+        }
+    }
+    if (cue) return playit(cue);
+    API.sequencer.getActiveCues().forEach(cue => {
+        if (cue.data.type == "infopos")
+            playit(cue.data);
+    });
+  }
+
   API.sequencer.on("change", function(evt) {
     let align = function(element, align) {
       if (!element) return;
@@ -1658,6 +1683,11 @@ var rubberDuck = function(target, options) {
     };
 
     let itm = evt.new.data;
+
+    if (itm.type === "infopos") {
+        API.playInfoCues(itm);
+        return;
+    }
 
     if (itm.type === "tracking" && API.options.show_tracking) {
         function getRandomColor() {
@@ -1786,6 +1816,20 @@ var rubberDuck = function(target, options) {
     }
   });
 
+
+  API.dissolve = function(text, pos, time, breaktext=true) {
+    /* Position is in percent [x, y], time in s */
+    let d = document.createElement("div");
+    d.classList.add("dissolvable");
+    let lastspace = text.lastIndexOf(" ")
+    d.innerHTML = text.substr(0, lastspace) + "<br>" + text.substr(lastspace+1);
+    d.style.left = pos[0] + "%";
+    d.style.top = pos[1] + "%";
+    d.style.animationDuration = (time || 2) + "s";
+    d.addEventListener("animationend", () => API.targetElement.removeChild(d));
+    API.targetElement.appendChild(d);
+    setTimeout(() => d.classList.add("dissolve"), 0);
+  };
 
 
     return API;

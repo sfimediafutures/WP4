@@ -356,6 +356,48 @@
       z-index:  90;
     }
 
+
+    .dissolve {
+      animation: dissolve 2s;
+      text-align: center;
+    }
+    .dissolvable {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      color: yellow;
+      opacity:  0;
+      font-size: 2.5em;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+
+    @keyframes dissolve {
+        100% {
+            opacity: 0;
+        font-size: 5em;
+          -webkit-filter: blur(10px); 
+        }
+        0% {
+            opacity: 1;
+          font-size: 2em;
+          -webkit-filter: blur(0px);  
+      }
+    }
+
+    .mention {
+      position: absolute;
+      top: 30%;
+      right: 10px;
+      width: 15%;
+      border-radius: 50%;
+      padding: 10px;
+      z-index: 100;
+    }
+
+    .mention img {
+      width: 100%;
+    }
+
   </style>
 
 
@@ -367,6 +409,10 @@
 <div class="infobox hidden" aria-hidden="true"></div>
 
 <div class="nrk-unset videocontainer" aria-label="Click to show controls">
+
+  <div class="mention hidden">
+    <img class="avatar"/>
+  </div>
 
   <div class="nrk-sr screenreadersub" aria-live="assertive"></div>
 
@@ -595,6 +641,36 @@
   window.addEventListener("resize", function() {
     setTimeout(app.resize, 0);
   });
+
+
+  // Useful for aligning things
+  if (getParameterByName("edit")) {
+    document.body.addEventListener("keydown", (e) => {
+
+      if (e.code == "PageDown" && e.altKey) {
+        e.preventDefault();
+        // Should jump to next info message
+        let found = false;
+        app.sequencer.getCues().forEach(cue => {
+          if (!found && cue.data.type == "infopos" && cue.data.start > app.to.pos) {
+            app.to.update({position: cue.data.start - 2.0});
+            found = true;
+          }
+        });
+      }
+    });
+
+    document.querySelector(".videocontainer").addEventListener("click", (evt) => {
+
+      // console.log("Clicked", evt);
+
+      let x = Math.floor(100 * (evt.offsetX / evt.srcElement.clientWidth));
+      let y = Math.floor(100 * (evt.offsetY / evt.srcElement.clientHeight));
+      console.log("Pos", [x, y], "ts", app.to.pos);
+      app.playInfoCues();
+    });
+
+  }
 
 
 </script>

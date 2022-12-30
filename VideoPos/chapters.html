@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+<head>
+  <title>Chapters</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+  <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+
+  <script src="utils.js#"></script>
+  <script src="wordcloud.js"></script>
+
+
+  <style type="text/css">
+
+    .container {
+      width:  100%;
+      height:  100%;
+    }
+
+
+    .scene {
+      width:  100%;
+    }
+
+    .scene .heads {
+      position: relative;
+      width:  100%;
+      background:  black;
+    }
+
+    .scene .heads .title {
+      height:  100%;
+      width: 150px;
+      position:  absolute;
+      text-align: right;
+      right: 10px;
+      top: 10px;
+      color:  white;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .scene .heads img {
+      height: 60px;
+    }
+
+    .scene .summary {
+      font-size: 1.1em;
+    }
+
+    .scene .summary_short {
+      font-size: 1.2em;
+    }
+
+    .scene .summary_simple {
+      font-size: 1.4em;
+    }
+
+    .scene .inactive {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+
+<template id="scenetemplate">
+  <div class="scene">
+    <div class="heads"><div class="title"></div></div>
+    <div class="text"></div>
+    <hr width="80%"/>
+  </div>
+</template>
+
+<template id="casttemplate">
+  <img class="cast"/>
+</template>
+
+
+<div class="container">
+  
+</div>
+
+
+<script type="text/javascript">
+  let url = utils.getParameterByName("url");
+  let cast;
+
+  let load_manifest = function(url) {
+    return fetch(url).then(e => e.json());
+  }
+
+  let build_dataset = function(items, cast, cutoff=20) {
+    let people = {};
+    let dataset = [];
+    let groups = [{id: "cast", content: ""}];
+
+    // We will have both a start and an end, if people speak within n
+    // seconds, they are allowed to "stay open"
+
+    items.forEach(cue => {
+
+      let data = cue.data;
+
+      if (data.who == "info" || data.who == "scene") return;
+
+      if (people[data.who] && (data.end < people[data.who].end + cutoff)) {
+        // We update the data rather than finish it off
+        people[data.who].end = Math.max(people[data.who].end, data.end);
+        return;
+      }
+
+      // Either it's too old or we don't have the person
+      data.group = "cast";
+      if (cast[data.who]) {
+        data.style = "background-color: " + cast[data.who].color;
+        data.className = "smallface";
+        data.content = "<img src='" + cast[data.who].src + "'/><span>" + data.who;
+      }
+
+      // Ensure that the length is at least some seconds
+      if (data.end - data.start < 20) data.end = data.start + 20;
+      console.log("Item has length", data.end - data.start);
+
+
+      people[data.who] = data;
+      dataset.push(data);
+    });
+
+    // Detect scenes
+    let scenes = [];  // List of [start, end] for scenes
+    let current_start = 0;
+    let current_end;
+    // Need to sort dataset on start times?
+    let scenepeople = [];
+
+    dataset.forEach(item => {
+      if (!current_end) { 
+        current_end = item.end;
+        current_start = item.start;
+        scenepeople.push(item.who);
+        return;
+      }
+
+      // If the beginning of this overlaps with the end of the current one, we
+      // extend the current scene.
+      if (item.start < current_end + 1.0) {
+        current_end = Math.max(current_end, item.end);
+        if (scenepeople.indexOf(item.who) == -1) scenepeople.push(item.who);
+      } else {
+        // There is a gap, we store this scene and reset
+
+        let p = [];
+        scenepeople.forEach(who => { if (cast[who]) p.push(cast[who]);});
+
+        scenes.push({start: current_start, end: current_end, id: "s" + current_start.toFixed(0), cast: p});
+        current_start = item.start;
+        current_end = item.end;
+        scenepeople = [item.who];
+      }
+
+    });
+
+    console.log("Data ok");
+    return {dataset: dataset, groups: groups, scenes: scenes};
+  };
+
+  let app = MCorp.app("4704154345375000225");
+
+  let to = new TIMINGSRC.TimingObject();
+  let sequencer = new TIMINGSRC.Sequencer(to);
+  let subcloud;
+
+  load_manifest(url)
+  .then(manifest => {
+    console.log("Manifest loaded");
+    manifest.chapters = manifest.chapters || manifest.analysis;
+    if (!manifest.chapters) {
+      console.log("*** Missing chapters, can't use this visualizer ***");
+      return;
+    }
+
+    promise_cast = fetch(manifest.cast)
+     .then(e => e.json())
+
+    promise_chapters = fetch(manifest.chapters)
+     .then(e => e.json());
+
+
+     Promise.all([promise_cast, promise_chapters]).then(res => {
+        cast = res[0];
+        let chapters = res[1];
+        // Add the chapters to the sequencer
+        let aid = 0;
+        chapters.forEach(elem => {
+          sequencer.addCue("a" + aid++, [elem.start, elem.end], elem);
+          draw_chapter(aid, elem);
+        });
+
+     });
+   });
+
+    let draw_chapter = function(cid, chapter) {
+      let template = document.querySelector("template#scenetemplate").content.cloneNode(true);
+      let elem = template.querySelector(".scene");
+      elem.setAttribute("id", cid);
+
+      if (chapter.speaking) {
+        const castmembers = Object.keys(chapter.speaking);
+        // Add cast
+        castmembers.forEach(name => {
+          let member = cast[name];
+          if (!member) return;      
+          let m = document.createElement("img");
+          m.src = member.src;
+          m.title = member.name;
+          elem.querySelector(".heads").appendChild(m);
+        });
+      } else {
+        let m = document.createElement("img");
+        m.classList.add("multihead");
+        m.src = "/sfi/res/multiheads.png";
+        elem.querySelector(".heads").appendChild(m);
+      }
+
+      elem.querySelector(".heads").addEventListener("dblclick", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("Doubleclick", chapter.start);
+        app.motions.private.update(chapter.start);
+      });
+
+      elem.querySelector(".heads").addEventListener("click", (e) => {
+        e.preventDefault();
+        //app.motions.private.update(chapter.start);
+        let n = "summary";
+        if (elem.isactive == "summary") {
+          n = "summary_simple";
+        } else if (elem.isactive == "summary_simple") {
+          n = "summary_short"
+        }
+        console.log("isactive is", elem.isactive);
+        if (elem.querySelector(".chaptertext." + elem.isactive))
+          elem.querySelector(".chaptertext." + elem.isactive).classList.add("inactive");
+        if (elem.querySelector(".chaptertext." + n))
+          elem.querySelector(".chaptertext." + n).classList.remove("inactive");
+        elem.isactive = n;
+      });
+
+
+      elem.querySelector(".heads .title").innerHTML = utils.secondsToString(chapter.start) + "<br>" + utils.secondsToString(chapter.end);
+
+      elem.isactive = "summary_simple";
+
+      // Add all the summaries we have
+      const keys = Object.keys(chapter);
+      keys.forEach(key => {
+        if (!key.startsWith("summary")) return;
+
+        let div = document.createElement("div");
+        div.classList.add(key);
+        div.classList.add("chaptertext");
+        if (key != elem.isactive)
+          div.classList.add("inactive");
+        div.innerHTML = chapter[key];
+        elem.querySelector(".text").appendChild(div);
+
+        /*
+        let pz = new PinchZoom(div, {"onZoomUpdate": (event) => {
+          // Get the current pinch-to-zoom scale and rotation from the event object
+          console.log("SCALE", event);
+        });
+        */
+      });
+
+      document.querySelector(".container").appendChild(elem);
+
+    }
+
+  console.log("REGISTER")
+  sequencer.on("change", e => console.log(e));  // draw_chapter(e.key, e.data));
+
+
+  /*
+
+  New idea:
+  Vertical timeline with scenes. Faces of participants on top, wordcloud below, air to next
+
+  */
+</script>
+</body>
+</html>

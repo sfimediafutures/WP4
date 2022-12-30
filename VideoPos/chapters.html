@@ -163,7 +163,6 @@
         current_end = item.end;
         scenepeople = [item.who];
       }
-
     });
 
     console.log("Data ok");
@@ -267,7 +266,7 @@
         div.classList.add("chaptertext");
         if (key != elem.isactive)
           div.classList.add("inactive");
-        div.innerHTML = chapter[key];
+        div.innerHTML = chapter[key].text;
         elem.querySelector(".text").appendChild(div);
 
         /*

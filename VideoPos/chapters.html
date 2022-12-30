@@ -18,7 +18,7 @@
   <style type="text/css">
 
     .container {
-      width:  100%;
+      max-width:  700px;
       height:  100%;
     }
 
@@ -73,7 +73,7 @@
   <div class="scene">
     <div class="heads"><div class="title"></div></div>
     <div class="text"></div>
-    <hr width="80%"/>
+    <!--<hr width="80%"/>-->
   </div>
 </template>
 
@@ -239,10 +239,10 @@
         //app.motions.private.update(chapter.start);
         let n = "summary";
         if (elem.isactive == "summary") {
-          n = "summary_short"
-          // n = "summary_simple";
+          // n = "summary_short"
+          n = "summary_simple";
         } else if (elem.isactive == "summary_simple") {
-          n = "summary_short"
+          // n = "summary_short"
         }
         console.log("isactive is", elem.isactive);
         if (elem.querySelector(".chaptertext." + elem.isactive))

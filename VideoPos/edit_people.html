@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://mcorp.no/lib/mcorp-2.0.1.js"></script>
+    <script src="https://webtiming.github.io/timingsrc/lib/timingsrc-v3.js"></script>
+	<title></title>
+	<style>
+		.drop-area {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+		}
+
+		.peoplearea {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.person {
+			position: relative;
+			display: inline-block;
+			padding: 10px;
+		}
+
+		.person img {
+			width: 65px;
+			height: 65px;
+		}
+
+		.person-actions {
+			display: flex;
+		}
+
+		.sample {
+			position: relative;
+			display: inline-block;
+			width: 70px;
+			height: 30px;
+			background: green;
+			font-size: 20px;
+			padding-left: 5px;
+			padding-top: 3px;
+			margin: 4px;
+		}
+
+		.delete-button {
+			position: absolute;
+			top: 3px;
+			right: 3px;
+			font-size: 0.8em;
+		}
+
+		.avatars img {
+			width: 65px;
+		}
+	</style>
+</head>
+<body>
+
+
+<div class="drop-area">
+	<div class="peoplearea">
+	</div>
+    <button id="addperson">Add person</button>
+	<button class="downloadjson">Download</button>
+
+	<div class="avatars">
+	</div>	
+</div>
+<audio id="mainaudio"></audio>
+
+
+<template id="person-template">
+  <div class="person">
+  	<img class="avatar drop-img"/>
+    <input type="text" class="person-name" value="{{name}}">
+    <div class="person-actions">
+      <div class="delete-button">X</div>
+      <div class="addsegment">NEW</div>
+    </div>
+  </div>
+</template>
+
+<template id="sample-template">
+  <div class="sample">
+    <div class="sample-actions">
+    	PLAY
+    	<div class="delete-button">X</div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+var app = MCorp.app("4704154345375000225");
+
+app.to = new TIMINGSRC.TimingObject()
+app.sequencer = new TIMINGSRC.Sequencer(app.to)
+
+app.ready.then(() => app.to.timingsrc = app.motions.private);
+
+function downloadJSON(data, filename) {
+  let content = JSON.stringify(data);
+  let blob = new Blob([content], {type: 'application/json'});
+  let a = document.createElement('a');
+  a.style.display = 'none';
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function requestTime() {
+	let cue = app.sequencer.getActiveCues()[0];
+  if (cue) {
+  	s = cue.data.start;
+  	e = cue.data.end;
+  } else {
+  	s = e = "";
+  }
+  let start = prompt("Enter start time (seconds)", s);
+  let end = prompt("Enter end time (seconds)", e);
+  return [parseFloat(start), parseFloat(end)];
+}
+
+function addPerson(key, person) {
+
+	if (person.name === undefined) return;
+
+  	console.log("Person is", person);
+    let template = document.querySelector("template#person-template").content.cloneNode(true);
+    let p = template.querySelector("div");
+    p.setAttribute("id", "p" + person.id);
+    p.style.background = person.color;
+    p.querySelector(".person-name").value = person.name;
+    p.querySelector("img").src = person.src || "https://seer2.itek.norut.no/avatars/m1.png";
+    p.querySelector(".person-name").addEventListener("change", () => {
+    	console.log("Updating person", key, "to", p.querySelector(".person-name").value)
+    	app.people[key].name = p.querySelector(".person-name").value;
+    });
+    p.querySelector(".delete-button").addEventListener("click", () => {
+      console.log("Remove person", person.id);
+      delete app.people[key];
+      p.parentElement.removeChild(p);
+    });
+
+    p.querySelector(".addsegment").addEventListener("click", () => {
+    	let times = requestTime();
+    	console.log("Adding segment", times, "to", key)
+    	addSegment(key, p, times);
+
+    	app.people[key].segments[0].times.push(times);
+
+    });
+
+	const dropArea = p.querySelector(".drop-img");
+
+	// Handle drop event
+	dropArea.addEventListener("drop", function(event) {
+	  event.preventDefault();
+	  event.stopPropagation();
+	  const data = event.dataTransfer.getData("text/plain");
+  	  console.log("Dropped", data);
+  	  app.people[key].src = data;
+  	  p.querySelector("img").src = data;
+
+	});
+
+	// Prevent default drag and drop behavior
+	dropArea.addEventListener("dragover", function(event) {
+	  event.preventDefault();
+	  event.stopPropagation();
+	});
+
+	dropArea.addEventListener("dragleave", function(event) {
+	  event.preventDefault();
+	  event.stopPropagation();
+	});
+
+
+    document.querySelector(".peoplearea").appendChild(p);
+    return p;
+}
+
+function addSegment(key, p, t) {
+	let audio = document.querySelector("#mainaudio");
+    let start = t[0];
+    let end = t[1];
+    let template2 = document.querySelector("template#sample-template").content.cloneNode(true);
+    let b = template2.querySelector("div");
+    b.addEventListener("click", () => {
+      app.motions.private.update(start);
+    	console.log("PLAY");
+      audio.pause();
+      audio.currentTime = start;
+      audio.oncanplay = function() {
+        audio.play();
+        audio.ontimeupdate = function() {
+          if (audio.currentTime >= end) {
+            audio.pause();
+          }
+        };
+      };
+    });
+    b.querySelector(".delete-button").addEventListener("click", () => {
+      b.parentElement.removeChild(b);
+      app.people[key].segments[0].times = app.people[key].segments[0].times.filter(time => time !== t);
+    });
+    p.querySelector(".person-actions").appendChild(b);
+}
+
+function load_people(people) {
+	document.querySelector(".peoplearea").innerHTML = "";
+	app.people = people;
+  console.log("Loading people", people);
+  Object.keys(people).forEach(key => {
+  	let person = people[key];
+  	p = addPerson(key, person);
+
+  	if (person.segments) {
+	    if (Array.isArray(person.segments[0].times)) {
+	      person.segments[0].times.forEach((t) => addSegment(key, p, t))
+	  	}
+    }
+
+    //document.querySelector(".peoplearea").appendChild(p);
+  });
+}
+
+function load_subs(subs) {
+	/// We can load subs in order to more easily add sound clips, they will be
+	/// the default start/end if adding a new item
+	app.subs = subs;
+	let id = 0;
+    const cues = subs.map(item => {
+        return {
+            key: "s" + id++,
+            interval: new TIMINGSRC.Interval(item.start, item.end),
+            data: item
+        };
+    });
+    app.sequencer.dataset.update(cues);	
+}
+
+const dropArea = document.querySelector(".drop-area");
+
+// Handle drop event
+dropArea.addEventListener("drop", function(event) {
+	console.log("Dropped");
+  event.preventDefault();
+  event.stopPropagation();
+
+  const file = event.dataTransfer.files[0];
+  const fileReader = new FileReader();
+
+  fileReader.onload = function(event) {
+  	app.filename = file.name;
+    const jsonData = JSON.parse(event.target.result);
+    console.log(jsonData);
+    if (app.filename.endsWith("subs.json")) {
+    	load_subs(jsonData);
+    } else {
+	    load_people(jsonData);    	
+    }
+  };
+
+  if (file.type == "application/json") {
+	  fileReader.readAsText(file);  	
+  } else if(file.type.startsWith("audio")) {
+	const fileURL = URL.createObjectURL(file);
+	document.querySelector("#mainaudio").src = fileURL;
+  }
+});
+
+// Prevent default drag and drop behavior
+dropArea.addEventListener("dragover", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+});
+
+dropArea.addEventListener("dragleave", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+});
+
+document.querySelector(".downloadjson").addEventListener("click", () => {
+	if (app.people)
+		downloadJSON(app.people, app.filename);
+});
+
+document.querySelector("#addperson").addEventListener("click", () => {
+	let num = Object.keys(app.people).length + 1;
+	let first = Object.keys(app.people)[0];
+
+	person = {
+		name: num,
+		color: "#12000064",
+	}
+
+	if (app.people[first].segments)
+	person.segments = [{
+			file: app.people[first].segments[0].file,
+			times: []
+		}]
+	app.people[num] = person;
+	addPerson(num, person);
+});
+
+function load_avatars() {
+	let target = document.querySelector(".avatars");
+	let avatars = ["f10.png",
+	"f11.png",
+	"f12.png",
+	"f13.png",
+	"f14.png",
+	"f15.png",
+	"f1.png",
+	"f2.png",
+	"f3.png",
+	"f4.png",
+	"f5.png",
+	"f6.png",
+	"f7.png",
+	"f8.png",
+	"f9.png",
+	"m1.png",
+	"m2.png",
+	"m3.png",
+	"m4.png",
+	"m5.png",
+	"m6.png",
+	"m7.png",
+	"m8.png",
+	"female1.png",
+	"female2.png",
+	"female3.png",
+	"female4.png",
+	"female5.png",
+	"male1.png",
+	"male2.png",
+	"male3.png",
+	"male4.png",
+	"male5.png"];
+	avatars.forEach(a => {
+		let i = document.createElement("img");
+		i.src = "https://seer2.itek.norut.no/avatars/" + a;
+		target.appendChild(i);
+		i.addEventListener('dragstart', (event) => 
+    		event.dataTransfer.setData('text/plain', event.target.src));
+	});
+}
+
+load_avatars();
+</script>
+</body>
+</html>

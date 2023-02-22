@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Byte Size PodCast</title>
+	<style>
+		body {
+			width: 100%;
+			height: 100%;
+			background: black;
+		}
+		.container {
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+			width: 100%;
+			height: 100%;
+			justify-content: space-between;
+			align-items: center;
+			//padding: 20px;
+		}
+
+		iframe {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+		}
+		.list {
+			position: relative;
+			width: 100%;
+			height: 60vh;
+			float: left;
+			background-color: black;
+			background-image: url('gfx/poster.jpg');
+			background-size: contain;
+			background-repeat: no-repeat;
+			height: auto;
+			color: white;
+		}
+		.square-boxes {
+			display: flex;
+			flex-wrap: wrap;
+			padding: 10px;
+			background-color: #111;
+			//height: calc(40vh - 40px);
+			overflow-y: auto;
+		}
+		.box {
+			position: relative;
+			//width: calc(33% - 10px);
+			width: 330px;
+			height: 150px;
+			padding: 20px;
+			//padding-bottom: calc(33% - 10px);
+			margin: 5px;
+			background-color: #285753a6;
+			color: white;
+		}
+
+		.episode .title {
+			font-weight: bold;
+			font-size: 1.2em
+		}
+
+		.episode .duration {
+			font-weight: italic;
+			font-size:1.1em;
+			position: absolute;
+			bottom: 5px;
+			right: 5px;
+		}
+
+		@media only screen and (min-width: 768px) {
+			.list {
+				width: 400px;
+				height: calc(100vh - 20px);
+				position: fixed;
+			}
+			.square-boxes {
+				width: calc(100% - 420px);
+				height: 100%;
+				position: absolute;
+				left: 400px;
+			}
+		}
+
+		@media only screen and (max-width: 767px) {
+			.list {
+				width: 100%;
+				min-height: 600px;
+			}
+			.square-boxes {
+				height: auto;
+				width: 100%;
+			}
+			.fbox {
+				width: calc(50% - 10px);
+				padding-bottom: calc(50% - 10px);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="list">
+			<iframe frameBorder="0" fsrc="https://seer2.itek.norut.no/whisper/viewer/?url=/ByteSize/ep_06.json"></iframe>
+		</div>
+		<div class="episodes square-boxes">
+			<div class="box plusone">
+				<textarea rows="7" cols="38"></textarea>
+				<div class="centered add">+</div>
+			</div>
+		</div>
+	</div>
+
+<template id="template-episode">
+	<div class="episode box">
+		<div class="title"></div>
+		<div class="oneliner"></div>
+		<div class="duration"></div>
+	</div>
+</template>
+
+
+<script>
+
+function formatDuration(duration) {
+  const hours = Math.floor(duration / 3600);
+  const minutes = Math.floor((duration % 3600) / 60);
+  const seconds = duration % 60;
+  const hoursStr = hours > 0 ? hours + "h " : "";
+  const minutesStr = minutes > 0 ? minutes + "m " : "";
+  const secondsStr = seconds > 0 ? seconds.toFixed(0) + "s" : "";
+  return hoursStr + minutesStr + secondsStr;
+}
+let plusone = document.querySelector(".plusone");
+plusone.querySelector(".add").addEventListener("click", () => {
+	const prompt = plusone.querySelector("textarea").value;
+	console.log("Should post to create a new podcast about", prompt);
+
+	let url = "http://localhost/8080";
+	fetch(url, {"body": JSON.stringify({"cmd": "generate", "prompt": prompt}), "method": "POST"})
+	.then(r => r.json())
+	.then(res => console.log("Reply", res));
+});
+
+const PLAYER = "/whisper/viewer/?single=True&url="
+	// Load the episodes
+	fetch("episodes.json").then(data => data.json()).then(data => {
+		data.forEach(episode => {
+			console.log("Loading episode", episode)
+			if (document.querySelector("#e" + episode.id)) return;  // Already loaded
+            let template = document.querySelector("template#template-episode").content.cloneNode(true);
+            let e = template.querySelector("div");
+            e.setAttribute("id", "e" + episode.id);
+            e.querySelector(".title").innerHTML = episode.title;
+            e.querySelector(".oneliner").innerHTML = episode.oneliner;
+            e.querySelector(".duration").innerHTML = formatDuration(episode.duration);	
+            document.querySelector(".episodes").insertBefore(e, plusone);
+
+            e.addEventListener("click", (e) => {
+            	console.log("PLAYING", episode.manifest);
+            	e.preventDefault();
+            	e.stopPropagation();
+            	document.querySelector("iframe").src = PLAYER + episode.manifest;
+            });
+		});
+
+	});
+
+
+</script>
+
+
+</body>
+</html>

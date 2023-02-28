@@ -102,13 +102,13 @@ function load_keywords(manifest_url, sequencer) {
             console.log("Manifest:", manifest);
             let i = 0;
 
-            if (manifest.keywords) {
-                console.log("Loading keywords");
-                fetch(manifest.keywords)
+            if (manifest.info) {
+                console.log("Loading info");
+                fetch(manifest.info)
                 .then(e => e.json())
-                .then(keywords => {
-                    keywords.forEach(kw => {
-                        sequencer.addCue("k" + i++, [kw["start"], kw["end"]], kw);
+                .then(cards => {
+                    cards.forEach(kw => {
+                        sequencer.addCue("c" + i++, [kw["start"], kw["end"]], kw);
                     });
                 });
                 return;
@@ -172,23 +172,14 @@ sequencer.on("change", evt => {
     console.log("Wikipedia lookup", evt.new.data);
     let s = evt.new.data.keywords.join(" ");
     let i;
+    let card = evt.new.data.card;
 
-    if (!evt.new.data.url) return;
+    if (!card.url) return;
 
     //i = look_for(evt.new.data.keywords, loaded);
-    let src = evt.new.data.url.url;
+    let src = card.url;
 
     if (!src) return;
-    // If this is old google maps thing we alter it (to avoid reprocessing :))
-
-    let key = "AIzaSyAFI-Pk-PzIfjPGqmNO6qGQw_m0Cr3NV3I";
-    if (src.indexOf("/maps/") > -1) {
-        console.log("Rewriting maps url", src);
-        let i = src.indexOf("query=");
-        let kw = src.substr(i + 6);
-        src = "https://www.google.com/maps/embed/v1/place?key=" + key + "&q=" + kw;
-        console.log("to:", src);
-    }
 
     i = look_for([src], loaded);
     if (i) {
@@ -198,22 +189,7 @@ sequencer.on("change", evt => {
     } else {    
         i = document.createElement("iframe");
         i.setAttribute("id", evt.key);
-
-        // src = evt.new.data.url.url;
-
-        // Did we look this up before?
-        if (!src)
-            src = look_for(evt.new.data.keywords, known_urls);
-
-        if (src) {
-            console.log("Known url", src);
-            i.src = src;
-        } else {
-            console.log("New card");
-            i.src = "https://no.wikipedia.org/w/index.php?search=" + s + "&title=Spesial%3AS%C3%B8k&go=G%C3%A5&ns0=1";
-            known_urls.push([evt.new.data.keywords, i.src]);
-        }
-        //loaded.push([evt.new.data.keywords, i]);
+        i.src = src;
         loaded.push([[src], i]);
         document.querySelector(".container").appendChild(i);
     }

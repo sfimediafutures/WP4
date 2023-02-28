@@ -190,7 +190,9 @@ function addSegment(key, p, t) {
     let end = t[1];
     let template2 = document.querySelector("template#sample-template").content.cloneNode(true);
     let b = template2.querySelector("div");
-    b.addEventListener("click", () => {
+    b.addEventListener("click", (e) => {
+    	e.preventDefault();
+    	e.stopPropagation();
       app.motions.private.update(start);
     	console.log("PLAY");
       audio.pause();
@@ -204,7 +206,9 @@ function addSegment(key, p, t) {
         };
       };
     });
-    b.querySelector(".delete-button").addEventListener("click", () => {
+    b.querySelector(".delete-button").addEventListener("click", (e) => {
+    	e.preventDefault();
+    	e.stopPropagation();
       b.parentElement.removeChild(b);
       app.people[key].segments[0].times = app.people[key].segments[0].times.filter(time => time !== t);
     });
@@ -222,7 +226,7 @@ function load_people(people) {
   	if (person.segments) {
 	    if (Array.isArray(person.segments[0].times)) {
 	      person.segments[0].times.forEach((t) => addSegment(key, p, t))
-	  	}
+	  	}    	
     }
 
     //document.querySelector(".peoplearea").appendChild(p);
@@ -299,11 +303,18 @@ document.querySelector("#addperson").addEventListener("click", () => {
 		color: "#12000064",
 	}
 
-	if (app.people[first].segments)
-	person.segments = [{
-			file: app.people[first].segments[0].file,
-			times: []
-		}]
+	if (app.people[first].segments) {
+			person.segments = [{
+				file: app.people[first].segments[0].file,
+				times: []
+			}]
+	} else {
+			person.segments = [{
+				file: "undefined",
+				times: []
+			}]
+
+	}
 	app.people[num] = person;
 	addPerson(num, person);
 });

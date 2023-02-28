@@ -5,6 +5,8 @@ import sys
 import tempfile
 import re
 import time
+import queue
+import threading
 
 from sub_parser import SubParser
 
@@ -24,11 +26,17 @@ class Lookup:
 
         self.subs = self._load_subs(suburl)
 
-        self.stopwords = self._load_stopwords("/home/njaal/svn/motioncorp/web/live/t2/stopwords_combined.txt")
+        self.stopwords = self._load_stopwords("/home/njaal/stopwords_combined.txt")
 
         self.keywords = []
 
-        self.lookup_ai(self.subs)
+        self.stop_event = threading.Event()
+        self.inqueue = queue.Queue()
+
+        lookup_thread = threading.Thread(target=self.lookup_ai)
+        lookup_thread.start()
+        # self.lookup_ai(self.subs)
+        self.check_cards()
 
     def save(self, filename):
         with open(filename, "wb") as f:
@@ -39,6 +47,9 @@ class Lookup:
         return words.split("\n")
 
     def _load_subs(self, suburl):
+        if not suburl.startswith("http"):
+           with open(suburl, "r") as f:
+              return json.load(suburl)
 
         r = requests.get(suburl)
         if r.status_code != 200:
@@ -58,7 +69,7 @@ class Lookup:
         if item["type"] == "LOC":
             key  = "AIzaSyAFI-Pk-PzIfjPGqmNO6qGQw_m0Cr3NV3I";
             print("Might want to check Google Maps")
-            ursl = "https://www.google.com/maps/embed/v1/place?key=%s&q=" % key + " ".join(item["keywords"])
+            url = "https://www.google.com/maps/embed/v1/place?key=%s&q=" % key + " ".join(item["keywords"])
             # url = "https://www.google.com/maps/search/?api=1&query=" + " ".join(item["keywords"])
             return url
 
@@ -93,7 +104,13 @@ class Lookup:
         # Go through all detections and see if we might have one from before
         # If not, check if we can create a new card
 
-        for item in self.keywords:
+        while True:
+            try:
+                item = self.inqueue.get(timeout=1.0)
+            except queue.Empty:
+                # Queue is empty and the AI is done
+                if self.stop_event.is_set():
+                    break
 
             if item["type"] not in self.cards:
                 self.cards[item["type"]] = []
@@ -120,9 +137,14 @@ class Lookup:
                 if (url):
                     card["url"] = url
                 self.cards[item["type"]].append(card)
+                found = card
 
             else:
                 print("Recycle:", found)
+
+            if found:
+                item["card"] = found
+            self.keywords.append(item)
 
     def lookup(self, subs):
         for sub in subs:
@@ -148,7 +170,9 @@ class Lookup:
                         "keywords": interesting
                         })
 
-    def lookup_ai(self, subs):
+    def lookup_ai(self, subs=None):
+        if not subs:
+            subs = self.subs
 
         for sub in subs:
             t = sub["text"].replace("<br>", " ").replace("-", " ")
@@ -158,7 +182,7 @@ class Lookup:
             interesting = self._sat(t)
             for entry in interesting:
                 print("Interesting entry", entry)
-                self.keywords.append({
+                self.inqueue.put({
                     "start": sub["start"],
                     "end": sub["end"],
                     "keywords": [entry["word"]],
@@ -166,9 +190,11 @@ class Lookup:
                     "score": entry["score"]
                     })
 
+        self.stop_event.set()
+
     def _sat(self, text):
         # url = "https://api-inference.huggingface.co/models/saattrupdan/nbailab-base-ner-scandi"
-        url = "https://seer2.itek.norut.no/sat"
+        url = "https://seer3.itek.norut.no/sat"
 
         args = {"inputs": text, "parameters": {"aggregation_strategy": "first"}}
 
@@ -288,7 +314,7 @@ class Test:
 
 
 if __name__ == "__main__":
-    if 0:
+    if 1:
         l = Lookup(sys.argv[1])
         l.check_cards()
         l.save(sys.argv[2])

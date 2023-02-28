@@ -1549,7 +1549,12 @@ var rubberDuck = function(target, options) {
             if (text) {
                 if (API.cast[who]) {
                     msg.style.background = API.cast[who].color || "lightgray";
-                    msg.querySelector(".icon").src = API.cast[who].src
+                    if (API.cast[who].src) {
+                        msg.querySelector(".icon").src = API.cast[who].src                        
+                    } else {
+                        // No avatar, hide it
+                        msg.querySelector(".icon").classList.add("hidden");
+                    }
                 } else {
                     msg.querySelector(".icon").src = "undefined.png";
                 }
@@ -1557,6 +1562,8 @@ var rubberDuck = function(target, options) {
                 console.log("Hide icon");
                 msg.querySelector(".icon").classList.add("hidden");
             }
+
+
             // If we have an index - we know there are multiple on screen
             if (data.idx != undefined) {
                 if (data.idx % 2 == 1) msg.classList.add("lower")   

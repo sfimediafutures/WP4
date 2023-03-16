@@ -300,7 +300,7 @@
         }
 
         let _make_info = function(who) {
-            who = who.toLowerCase();
+            who = String(who).toLowerCase();
             console.log("Who is", who, app.cast[who]);
             if (!who || ! app.cast[who]) return;
 

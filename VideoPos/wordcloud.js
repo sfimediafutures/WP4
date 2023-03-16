@@ -24,7 +24,7 @@ let subCloud = function(dst, url, sequencer, options, chart_options) {
                 // text += " " + itm.data.who; 
                 // Should use stoplist
                 text = text.toLowerCase().replaceAll(/<[^>]+>/g, " ");
-                text.replace(/[.,\/#!$%\^&\*;:\?{}=\-_`~()]/g,"", "").replaceAll("\n", " ").split(" ").forEach(word => {
+                text.replace(/[.,\/#!$%\^&\*;:\?{}=\-_`~()–]/g,"", "").replaceAll("\n", " ").split(" ").forEach(word => {
 
                     if (word.trim().length <= 2) return;
 

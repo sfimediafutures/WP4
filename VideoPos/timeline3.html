@@ -132,13 +132,13 @@
       if (!current_end) { 
         current_end = item.end;
         current_start = item.start;
-        scenepeople.push(item.who);
+        if (scenepeople.indexOf(item.who) == -1) scenepeople.push(item.who);
         return;
       }
 
       // If the beginning of this overlaps with the end of the current one, we
-      // extend the current scene.
-      if (item.start < current_end + 1.0) {
+      // extend the current scene - except if the scene is already too long (10minutes)
+      if (current_end - current_start < 60 || (current_end - current_start < 180 && item.start < current_end + 1.0)) {
         current_end = Math.max(current_end, item.end);
         if (scenepeople.indexOf(item.who) == -1) scenepeople.push(item.who);
       } else {
@@ -195,8 +195,11 @@
               let elem = template.querySelector(".scene");
               elem.setAttribute("id", scene.id);
               // Add cast
+              let added = {};
               scene.cast.forEach(member => {
-                if (member.name.toLowerCase() == "unknown") return;
+                if (String(member.name).toLowerCase() == "unknown") return;
+                if (!member.src || added[member.src]) return;
+                added[member.src] = true;
                 let m = document.createElement("img");
                 m.src = member.src;
                 m.title = member.name;

@@ -42,8 +42,8 @@ class RequestHandler(SimpleHTTPRequestHandler):
             if "message" not in data or "context" not in data:
                 return self.send_error(400, "Bad request")
 
-            response = {"message": chat(data["message"], data["context"])}
-            response_json = json.dumps({"response": response}).encode("utf-8")
+            response = {"response": chat(data["message"], data["context"])}
+            response_json = json.dumps(response).encode("utf-8")
 
             print("Question:", data["message"])
             print("Response:", response)

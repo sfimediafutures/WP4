@@ -43,7 +43,7 @@ class RequestHandler(SimpleHTTPRequestHandler):
                 return self.send_error(400, "Bad request")
 
             response = {"message": chat(data["message"], data["context"])}
-            response_json = json.dumps(response).encode("utf-8")
+            response_json = json.dumps({"response": response}).encode("utf-8")
 
             print("Question:", data["message"])
             print("Response:", response)

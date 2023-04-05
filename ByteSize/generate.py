@@ -19,6 +19,21 @@ from google.cloud import texttospeech
 
 import openai
 import random
+import os
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "cryonite-fa5373079b4b.json"
+
+
+SYSTEM_MESSAGE="""You are PodGPT, a podcast script writer for the
+podcast "Byte Size". You write scripts that are funny and impersonates the
+podcast presenters without being explicit about it. All scripts are returned
+in the format "presenter name: text". The transcript will always start with
+title: and one_liner:.
+
+The podcast slogan is 'Your favourite robot podcast', and one of the
+presenters is the lead, interviewing the other.
+
+"""
 
 class ByteSize:
 
@@ -28,7 +43,8 @@ class ByteSize:
         self.maxtokens = maxtokens
         self.presenters = ["Cora", "Tony"]
         self.target_dir = "./Episodes/"
-        self._intro = """
+        self._intro = "" 
+        fesk = """
 This is the podcast "Byte Size", having a welcome statement to "Byte Size,
 your favourite robot podcast."
 """
@@ -42,16 +58,33 @@ your favourite robot podcast."
         print("Next episode is", i)
         return i
     
+
+    def replace_urls_with_text(self, text):
+        """
+        Replaces urls in a text with the text from the urls
+        """
+        from get_url import url_to_string
+
+        https_pattern = re.compile(r'https://\S+')
+        matches = https_pattern.findall(text)
+
+        for url in matches:
+            pagetext = url_to_string(url)
+            text = text.replace(url, pagetext)
+        return text
+
     def generate_episode(self, prompt):
         """
         Prompt should describe the content of the episode. The ByteSize bit is prepended
         """
 
+        prompt = self.replace_urls_with_text(prompt)
+
         l = random.sample(range(len(self.presenters)), 1)[0]
         lead = self.presenters[l]
         guest = self.presenters[(l+1) % len(self.presenters)]
 
-        p = self._intro + "Write a title, one liner and a 3000 word episode as a conversational transcript about this subject where %s is the lead and %s is the guest:\n" % \
+        p = self._intro + "Write a title, one liner and a full episode as a conversational transcript about this subject where %s is the lead and %s is the guest:\n" % \
             (lead, guest)
         p += prompt
 
@@ -63,23 +96,52 @@ your favourite robot podcast."
         res = self._send_to_gpt(p)
 
         with open(path, "w") as f:
-            f.write(res["text"])
+            f.write(res)
         return path
 
-    def _send_to_gpt(self, prompt, temperature=None, maxtokens=None):
+    def _send_to_gpt(self, prompt, temperature=0.7, max_tokens=3800):
         """
         Returns a text by GPT, it's as a dictionary, you are likely looking for ["text"]
         """
         if temperature is None:
             temperature = self.temperature
-        if maxtokens is None:
-            maxtokens = self.maxtokens
+        if max_tokens is None:
+            max_tokens = self.max_tokens
+
+        msgs = [
+                    {"role": "system", "content": SYSTEM_MESSAGE},
+                    {"role": "user", "content": prompt}
+                ]
+
+        # We estimate the number of tokens left (we're just guessing, but
+        # based on info from gpt)
+        avg_token_length = 3.3  # Pure guesswork I think
+        # Already spent by the input
+        spent_tokens = len(json.dumps(msgs)) / avg_token_length
+        tokens_left = int(max_tokens - spent_tokens)
+        # Estimated words left
+        words_left = tokens_left * avg_token_length
+        prompt.replace("__WORDCOUNT__", str(int(words_left)))
+        print("prompt length", len(json.dumps(msgs)))
+        print("Can generate", int(words_left), "words max")
+
+        response = openai.ChatCompletion.create(
+              model="gpt-3.5-turbo",
+              messages=msgs,
+              temperature=temperature,
+              max_tokens=tokens_left
+            )
+
+        return response["choices"][0]['message']['content']
+        texts = response['choices'][0]['message']['content'].split("\n")
+
         response = openai.Completion.create(
             model=self.model,
             prompt=prompt,
             temperature=temperature,
-            max_tokens=maxtokens)
-        return response["choices"][0]
+            max_tokens=max_tokens)
+        return response["choices"][0]["text"]
+
 
 
 # en-US-CoraNeural - female presenter
@@ -332,7 +394,7 @@ class TTS:
                 if who.lower().find("transcript") > -1:
                     continue  # Ignore - it's likely just a meta thing
 
-                if who.lower() == "one-liner" or who.lower() == "oneliner":
+                if who.lower() == "one-liner" or who.lower() == "oneliner" or who.lower() == "one liner":
                     self.oneliner = text.strip()
                     continue
 
@@ -606,9 +668,9 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
     parser = ArgumentParser()
     parser.add_argument("-t", "--temperature", dest="temperature",
-                        help="Temperature, default 0.5", default=0.5)
+                        help="Temperature, default 0.7", default=0.7)
     parser.add_argument("--maxtokens", dest="maxtokens",
-                        help="Max tokens, default 3000", default=3000)
+                        help="Max tokens, default 3800", default=3800)
     parser.add_argument("-p", "--prompt", dest="prompt",
                         help="Prompt if given")
     parser.add_argument("-s", "--src", dest="src",

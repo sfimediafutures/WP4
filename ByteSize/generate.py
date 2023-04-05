@@ -623,7 +623,7 @@ class JSONHandler(http.server.BaseHTTPRequestHandler):
 
 def publish_episodes():
     import subprocess
-    subprocess.call("copy.sh")
+    subprocess.call("./copy.sh")
 
 def create_episode(src):
     tts = TTS()

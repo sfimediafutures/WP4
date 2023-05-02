@@ -2,6 +2,9 @@ import os
 import json
 import re
 import copy
+import wave
+import subprocess
+import tempfile
 
 
 class BaseTTS:
@@ -16,6 +19,9 @@ class BaseTTS:
 
     def speak(self, text):
         raise Exception("Not implemented, use a specialized version")
+
+    def write_results(self, result, filename):
+        raise Exception("Not implemented!")
 
     def toFile(self, text, filename):
         """

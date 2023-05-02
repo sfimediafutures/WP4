@@ -502,8 +502,8 @@ class BarkTTS(BaseTTS):
         print("**** WRITING TO '{}'".format(filename))
 
         scaled_audio = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767)
-        scaled_data = np.concatenate(scaled_audio, silence)
         silence = np.zeros(int(0.25*SAMPLE_RATE))
+        scaled_data = np.concatenate(scaled_audio, silence)
 
         write_wav(filename, SAMPLE_RATE, scaled_audio)
         # write_wav(filename, SAMPLE_RATE, result.astype(np.int16))

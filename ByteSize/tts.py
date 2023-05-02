@@ -86,10 +86,9 @@ class BaseTTS:
         for idx, sentence in enumerate(sentences):
             temp = "{}/{}.wav".format(tmpdir, idx)
             if os.path.exists(temp):
-                print("File already exists, remove it")
-                os.remove(temp)
-                #w = wave.open(temp, "r")
-                #duration =  w.getnframes() / w.getframerate()
+                print("File '{}' already exists".format(temp))
+                w = wave.open(temp, "r")
+                duration =  w.getnframes() / w.getframerate()
 
             ssml = """<speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xmlns:emo="http://www.w3.org/2009/10/emotionml" version="1.0" xml:lang="en-US">"""
             p = self.config["people"][sentence["who"]]
@@ -496,5 +495,7 @@ class BarkTTS(BaseTTS):
     def write_results(self, result, filename):
         from bark import SAMPLE_RATE
         from scipy.io.wavfile import write as write_wav
-        write_wav(filename, SAMPLE_RATE, result)
+        import numpy as np
+        print("**** WRITING TO '{}'".format(filename))
+        write_wav(filename, SAMPLE_RATE, result.astype(np.int16))
 

@@ -481,7 +481,7 @@ class BarkTTS(BaseTTS):
 
         from bark import generate_audio
         voice = self.config["people"][text["who"]]["voice"]
-        audio_array = generate_audio(text, history_prompt=voice)
+        audio_array = generate_audio(text["text"], history_prompt=voice)
         return audio_array
 
 

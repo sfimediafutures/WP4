@@ -494,10 +494,12 @@ class BarkTTS(BaseTTS):
         return audio_array
 
 
-    def write_results(self, result, filename):
+    def write_results(self, audio_data, filename):
         from bark import SAMPLE_RATE
         from scipy.io.wavfile import write as write_wav
         import numpy as np
         print("**** WRITING TO '{}'".format(filename))
-        write_wav(filename, SAMPLE_RATE, result.astype(np.int16))
+        scaled_audio = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767)
+        write_wav(filename, SAMPLE_RATE, result)
+        # write_wav(filename, SAMPLE_RATE, result.astype(np.int16))
 

@@ -13,7 +13,6 @@ import time
 import http.server
 import socketserver
 
-import openai
 import random
 import os
 
@@ -124,6 +123,7 @@ your favourite robot podcast."
         print("prompt length", len(json.dumps(msgs)))
         print("Can generate", int(words_left), "words max")
 
+        import openai
         response = openai.ChatCompletion.create(
               model="gpt-3.5-turbo",
               messages=msgs,

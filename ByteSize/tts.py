@@ -105,11 +105,13 @@ class BaseTTS:
 
                 if self.use_ssml:
                     result = self.speak(ssml)
+                    # duration = result.audio_duration.total_seconds()
                 else:
                     result = self.speak(sentence)
-                duration = result.audio_duration.total_seconds()
 
-            self.write_results(result, temp)
+                self.write_results(result, temp)
+                w = wave.open(temp, "r")
+                duration =  w.getnframes() / w.getframerate()
 
             # Read duration from file, it's not correct from MS service
             w = wave.open(temp, "r")

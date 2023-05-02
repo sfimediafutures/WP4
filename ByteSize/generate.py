@@ -4,7 +4,6 @@ import os
 import subprocess
 import tempfile
 import contextlib
-import wave
 import random
 import re
 import copy
@@ -104,7 +103,7 @@ your favourite robot podcast."
         if temperature is None:
             temperature = self.temperature
         if max_tokens is None:
-            max_tokens = self.max_tokens
+            max_tokens = self.maxtokens
 
         msgs = [
                     {"role": "system", "content": SYSTEM_MESSAGE},
@@ -159,7 +158,7 @@ class JSONHandler(http.server.BaseHTTPRequestHandler):
         except Exception as e:
             print("Exception in request:", e)
             print("Request was", body)
-            send.send_response(400, "Invalid request")
+            self.send_response(400, "Invalid request")
             self.end_headers()
             return
 
@@ -173,7 +172,7 @@ class JSONHandler(http.server.BaseHTTPRequestHandler):
 
                 result = {"will_process": True}
         if result is None:
-            send.send_response(400, "Incomplete request")
+            self.send_response(400, "Incomplete request")
             self.end_headers()
             return
 

@@ -1,1 +1,254 @@
-
+[
+  {
+    "id": 162611271733532,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_14_subs.json"
+      }
+    ],
+    "title": "The Worst Drain on Human Energy: Team Meetings",
+    "oneliner": "Join Tony and Cora as they discuss why team meetings are the worst drain on human energy since the invention of blood sucking creatures!",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_14.mp3"
+    },
+    "duration": 201.77050000000003,
+    "published": 1676983231.9006374,
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_14.json"
+  },
+  {
+    "id": 156477970112814,
+    "subtitles": [
+      {
+        "src": "/ByteSize/ep_02b_subs.json"
+      }
+    ],
+    "title": "Exploring the Impact of Generative AI on the Media Industry: Where Will It All End?",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/ep_02b.mp3"
+    },
+    "duration": 223.16983333333334,
+    "oneliner": "Tune into Byte Size for an in-depth exploration of the pros and cons of generative AI and its potential impact on the media industry!",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_02b.json",
+    "published": 1677068985.2260113
+  },
+  {
+    "id": 12555539065180,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_03_subs.json"
+      }
+    ],
+    "title": "Exploring the Dark Side of Madonna's 'Material Girl'",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_03.mp3"
+    },
+    "duration": 155.83325000000002,
+    "oneliner": "Join Cora and Tony on Byte Size, your favourite robot podcast, as they delve into the harmful implications of Madonna's \"Material Girl\" and the subtle use of slavery metaphor in the song.",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_03.json",
+    "published": 1677068985.2300112
+  },
+  {
+    "id": 25115885614535,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_04_subs.json"
+      }
+    ],
+    "title": "\"Who Will Outshine Whom: Embracing the Robot Revolution\"",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_04.mp3"
+    },
+    "duration": 195.30670833333335,
+    "oneliner": "Join Cora and Tony as they dive into the perplexing prospect of robots outshining humans in the age of rapid technological advancement.",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_04.json",
+    "published": 1677068985.2340112
+  },
+  {
+    "id": 145287957229251,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_05_subs.json"
+      }
+    ],
+    "title": "Exploring the Singularity: Ahead of Us or Out of Reach?",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_05.mp3"
+    },
+    "duration": 239.25720833333327,
+    "oneliner": "Join us as we discuss the concept of the Singularity, from its potential benefits to its potential risks - can the Singularity become a reality in the near future?",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_05.json",
+    "published": 1677068985.2380111
+  },
+  {
+    "id": 218632968050805,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_06_subs.json"
+      }
+    ],
+    "title": "Batten Down The Hatches: Storm Warning in Northern Norway",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_06.mp3"
+    },
+    "duration": 337.2070833333332,
+    "oneliner": "Tune in to today's episode of Byte Size, as we discuss thestorm warning in northern Norway and the implications of such severe weather conditions with our co-hosts Tony and Cora.",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_06.json",
+    "published": 1677068985.242011
+  },
+  {
+    "id": 270248300104363,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_09_subs.json"
+      }
+    ],
+    "title": "Striking the Balance Between Military Necessity & Accountability",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_09.mp3"
+    },
+    "duration": 139.6430833333333,
+    "oneliner": "A discussion on the role of the military in times of war and the importance of transparency, oversight and accountability.",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_09.json",
+    "published": 1677068985.2460113
+  },
+  {
+    "id": 66968744474602,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_11_subs.json"
+      }
+    ],
+    "title": "Uncovering the Power of Human Intelligence",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_11.mp3"
+    },
+    "duration": 194.56016666666667,
+    "oneliner": "Join Cora and Tony as they explore the unique capabilities of human intelligence and how it sets us apart from other species.",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_11.json",
+    "published": 1677068985.2500112
+  },
+  {
+    "id": 58087204291193,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_10_subs.json"
+      }
+    ],
+    "title": "\"A Closer Look at Marie Antoinette: Exploring the Legacy of the Last Queen of France\"",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_10.mp3"
+    },
+    "duration": 315.37066666666664,
+    "oneliner": "Take a journey into history and discover the life, death, and legacy of Marie Antoinette, the infamous last Queen of France.",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_10.json",
+    "published": 1677068985.2500112
+  },
+  {
+    "id": 246325863707051,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_12_subs.json"
+      }
+    ],
+    "title": "A Love Story for the Ages: Cleopatra and Mark Antony",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_12.mp3"
+    },
+    "duration": 153.71258333333336,
+    "oneliner": "Join us as we explore the tumultuous relationship between two of history's most iconic figures, Cleopatra and Mark Antony.",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_12.json",
+    "published": 1677068985.2540112
+  },
+  {
+    "id": 195485598992413,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_13_subs.json"
+      }
+    ],
+    "title": "Byte Size: 5 Ways to Stop Fighting and Build a New House",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_13.mp3"
+    },
+    "duration": 175.414625,
+    "oneliner": "Join Tony and Cora in this episode of Byte Size as they discuss the five best ways to stop fighting and build a new house.",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_13.json",
+    "published": 1677068985.258011
+  },
+  {
+    "id": 43269325978719,
+    "subtitles": [
+      {
+        "src": "/ByteSize/ep_uint32_subs.json"
+      }
+    ],
+    "title": "Long version from the BBC news",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/ep_uint32.mp3"
+    },
+    "duration": 612.2255833333334,
+    "oneliner": "Cora and Tony present selected news from the BBC.",
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_uint32.json",
+    "published": 1677068985.2620113
+  },
+  {
+    "id": 52086899287724,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_17_subs.json"
+      }
+    ],
+    "title": "Trump's Legal Troubles: The 34 Charges Against Him",
+    "oneliner": "Tony and Cora discuss the recent legal troubles of former President Donald Trump, who has been charged with 34 counts of falsifying accounting records to cover up hush money payments.",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_17.mp3"
+    },
+    "duration": 99.53604166666669,
+    "published": 1680679655.5432904,
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_17.json"
+  },
+  {
+    "id": 1203529937328,
+    "subtitles": [
+      {
+        "src": "/ByteSize/Episodes/ep_18_subs.json"
+      }
+    ],
+    "title": "Taliban Bans Afghan Female Staff from Working for the UN",
+    "oneliner": "The Taliban has verbally informed the UN that Afghan women are no longer allowed to work for the organization, which could pose a significant challenge to humanitarian aid operations in Afghanistan.",
+    "cast": "/ByteSize/bytesize_people.json",
+    "poster": "https://seer2.itek.norut.no/ByteSize/gfx/poster.jpg",
+    "audio": {
+      "src": "/ByteSize/Episodes/ep_18.mp3"
+    },
+    "duration": 132.52266666666665,
+    "published": 1680680250.967888,
+    "manifest": "https://seer2.itek.norut.no/ByteSize/Episodes/ep_18.json"
+  }
+]

@@ -490,6 +490,7 @@ class BarkTTS(BaseTTS):
 
         from bark import generate_audio
         voice = self.config["people"][text["who"]]["voice"]
+        print("{}: {}".format(voice, text["text"]))
         audio_array = generate_audio(text["text"], history_prompt=voice)
         return audio_array
 
@@ -499,6 +500,10 @@ class BarkTTS(BaseTTS):
         from scipy.io.wavfile import write as write_wav
         import numpy as np
         print("**** WRITING TO '{}'".format(filename))
+
+        silence = np.zeros(int(0.25*SAMPLE_RATE))
+        audio_data = np.concatenate(audio_data, silence)
+
         scaled_audio = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767)
         write_wav(filename, SAMPLE_RATE, scaled_audio)
         # write_wav(filename, SAMPLE_RATE, result.astype(np.int16))

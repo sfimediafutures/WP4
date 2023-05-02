@@ -89,25 +89,25 @@ class BaseTTS:
                 print("File '{}' already exists".format(temp))
                 w = wave.open(temp, "r")
                 duration =  w.getnframes() / w.getframerate()
-
-            ssml = """<speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xmlns:emo="http://www.w3.org/2009/10/emotionml" version="1.0" xml:lang="en-US">"""
-            p = self.config["people"][sentence["who"]]
-            text = sentence["text"]
-            for name in self.config["people"].keys():
-                text = text.replace(name, name.lower())
-
-            t = '<voice name="{}"><prosody rate="{}%" pitch="{}%" style="{}">{}</prosody></voice>'\
-                .format(p["voice"], p.get("speed", 0),
-                        p.get("pitch", 0), p.get("style", ""), sentence["text"])
-
-            ssml += t
-            ssml += "</speak>"""
-
-            if self.use_ssml:
-                result = self.speak(ssml)
             else:
-                result = self.speak(sentence)
-            # duration = result.audio_duration.total_seconds()
+                ssml = """<speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xmlns:emo="http://www.w3.org/2009/10/emotionml" version="1.0" xml:lang="en-US">"""
+                p = self.config["people"][sentence["who"]]
+                text = sentence["text"]
+                for name in self.config["people"].keys():
+                    text = text.replace(name, name.lower())
+
+                t = '<voice name="{}"><prosody rate="{}%" pitch="{}%" style="{}">{}</prosody></voice>'\
+                    .format(p["voice"], p.get("speed", 0),
+                            p.get("pitch", 0), p.get("style", ""), sentence["text"])
+
+                ssml += t
+                ssml += "</speak>"""
+
+                if self.use_ssml:
+                    result = self.speak(ssml)
+                else:
+                    result = self.speak(sentence)
+                duration = result.audio_duration.total_seconds()
 
             self.write_results(result, temp)
 

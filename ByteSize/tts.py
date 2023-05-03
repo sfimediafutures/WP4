@@ -488,19 +488,23 @@ class BarkTTS(BaseTTS):
             if "default" not in self.config["people"]:
                 raise Exception("No default user")
 
-        from bark import generate_audio, generate_text_semantic, semantic_to_waveform
         voice = self.config["people"][text["who"]]["voice"]
         print("{}: {}".format(voice, text["text"]))
-        # audio_array = generate_audio(text["text"], history_prompt=voice)
-        GEN_TEMP = 0.6  # Guessing this is "temperature"
-        semantic_tokens = generate_text_semantic(
-            text["text"],
-            history_prompt=voice,
-            temp=GEN_TEMP,
-            min_eos_p=0.05,  # this controls how likely the generation is to end
-        )
 
-        audio_array = semantic_to_waveform(semantic_tokens, history_prompt=SPEAKER,)
+        if 0:
+            from bark import generate_audio
+            audio_array = generate_audio(text["text"], history_prompt=voice)
+        else:  # generate_text_semantic isn't available yet?
+            GEN_TEMP = 0.6  # Guessing this is "temperature"
+            from bark import text_to_semantic, semantic_to_waveform
+            semantic_tokens = text_to_semantic(
+                text["text"],
+                history_prompt=voice,
+                temp=GEN_TEMP,
+                min_eos_p=0.05,  # this controls how likely the generation is to end
+            )
+
+            audio_array = semantic_to_waveform(semantic_tokens, history_prompt=SPEAKER,)
 
         return audio_array
 

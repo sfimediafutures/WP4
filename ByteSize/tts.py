@@ -491,13 +491,13 @@ class BarkTTS(BaseTTS):
         voice = self.config["people"][text["who"]]["voice"]
         print("{}: {}".format(voice, text["text"]))
 
-        if 0:
+        if 1:
             from bark import generate_audio
             audio_array = generate_audio(text["text"], history_prompt=voice)
         else:  # generate_text_semantic isn't available yet?
             GEN_TEMP = 0.6  # Guessing this is "temperature"
-            from bark import text_to_semantic, semantic_to_waveform
-            semantic_tokens = text_to_semantic(
+            from bark import generate_text_semantic, semantic_to_waveform
+            semantic_tokens = generate_text_semantic(
                 text["text"],
                 history_prompt=voice,
                 temp=GEN_TEMP,

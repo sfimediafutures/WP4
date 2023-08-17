@@ -22,10 +22,10 @@ stub = service_pb2_grpc.V2Stub(channel)
 
 # This will be used by every Clarifai endpoint call.
 # BBT
-metadata = (('authorization', 'Key d5df25707e5a48ed8640a6b7d94947db'),)
+metadata = (('authorization', 'Key ...'),)
 
 # NRK
-# metadata = (('authorization', 'Key 48c95749d90b474db1e4890786be3492'),)
+# metadata = (('authorization', 'Key ....'),)
 
 
 models = {

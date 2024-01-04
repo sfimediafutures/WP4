@@ -1550,13 +1550,13 @@ var rubberDuck = function(target, options) {
                 if (API.cast[who]) {
                     msg.style.background = API.cast[who].color || "lightgray";
                     if (API.cast[who].src) {
-                        msg.querySelector(".icon").src = API.cast[who].src                        
+                        msg.querySelector(".icon img").src = API.cast[who].src                        
                     } else {
                         // No avatar, hide it
                         msg.querySelector(".icon").classList.add("hidden");
                     }
                 } else {
-                    msg.querySelector(".icon").src = "undefined.png";
+                    msg.querySelector(".icon img").src = "undefined.png";
                 }
             } else {
                 console.log("Hide icon");

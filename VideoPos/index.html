@@ -219,7 +219,14 @@
     .advancedsub .icon {
         width: 60px;
         height: 60px;
-        padding: 5px;
+        margin: 5px 5px;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    .advancedsub .icon img {
+        width: 100%;
+        height: auto;
     }
 
     .advancedsub .text {
@@ -472,7 +479,9 @@
 
 <template id="message">
     <div class="advancedsub">
-        <img class="icon"></img>
+      <div class="icon">
+        <img/>
+      </div>
         <div class="text"></<div>
     </div>
 </template>
